@@ -1,11 +1,9 @@
-package org.example;
+package org.example.controller.gui;
 
 import java.io.IOException;
-import java.util.Objects;
 
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import org.example.controller.App;
 
 public class PrimaryController {
 
