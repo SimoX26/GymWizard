@@ -12,6 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
+import org.example.engineeringclasses.bean.LoginBean;
+import org.example.engineeringclasses.bean.SessionBean;
+import org.example.engineeringclasses.dao.db.SessionDAO;
+
 import java.io.IOException;
 
 public class LoginController {
@@ -24,40 +28,57 @@ public class LoginController {
 
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {
-        String email = emailField.getText();
-        String password = passwordField.getText();
+        String email = emailField.getText().trim();
+        String password = passwordField.getText().trim();
 
-        // 🔒 Aggiungi qui la logica di validazione (es. database, regex, ecc.)
-        if (email.equals("admin@example.com") && password.equals("1234")) {
-            // Login riuscito: carica una schermata successiva (es. Dashboard.fxml)
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Login");
-            alert.setHeaderText(null);
-            alert.setContentText("Accesso effettuato con successo!");
-            alert.showAndWait();
+        if (email.isEmpty() || password.isEmpty()) {
+            showAlert(AlertType.WARNING, "Campi obbligatori", "Inserisci email e password.");
+            return;
+        }
 
-            // Puoi caricare una nuova schermata qui, ad esempio:
-            /*
-            Parent dashboard = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
-            Scene scene = new Scene(dashboard);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-            */
+        LoginBean loginBean = new LoginBean();
+        loginBean.setEmail(email);
+        loginBean.setPassword(password);
+
+        SessionDAO sessionDAO = new SessionDAO();
+        SessionBean session = sessionDAO.userLogin(loginBean);
+
+        if (session != null) {
+            showAlert(AlertType.INFORMATION, "Login riuscito", "Benvenuto " + session.getUsername() + " - Ruolo: " + session.getRole());
+
+            String fxmlPath = switch (session.getRole()) {
+                case "cliente" -> "/view/DashboardCliente.fxml";
+                case "personal_trainer" -> "/view/DashboardTrainer.fxml";
+                case "amministratore" -> "/view/DashboardAdmin.fxml";
+                default -> null;
+            };
+
+            if (fxmlPath != null) {
+                Parent dashboard = FXMLLoader.load(getClass().getResource(fxmlPath));
+                Scene scene = new Scene(dashboard);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                showAlert(AlertType.ERROR, "Errore", "Ruolo utente non riconosciuto.");
+            }
+
         } else {
-            // Login fallito
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Errore di accesso");
-            alert.setHeaderText(null);
-            alert.setContentText("Email o password errati.");
-            alert.showAndWait();
+            showAlert(AlertType.ERROR, "Errore di accesso", "Email o password errati.");
         }
     }
 
-    // 🔁 Metodo opzionale per tornare alla schermata iniziale
+    private void showAlert(AlertType type, String title, String content) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
     @FXML
     private void goBackToHome(ActionEvent event) throws IOException {
-        Parent homeRoot = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+        Parent homeRoot = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
         Scene homeScene = new Scene(homeRoot);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(homeScene);

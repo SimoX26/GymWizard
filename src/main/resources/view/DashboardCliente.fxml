@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.controller.gui.DashboardClienteController">
+    <Label text="Benvenuto nella Dashboard Cliente!" style="-fx-font-size: 20px;" />
+</VBox>
+
