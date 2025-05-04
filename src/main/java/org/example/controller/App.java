@@ -13,19 +13,28 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage stage) {
-        try {
-            // 🔧 Carica Home.fxml dalla cartella /view
-            Parent root = loadFXML("Home");
-            scene = new Scene(root, 640, 480);
-            stage.setTitle("GymWizard");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.err.println("❌ Errore nel caricamento della schermata iniziale: " + e.getMessage());
-            e.printStackTrace();
-        }
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+
+        primaryStage.setScene(scene);
+
+        // ✅ Imposta dimensione grande
+        primaryStage.setWidth(1050);
+        primaryStage.setHeight(650);
+
+        // ✅ Impedisci ridimensionamento
+        primaryStage.setResizable(false);
+
+        // (facoltativo) centra la finestra sullo schermo
+        primaryStage.centerOnScreen();
+
+        primaryStage.setTitle("GymWizard");
+        primaryStage.show();
     }
+
 
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));

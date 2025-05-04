@@ -3,14 +3,16 @@ package org.example.controller.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 
 import org.example.engineeringclasses.bean.LoginBean;
 import org.example.engineeringclasses.bean.SessionBean;
@@ -21,13 +23,35 @@ import java.io.IOException;
 public class LoginController {
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
     private TextField emailField;
 
     @FXML
     private PasswordField passwordField;
 
     @FXML
-    private void handleLogin(ActionEvent event) throws IOException {
+    public void initialize() {
+        Image backgroundImage = new Image(getClass().getResource("/images/Sfondo_home.png").toExternalForm());
+
+        BackgroundSize backgroundSize = new BackgroundSize(
+                100, 100, true, true, true, false
+        );
+
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                backgroundSize
+        );
+
+        anchorPane.setBackground(new Background(background));
+    }
+
+    @FXML
+    private void handleLogin(ActionEvent event) {
         String email = emailField.getText().trim();
         String password = passwordField.getText().trim();
 
@@ -44,8 +68,6 @@ public class LoginController {
         SessionBean session = sessionDAO.userLogin(loginBean);
 
         if (session != null) {
-            showAlert(AlertType.INFORMATION, "Login riuscito", "Benvenuto " + session.getUsername() + " - Ruolo: " + session.getRole());
-
             String fxmlPath = switch (session.getRole()) {
                 case "cliente" -> "/view/DashboardCliente.fxml";
                 case "personal_trainer" -> "/view/DashboardTrainer.fxml";
@@ -54,11 +76,22 @@ public class LoginController {
             };
 
             if (fxmlPath != null) {
-                Parent dashboard = FXMLLoader.load(getClass().getResource(fxmlPath));
-                Scene scene = new Scene(dashboard);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                    Parent dashboard = loader.load();
+                    Scene scene = new Scene(dashboard);
+
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.setWidth(1000);
+                    stage.setHeight(700);
+                    stage.setResizable(true);
+                    stage.centerOnScreen();
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    showAlert(AlertType.ERROR, "Errore FXML", "Errore nel caricamento della dashboard.");
+                }
             } else {
                 showAlert(AlertType.ERROR, "Errore", "Ruolo utente non riconosciuto.");
             }
@@ -74,14 +107,5 @@ public class LoginController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
-    }
-
-    @FXML
-    private void goBackToHome(ActionEvent event) throws IOException {
-        Parent homeRoot = FXMLLoader.load(getClass().getResource("/view/Home.fxml"));
-        Scene homeScene = new Scene(homeRoot);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(homeScene);
-        stage.show();
     }
 }
