@@ -28,7 +28,7 @@ public class XDashboardTrainerController {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Home.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/HomeView.fxml"));
                     Parent homeRoot = loader.load();
                     Scene scene = new Scene(homeRoot);
 

@@ -69,9 +69,9 @@ public class XLoginController {
 
         if (session != null) {
             String fxmlPath = switch (session.getRole()) {
-                case "cliente" -> "/views/DashboardCliente.fxml";
-                case "personal_trainer" -> "/views/DashboardTrainer.fxml";
-                case "amministratore" -> "/views/DashboardAdmin.fxml";
+                case "cliente" -> "/views/DashboardClienteView.fxml";
+                case "personal_trainer" -> "/views/DashboardTrainerView.fxml";
+                case "amministratore" -> "/views/DashboardAdminView.fxml";
                 default -> null;
             };
 
