@@ -21,15 +21,16 @@
     <Label alignment="CENTER" layoutX="35.0" layoutY="17.0" prefHeight="62.0" prefWidth="230.0" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: green; -fx-border-color: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10 20;" text="PLANNER 2025" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="17.0" />
 
     <!-- Griglia attività -->
-    <GridPane fx:id="attivitaGrid" gridLinesVisible="true" style="-fx-border-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="90.0">
+    <GridPane fx:id="attivitaGrid" gridLinesVisible="true" layoutX="45.0" layoutY="113.0" prefHeight="582.0" prefWidth="728.0" style="-fx-border-color: white;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="108.0">
         <columnConstraints>
-            <ColumnConstraints percentWidth="14.28" />
-            <ColumnConstraints percentWidth="14.28" />
-            <ColumnConstraints percentWidth="14.28" />
-            <ColumnConstraints percentWidth="14.28" />
-            <ColumnConstraints percentWidth="14.28" />
-            <ColumnConstraints percentWidth="14.28" />
-            <ColumnConstraints percentWidth="14.28" />
+         <ColumnConstraints minWidth="10.0" percentWidth="6.0" prefWidth="100.0" />
+            <ColumnConstraints percentWidth="15.45" />
+            <ColumnConstraints percentWidth="15.45" />
+            <ColumnConstraints percentWidth="15.45" />
+            <ColumnConstraints percentWidth="15.45" />
+            <ColumnConstraints percentWidth="15.45" />
+            <ColumnConstraints percentWidth="15.45" />
+            <ColumnConstraints percentWidth="15.45" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="30" />
@@ -46,26 +47,27 @@
 
         <!-- Giorni -->
         <children>
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="LUNEDÌ" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="MARTEDÌ" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="MERCOLEDÌ" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="GIOVEDÌ" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="VENERDÌ" GridPane.columnIndex="4" GridPane.rowIndex="0" />
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="SABATO" GridPane.columnIndex="5" GridPane.rowIndex="0" />
-            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="DOMENICA" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="MARTEDÌ" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="LUNEDÌ" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="MERCOLEDÌ" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="GIOVEDÌ" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="VENERDÌ" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="SABATO" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="DOMENICA" GridPane.columnIndex="7" GridPane.rowIndex="0" />
 
             <!-- Orari -->
-            <Label text="9:00" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <Label text="10:00" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <Label text="11:00" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-            <Label text="16:00" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-            <Label text="17:00" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-            <Label text="18:00" GridPane.columnIndex="0" GridPane.rowIndex="6" />
-            <Label text="19:00" GridPane.columnIndex="0" GridPane.rowIndex="7" />
-            <Label text="20:00" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+            <Label text="09:00" textFill="WHITE" GridPane.rowIndex="1" />
+            <Label text="10:00" textFill="WHITE" GridPane.rowIndex="2" />
+            <Label text="11:00" textFill="WHITE" GridPane.rowIndex="3" />
+            <Label text="16:00" textFill="WHITE" GridPane.rowIndex="5" />
+            <Label text="17:00" textFill="WHITE" GridPane.rowIndex="6" />
+            <Label text="18:00" textFill="WHITE" GridPane.rowIndex="7" />
+            <Label text="19:00" textFill="WHITE" GridPane.rowIndex="8" />
+            <Label text="20:00" textFill="WHITE" GridPane.rowIndex="9" />
+         <Label text="12:00" textFill="WHITE" GridPane.rowIndex="4" />
         </children>
     </GridPane>
 
     <!-- Pulsante Aggiungi -->
-    <Button fx:id="addBtn" onAction="#handleAddActivity" prefHeight="60" prefWidth="60" style="-fx-font-size: 24; -fx-background-color: green; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;" text="+" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+    <Button fx:id="addBtn" onAction="#handleAddActivity" prefHeight="60.0" prefWidth="60.0" style="-fx-font-size: 24; -fx-background-color: green; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;" text="+" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" />
 </AnchorPane>
