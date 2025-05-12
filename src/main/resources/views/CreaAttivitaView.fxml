@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="org.example.boundaries.CreaAttivitaBoundary">
+
+    <!-- Pulsanti in alto a destra -->
+    <HBox alignment="CENTER_RIGHT" spacing="20"
+          AnchorPane.topAnchor="20" AnchorPane.rightAnchor="30">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="⌂" />
+    </HBox>
+
+    <!-- Contenitore centrale -->
+    <VBox spacing="20" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
+
+        <!-- Titolo -->
+        <Label text="CREA NUOVA ATTIVITÀ"
+               style="-fx-text-fill: white; -fx-font-size: 26; -fx-font-weight: bold; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-background-radius: 50; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 4; -fx-padding: 10 20;" />
+
+        <!-- Form -->
+        <VBox spacing="10" prefWidth="600">
+            <Label style="-fx-text-fill: white;" text="Nome Attività" />
+            <TextField fx:id="nomeField" promptText="Inserisci il nome" />
+
+            <Label style="-fx-text-fill: white;" text="Giorno" />
+            <ComboBox fx:id="giornoComboBox" promptText="Seleziona il giorno" />
+
+            <Label style="-fx-text-fill: white;" text="Ora" />
+            <ComboBox fx:id="oraComboBox" promptText="Seleziona l'ora" />
+
+            <Label style="-fx-text-fill: white;" text="Descrizione" />
+            <TextArea fx:id="descrizioneArea" prefRowCount="4" promptText="Inserisci una descrizione" />
+        </VBox>
+
+        <!-- Pulsante Salva -->
+        <Button text="Salva" onAction="#handleSalva"
+                style="-fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" />
+    </VBox>
+
+</AnchorPane>

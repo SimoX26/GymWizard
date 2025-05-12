@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.boundaries.ChatBoundary">
+
+    <!-- Contenuto verticale principale -->
+    <VBox spacing="20" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.bottomAnchor="80.0">
+
+        <!-- Titolo -->
+        <Label text="Chat"
+               style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 3; -fx-padding: 10 20;" />
+
+        <!-- Area scrollabile dei messaggi -->
+        <ScrollPane fitToWidth="true"
+                    style="-fx-background: black; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10;">
+            <content>
+                <VBox fx:id="messagesBox" spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+        <!-- Campo di input + pulsante invio -->
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="inputField" promptText="Scrivi un messaggio..."
+                       HBox.hgrow="ALWAYS"
+                       style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" />
+            <Button fx:id="sendBtn" text="INVIA"
+                    style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 2; -fx-background-radius: 10; -fx-border-radius: 10;" />
+        </HBox>
+    </VBox>
+
+    <!-- Footer fisso con icone -->
+    <HBox alignment="CENTER" spacing="40"
+          AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="backIcon" text="↩" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" />
+        <Label fx:id="helpIcon" text="?" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" />
+        <Label fx:id="homeIcon" text="⌂" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" />
+    </HBox>
+
+</AnchorPane>

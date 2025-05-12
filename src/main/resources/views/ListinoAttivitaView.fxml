@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.ListinoAttivitaBoundary">
+
+    <!-- Intestazione -->
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="⌂" />
+    </HBox>
+
+    <!-- Titolo -->
+    <Label alignment="CENTER" layoutX="35.0" layoutY="17.0" prefHeight="62.0" prefWidth="230.0" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: green; -fx-border-color: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10 20;" text="PLANNER 2025" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="17.0" />
+
+    <!-- Griglia attività -->
+    <GridPane fx:id="attivitaGrid" gridLinesVisible="true" style="-fx-border-color: white;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="90.0">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="14.28" />
+            <ColumnConstraints percentWidth="14.28" />
+            <ColumnConstraints percentWidth="14.28" />
+            <ColumnConstraints percentWidth="14.28" />
+            <ColumnConstraints percentWidth="14.28" />
+            <ColumnConstraints percentWidth="14.28" />
+            <ColumnConstraints percentWidth="14.28" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="30" />
+            <RowConstraints minHeight="60" />
+            <RowConstraints minHeight="60" />
+            <RowConstraints minHeight="60" />
+            <RowConstraints minHeight="60" />
+            <RowConstraints minHeight="60" />
+            <RowConstraints minHeight="60" />
+            <RowConstraints minHeight="60" />
+            <RowConstraints minHeight="60" />
+            <RowConstraints minHeight="60" />
+        </rowConstraints>
+
+        <!-- Giorni -->
+        <children>
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="LUNEDÌ" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="MARTEDÌ" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="MERCOLEDÌ" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="GIOVEDÌ" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="VENERDÌ" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="SABATO" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="DOMENICA" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+
+            <!-- Orari -->
+            <Label text="9:00" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label text="10:00" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label text="11:00" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Label text="16:00" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Label text="17:00" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+            <Label text="18:00" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <Label text="19:00" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+            <Label text="20:00" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+        </children>
+    </GridPane>
+
+    <!-- Pulsante Aggiungi -->
+    <Button fx:id="addBtn" onAction="#handleAddActivity" prefHeight="60" prefWidth="60" style="-fx-font-size: 24; -fx-background-color: green; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;" text="+" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+</AnchorPane>

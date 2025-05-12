@@ -11,33 +11,29 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class ChatBoundary {
+public class ListaChatBoundary {
 
     @FXML private Label backIcon, helpIcon, homeIcon;
-    @FXML private TextField inputField;
-    @FXML private Button sendBtn;
-    @FXML private VBox messagesBox;
+    @FXML private VBox chatListVBox;
 
     @FXML
     public void initialize() {
+        // Esempio mock utenti
+        for (int i = 1; i <= 5; i++) {
+            Label utente = new Label("🗨️ Chat con Utente " + i);
+            utente.setStyle("-fx-text-fill: white; -fx-font-size: 16; -fx-font-family: 'Comic Sans MS'; -fx-cursor: hand; -fx-padding: 8 10; -fx-background-color: #444; -fx-background-radius: 8;");
+            int finalI = i;
+            utente.setOnMouseClicked(event -> apriChat(finalI));
+            chatListVBox.getChildren().add(utente);
+        }
 
-        sendBtn.setOnAction(event -> {
-            String message = inputField.getText().trim();
-            if (!message.isEmpty()) {
-                Label msgLabel = new Label("👤 " + message);
-                msgLabel.setStyle("-fx-text-fill: white; -fx-font-family: 'Comic Sans MS'; -fx-font-size: 14; -fx-background-color: #444; -fx-padding: 5 10; -fx-background-radius: 10;");
-                messagesBox.getChildren().add(msgLabel);
-                inputField.clear();
-            }
-        });
-
-        backIcon.setOnMouseClicked(event -> switchScene("/views/ListaChatView.fxml"));
+        backIcon.setOnMouseClicked(event -> switchScene("/views/DashboardTrainerView.fxml"));
 
         helpIcon.setOnMouseClicked(event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Guida Interfaccia");
-            alert.setHeaderText("Chat");
-            alert.setContentText("Scrivi un messaggio nel campo in basso e premi INVIA.");
+            alert.setHeaderText("Lista Chat");
+            alert.setContentText("Clicca su una chat per visualizzare la conversazione.");
             alert.showAndWait();
         });
 
@@ -53,14 +49,27 @@ public class ChatBoundary {
         });
     }
 
+    private void apriChat(int idUtente) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ChatView.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) chatListVBox.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600); // dimensioni fisse
+            stage.setScene(scene);
+            stage.setResizable(false);              // blocca resize
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void switchScene(String path) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
             Stage stage = (Stage) backIcon.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // dimensione fissa
+            Scene scene = new Scene(root, 900, 600); // dimensioni fisse
             stage.setScene(scene);
-            stage.setResizable(false);              // blocca ridimensionamento
+            stage.setResizable(false);              // blocca resize
         } catch (IOException e) {
             e.printStackTrace();
         }

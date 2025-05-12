@@ -1,63 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+<AnchorPane prefHeight="400.0" prefWidth="640.0"
+            style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;"
+            xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.controllers.XDashboardTrainerController"
-            style="-fx-background-color: linear-gradient(to right, #0d0d0d, #1a1a1a);"
-            prefWidth="1000" prefHeight="700">
+            fx:controller="org.example.boundaries.DashboardTrainerBoundary">
 
-    <!-- TOP: Icone -->
-    <top>
-        <HBox spacing="25" alignment="CENTER_RIGHT"
-              BorderPane.alignment="TOP_RIGHT"
-              style="-fx-padding: 20 30 0 0;">
-            <Label fx:id="logoutArrow" text="←"
-                   style="-fx-font-size: 32px; -fx-text-fill: #f57c00; -fx-cursor: hand;"/>
-            <Label fx:id="helpIcon" text="?"
-                   style="-fx-font-size: 32px; -fx-text-fill: #f57c00; -fx-cursor: hand;"/>
-            <Label fx:id="homeIcon" text="🏠"
-                   style="-fx-font-size: 32px; -fx-text-fill: #f57c00; -fx-cursor: hand;"/>
-        </HBox>
-    </top>
+    <!-- Contenitore principale -->
+    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
-    <!-- LEFT: Menu trainer -->
-    <left>
-        <VBox spacing="20" alignment="TOP_CENTER"
-              BorderPane.alignment="CENTER_LEFT"
-              style="-fx-padding: 40; -fx-border-color: #f57c00; -fx-border-width: 2; -fx-border-radius: 30; -fx-background-radius: 30;">
-            <Button text="Nome Personal Trainer" maxWidth="200" prefHeight="40"
-                    style="-fx-background-color: #f57c00; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-background-radius: 20;"/>
+        <!-- Benvenuto -->
+        <Label fx:id="welcomeLabel"
+               text="Benvenuto Nome Coach"
+               style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: green; -fx-border-color: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 8 20;" />
 
-            <Label text="👤"
-                   style="-fx-font-size: 80px; -fx-text-fill: #f57c00;" alignment="CENTER"/>
+        <!-- Icona utente -->
+        <Label text="👤"
+               style="-fx-font-size: 60; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10;" />
 
-            <Button text="Gestisci Schede Allenamento" maxWidth="200" prefHeight="40"
-                    style="-fx-background-color: transparent; -fx-border-color: #f57c00; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;"/>
-            <Button text="Vai alla Chat" maxWidth="200" prefHeight="40"
-                    style="-fx-background-color: transparent; -fx-border-color: #f57c00; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;"/>
-            <Button text="Visualizza Clienti" maxWidth="200" prefHeight="40"
-                    style="-fx-background-color: transparent; -fx-border-color: #f57c00; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;"/>
+        <!-- Pulsanti -->
+        <VBox alignment="CENTER" spacing="15">
+            <Button fx:id="listaClientiBtn" text="LISTA CLIENTI"
+                    prefWidth="250" prefHeight="50"
+                    style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" />
+            <Button fx:id="vaiChatBtn" text="VAI ALLA CHAT"
+                    prefWidth="250" prefHeight="50"
+                    style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" />
         </VBox>
-    </left>
+    </VBox>
 
-    <!-- CENTER: Contenuto -->
-    <center>
-        <VBox spacing="25" alignment="CENTER"
-              BorderPane.alignment="CENTER"
-              style="-fx-padding: 20;">
-            <Label text="LAVORA CON INTELLIGENZA"
-                   style="-fx-text-fill: white; -fx-font-size: 30px; -fx-font-family: 'Arial Black';"/>
-            <Label text="LAVORA CON GYMWIZARD"
-                   style="-fx-text-fill: white; -fx-font-size: 30px; -fx-font-family: 'Arial Black';"/>
-            <Label text="🏋️‍♂️"
-                   style="-fx-font-size: 100px; -fx-text-fill: white;"/>
-            <Label text="GymWizard"
-                   style="-fx-font-size: 20px; -fx-text-fill: white; -fx-font-weight: bold;"/>
-        </VBox>
-    </center>
-
-</BorderPane>
+    <!-- Intestazione inferiore -->
+    <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="backIcon" text="↩" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" />
+        <Label fx:id="helpIcon" text="?" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" />
+        <Label fx:id="homeIcon" text="⌂" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" />
+    </HBox>
+</AnchorPane>

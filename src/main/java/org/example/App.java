@@ -2,6 +2,7 @@ package org.example;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -10,15 +11,14 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/HomeView.fxml"));
-        Scene scene = new Scene(loader.load());
+        Parent root = loader.load();
 
-        // Configurazione finestra
+        Scene scene = new Scene(root, 900, 600); // Dimensione coerente
+
         primaryStage.setTitle("GymWizard");
         primaryStage.setScene(scene);
-        primaryStage.setWidth(1280);
-        primaryStage.setHeight(720);
-        // primaryStage.setResizable(false); // Impedisci ridimensionamento
-        primaryStage.centerOnScreen(); // Centra la finestra sullo schermo
+        primaryStage.setResizable(false);     // Blocca ridimensionamento
+        primaryStage.centerOnScreen();        // Centra la finestra
         primaryStage.show();
     }
 

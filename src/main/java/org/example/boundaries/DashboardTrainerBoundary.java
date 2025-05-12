@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,54 +15,46 @@ import java.util.Optional;
 
 public class DashboardTrainerBoundary {
 
-    @FXML
-    private Button logoutArrow, helpIcon, homeIcon;
+    @FXML private Label helpIcon, homeIcon, backIcon;
+    @FXML private Button listaClientiBtn, vaiChatBtn;
 
     @FXML
-    private void handleLogoutClick() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Conferma Logout");
-        alert.setHeaderText("Vuoi effettuare il logout?");
-        alert.setContentText("Verrai riportato alla schermata iniziale.");
+    private void initialize() {
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Home.fxml"));
-                Parent homeRoot = loader.load();
-                Scene scene = new Scene(homeRoot);
+        helpIcon.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Guida Interfaccia");
+            alert.setHeaderText("Dashboard Coach");
+            alert.setContentText("Puoi accedere alla lista dei clienti oppure alla chat con loro.");
+            alert.showAndWait();
+        });
 
-                Stage stage = (Stage) logoutArrow.getScene().getWindow();
-                stage.setScene(scene);
-
-                stage.setWidth(1050);
-                stage.setHeight(700);
-                stage.setResizable(true);
-                stage.centerOnScreen();
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+        homeIcon.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Conferma Logout");
+            alert.setHeaderText("Vuoi effettuare il logout?");
+            alert.setContentText("Verrai riportato alla schermata iniziale.");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                switchScene("/views/HomeView.fxml");
             }
+        });
+
+        listaClientiBtn.setOnAction(event -> switchScene("/views/ListaClientiView.fxml"));
+
+        vaiChatBtn.setOnAction(event -> switchScene("/views/ListaChatView.fxml"));
+    }
+
+    private void switchScene(String path) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            Parent root = loader.load();
+            Stage stage = (Stage) listaClientiBtn.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600); // fissa dimensione
+            stage.setScene(scene);
+            stage.setResizable(false);              // blocca resize
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void handleHelpClick() {
-        Alert help = new Alert(Alert.AlertType.INFORMATION);
-        help.setTitle("Aiuto");
-        help.setHeaderText("Guida Interfaccia Personal Trainer");
-        help.setContentText("""
-                • Usa il menu centrale per navigare:
-                - Lista Clienti: consulta l’elenco dei tuoi clienti.
-                - Gestisci Schede: crea o modifica i piani dei clienti.
-                - Vai alla Chat: comunica con i tuoi clienti.
-                """);
-        help.showAndWait();
-    }
-
-    @FXML
-    private void handleHomeClick() {
-        System.out.println("Icona Home cliccata");
-        // Qui puoi aggiungere la logica per tornare a una dashboard principale, se desiderato
     }
 }

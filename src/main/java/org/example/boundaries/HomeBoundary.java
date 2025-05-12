@@ -1,4 +1,4 @@
-package org.example.controllers;
+package org.example.boundaries;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class XHomeController {
+public class HomeBoundary {
 
     @FXML
     private AnchorPane anchorPane;
@@ -44,13 +44,10 @@ public class XHomeController {
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            Scene loginScene = new Scene(loginRoot);
+            Scene loginScene = new Scene(loginRoot, 900, 600); // Fissa dimensioni
             stage.setScene(loginScene);
-            stage.setWidth(1050);
-            stage.setHeight(700);
-            stage.setResizable(true);
+            stage.setResizable(false);                         // Blocca resize
             stage.centerOnScreen();
-            stage.show();
 
         } catch (IOException ex) {
             ex.printStackTrace();

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="org.example.boundaries.InviaComunicazioniBoundary">
+
+    <!-- Intestazione -->
+    <HBox spacing="20" alignment="CENTER_RIGHT"
+          AnchorPane.topAnchor="20" AnchorPane.rightAnchor="30">
+        <Label fx:id="backIcon" text="↩" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" />
+        <Label fx:id="helpIcon" text="?" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" />
+        <Label fx:id="homeIcon" text="⌂" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" />
+    </HBox>
+
+    <!-- Contenuto centrale -->
+    <VBox spacing="20" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="90" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="80">
+
+        <!-- Titolo -->
+        <Label text="Comunicazione"
+               style="-fx-text-fill: white; -fx-font-size: 26; -fx-font-weight: bold; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-border-color: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10 30;" />
+
+        <!-- Area messaggi -->
+        <TextArea fx:id="areaMessaggi" editable="false" wrapText="true"
+                  style="-fx-text-fill: white; -fx-control-inner-background: #1E1E1E;" VBox.vgrow="ALWAYS" />
+    </VBox>
+
+    <!-- Input e pulsanti -->
+    <HBox spacing="10" alignment="CENTER"
+          AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30">
+        <TextField fx:id="inputMessaggio" promptText="Scrivi qui il tuo messaggio..."
+                   HBox.hgrow="ALWAYS"
+                   style="-fx-background-color: white;" />
+        <Button fx:id="sendBtn" text="↪" onAction="#handleSendMessage"
+                style="-fx-font-size: 20; -fx-background-color: green; -fx-text-fill: white;" />
+        <Button fx:id="plusBtn" text="+"
+                style="-fx-font-size: 20; -fx-background-color: green; -fx-text-fill: white;" />
+    </HBox>
+
+</AnchorPane>

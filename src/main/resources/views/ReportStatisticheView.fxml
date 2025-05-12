@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.ReportStatisticheBoundary">
+
+    <!-- Intestazione -->
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="⌂" />
+    </HBox>
+
+    <!-- Titolo -->
+    <Label alignment="CENTER" layoutX="35.0" layoutY="16.0" prefHeight="63.0" prefWidth="326.0" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold; -fx-background-color: green; -fx-border-color: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 4; -fx-padding: 10 20;" text="REPORT E STATISTICHE" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="16.0" />
+
+    <!-- Box Statistiche -->
+    <HBox alignment="CENTER" spacing="30" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="100">
+        <VBox spacing="10" style="-fx-background-color: green; -fx-background-radius: 10; -fx-padding: 15; -fx-border-color: white; -fx-border-radius: 10;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 18;" text="Utenti Attivi" />
+            <Label fx:id="utentiAttiviLabel" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text="--" />
+        </VBox>
+        <VBox spacing="10" style="-fx-background-color: green; -fx-background-radius: 10; -fx-padding: 15; -fx-border-color: white; -fx-border-radius: 10;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 18;" text="Prenotazioni Totali" />
+            <Label fx:id="prenotazioniLabel" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text="--" />
+        </VBox>
+        <VBox spacing="10" style="-fx-background-color: green; -fx-background-radius: 10; -fx-padding: 15; -fx-border-color: white; -fx-border-radius: 10;">
+            <Label style="-fx-text-fill: white; -fx-font-size: 18;" text="Attività Offerte" />
+            <Label fx:id="attivitaLabel" style="-fx-text-fill: white; -fx-font-size: 24; -fx-font-weight: bold;" text="--" />
+        </VBox>
+    </HBox>
+
+    <!-- Grafico -->
+    <BarChart fx:id="barChart" AnchorPane.bottomAnchor="30" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="230">
+        <xAxis>
+            <CategoryAxis fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="yAxis" />
+        </yAxis>
+    </BarChart>
+
+</AnchorPane>
