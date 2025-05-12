@@ -1,43 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
-            style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.boundaries.RiepilogoAttivitaBoundary">
+<AnchorPane prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.DashboardTrainerBoundary">
 
-    <!-- Intestazione -->
-    <HBox spacing="20" alignment="CENTER_RIGHT"
-          AnchorPane.topAnchor="20" AnchorPane.rightAnchor="30">
-        <Label fx:id="backIcon" text="↩" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" />
-        <Label fx:id="helpIcon" text="?" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" />
-        <Label fx:id="homeIcon" text="⌂" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" />
+     <!-- Pulsanti -->
+     <VBox alignment="CENTER" layoutY="7.0" prefHeight="396.0" prefWidth="630.0" spacing="15">
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="100.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Yoga.png" />
+               </image>
+            </ImageView>
+            <Label text="YOGA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+         <children>
+            <Label text="Data" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="|" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="&quot;data&quot;" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+         <children>
+            <Label text="Orario" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="|" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="&quot;orario&quot;" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+         <children>
+            <Label text="Coach" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="|" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="&quot;Nome coach&quot;" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="10.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+         <children>
+            <Button fx:id="listaClientiBtn21" prefHeight="50" prefWidth="210.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CONTATTA COACH" />
+            <Button fx:id="listaClientiBtn211" prefHeight="50" prefWidth="210.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA" />
+         </children>
+      </HBox>
+     </VBox>
+
+    <!-- Intestazione inferiore -->
+    <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
     </HBox>
-
-    <!-- Titolo -->
-    <Label text="RIEPILOGO ATTIVITÀ"
-           alignment="CENTER"
-           AnchorPane.topAnchor="20" AnchorPane.leftAnchor="30"
-           style="-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: bold; -fx-background-color: green; -fx-border-color: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10 20;" />
-
-    <!-- Box Dettagli Attività -->
-    <VBox spacing="15" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="100">
-        <Label text="Nome Attività:" style="-fx-text-fill: white;" />
-        <Label fx:id="nomeLabel" style="-fx-text-fill: white;" />
-
-        <Label text="Giorno:" style="-fx-text-fill: white;" />
-        <Label fx:id="giornoLabel" style="-fx-text-fill: white;" />
-
-        <Label text="Ora:" style="-fx-text-fill: white;" />
-        <Label fx:id="oraLabel" style="-fx-text-fill: white;" />
-
-        <Label text="Descrizione:" style="-fx-text-fill: white;" />
-        <TextArea fx:id="descrizioneArea" editable="false" wrapText="true"
-                  style="-fx-control-inner-background: #1E1E1E; -fx-text-fill: white; -fx-border-color: white;"
-                  prefHeight="100" />
-    </VBox>
-
 </AnchorPane>

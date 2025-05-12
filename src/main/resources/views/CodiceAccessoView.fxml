@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.DashboardTrainerBoundary">
+
+    <!-- Contenitore principale -->
+    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+
+        <!-- Benvenuto -->
+        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="CODICE D'ACCESSO">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
+
+        <!-- Pulsanti -->
+        <VBox alignment="CENTER" prefHeight="150.0" prefWidth="644.0" spacing="15" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/QR_Code_Example.png" />
+               </image>
+            </ImageView>
+         </children>
+        </VBox>
+    </VBox>
+
+    <!-- Intestazione inferiore -->
+    <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
+    </HBox>
+</AnchorPane>

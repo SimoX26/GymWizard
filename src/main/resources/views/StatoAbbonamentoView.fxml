@@ -8,58 +8,87 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<AnchorPane prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.DashboardTrainerBoundary">
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3A3A3A; -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #444444, #212121);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="601.0" text="STATO ABBONAMENTO" textFill="WHITE">
+    <!-- Contenitore principale -->
+    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+
+        <!-- Benvenuto -->
+        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="STATO ABBONAMENTO">
          <font>
             <Font size="30.0" />
-         </font>
-      </Label>
-      <VBox alignment="CENTER" layoutY="-9.0" prefHeight="410.0" prefWidth="600.0" spacing="50.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
-               <children>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="282.0" spacing="20.0">
-                     <children>
-                        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Data di emissione" />
-                        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Tipologia abbonamento" />
-                        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Stato abbonamento" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="23.0" spacing="20.0">
-                     <children>
-                        <Label style="-fx-text-fill: white;" text="|" />
-                        <Label style="-fx-text-fill: white;" text="|" />
-                        <Label style="-fx-text-fill: white;" text="|" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-color: #28a745; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;" text="Rinnova abbonamento" />
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" layoutX="204.0" layoutY="318.0" prefHeight="113.0" prefWidth="192.0" spacing="40.0">
-         <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px;" text="←">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px;" text=" ? ">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px;" text="🏠">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </HBox>
-   </children>
+         </font></Label>
+
+        <!-- Pulsanti -->
+        <VBox alignment="CENTER" spacing="15">
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+            <children>
+               <Label text="Data di emissione" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+               <Label text="|" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+               <Label text="&quot;data&quot;" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+            </children>
+            <VBox.margin>
+               <Insets bottom="10.0" top="10.0" />
+            </VBox.margin>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+            <children>
+               <Label text="Tipologia abbonamento" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+               <Label text="|" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+               <Label text="&quot;tipologia&quot;" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+            </children>
+            <VBox.margin>
+               <Insets bottom="10.0" top="10.0" />
+            </VBox.margin>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+            <children>
+               <Label text="Stato abbonamento" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+               <Label text="|" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+               <Label text="&quot;stato&quot;" textFill="WHITE">
+                  <font>
+                     <Font size="15.0" />
+                  </font></Label>
+            </children>
+            <VBox.margin>
+               <Insets bottom="10.0" top="10.0" />
+            </VBox.margin>
+         </HBox>
+         <Button fx:id="listaClientiBtn21" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="RINNOVA ABBONAMENTO">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin></Button>
+        </VBox>
+    </VBox>
+
+    <!-- Intestazione inferiore -->
+    <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
+    </HBox>
 </AnchorPane>

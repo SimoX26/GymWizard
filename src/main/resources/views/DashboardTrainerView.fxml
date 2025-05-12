@@ -21,7 +21,7 @@
                style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold; -fx-background-color: green; -fx-border-color: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 8 20;" />
 
         <!-- Icona utente -->
-        <Label text="👤"
+        <Label text="👥👤👤👤👥👥👥👥"
                style="-fx-font-size: 60; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10;" />
 
         <!-- Pulsanti -->

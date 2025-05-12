@@ -2,42 +2,39 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3A3A3A; -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #444444, #212121);;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox alignment="TOP_CENTER" layoutX="-3.0" layoutY="-5.0" prefHeight="406.0" prefWidth="604.0" spacing="20.0">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="500.0" prefWidth="500.0" text="Benvenuto &quot;Nome Utente&quot;" textFill="#28a745" textOverrun="CENTER_ELLIPSIS">
-               <font>
-                  <Font name="Comic Sans MS" size="24.0" />
-               </font>
-               <effect>
-                  <DropShadow offsetY="2.0">
-                     <color>
-                        <Color opacity="0.699999988079071" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Label>
-            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #28a745; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;" text="La Tua Scheda" />
-            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #28a745; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;" text="Prenota attività" />
-            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #28a745; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;" text="Stato abbonamento" />
-            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #28a745; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;" text="Chat" />
-            <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-color: #28a745; -fx-border-radius: 20; -fx-text-fill: white; -fx-font-size: 14px;" text="Codice d'accesso" />
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" layoutX="149.0" layoutY="304.0" prefHeight="141.0" prefWidth="300.0" spacing="40.0">
-         <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px;" text="←" />
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px;" text=" ? " />
-            <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-border-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px;" text="🏠" />
-         </children>
-      </HBox>
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.DashboardTrainerBoundary">
+
+    <!-- Contenitore principale -->
+    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+
+        <!-- Benvenuto -->
+        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="Benvenuto &quot;Nome Cliente&quot;">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
+
+        <!-- Icona utente -->
+        <Label style="-fx-font-size: 60; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10;" text="      " />
+
+        <!-- Pulsanti -->
+        <VBox alignment="CENTER" spacing="15">
+            <Button fx:id="listaClientiBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="LA TUA SCHEDA" />
+            <Button fx:id="vaiChatBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA ATTIVITÀ" />
+         <Button fx:id="listaClientiBtn1" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="STATO ABBONAMENTO" />
+         <Button fx:id="listaClientiBtn2" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CHAT" />
+         <Button fx:id="listaClientiBtn21" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CODICE D'ACCESSO" />
+        </VBox>
+    </VBox>
+
+    <!-- Intestazione inferiore -->
+    <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
+    </HBox>
 </AnchorPane>
