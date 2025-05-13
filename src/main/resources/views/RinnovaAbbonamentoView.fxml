@@ -21,54 +21,117 @@
 
         <!-- Pulsanti -->
         <VBox alignment="CENTER" spacing="15">
-         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+         <HBox prefHeight="0.0" prefWidth="630.0">
             <children>
-               <Label text="10 INGRESSI  " textFill="WHITE">
-                  <font>
-                     <Font size="15.0" />
-                  </font></Label>
-               <Button fx:id="listaClientiBtn213" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $" />
-            </children>
-            <VBox.margin>
-               <Insets bottom="10.0" />
-            </VBox.margin>
-         </HBox>
-         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
-            <children>
-               <Label text="MENSILE        " textFill="WHITE">
-                  <font>
-                     <Font size="15.0" />
-                  </font></Label>
-               <Button fx:id="listaClientiBtn212" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $" />
-            </children>
-            <VBox.margin>
-               <Insets bottom="10.0" />
-            </VBox.margin>
-         </HBox>
-         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
-            <children>
-               <Label text="TRIMESTRALE" textFill="WHITE">
-                  <font>
-                     <Font size="15.0" />
-                  </font></Label>
-               <Button fx:id="listaClientiBtn211" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $" />
-            </children>
-            <VBox.margin>
-               <Insets bottom="10.0" />
-            </VBox.margin>
-         </HBox>
-         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
-            <children>
-               <Label text="ANNUALE       " textFill="WHITE">
-                  <font>
-                     <Font size="15.0" />
-                  </font>
+               <Label text="Label">
+                  <padding>
+                     <Insets right="20.0" />
+                  </padding>
                </Label>
-               <Button fx:id="listaClientiBtn214" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="390 $" />
+               <Button mnemonicParsing="false" style="-fx-border-width: 3; -fx-border-color: white; -fx-background-color: transparent;" text="Button">
+                  <graphic>
+                     <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+                        <children>
+                           <Label text="10 INGRESSI  " textFill="WHITE">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                           <Button fx:id="listaClientiBtn213" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $" />
+                        </children>
+                     </HBox>
+                  </graphic>
+               </Button>
+               <Label text="Label">
+                  <padding>
+                     <Insets left="20.0" />
+                  </padding>
+               </Label>
             </children>
-            <VBox.margin>
-               <Insets />
-            </VBox.margin>
+         </HBox>
+         <HBox prefHeight="0.0" prefWidth="630.0">
+            <children>
+               <Label text="Label">
+                  <padding>
+                     <Insets right="20.0" />
+                  </padding>
+               </Label>
+               <Button mnemonicParsing="false" style="-fx-border-width: 3; -fx-border-color: white; -fx-background-color: transparent;" text="Button">
+                  <graphic>
+                     <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+                        <children>
+                           <Label text="MENSILE        " textFill="WHITE">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                           <Button fx:id="listaClientiBtn212" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $" />
+                        </children>
+                     </HBox>
+                  </graphic>
+               </Button>
+               <Label text="Label">
+                  <padding>
+                     <Insets left="20.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="0.0" prefWidth="630.0">
+            <children>
+               <Label text="Label">
+                  <padding>
+                     <Insets right="20.0" />
+                  </padding>
+               </Label>
+               <Button mnemonicParsing="false" style="-fx-border-width: 3; -fx-border-color: white; -fx-background-color: transparent;" text="Button">
+                  <graphic>
+                     <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+                        <children>
+                           <Label text="TRIMESTRALE" textFill="WHITE">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                           <Button fx:id="listaClientiBtn211" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $" />
+                        </children>
+                     </HBox>
+                  </graphic>
+               </Button>
+               <Label text="Label">
+                  <padding>
+                     <Insets left="20.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="0.0" prefWidth="630.0">
+            <children>
+               <Label text="Label">
+                  <padding>
+                     <Insets right="20.0" />
+                  </padding>
+               </Label>
+               <Button mnemonicParsing="false" style="-fx-border-width: 3; -fx-border-color: white; -fx-background-color: transparent;" text="Button">
+                  <graphic>
+                     <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+                        <children>
+                           <Label text="ANNUALE       " textFill="WHITE">
+                              <font>
+                                 <Font size="15.0" />
+                              </font>
+                           </Label>
+                           <Button fx:id="listaClientiBtn214" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="330 $" />
+                        </children>
+                     </HBox>
+                  </graphic>
+               </Button>
+               <Label text="Label">
+                  <padding>
+                     <Insets left="20.0" />
+                  </padding>
+               </Label>
+            </children>
          </HBox>
         </VBox>
     </VBox>

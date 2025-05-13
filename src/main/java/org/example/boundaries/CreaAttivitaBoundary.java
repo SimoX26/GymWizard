@@ -66,7 +66,7 @@ public class CreaAttivitaBoundary {
     }
 
     private void handleBackClick() {
-        switchScene("/views/ListinoAttivitaView.fxml");
+        switchScene("/views/CalendarioAttivitaView.fxml");
     }
 
     private void handleHelpClick() {

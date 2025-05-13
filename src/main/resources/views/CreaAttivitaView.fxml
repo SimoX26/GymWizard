@@ -1,49 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
-            style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;"
-            xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            fx:controller="org.example.boundaries.CreaAttivitaBoundary">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.CreaAttivitaBoundary">
+
+     <!-- Titolo -->
+     <Label text="CREA NUOVA ATTIVITÀ" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="26.0" />
+      </font>
+      <padding>
+         <Insets left="25.0" top="25.0" />
+      </padding>
+   </Label>
 
     <!-- Pulsanti in alto a destra -->
-    <HBox alignment="CENTER_RIGHT" spacing="20"
-          AnchorPane.topAnchor="20" AnchorPane.rightAnchor="30">
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
         <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="↩" />
         <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="?" />
         <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="⌂" />
     </HBox>
 
     <!-- Contenitore centrale -->
-    <VBox spacing="20" alignment="TOP_CENTER"
-          AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
-
-        <!-- Titolo -->
-        <Label text="CREA NUOVA ATTIVITÀ"
-               style="-fx-text-fill: white; -fx-font-size: 26; -fx-font-weight: bold; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-background-radius: 50; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 4; -fx-padding: 10 20;" />
+    <VBox alignment="TOP_CENTER" spacing="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
 
         <!-- Form -->
-        <VBox spacing="10" prefWidth="600">
-            <Label style="-fx-text-fill: white;" text="Nome Attività" />
-            <TextField fx:id="nomeField" promptText="Inserisci il nome" />
-
-            <Label style="-fx-text-fill: white;" text="Giorno" />
-            <ComboBox fx:id="giornoComboBox" promptText="Seleziona il giorno" />
-
-            <Label style="-fx-text-fill: white;" text="Ora" />
-            <ComboBox fx:id="oraComboBox" promptText="Seleziona l'ora" />
-
-            <Label style="-fx-text-fill: white;" text="Descrizione" />
-            <TextArea fx:id="descrizioneArea" prefRowCount="4" promptText="Inserisci una descrizione" />
+        <VBox prefWidth="600" spacing="30.0">
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
+            <children>
+                  <Label style="-fx-text-fill: white;" text="Nome Attività">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+                  <TextField fx:id="nomeField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il nome" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
+            <children>
+      
+                  <Label style="-fx-text-fill: white;" text="Giorno">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+                  <ComboBox fx:id="giornoComboBox" promptText="Seleziona il giorno" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
+            <children>
+      
+                  <Label style="-fx-text-fill: white;" text="Ora" />
+                  <ComboBox fx:id="oraComboBox" promptText="Seleziona l'ora" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="72.0" prefWidth="730.0" spacing="20.0">
+            <children>
+      
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="147.0" style="-fx-text-fill: white;" text="Descrizione" />
+                  <TextArea fx:id="descrizioneArea" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione" />
+            </children>
+         </HBox>
         </VBox>
 
         <!-- Pulsante Salva -->
-        <Button text="Salva" onAction="#handleSalva"
-                style="-fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" />
+        <Button onAction="#handleSalva" style="-fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Salva" />
     </VBox>
 
 </AnchorPane>

@@ -7,34 +7,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.DashboardTrainerBoundary">
+<AnchorPane prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.DashboardClienteBoundary">
 
     <!-- Contenitore principale -->
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
-
-        <!-- Benvenuto -->
-        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="Benvenuto &quot;Nome Cliente&quot;">
-         <font>
-            <Font size="30.0" />
-         </font></Label>
-
-        <!-- Icona utente -->
-        <Label style="-fx-font-size: 60; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10;" text="      " />
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+         <children>
+      
+                 <!-- Benvenuto -->
+              <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="Benvenuto &quot;Nome Cliente&quot;">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+      
+                 <!-- Icona utente -->
+              <Label style="-fx-font-size: 60; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10;" text="      " />
+         </children>
+      </HBox>
 
         <!-- Pulsanti -->
         <VBox alignment="CENTER" spacing="15">
-            <Button fx:id="listaClientiBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="LA TUA SCHEDA" />
-            <Button fx:id="vaiChatBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA ATTIVITÀ" />
-         <Button fx:id="listaClientiBtn1" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="STATO ABBONAMENTO" />
-         <Button fx:id="listaClientiBtn2" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CHAT" />
-         <Button fx:id="listaClientiBtn21" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CODICE D'ACCESSO" />
+            <Button fx:id="schedaBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="LA TUA SCHEDA" />
+            <Button fx:id="attivitaBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA ATTIVITÀ" />
+         <Button fx:id="statoAbbonamentoBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="STATO ABBONAMENTO" />
+         <Button fx:id="chatBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CHAT" />
+         <Button fx:id="codiceAccessoBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CODICE D'ACCESSO" />
         </VBox>
     </VBox>
 
     <!-- Intestazione inferiore -->
     <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
-        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
-        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
+        <Label fx:id="backBtn" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpBtn" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeBtn" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
     </HBox>
 </AnchorPane>

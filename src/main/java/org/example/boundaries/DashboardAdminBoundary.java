@@ -56,7 +56,7 @@ public class DashboardAdminBoundary {
         });
 
         // Azioni pulsanti
-        listinoBtn.setOnAction(event -> switchScene("/views/ListinoAttivitaView.fxml", event));
+        listinoBtn.setOnAction(event -> switchScene("/views/CalendarioAttivitaView.fxml", event));
         reportBtn.setOnAction(event -> switchScene("/views/ReportStatisticheView.fxml", event));
         comunicazioniBtn.setOnAction(event -> switchScene("/views/InviaComunicazioniView.fxml", event));
     }

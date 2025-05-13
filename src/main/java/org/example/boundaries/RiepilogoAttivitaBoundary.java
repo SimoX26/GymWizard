@@ -33,7 +33,7 @@ public class RiepilogoAttivitaBoundary {
 
     @FXML
     private void initialize() {
-        backIcon.setOnMouseClicked(event -> switchScene("/views/ListinoAttivitaView.fxml"));
+        backIcon.setOnMouseClicked(event -> switchScene("/views/CalendarioAttivitaView.fxml"));
         helpIcon.setOnMouseClicked(event -> handleHelpClick());
         homeIcon.setOnMouseClicked(event -> {
             Alert alert = new Alert(AlertType.CONFIRMATION);
