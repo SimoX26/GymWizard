@@ -16,7 +16,7 @@
         <!-- Benvenuto -->
         <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="CODICE D'ACCESSO">
          <font>
-            <Font size="30.0" />
+            <Font size="28.0" />
          </font></Label>
 
         <!-- Pulsanti -->

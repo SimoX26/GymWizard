@@ -16,7 +16,7 @@
      <!-- Titolo -->
      <Label text="CREA NUOVA ATTIVITÀ" textFill="WHITE">
       <font>
-         <Font name="System Bold" size="26.0" />
+         <Font name="System Bold" size="28.0" />
       </font>
       <padding>
          <Insets left="25.0" top="25.0" />
@@ -42,7 +42,10 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-                  <TextField fx:id="nomeField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il nome" />
+                  <TextField fx:id="nomeField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il nome">
+                  <font>
+                     <Font size="14.0" />
+                  </font></TextField>
             </children>
          </HBox>
          <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
@@ -59,21 +62,33 @@
          <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
             <children>
       
-                  <Label style="-fx-text-fill: white;" text="Ora" />
+                  <Label style="-fx-text-fill: white;" text="Ora">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Label>
                   <ComboBox fx:id="oraComboBox" promptText="Seleziona l'ora" />
             </children>
          </HBox>
          <HBox alignment="CENTER" prefHeight="72.0" prefWidth="730.0" spacing="20.0">
             <children>
       
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="147.0" style="-fx-text-fill: white;" text="Descrizione" />
-                  <TextArea fx:id="descrizioneArea" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="147.0" style="-fx-text-fill: white;" text="Descrizione">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Label>
+                  <TextArea fx:id="descrizioneArea" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione">
+                  <font>
+                     <Font size="14.0" />
+                  </font></TextArea>
             </children>
          </HBox>
         </VBox>
 
         <!-- Pulsante Salva -->
-        <Button onAction="#handleSalva" style="-fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Salva" />
+        <Button onAction="#handleSalva" style="-fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Salva">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Button>
     </VBox>
 
 </AnchorPane>

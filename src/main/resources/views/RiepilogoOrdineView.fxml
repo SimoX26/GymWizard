@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -15,28 +17,25 @@
 
         <!-- Pulsanti -->
         <VBox alignment="CENTER" spacing="15">
-         <Label text="&quot;TIPOLOGIA ABBONAMENTO&quot;" textFill="WHITE" underline="true">
+         <Label text="&quot;TIPOLOGIA ABBONAMENTO&quot;" textFill="WHITE">
             <font>
-               <Font name="System Bold" size="20.0" />
+               <Font name="System Bold" size="28.0" />
             </font>
          </Label>
-         <Label prefHeight="80.0" prefWidth="106.0" text="&quot;  Descrizione &quot;" textFill="WHITE">
+         <Separator prefWidth="200.0" />
+         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="106.0" text="Descrizione" textFill="WHITE">
             <font>
-               <Font size="15.0" />
-            </font>
-            <VBox.margin>
-               <Insets />
-            </VBox.margin>
-         </Label>
-         <Label prefHeight="80.0" prefWidth="393.0" text="Accesso tramite codice QR alla struttura durante l'orario di apertura" textFill="WHITE" wrapText="true">
-            <font>
-               <Font size="15.0" />
+               <Font size="14.0" />
             </font>
             <VBox.margin>
                <Insets />
             </VBox.margin>
          </Label>
-         <Button prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PROCEDI CON L'ACQUISTO" />
+         <TextArea prefHeight="110.0" prefWidth="630.0" />
+         <Button prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PROCEDI CON L'ACQUISTO">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
         </VBox>
     </VBox>
 

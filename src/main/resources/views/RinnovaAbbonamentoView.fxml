@@ -14,9 +14,9 @@
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
 
         <!-- Benvenuto -->
-        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="RINNOVA ABBONAMENTO">
+        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="SCEGLI LA TIPOLOGIA DI ABBONAMENTO">
          <font>
-            <Font size="30.0" />
+            <Font size="28.0" />
          </font></Label>
 
         <!-- Pulsanti -->
@@ -34,10 +34,13 @@
                         <children>
                            <Label text="10 INGRESSI  " textFill="WHITE">
                               <font>
-                                 <Font size="15.0" />
+                                 <Font size="14.0" />
                               </font>
                            </Label>
-                           <Button fx:id="listaClientiBtn213" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $" />
+                           <Button fx:id="listaClientiBtn213" prefHeight="35.0" prefWidth="70.0" style="-fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $">
+                              <font>
+                                 <Font size="14.0" />
+                              </font></Button>
                         </children>
                      </HBox>
                   </graphic>
@@ -62,10 +65,13 @@
                         <children>
                            <Label text="MENSILE        " textFill="WHITE">
                               <font>
-                                 <Font size="15.0" />
+                                 <Font size="14.0" />
                               </font>
                            </Label>
-                           <Button fx:id="listaClientiBtn212" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $" />
+                           <Button fx:id="listaClientiBtn212" prefHeight="35.0" prefWidth="70.0" style="-fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $">
+                              <font>
+                                 <Font size="14.0" />
+                              </font></Button>
                         </children>
                      </HBox>
                   </graphic>
@@ -90,10 +96,13 @@
                         <children>
                            <Label text="TRIMESTRALE" textFill="WHITE">
                               <font>
-                                 <Font size="15.0" />
+                                 <Font size="14.0" />
                               </font>
                            </Label>
-                           <Button fx:id="listaClientiBtn211" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $" />
+                           <Button fx:id="listaClientiBtn211" prefHeight="35.0" prefWidth="70.0" style="-fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $">
+                              <font>
+                                 <Font size="14.0" />
+                              </font></Button>
                         </children>
                      </HBox>
                   </graphic>
@@ -118,10 +127,13 @@
                         <children>
                            <Label text="ANNUALE       " textFill="WHITE">
                               <font>
-                                 <Font size="15.0" />
+                                 <Font size="14.0" />
                               </font>
                            </Label>
-                           <Button fx:id="listaClientiBtn214" prefHeight="33.0" prefWidth="60.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="330 $" />
+                           <Button fx:id="listaClientiBtn214" prefHeight="35.0" prefWidth="70.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="330 $">
+                              <font>
+                                 <Font size="14.0" />
+                              </font></Button>
                         </children>
                      </HBox>
                   </graphic>

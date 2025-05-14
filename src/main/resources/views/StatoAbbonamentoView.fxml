@@ -14,9 +14,9 @@
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
 
         <!-- Benvenuto -->
-        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="STATO ABBONAMENTO">
+        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="ABBONAMENTO">
          <font>
-            <Font size="30.0" />
+            <Font size="28.0" />
          </font></Label>
 
         <!-- Pulsanti -->
@@ -25,15 +25,15 @@
             <children>
                <Label text="Data di emissione" textFill="WHITE">
                   <font>
-                     <Font size="15.0" />
+                     <Font size="14.0" />
                   </font></Label>
                <Label text="|" textFill="WHITE">
                   <font>
-                     <Font size="15.0" />
+                     <Font size="14.0" />
                   </font></Label>
                <Label text="&quot;data&quot;" textFill="WHITE">
                   <font>
-                     <Font size="15.0" />
+                     <Font size="14.0" />
                   </font></Label>
             </children>
             <VBox.margin>
@@ -44,15 +44,15 @@
             <children>
                <Label text="Tipologia abbonamento" textFill="WHITE">
                   <font>
-                     <Font size="15.0" />
+                     <Font size="14.0" />
                   </font></Label>
                <Label text="|" textFill="WHITE">
                   <font>
-                     <Font size="15.0" />
+                     <Font size="14.0" />
                   </font></Label>
                <Label text="&quot;tipologia&quot;" textFill="WHITE">
                   <font>
-                     <Font size="15.0" />
+                     <Font size="14.0" />
                   </font></Label>
             </children>
             <VBox.margin>
@@ -63,7 +63,7 @@
             <children>
                <Label text="Stato abbonamento" textFill="WHITE">
                   <font>
-                     <Font size="15.0" />
+                     <Font size="14.0" />
                   </font></Label>
                <Label text="|" textFill="WHITE">
                   <font>
@@ -71,7 +71,7 @@
                   </font></Label>
                <Label text="&quot;stato&quot;" textFill="WHITE">
                   <font>
-                     <Font size="15.0" />
+                     <Font size="14.0" />
                   </font></Label>
             </children>
             <VBox.margin>
@@ -81,7 +81,10 @@
          <Button fx:id="listaClientiBtn21" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="RINNOVA ABBONAMENTO">
             <VBox.margin>
                <Insets top="10.0" />
-            </VBox.margin></Button>
+            </VBox.margin>
+            <font>
+               <Font size="14.0" />
+            </font></Button>
         </VBox>
     </VBox>
 

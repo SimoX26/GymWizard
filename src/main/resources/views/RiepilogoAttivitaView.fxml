@@ -17,37 +17,32 @@
      <VBox alignment="CENTER" layoutY="7.0" prefHeight="396.0" prefWidth="630.0" spacing="15">
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="100.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="113.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Yoga.png" />
                </image>
             </ImageView>
             <Label text="YOGA" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="25.0" />
+                  <Font name="System Bold" size="28.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+      <HBox alignment="CENTER" prefHeight="220.0" prefWidth="630.0" spacing="40.0">
          <children>
-            <VBox prefHeight="113.0" prefWidth="280.0" spacing="10.0">
+            <VBox prefHeight="0.0" prefWidth="280.0" spacing="5.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+                  <HBox prefHeight="0.0" prefWidth="630.0" spacing="40.0">
                      <children>
                         <Label text="Data" textFill="WHITE">
                            <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label text="|" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                         <Label text="&quot;data&quot;" textFill="WHITE">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -55,21 +50,16 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+                  <HBox prefHeight="0.0" prefWidth="630.0" spacing="40.0">
                      <children>
                         <Label text="Orario" textFill="WHITE">
                            <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label text="|" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                         <Label text="&quot;orario&quot;" textFill="WHITE">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -77,21 +67,16 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+                  <HBox prefHeight="0.0" prefWidth="630.0" spacing="40.0">
                      <children>
                         <Label text="Coach" textFill="WHITE">
                            <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label text="|" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                         <Label text="&quot;Nome coach&quot;" textFill="WHITE">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="14.0" />
                            </font>
                         </Label>
                      </children>
@@ -99,24 +84,26 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="113.0" prefWidth="280.0">
-               <children>
                   <Label text="Descrizione" textFill="WHITE">
                      <font>
-                        <Font size="15.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" />
+                  <TextArea prefHeight="76.0" prefWidth="280.0" />
                </children>
             </VBox>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
          <children>
-            <Button fx:id="listaClientiBtn21" prefHeight="50" prefWidth="210.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CONTATTA COACH" />
-            <Button fx:id="listaClientiBtn211" prefHeight="50" prefWidth="210.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA" />
+            <Button fx:id="listaClientiBtn21" prefHeight="50" prefWidth="210.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CONTATTA COACH">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="listaClientiBtn211" prefHeight="50" prefWidth="210.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
      </VBox>

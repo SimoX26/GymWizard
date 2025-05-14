@@ -12,7 +12,7 @@
     <!-- Benvenuto -->
     <Label fx:id="welcomeLabel" alignment="CENTER" text="Benvenuto &quot;Nome Admin&quot;" textFill="WHITE" AnchorPane.leftAnchor="30" AnchorPane.topAnchor="20">
       <font>
-         <Font name="System Bold" size="26.0" />
+         <Font name="System Bold" size="28.0" />
       </font></Label>
 
     <!-- Icone in alto a destra -->
@@ -25,11 +25,20 @@
     <!-- Contenuti centrali -->
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
 
-        <Button fx:id="listinoBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="LISTINO ATTIVITÀ" />
+        <Button fx:id="listinoBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="LISTINO ATTIVITÀ">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
 
-        <Button fx:id="reportBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="REPORT E STATISTICHE" />
+        <Button fx:id="reportBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="REPORT E STATISTICHE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
 
-        <Button fx:id="comunicazioniBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="INVIA COMUNICAZIONI" />
+        <Button fx:id="comunicazioniBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="INVIA COMUNICAZIONI">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
     </VBox>
 
 </AnchorPane>

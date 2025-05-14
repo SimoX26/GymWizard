@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,26 +17,20 @@
         <!-- Titolo -->
         <Label alignment="TOP_LEFT" text="LA TUA SCHEDA" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="28.0" />
          </font></Label>
-
-        <!-- Lista scrollabile -->
-        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
-            <content>
-                <VBox alignment="CENTER" spacing="10">
-                    <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                    </padding>
-               <children>
-                  <ImageView fitHeight="381.0" fitWidth="499.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/Scheda%201.png" />
-                     </image>
-                  </ImageView>
-               </children>
-                </VBox>
-            </content>
-        </ScrollPane>
+          <VBox alignment="CENTER" spacing="10" style="-fx-background-color: transparent;">
+              <padding>
+                  <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+         <children>
+            <ImageView fitHeight="381.0" fitWidth="499.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Scheda%201.png" />
+               </image>
+            </ImageView>
+         </children>
+          </VBox>
     </VBox>
 
     <!-- Footer fisso -->

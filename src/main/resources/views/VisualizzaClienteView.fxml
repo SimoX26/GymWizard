@@ -2,58 +2,62 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
-            style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.boundaries.VisualizzaClienteBoundary">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.VisualizzaClienteBoundary">
 
     <!-- Contenuto -->
-    <VBox alignment="TOP_CENTER" spacing="25"
-          AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
-
-        <!-- Titolo Cliente -->
-        <Label fx:id="clienteLabel"
-               style="-fx-text-fill: white; -fx-font-size: 22; -fx-font-weight: bold; -fx-background-color: green; -fx-background-radius: 30; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 3; -fx-padding: 10 20;"
-               text="Nome Cliente" />
+    <VBox alignment="TOP_CENTER" spacing="25" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="70.0">
+         <children>
+      
+              <!-- Titolo Cliente -->
+              <Label fx:id="clienteLabel" text="&quot;Nome Cliente&quot;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/User.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
 
         <!-- Info Cliente -->
         <VBox alignment="CENTER_LEFT" spacing="10">
-            <Label style="-fx-text-fill: white; -fx-font-size: 16; -fx-font-family: 'Comic Sans MS';"
-                   text="Informazioni generali:" />
-            <Separator prefWidth="400" />
-            <Separator prefWidth="400" />
-            <Separator prefWidth="400" />
+            <Label style="-fx-text-fill: white; -fx-font-size: 16; -fx-font-family: 'Comic Sans MS';" text="Informazioni generali:">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextArea prefHeight="200.0" prefWidth="200.0" />
         </VBox>
 
         <!-- Bottoni Scheda -->
-        <HBox spacing="20" alignment="CENTER">
-            <Button fx:id="schedaBtn"
-                    text="AGGIUNGI SCHEDA"
-                    style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" />
-            <Button fx:id="schedaBtn1"
-                    text="MODIFICA SCHEDA"
-                    style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" />
+        <HBox alignment="CENTER" spacing="20">
+            <Button fx:id="schedaBtn" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="AGGIUNGI SCHEDA">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
+            <Button fx:id="schedaBtn1" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="MODIFICA SCHEDA">
+            <font>
+               <Font size="14.0" />
+            </font></Button>
         </HBox>
     </VBox>
 
     <!-- Footer Navigazione -->
-    <HBox alignment="CENTER" spacing="40"
-          AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <Label fx:id="backIcon"
-               style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;"
-               text="↩" />
-        <Label fx:id="helpIcon"
-               style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;"
-               text="?" />
-        <Label fx:id="homeIcon"
-               style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;"
-               text="⌂" />
+    <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
     </HBox>
 
 </AnchorPane>
