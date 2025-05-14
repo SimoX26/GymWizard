@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.DashboardClienteBoundary">
+
+    <!-- Contenitore principale -->
+    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="60.0">
+         <children>
+      
+                 <!-- Benvenuto -->
+              <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="LISTA ATTIVITÀ">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <ComboBox prefWidth="150.0" promptText="FILTRI" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+         <children>
+      
+              <!-- Pulsanti -->
+              <VBox alignment="CENTER" spacing="15">
+               <children>
+                  <Button mnemonicParsing="false" text="ATTIVITÀ 1" />
+                  <Button mnemonicParsing="false" text="ATTIVITÀ 2" />
+                  <Button mnemonicParsing="false" text="ATTIVITÀ 3" />
+                  <Button mnemonicParsing="false" text="ATTIVITÀ 4" />
+               </children>
+              </VBox>
+            <ScrollBar orientation="VERTICAL" />
+         </children>
+      </HBox>
+    </VBox>
+
+    <!-- Intestazione inferiore -->
+    <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Label fx:id="backBtn" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpBtn" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeBtn" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
+    </HBox>
+</AnchorPane>
