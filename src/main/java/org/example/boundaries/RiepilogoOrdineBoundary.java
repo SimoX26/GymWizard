@@ -17,7 +17,7 @@ import java.util.Optional;
 public class RiepilogoOrdineBoundary {
 
     @FXML
-    private Label titoloAbbonamentoLabel;
+    private Label backIcon, helpIcon, homeIcon, titoloAbbonamentoLabel;
 
     // Questo metodo viene chiamato da GUIRinnovaAbbonamentoController
     public void setTipoAbbonamento(String tipo) {
@@ -25,47 +25,24 @@ public class RiepilogoOrdineBoundary {
     }
 
     @FXML
-    private void handleBackClick(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/RinnovaAbbonamento.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    public void initialize() {
 
-    @FXML
-    private void handleHelpClick(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Guida Interfaccia");
-        alert.setHeaderText("Riepilogo Ordine");
-        alert.setContentText("""
+        backIcon.setOnMouseClicked(event -> switchScene("/views/RinnovaAbbonamentoView.fxml"));
+
+        helpIcon.setOnMouseClicked(event -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Guida Interfaccia");
+            alert.setHeaderText("Riepilogo Ordine");
+            alert.setContentText("""
                 In questa schermata puoi visualizzare il riepilogo del tuo abbonamento selezionato.
                 Premi "Procedi con l'acquisto" per confermare e completare l'acquisto.
                 """);
-        alert.showAndWait();
-    }
+            alert.showAndWait();
+        });
 
-    @FXML
-    private void handleHomeClick(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Conferma Logout");
-        alert.setHeaderText("Vuoi effettuare il logout?");
-        alert.setContentText("Verrai riportato alla schermata iniziale.");
+        homeIcon.setOnMouseClicked(event -> switchScene("/views/DashboardClienteView.fxml"));
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/Home.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
     }
 
     @FXML
@@ -75,5 +52,18 @@ public class RiepilogoOrdineBoundary {
         alert.setHeaderText(null);
         alert.setContentText("Grazie per il tuo acquisto! Il tuo abbonamento è stato attivato.");
         alert.showAndWait();
+    }
+
+    private void switchScene(String path) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            Parent root = loader.load();
+            Stage stage = (Stage) backIcon.getScene().getWindow();
+            Scene scene = new Scene(root, 900, 600); // dimensione fissa
+            stage.setScene(scene);
+            stage.setResizable(false);              // blocca ridimensionamento
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

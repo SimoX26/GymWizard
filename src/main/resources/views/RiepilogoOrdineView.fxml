@@ -32,7 +32,7 @@
             </VBox.margin>
          </Label>
          <TextArea prefHeight="110.0" prefWidth="630.0" />
-         <Button prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PROCEDI CON L'ACQUISTO">
+         <Button prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PROCEDI CON L'ACQUISTO">
             <font>
                <Font size="14.0" />
             </font></Button>

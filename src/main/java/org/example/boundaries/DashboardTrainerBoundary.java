@@ -15,8 +15,8 @@ import java.util.Optional;
 
 public class DashboardTrainerBoundary {
 
-    @FXML private Label helpIcon, homeIcon, backIcon;
-    @FXML private Button listaClientiBtn, vaiChatBtn;
+    @FXML private Label helpIcon, logoutIcon;
+    @FXML private Button listaClientiBtn, chatBtn;
 
     @FXML
     private void initialize() {
@@ -29,7 +29,7 @@ public class DashboardTrainerBoundary {
             alert.showAndWait();
         });
 
-        homeIcon.setOnMouseClicked(event -> {
+        logoutIcon.setOnMouseClicked( event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Conferma Logout");
             alert.setHeaderText("Vuoi effettuare il logout?");
@@ -42,7 +42,7 @@ public class DashboardTrainerBoundary {
 
         listaClientiBtn.setOnAction(event -> switchScene("/views/ListaClientiView.fxml"));
 
-        vaiChatBtn.setOnAction(event -> switchScene("/views/ListaChatView.fxml"));
+        chatBtn.setOnAction(event -> switchScene("/views/ListaChatView.fxml"));
     }
 
     private void switchScene(String path) {
