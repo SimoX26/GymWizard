@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,25 +21,23 @@
          <font>
             <Font name="System Bold" size="28.0" />
          </font></Label>
-          <VBox alignment="CENTER" spacing="10" style="-fx-background-color: transparent;">
-              <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-              </padding>
-         <children>
-            <ImageView fitHeight="381.0" fitWidth="499.0" pickOnBounds="true" preserveRatio="true">
+       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="383.0" prefWidth="173.0" style="-fx-background-color: transparent;">
+           <ImageView fx:id="schedaImage" fitHeight="381.0" fitWidth="499.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/Scheda%201.png" />
+                   <Image url="@../images/Scheda%201.png" />
                </image>
-            </ImageView>
-         </children>
-          </VBox>
+           </ImageView>
+         <padding>
+            <Insets left="221.0" right="217.0" />
+         </padding>
+       </ScrollPane>
     </VBox>
 
     <!-- Footer fisso -->
     <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="↩" />
-        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
-        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⌂" />
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
 </AnchorPane>

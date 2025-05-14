@@ -41,7 +41,6 @@ public class DashboardTrainerBoundary {
         });
 
         listaClientiBtn.setOnAction(event -> switchScene("/views/ListaClientiView.fxml"));
-
         chatBtn.setOnAction(event -> switchScene("/views/ListaChatView.fxml"));
     }
 
