@@ -20,7 +20,7 @@ public class StatoAbbonamentoBoundary {
     private Label statoLabel, dataLabel, tipologiaLabel;
 
     @FXML
-    private void handleRinnovaClick() {
+    private void onRinnovaClick() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/RinnovaAbbonamento.fxml"));
             Parent rinnovaRoot = loader.load();

@@ -1,57 +1,76 @@
 package org.example.boundaries;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
 public class DashboardTrainerBoundary {
 
-    @FXML private Label helpIcon, logoutIcon;
-    @FXML private Button listaClientiBtn, chatBtn;
-
     @FXML
-    private void initialize() {
-
-        helpIcon.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Guida Interfaccia");
-            alert.setHeaderText("Dashboard Coach");
-            alert.setContentText("Puoi accedere alla lista dei clienti oppure alla chat con loro.");
-            alert.showAndWait();
-        });
-
-        logoutIcon.setOnMouseClicked( event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Conferma Logout");
-            alert.setHeaderText("Vuoi effettuare il logout?");
-            alert.setContentText("Verrai riportato alla schermata iniziale.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                switchScene("/views/HomeView.fxml");
-            }
-        });
-
-        listaClientiBtn.setOnAction(event -> switchScene("/views/ListaClientiView.fxml"));
-        chatBtn.setOnAction(event -> switchScene("/views/ListaChatView.fxml"));
+    public void onChatBtnClick(ActionEvent event) {
+        System.out.println("CHAT button clicked.");
+        switchScene("/views/ChatView.fxml", event, "DashboardTrainerBoundary");
     }
 
-    private void switchScene(String path) {
+    @FXML
+    public void onHelpClick(ActionEvent event) {
+        System.out.println("HELP button clicked.");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Guida Interfaccia");
+        alert.setHeaderText("Dashboard Coach");
+        alert.setContentText("Puoi accedere alla lista dei clienti oppure alla chat con loro.");
+        alert.showAndWait();
+    }
+
+    @FXML
+    public void onLogoutClick(ActionEvent event) {
+        System.out.println("LOGOUT button clicked.");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma Logout");
+        alert.setHeaderText("Vuoi effettuare il logout?");
+        alert.setContentText("Verrai riportato alla schermata iniziale.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            switchScene("/views/HomeView.fxml", event, "DashboardClienteBoundary");
+        }
+    }
+
+    @FXML
+    private void switchScene(String path, ActionEvent event, String provenienza) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
-            Stage stage = (Stage) listaClientiBtn.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // fissa dimensione
+
+            Object controller = loader.getController();
+            // Controllo generico: se il controller ha un metodo chiamato "setProvenienza"
+            try {
+                try {
+                    controller.getClass()
+                            .getMethod("setProvenienza", String.class)
+                            .invoke(controller, provenienza);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                } catch (InvocationTargetException e) {
+                    throw new RuntimeException(e);
+                }
+            } catch (NoSuchMethodException ignored) {
+                System.out.println("Controller " + controller.getClass().getSimpleName() + " non ha setProvenienza()");
+            }
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setResizable(false);              // blocca resize
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

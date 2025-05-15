@@ -77,30 +77,6 @@ public class LoginBoundary {
         }
     }
 
-    @FXML
-    private void handleGoogleLogin(ActionEvent event) {
-        try {
-            Userinfoplus user = GoogleAuth.authorizeAndGetUserInfo();
-
-            String email = user.getEmail();
-            String nome = user.getGivenName();
-            String cognome = user.getFamilyName();
-
-            SessionDAO sessionDAO = new SessionDAO();
-            SessionBean session = sessionDAO.userLoginGoogle(email, nome, cognome);
-
-            if (session != null) {
-                loadDashboard(event, session);
-            } else {
-                showAlert(AlertType.ERROR, "Errore Google", "Accesso con Google fallito.");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(AlertType.ERROR, "Errore Google", "Errore durante l'autenticazione con Google.");
-        }
-    }
-
     private void loadDashboard(ActionEvent event, SessionBean session) {
         String fxmlPath = switch (session.getRole()) {
             case "cliente" -> "/views/DashboardClienteView.fxml";

@@ -1,7 +1,9 @@
 package org.example.boundaries;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,54 +15,55 @@ import java.util.Optional;
 
 public class ChatBoundary {
 
-    @FXML private Label backIcon, helpIcon, homeIcon;
     @FXML private TextField inputField;
     @FXML private Button sendBtn;
     @FXML private VBox messagesBox;
 
-    @FXML
-    public void initialize() {
+    private String provenienza;
 
-        sendBtn.setOnAction(event -> {
-            String message = inputField.getText().trim();
-            if (!message.isEmpty()) {
-                Label msgLabel = new Label("👤 " + message);
-                msgLabel.setStyle("-fx-text-fill: white; -fx-font-family: 'Comic Sans MS'; -fx-font-size: 14; -fx-background-color: #444; -fx-padding: 5 10; -fx-background-radius: 10;");
-                messagesBox.getChildren().add(msgLabel);
-                inputField.clear();
-            }
-        });
+    public void setProvenienza(String provenienza) {
+        this.provenienza = provenienza;
+        System.out.println("Schermata chiamata da: " + provenienza);
 
-        backIcon.setOnMouseClicked(event -> switchScene("/views/ListaChatView.fxml"));
-
-        helpIcon.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Guida Interfaccia");
-            alert.setHeaderText("Chat");
-            alert.setContentText("Scrivi un messaggio nel campo in basso e premi INVIA.");
-            alert.showAndWait();
-        });
-
-        homeIcon.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Conferma Logout");
-            alert.setHeaderText("Vuoi effettuare il logout?");
-            alert.setContentText("Verrai riportato alla schermata iniziale.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                switchScene("/views/HomeView.fxml");
-            }
-        });
+        // Cambia UI o logica in base alla provenienza
     }
 
-    private void switchScene(String path) {
+
+    public void onBackClick(ActionEvent event) {
+        System.out.println("BACK button clicked.");
+        if(provenienza == "DashboardClienteBoundary"){
+            switchScene("/views/DashboardClienteView.fxml", event);
+        }else if(provenienza == "DashboardTrainerBoundary"){
+            switchScene("/views/DashboardTrainerView.fxml", event);
+        }
+    }
+
+    public void onHelpClick(ActionEvent event) {
+        System.out.println("HELP button clicked.");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Guida Interfaccia");
+        alert.setHeaderText("Chat");
+        alert.setContentText("Scrivi un messaggio nel campo in basso e premi INVIA.");
+        alert.showAndWait();
+    }
+
+    public void onHomeClick(ActionEvent event) {
+        System.out.println("HOME button clicked.");
+        if(provenienza == "DashboardClienteBoundary"){
+            switchScene("/views/DashboardClienteView.fxml", event);
+        }else if(provenienza == "DashboardTrainerBoundary"){
+            switchScene("/views/DashboardTrainerView.fxml", event);
+        }
+    }
+
+    private void switchScene(String path, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
-            Stage stage = (Stage) backIcon.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // dimensione fissa
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setResizable(false);              // blocca ridimensionamento
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

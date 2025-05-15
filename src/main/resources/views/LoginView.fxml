@@ -63,7 +63,7 @@
         </Button>
 
         <!-- Pulsante Login con Google -->
-        <Button onAction="#handleGoogleLogin"
+        <Button
                 maxWidth="207.0" prefHeight="45.0" prefWidth="207.0"
                 text="Accedi con Google"
                 style="-fx-cursor: hand; -fx-background-color: green; -fx-text-fill: white;

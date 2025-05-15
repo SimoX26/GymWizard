@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 
@@ -53,7 +52,7 @@ public class SchedaBoundary {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
         alert.setHeaderText("Scheda allenamento");
-        alert.setContentText("Puoi visualizzare la tua scheda di allenamento." +
+        alert.setContentText("Puoi visualizzare la tua scheda di allenamento.\n" +
                 "Puoi scollare per effettuare uno zoom");
         alert.showAndWait();
     }

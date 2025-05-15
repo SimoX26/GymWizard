@@ -32,14 +32,14 @@
             <font>
                <Font size="14.0" />
             </font></Button>
-            <Button fx:id="chatBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-cursor: hand; -fx-border-radius: 10;" text="VAI ALLE CHAT">
+            <Button onAction="#onChatBtnClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-cursor: hand; -fx-border-radius: 10;" text="VAI ALLE CHAT">
             <font>
                <Font size="14.0" />
             </font></Button>
         </VBox>
     </VBox>
     <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="?" />
-        <Label fx:id="logoutIcon" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand;" text="⍈" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onLogoutClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 </AnchorPane>
