@@ -10,7 +10,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/DashboardClienteView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/HomeView.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 900, 600); // Dimensione coerente

@@ -8,10 +8,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.LoginBoundary">
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.boundaries.LoginBoundary">
 
     <!-- Contenuto Login centrato -->
-    <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+    <VBox alignment="CENTER" spacing="20"
+          AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
         <!-- Titolo -->
         <Text style="-fx-fill: white;" text="AREA RISERVATA">
@@ -21,22 +26,55 @@
         </Text>
 
         <!-- Campo Email -->
-        <TextField fx:id="emailField" maxWidth="300" promptText="Email" style="-fx-background-radius: 12; -fx-border-radius: 10; -fx-background-color: #333; -fx-text-fill: white; -fx-prompt-text-fill: #aaa; -fx-border-color: white; -fx-border-width: 2;">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
+        <TextField fx:id="emailField" maxWidth="300" promptText="Email"
+                   style="-fx-background-radius: 12; -fx-border-radius: 10;
+                          -fx-background-color: #333; -fx-text-fill: white;
+                          -fx-prompt-text-fill: #aaa; -fx-border-color: white;
+                          -fx-border-width: 2;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </TextField>
 
         <!-- Campo Password -->
-        <PasswordField fx:id="passwordField" maxWidth="300" promptText="Password" style="-fx-background-radius: 12; -fx-border-radius: 10; -fx-background-color: #333; -fx-text-fill: white; -fx-prompt-text-fill: #aaa; -fx-border-color: white; -fx-border-width: 2;">
-         <font>
-            <Font size="14.0" />
-         </font></PasswordField>
+        <PasswordField fx:id="passwordField" maxWidth="300" promptText="Password"
+                       style="-fx-background-radius: 12; -fx-border-radius: 10;
+                              -fx-background-color: #333; -fx-text-fill: white;
+                              -fx-prompt-text-fill: #aaa; -fx-border-color: white;
+                              -fx-border-width: 2;">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </PasswordField>
 
         <!-- Pulsante Login -->
-        <Button maxWidth="200" onAction="#handleLogin" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 30; -fx-cursor: hand; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 30; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0.3, 0, 2);" text="LOGIN">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
-    </VBox>
+        <Button maxWidth="207.0" onAction="#handleLogin" prefHeight="49.0"
+                prefWidth="207.0"
+                style="-fx-background-color: green; -fx-text-fill: white;
+                       -fx-font-size: 16px; -fx-font-weight: bold;
+                       -fx-padding: 10 20; -fx-background-radius: 30;
+                       -fx-cursor: hand; -fx-border-color: white;
+                       -fx-border-width: 2; -fx-border-radius: 30;
+                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0.3, 0, 2);"
+                text="LOGIN">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
 
+        <!-- Pulsante Login con Google -->
+        <Button onAction="#handleGoogleLogin"
+                maxWidth="207.0" prefHeight="45.0" prefWidth="207.0"
+                text="Accedi con Google"
+                style="-fx-cursor: hand; -fx-background-color: green; -fx-text-fill: white;
+                       -fx-font-size: 14px; -fx-font-weight: bold;
+                       -fx-background-radius: 30; -fx-border-color: white;
+                       -fx-border-width: 2; -fx-border-radius: 30;
+                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.2, 0, 1);">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+
+    </VBox>
 </AnchorPane>
