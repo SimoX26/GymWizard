@@ -3,7 +3,6 @@ module org.example {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
-    requires com.google.api.client.extensions.java6.auth;
 
     exports org.example;
     exports org.example.controllers;

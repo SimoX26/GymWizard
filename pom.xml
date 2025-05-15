@@ -15,7 +15,7 @@
     </properties>
 
     <dependencies>
-        <!-- Google OAuth Client -->
+        <!-- ✅ Google OAuth Client -->
         <dependency>
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client</artifactId>
@@ -28,20 +28,27 @@
             <version>1.34.1</version>
         </dependency>
 
-        <!-- Google API Services OAuth2 -->
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-oauth2</artifactId>
-            <version>v2-rev136-1.23.0</version>
-        </dependency>
-
         <dependency>
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client-java6</artifactId>
             <version>1.34.1</version>
         </dependency>
 
-        <!-- JavaFX -->
+        <!-- ✅ JSON parser con Gson -->
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-gson</artifactId>
+            <version>1.42.0</version>
+        </dependency>
+
+        <!-- ✅ Google API Services OAuth2 -->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-oauth2</artifactId>
+            <version>v2-rev136-1.23.0</version>
+        </dependency>
+
+        <!-- ✅ JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -63,7 +70,7 @@
 
     <build>
         <plugins>
-            <!-- ✅ Plugin JavaFX ufficiale -->
+            <!-- ✅ JavaFX plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -73,7 +80,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ✅ Plugin per forzare accesso a librerie non modulari -->
+            <!-- ✅ Compiler plugin con accesso a moduli non modulari -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -83,6 +90,8 @@
                     <compilerArgs>
                         <arg>--add-reads</arg>
                         <arg>org.example=ALL-UNNAMED</arg>
+                        <arg>--add-opens</arg>
+                        <arg>org.example/org.example=ALL-UNNAMED</arg>
                     </compilerArgs>
                 </configuration>
             </plugin>
