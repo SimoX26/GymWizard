@@ -1,9 +1,9 @@
 package org.example.boundaries;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Optional;
 
 public class RiepilogoAttivitaBoundary {
 
@@ -29,23 +28,7 @@ public class RiepilogoAttivitaBoundary {
     private TextArea descrizioneArea;
 
     @FXML
-    private Label backIcon, helpIcon, homeIcon;
-
-    @FXML
     private void initialize() {
-        backIcon.setOnMouseClicked(event -> switchScene("/views/CalendarioAttivitaView.fxml"));
-        helpIcon.setOnMouseClicked(event -> handleHelpClick());
-        homeIcon.setOnMouseClicked(event -> {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Logout");
-            alert.setHeaderText("Vuoi effettuare il logout?");
-            alert.setContentText("Verrai riportato alla schermata iniziale.");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                switchScene("/views/HomeView.fxml");
-            }
-        });
     }
 
     public void setDettagliAttivita(String nome, String giorno, String ora, String descrizione) {
@@ -55,31 +38,33 @@ public class RiepilogoAttivitaBoundary {
         descrizioneArea.setText(descrizione);
     }
 
-    private void handleHelpClick() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Guida Interfaccia");
-        alert.setHeaderText("Come usare la schermata Riepilogo Attività");
-        alert.setContentText("""
-                Questa schermata mostra i dettagli completi dell’attività selezionata:
-                - Nome
-                - Giorno
-                - Ora
-                - Descrizione
+    public void onBackClick(ActionEvent event) {
+        System.out.println("BACK button clicked.");
+        switchScene("/views/DashboardClienteView.fxml", event);
+    }
 
-                Premi ↩ per tornare alla lista delle attività.
-                Premi ⌂ per effettuare il logout.
-                """);
+    public void onHelpClick(ActionEvent event) {
+        System.out.println("HELP button clicked.");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Guida Interfaccia");
+        alert.setHeaderText("Codice D'Accesso");
+        alert.setContentText("Utilizza questo codice QR per accedere alla struttura.");
         alert.showAndWait();
     }
 
-    private void switchScene(String path) {
+    public void onHomeClick(ActionEvent event) {
+        System.out.println("HOME button clicked.");
+        switchScene("/views/DashboardClienteView.fxml", event);
+    }
+
+    private void switchScene(String path, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
-            Stage stage = (Stage) backIcon.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // dimensioni fisse
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setResizable(false);              // blocca resize
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

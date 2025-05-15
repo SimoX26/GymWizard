@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -25,21 +25,56 @@
             <ComboBox prefWidth="150.0" promptText="FILTRI" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-         <children>
-      
-              <!-- Pulsanti -->
-              <VBox alignment="CENTER" spacing="15">
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="613.0">
                <children>
-                  <Button mnemonicParsing="false" text="ATTIVITÀ 1" />
-                  <Button mnemonicParsing="false" text="ATTIVITÀ 2" />
-                  <Button mnemonicParsing="false" text="ATTIVITÀ 3" />
-                  <Button mnemonicParsing="false" text="ATTIVITÀ 4" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="90.0" prefWidth="630.0" spacing="40.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="90.0" prefWidth="500.0">
+                           <children>
+                              <Label text="ATTIVITÀ 1" />
+                           </children>
+                        </VBox>
+                        <Button minHeight="30.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" style="-fx-background-color: #8BC34A; -fx-background-radius: 20;" text="+" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutY="90.0" prefHeight="90.0" prefWidth="630.0" spacing="40.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="90.0" prefWidth="500.0">
+                           <children>
+                              <Label text="ATTIVITÀ 2" />
+                           </children>
+                        </VBox>
+                        <Button minHeight="30.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" style="-fx-background-color: #8BC34A; -fx-background-radius: 20;" text="+" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutY="180.0" prefHeight="90.0" prefWidth="630.0" spacing="40.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="90.0" prefWidth="500.0">
+                           <children>
+                              <Label text="ATTIVITÀ 3" />
+                           </children>
+                        </VBox>
+                        <Button minHeight="30.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="39.0" style="-fx-background-color: #8BC34A; -fx-background-radius: 20;" text="+" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-              </VBox>
-            <ScrollBar orientation="VERTICAL" />
-         </children>
-      </HBox>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
     </VBox>
 
     <!-- Intestazione inferiore -->

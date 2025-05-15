@@ -27,22 +27,6 @@ public class RiepilogoOrdineBoundary {
     @FXML
     public void initialize() {
 
-        backIcon.setOnMouseClicked(event -> switchScene("/views/RinnovaAbbonamentoView.fxml"));
-
-        helpIcon.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Guida Interfaccia");
-            alert.setHeaderText("Riepilogo Ordine");
-            alert.setContentText("""
-                In questa schermata puoi visualizzare il riepilogo del tuo abbonamento selezionato.
-                Premi "Procedi con l'acquisto" per confermare e completare l'acquisto.
-                """);
-            alert.showAndWait();
-        });
-
-        homeIcon.setOnMouseClicked(event -> switchScene("/views/DashboardClienteView.fxml"));
-
-
     }
 
     @FXML
@@ -54,14 +38,34 @@ public class RiepilogoOrdineBoundary {
         alert.showAndWait();
     }
 
-    private void switchScene(String path) {
+    public void onBackClick(ActionEvent event) {
+        System.out.println("BACK button clicked.");
+        switchScene("/views/RinnovaAbbonamentoView.fxml", event);
+    }
+
+    public void onHelpClick(ActionEvent event) {
+        System.out.println("HELP button clicked.");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Guida Interfaccia");
+        alert.setHeaderText("Riepilogo Ordine");
+        alert.setContentText("In questa schermata puoi visualizzare il riepilogo del tuo abbonamento selezionato.\n" +
+                "                Premi \"Procedi con l'acquisto\" per confermare e completare l'acquisto.");
+        alert.showAndWait();
+    }
+
+    public void onHomeClick(ActionEvent event) {
+        System.out.println("HOME button clicked.");
+        switchScene("/views/DashboardClienteView.fxml", event);
+    }
+
+    private void switchScene(String path, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
-            Stage stage = (Stage) backIcon.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // dimensione fissa
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setResizable(false);              // blocca ridimensionamento
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -22,23 +22,6 @@ public class RinnovaAbbonamentoBoundary {
     @FXML
     public void initialize() {
 
-        backIcon.setOnMouseClicked(event -> switchScene("/views/StatoAbbonamentoView.fxml"));
-
-        helpIcon.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Guida Interfaccia");
-            alert.setHeaderText("Rinnova Abbonamento");
-            alert.setContentText("""
-                  Scegli una delle tipologie disponibili:
-                  - 10 Ingressi
-                  - Mensile
-                  - Trimestrale
-                  - Annuale
-                """);
-            alert.showAndWait();
-        });
-
-        homeIcon.setOnMouseClicked(event -> switchScene("/views/DashboardClienteView.fxml"));
     }
 
     private void caricaRiepilogo(ActionEvent event, String tipoAbbonamento) {
@@ -77,14 +60,39 @@ public class RinnovaAbbonamentoBoundary {
         caricaRiepilogo(event, "Abbonamento Annuale");
     }
 
-    private void switchScene(String path) {
+    public void onBackClick(ActionEvent event) {
+        System.out.println("BACK button clicked.");
+        switchScene("/views/StatoAbbonamentoView.fxml", event);
+    }
+
+    public void onHelpClick(ActionEvent event) {
+        System.out.println("HELP button clicked.");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Guida Interfaccia");
+        alert.setHeaderText("Rinnova Abbonamento");
+        alert.setContentText("\"\"\"\n" +
+                "                  Scegli una delle tipologie disponibili:\n" +
+                "                  - 10 Ingressi\n" +
+                "                  - Mensile\n" +
+                "                  - Trimestrale\n" +
+                "                  - Annuale\n" +
+                "                \"\"\"");
+        alert.showAndWait();
+    }
+
+    public void onHomeClick(ActionEvent event) {
+        System.out.println("HOME button clicked.");
+        switchScene("/views/DashboardClienteView.fxml", event);
+    }
+
+    private void switchScene(String path, ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
-            Stage stage = (Stage) backIcon.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // dimensione fissa
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setResizable(false);              // blocca ridimensionamento
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
