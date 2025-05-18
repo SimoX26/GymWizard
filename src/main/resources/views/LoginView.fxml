@@ -11,7 +11,7 @@
 <AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="900.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ispwproject.gymwizard.controllers.gui.LoginBoundary">
+            fx:controller="ispwproject.gymwizard.controller.gui.LoginBoundary">
 
     <!-- Contenuto Login centrato -->
     <VBox alignment="CENTER" spacing="20"

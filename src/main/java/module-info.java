@@ -6,11 +6,11 @@ module org.example {
     requires com.google.api.client.extensions.java6.auth;
 
     exports ispwproject.gymwizard;
-    exports ispwproject.gymwizard.controllers.app;
+    exports ispwproject.gymwizard.controller.app;
 
     opens ispwproject.gymwizard to javafx.fxml;
-    opens ispwproject.gymwizard.controllers.gui to javafx.fxml;
-    exports ispwproject.gymwizard.utils;
-    opens ispwproject.gymwizard.utils to javafx.fxml;
-    opens ispwproject.gymwizard.controllers.app to javafx.fxml;
+    opens ispwproject.gymwizard.controller.gui to javafx.fxml;
+    exports ispwproject.gymwizard.util;
+    opens ispwproject.gymwizard.util to javafx.fxml;
+    opens ispwproject.gymwizard.controller.app to javafx.fxml;
 }
