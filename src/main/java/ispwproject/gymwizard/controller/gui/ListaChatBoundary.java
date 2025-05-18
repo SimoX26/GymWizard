@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,7 +9,8 @@ import javafx.scene.layout.VBox;
 public class ListaChatBoundary extends AbstractGUIController{
 
     @FXML private VBox chatListVBox;
-    private String context;
+
+    String homePage = SessionManager.getInstance().getAttributo("homePage");
 
     @FXML
     public void initialize() {
@@ -24,12 +26,6 @@ public class ListaChatBoundary extends AbstractGUIController{
         */
     }
 
-    // Metodo che imposta il contesto di esecuzione in base alla schermata da cui è stata chiamata questa
-    public void setContext(String context) {
-        this.context = context;
-        System.out.println("Schermata chiamata da: " + context);
-    }
-
     @FXML
     public void onChatBtnClick(ActionEvent chatEvent) {
         System.out.println("CHAT button clicked.");
@@ -39,11 +35,7 @@ public class ListaChatBoundary extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        if (context.equals("DashboardClienteBoundary")) {
-            this.switchScene(backEvent, "/views/DashboardClienteView.fxml");
-        } else if (context.equals("DashboardTrainerBoundary")) {
-            this.switchScene(backEvent, "/views/DashboardTrainerView.fxml");
-        }
+        this.switchScene(backEvent, homePage);
     }
 
     @FXML
@@ -60,6 +52,6 @@ public class ListaChatBoundary extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homeEvent, "/views/DashboardClienteView.fxml");
+        this.switchScene(homeEvent, homePage);
     }
 }

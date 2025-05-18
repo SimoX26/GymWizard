@@ -20,6 +20,12 @@ public class SessionBean {
         return role;
     }
 
+    public void setRole(String role) {
+        if (isRoleValid(role)) {
+            this.role = role;
+        }
+    }
+
     public String getUsername() {
         return username;
     }
@@ -28,10 +34,6 @@ public class SessionBean {
         if (username != null) {
             this.username = username;
         }
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 
     public String getSid() {

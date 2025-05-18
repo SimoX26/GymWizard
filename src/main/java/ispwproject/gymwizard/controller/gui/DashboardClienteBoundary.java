@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -15,6 +16,7 @@ public class DashboardClienteBoundary extends AbstractGUIController{
     @FXML
     private void initialize() {
         System.out.println("** INIT EXEC **");
+        SessionManager.getInstance().setAttributo("homePage", "/views/DashboardClienteView.fxml");
 
         welcomeLabel.setText("Benvenuto " + "NOME UTENTE");
     }
@@ -68,6 +70,7 @@ public class DashboardClienteBoundary extends AbstractGUIController{
         alert.setContentText("Verrai riportato alla schermata iniziale.");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
+            SessionManager.getInstance().clearAll();
             switchScene(logoutEvent, "/views/HomeView.fxml");
         }
     }

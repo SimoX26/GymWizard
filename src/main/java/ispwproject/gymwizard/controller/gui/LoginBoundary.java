@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 import ispwproject.gymwizard.util.bean.LoginBean;
 import ispwproject.gymwizard.util.bean.SessionBean;
 import ispwproject.gymwizard.util.DAO.SessionDAO;
+import ispwproject.gymwizard.util.singleton.SessionManager;
 
 public class LoginBoundary extends AbstractGUIController{
 
@@ -61,6 +62,7 @@ public class LoginBoundary extends AbstractGUIController{
         SessionBean session = sessionDAO.userLogin(loginBean);
 
         if (session != null) {
+            SessionManager.getInstance().setSessionBean(session);
             if(session.getRole().equals("cliente")){
                 this.switchScene(mainPageEvent,"/views/DashboardClienteView.fxml");
             }else if(session.getRole().equals("personal_trainer")){
