@@ -2,39 +2,28 @@ package ispwproject.gymwizard.controllers.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-
-public class StatoAbbonamentoBoundary {
+public class StatoAbbonamentoBoundary extends AbstractGUIController{
 
     @FXML
     private Label statoLabel, dataLabel, tipologiaLabel;
 
     @FXML
-    private void onRinnovaClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/RinnovaAbbonamento.fxml"));
-            Parent rinnovaRoot = loader.load();
-            Stage stage = (Stage) statoLabel.getScene().getWindow();
-            stage.setScene(new Scene(rinnovaRoot));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void onRinnovaClick(ActionEvent rinnovaEvent) {
+        System.out.println("RINNOVA button clicked.");
+        switchScene(rinnovaEvent, "/views/RinnovaAbbonamentoView.fxml");
     }
 
 
-    public void onBackClick(ActionEvent event) {
+    @FXML
+    public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        switchScene("/views/DashboardClienteView.fxml", event);
+        switchScene(backEvent, "/views/DashboardClienteView.fxml");
     }
 
+    @FXML
     public void onHelpClick(ActionEvent event) {
         System.out.println("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -48,21 +37,9 @@ public class StatoAbbonamentoBoundary {
         alert.showAndWait();
     }
 
-    public void onHomeClick(ActionEvent event) {
+    @FXML
+    public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        switchScene("/views/DashboardClienteView.fxml", event);
-    }
-
-    private void switchScene(String path, ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.switchScene(homeEvent, "/views/DashboardClienteView.fxml");
     }
 }

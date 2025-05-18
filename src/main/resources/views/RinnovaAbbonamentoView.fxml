@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controllers.gui.RinnovaAbbonamentoBoundary">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controllers.gui.RinnovaAbbonamentoBoundary">
 
     <!-- Contenitore principale -->
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
@@ -27,7 +27,7 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-               <Button fx:id="handleScegli10Ingressi" onAction="#handleScegli10Ingressi" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $">
+               <Button onAction="#on10IngressiClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $">
                   <font>
                      <Font size="14.0" />
                   </font>
@@ -41,7 +41,7 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-               <Button fx:id="handleScegliMensile" onAction="#handleScegliMensile" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $">
+               <Button onAction="#onMensileClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $">
                   <font>
                      <Font size="14.0" />
                   </font>
@@ -55,7 +55,7 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-               <Button fx:id="handleScegliTrimestrale" onAction="#handleScegliTrimestrale" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $">
+               <Button onAction="#onTrimestraleClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $">
                   <font>
                      <Font size="14.0" />
                   </font>
@@ -69,7 +69,7 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-               <Button fx:id="handleScegliAnnuale" onAction="#handleScegliAnnuale" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="330 $">
+               <Button onAction="#onAnnualeClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="330 $">
                   <font>
                      <Font size="14.0" />
                   </font>

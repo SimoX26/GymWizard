@@ -2,17 +2,10 @@ package ispwproject.gymwizard.controllers.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-
-public class HomeBoundary {
+public class HomeBoundary extends AbstractGUIController {
 
     @FXML
     private AnchorPane anchorPane;
@@ -37,20 +30,7 @@ public class HomeBoundary {
     }
 
     @FXML
-    private void handleLoginButton(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/LoginView.fxml"));
-            Parent loginRoot = loader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene loginScene = new Scene(loginRoot, 900, 600); // Fissa dimensioni
-            stage.setScene(loginScene);
-            stage.setResizable(false);                         // Blocca resize
-            stage.centerOnScreen();
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    private void onLoginBtnClick(ActionEvent loginEvent) {
+        this.switchScene(loginEvent, "/views/LoginView.fxml");
     }
 }

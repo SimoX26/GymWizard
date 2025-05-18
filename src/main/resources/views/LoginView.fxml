@@ -48,7 +48,7 @@
         </PasswordField>
 
         <!-- Pulsante Login -->
-        <Button maxWidth="207.0" onAction="#handleLogin" prefHeight="49.0"
+        <Button maxWidth="207.0" onAction="#onLoginBtnClick" prefHeight="49.0"
                 prefWidth="207.0"
                 style="-fx-background-color: green; -fx-text-fill: white;
                        -fx-font-size: 16px; -fx-font-weight: bold;

@@ -78,7 +78,7 @@
                <Insets bottom="10.0" top="10.0" />
             </VBox.margin>
          </HBox>
-         <Button prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="RINNOVA ABBONAMENTO">
+         <Button onAction="#onRinnovaClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="RINNOVA ABBONAMENTO">
             <VBox.margin>
                <Insets top="10.0" />
             </VBox.margin>

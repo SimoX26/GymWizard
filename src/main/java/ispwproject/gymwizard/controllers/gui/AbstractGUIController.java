@@ -1,7 +1,6 @@
 package ispwproject.gymwizard.controllers.gui;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -10,9 +9,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AbstractGUIcontroller {
+public class AbstractGUIController {
 
-    protected void switchScene(String path, ActionEvent event) {
+    protected void switchScene(ActionEvent event, String path) {
         if(path == null || event == null){
             return;
         }

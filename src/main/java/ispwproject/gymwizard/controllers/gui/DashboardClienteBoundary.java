@@ -1,58 +1,56 @@
 package ispwproject.gymwizard.controllers.gui;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-
 import javafx.event.ActionEvent;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 
-public class DashboardClienteBoundary {
+public class DashboardClienteBoundary extends AbstractGUIController{
 
     @FXML
     private Label welcomeLabel;
 
     @FXML
     private void initialize() {
-        System.out.println("Inizializzazione eseguita.");
+        System.out.println("** INIT EXEC **");
 
         welcomeLabel.setText("Benvenuto " + "NOME UTENTE");
     }
 
-    public void onSchedaBtnClick(ActionEvent event) {
-        System.out.println("SCHEDA button clicked.");
-        switchScene("/views/SchedaView.fxml", event, "DashboardClienteBoundary");
+    @FXML
+    public void onSchedaBtnClick(ActionEvent trainingCardEvent) {
+        System.out.println("TRAINING CARD button clicked.");
+        this.switchScene(trainingCardEvent, "/views/SchedaView.fxml");
     }
 
-    public void onAttivitaBtnClick(ActionEvent event) {
-        System.out.println("ATTIVITA button clicked.");
-        switchScene("/views/AttivitaView.fxml", event, "DashboardClienteBoundary");
+    @FXML
+    public void onAttivitaBtnClick(ActionEvent coursesEvent) {
+        System.out.println("COURSES button clicked.");
+        this.switchScene(coursesEvent, "/views/AttivitaView.fxml");
     }
 
+    @FXML
     public void onStatoAbbonamentoBtnClick(ActionEvent event) {
         System.out.println("STATO ABBONAMENTO button clicked.");
-        switchScene("/views/StatoAbbonamentoView.fxml", event, "DashboardClienteBoundary");
+        this.switchScene(event, "/views/StatoAbbonamentoView.fxml");
     }
 
+    @FXML
     public void onChatListBtnClick(ActionEvent event) {
         System.out.println("CHAT button clicked.");
-        switchScene("/views/ListaChatView.fxml", event, "DashboardClienteBoundary");
+        this.switchScene(event, "/views/ListaChatView.fxml");
     }
 
+    @FXML
     public void onCodiceAccessoBtnClick(ActionEvent event) {
-        System.out.println("CODICE ACCESSO button clicked.");
-        switchScene("/views/CodiceAccessoView.fxml", event, "DashboardClienteBoundary");
+        System.out.println("ACCESS CODE button clicked.");
+        this.switchScene(event, "/views/CodiceAccessoView.fxml");
     }
 
-    public void onHelpClick(ActionEvent event) {
+    @FXML
+    public void onHelpClick(ActionEvent helpEvent) {
         System.out.println("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
@@ -61,7 +59,8 @@ public class DashboardClienteBoundary {
         alert.showAndWait();
     }
 
-    public void onLogoutClick(ActionEvent event) {
+    @FXML
+    public void onLogoutClick(ActionEvent logoutEvent) {
         System.out.println("LOGOUT button clicked.");
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma Logout");
@@ -69,10 +68,10 @@ public class DashboardClienteBoundary {
         alert.setContentText("Verrai riportato alla schermata iniziale.");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            switchScene("/views/HomeView.fxml", event, "DashboardClienteBoundary");
+            switchScene(logoutEvent, "/views/HomeView.fxml");
         }
     }
-
+/*
     private void switchScene(String path, ActionEvent event, String context) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
@@ -102,4 +101,6 @@ public class DashboardClienteBoundary {
             e.printStackTrace();
         }
     }
+
+ */
 }

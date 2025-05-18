@@ -20,7 +20,7 @@ import ispwproject.gymwizard.utils.DAO.SessionDAO;
 
 import java.io.IOException;
 
-public class LoginBoundary {
+public class LoginBoundary extends AbstractGUIController{
 
     @FXML
     private AnchorPane anchorPane;
@@ -51,7 +51,7 @@ public class LoginBoundary {
     }
 
     @FXML
-    private void handleLogin(ActionEvent event) {
+    private void onLoginBtnClick(ActionEvent mainPageEvent) {
         String email = emailField.getText().trim();
         String password = passwordField.getText().trim();
 
@@ -68,36 +68,15 @@ public class LoginBoundary {
         SessionBean session = sessionDAO.userLogin(loginBean);
 
         if (session != null) {
-            loadDashboard(event, session);
-        } else {
-            showAlert(AlertType.ERROR, "Errore di accesso", "Email o password errati.");
-        }
-    }
-
-    private void loadDashboard(ActionEvent event, SessionBean session) {
-        String fxmlPath = switch (session.getRole()) {
-            case "cliente" -> "/views/DashboardClienteView.fxml";
-            case "personal_trainer" -> "/views/DashboardTrainerView.fxml";
-            case "amministratore" -> "/views/DashboardAdminView.fxml";
-            default -> null;
-        };
-
-        if (fxmlPath != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-                Parent dashboard = loader.load();
-                Scene scene = new Scene(dashboard, 900, 600);
-
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.setResizable(false);
-                stage.centerOnScreen();
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert(AlertType.ERROR, "Errore FXML", "Errore nel caricamento della dashboard.");
+            if(session.getRole().equals("cliente")){
+                this.switchScene(mainPageEvent,"/views/DashboardClienteView.fxml");
+            }else if(session.getRole().equals("personal_trainer")){
+                this.switchScene(mainPageEvent,"/views/DashboardTrainerView.fxml");
+            }else if(session.getRole().equals("amministratore")){
+                this.switchScene(mainPageEvent,"/views/DashboardAdminView.fxml");
             }
         } else {
-            showAlert(AlertType.ERROR, "Errore", "Ruolo utente non riconosciuto.");
+            showAlert(AlertType.ERROR, "Errore di accesso", "Email o password errati.");
         }
     }
 

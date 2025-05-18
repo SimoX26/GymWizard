@@ -11,7 +11,7 @@
    <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
       <!-- Bottone Accedi -->
-      <Button fx:id="loginButton" onAction="#handleLoginButton" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 30; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 30; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 5, 0.5, 0, 2);" text="ACCEDI">
+      <Button onAction="#onLoginBtnClick" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 30; -fx-border-color: white; -fx-border-width: 2; -fx-border-radius: 30; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 5, 0.5, 0, 2);" text="ACCEDI">
          <font>
             <Font name="Arial Black" size="18.0" />
          </font>

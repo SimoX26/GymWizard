@@ -2,18 +2,10 @@ package ispwproject.gymwizard.controllers.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-
-public class ListaChatBoundary {
+public class ListaChatBoundary extends AbstractGUIController{
 
     @FXML private VBox chatListVBox;
     private String context;
@@ -38,20 +30,23 @@ public class ListaChatBoundary {
         System.out.println("Schermata chiamata da: " + context);
     }
 
-    public void onChatBtnClick(ActionEvent event) {
+    @FXML
+    public void onChatBtnClick(ActionEvent chatEvent) {
         System.out.println("CHAT button clicked.");
-        switchScene("/views/ChatView.fxml", event, context);
+        this.switchScene(chatEvent, "/views/ChatView.fxml");
     }
 
-    public void onBackClick(ActionEvent event) {
+    @FXML
+    public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
         if (context.equals("DashboardClienteBoundary")) {
-            switchScene("/views/DashboardClienteView.fxml", event, context);
+            this.switchScene(backEvent, "/views/DashboardClienteView.fxml");
         } else if (context.equals("DashboardTrainerBoundary")) {
-            switchScene("/views/DashboardTrainerView.fxml", event, context);
+            this.switchScene(backEvent, "/views/DashboardTrainerView.fxml");
         }
     }
 
+    @FXML
     public void onHelpClick(ActionEvent event) {
         System.out.println("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -62,38 +57,9 @@ public class ListaChatBoundary {
         alert.showAndWait();
     }
 
-    public void onHomeClick(ActionEvent event) {
+    @FXML
+    public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        switchScene("/views/DashboardClienteView.fxml", event, context);
-    }
-
-    private void switchScene(String path, ActionEvent event, String context) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-            Parent root = loader.load();
-
-            Object controller = loader.getController();
-            // Controllo generico: se il controller ha un metodo chiamato "setContext"
-            try {
-                try {
-                    controller.getClass()
-                            .getMethod("setContext", String.class)
-                            .invoke(controller, context);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
-                }
-            } catch (NoSuchMethodException ignored) {
-                System.out.println("Controller " + controller.getClass().getSimpleName() + " non ha setContext()");
-            }
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.switchScene(homeEvent, "/views/DashboardClienteView.fxml");
     }
 }
