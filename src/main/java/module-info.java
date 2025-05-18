@@ -5,10 +5,12 @@ module org.example {
     requires java.desktop;
     requires com.google.api.client.extensions.java6.auth;
 
-    exports org.example;
-    exports org.example.controllers;
+    exports ispwproject.gymwizard;
+    exports ispwproject.gymwizard.controllers.app;
 
-    opens org.example to javafx.fxml;
-    opens org.example.controllers to javafx.fxml;
-    opens org.example.boundaries to javafx.fxml;
+    opens ispwproject.gymwizard to javafx.fxml;
+    opens ispwproject.gymwizard.controllers.gui to javafx.fxml;
+    exports ispwproject.gymwizard.utils;
+    opens ispwproject.gymwizard.utils to javafx.fxml;
+    opens ispwproject.gymwizard.controllers.app to javafx.fxml;
 }

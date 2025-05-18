@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.boundaries.DashboardTrainerBoundary">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controllers.gui.DashboardTrainerBoundary">
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
       <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
          <children>
