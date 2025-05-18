@@ -23,9 +23,6 @@ public class ChatBoundary {
 
     public void setProvenienza(String provenienza) {
         this.provenienza = provenienza;
-        System.out.println("Schermata chiamata da: " + provenienza);
-
-        // Cambia UI o logica in base alla provenienza
     }
 
 

@@ -12,7 +12,9 @@ import java.io.IOException;
 
 public class AttivitaBoundary {
 
+    public void onAttivitaClick(){
 
+    }
 
     public void onBackClick(ActionEvent event) {
         System.out.println("BACK button clicked.");

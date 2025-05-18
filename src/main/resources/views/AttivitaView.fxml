@@ -25,6 +25,7 @@
             <ComboBox prefWidth="150.0" promptText="FILTRI" />
          </children>
       </HBox>
+        <!-- Pannello scrollabile delle attività -->
       <ScrollPane prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="613.0">
