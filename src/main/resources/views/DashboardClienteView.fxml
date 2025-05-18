@@ -44,7 +44,7 @@
             <font>
                <Font size="14.0" />
             </font></Button>
-         <Button prefHeight="50" onAction="#onChatBtnClick" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CHAT">
+         <Button prefHeight="50" onAction="#onChatListBtnClick" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CHAT">
             <font>
                <Font size="14.0" />
             </font></Button>

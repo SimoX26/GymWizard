@@ -43,7 +43,7 @@ public class DashboardClienteBoundary {
         switchScene("/views/StatoAbbonamentoView.fxml", event, "DashboardClienteBoundary");
     }
 
-    public void onChatBtnClick(ActionEvent event) {
+    public void onChatListBtnClick(ActionEvent event) {
         System.out.println("CHAT button clicked.");
         switchScene("/views/ListaChatView.fxml", event, "DashboardClienteBoundary");
     }

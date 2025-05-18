@@ -17,7 +17,7 @@ import java.util.Optional;
 public class DashboardTrainerBoundary {
 
     @FXML
-    public void onChatBtnClick(ActionEvent event) {
+    public void onChatListBtnClick(ActionEvent event) {
         System.out.println("CHAT button clicked.");
         switchScene("/views/ListaChatView.fxml", event, "DashboardTrainerBoundary");
     }

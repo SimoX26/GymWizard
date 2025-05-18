@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.lang.reflect.InvocationTargetException;
 
 public class ListaChatBoundary {
 
@@ -38,17 +38,17 @@ public class ListaChatBoundary {
         System.out.println("Schermata chiamata da: " + context);
     }
 
-    private void onChatClick(int idUtente, ActionEvent event) {
+    public void onChatBtnClick(ActionEvent event) {
         System.out.println("CHAT button clicked.");
-        switchScene("/views/ChatView.fxml", event);
+        switchScene("/views/ChatView.fxml", event, context);
     }
 
     public void onBackClick(ActionEvent event) {
         System.out.println("BACK button clicked.");
         if (context.equals("DashboardClienteBoundary")) {
-            switchScene("/views/DashboardClienteView.fxml", event);
+            switchScene("/views/DashboardClienteView.fxml", event, context);
         } else if (context.equals("DashboardTrainerBoundary")) {
-            switchScene("/views/DashboardTrainerView.fxml", event);
+            switchScene("/views/DashboardTrainerView.fxml", event, context);
         }
     }
 
@@ -64,13 +64,30 @@ public class ListaChatBoundary {
 
     public void onHomeClick(ActionEvent event) {
         System.out.println("HOME button clicked.");
-        switchScene("/views/DashboardClienteView.fxml", event);
+        switchScene("/views/DashboardClienteView.fxml", event, context);
     }
 
-    private void switchScene(String path, ActionEvent event) {
+    private void switchScene(String path, ActionEvent event, String context) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             Parent root = loader.load();
+
+            Object controller = loader.getController();
+            // Controllo generico: se il controller ha un metodo chiamato "setContext"
+            try {
+                try {
+                    controller.getClass()
+                            .getMethod("setContext", String.class)
+                            .invoke(controller, context);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                } catch (InvocationTargetException e) {
+                    throw new RuntimeException(e);
+                }
+            } catch (NoSuchMethodException ignored) {
+                System.out.println("Controller " + controller.getClass().getSimpleName() + " non ha setContext()");
+            }
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);

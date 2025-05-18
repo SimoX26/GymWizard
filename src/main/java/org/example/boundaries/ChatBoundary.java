@@ -19,20 +19,17 @@ public class ChatBoundary {
     @FXML private Button sendBtn;
     @FXML private VBox messagesBox;
 
-    private String provenienza;
+    private String context;
 
-    public void setProvenienza(String provenienza) {
-        this.provenienza = provenienza;
+    // Metodo che imposta il contesto di esecuzione in base alla schermata da cui è stata chiamata questa
+    public void setContext(String context) {
+        this.context = context;
+        System.out.println("Schermata chiamata da: " + context);
     }
-
 
     public void onBackClick(ActionEvent event) {
         System.out.println("BACK button clicked.");
-        if(provenienza == "DashboardClienteBoundary"){
-            switchScene("/views/DashboardClienteView.fxml", event);
-        }else if(provenienza == "DashboardTrainerBoundary"){
-            switchScene("/views/DashboardTrainerView.fxml", event);
-        }
+        switchScene("/views/ListaChatView.fxml", event);
     }
 
     public void onHelpClick(ActionEvent event) {
@@ -46,11 +43,6 @@ public class ChatBoundary {
 
     public void onHomeClick(ActionEvent event) {
         System.out.println("HOME button clicked.");
-        if(provenienza == "DashboardClienteBoundary"){
-            switchScene("/views/DashboardClienteView.fxml", event);
-        }else if(provenienza == "DashboardTrainerBoundary"){
-            switchScene("/views/DashboardTrainerView.fxml", event);
-        }
     }
 
     private void switchScene(String path, ActionEvent event) {

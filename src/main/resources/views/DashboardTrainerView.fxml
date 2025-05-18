@@ -32,7 +32,7 @@
             <font>
                <Font size="14.0" />
             </font></Button>
-            <Button onAction="#onChatBtnClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-cursor: hand; -fx-border-radius: 10;" text="VAI ALLE CHAT">
+            <Button onAction="#onChatListBtnClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-cursor: hand; -fx-border-radius: 10;" text="VAI ALLE CHAT">
             <font>
                <Font size="14.0" />
             </font></Button>
