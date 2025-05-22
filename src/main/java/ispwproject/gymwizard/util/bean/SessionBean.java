@@ -1,56 +1,31 @@
 package ispwproject.gymwizard.util.bean;
 
-import ispwproject.gymwizard.util.InvalidParameterException;
+import ispwproject.gymwizard.model.Role;
 
 public class SessionBean {
-    private String sid;
-    private String role;
-    private String username;
+    private final String email;
+    private final Role role;
+    private String username; // ✅ Aggiunto campo opzionale
 
-    public SessionBean(String sid, String role) {
-        if (isSidValid(sid) && isRoleValid(role)) {
-            this.sid = sid;
-            this.role = role;
-        } else {
-            throw new InvalidParameterException("Invalid Parameters");
-        }
+    public SessionBean(String email, Role role) {
+        this.email = email;
+        this.role = role;
     }
 
-    public String getRole() {
+    public String getEmail() {
+        return email;
+    }
+
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        if (isRoleValid(role)) {
-            this.role = role;
-        }
-    }
-
+    // ✅ Aggiunto getter e setter per username
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
-        if (username != null) {
-            this.username = username;
-        }
-    }
-
-    public String getSid() {
-        return sid;
-    }
-
-    public void setSid(String sid) {
-        if (isSidValid(sid)) {
-            this.sid = sid;
-        }
-    }
-
-    private boolean isSidValid(String sid) {
-        return (sid != null && !sid.isBlank());
-    }
-
-    private boolean isRoleValid(String role) {
-        return (role != null && !role.isBlank());
+        this.username = username;
     }
 }

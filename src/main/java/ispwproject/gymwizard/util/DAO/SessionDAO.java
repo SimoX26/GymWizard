@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.util.DAO;
 
-import ispwproject.gymwizard.util.bean.LoginBean;
+import ispwproject.gymwizard.model.Credentials;
+import ispwproject.gymwizard.model.Role;
 import ispwproject.gymwizard.util.bean.SessionBean;
 import ispwproject.gymwizard.util.HashUtil;
 
@@ -9,11 +10,11 @@ import java.util.UUID;
 
 public class SessionDAO {
 
-    public SessionBean userLogin(LoginBean login) {
+    public SessionBean userLogin(Credentials login) {
         SessionBean session = null;
 
         if (login != null) {
-            try (Connection conn = DatabaseConnection.getConnection()) {
+            try (Connection conn = ConnectionFactory.getConnection()) {
                 String query = "SELECT username, ruolo, password_hash FROM Utente WHERE email = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(query)) {
                     stmt.setString(1, login.getEmail());
@@ -23,60 +24,23 @@ public class SessionDAO {
                         String storedHash = rs.getString("password_hash");
                         String inputHash = HashUtil.hashPassword(login.getPassword());
 
-                        // 🔍 Debug: stampa hash inserito e hash salvato nel DB
-                        System.out.println("▶ HASH INSERITO : " + inputHash);
-                        System.out.println("▶ HASH DAL DB   : " + storedHash);
-
-                        if (storedHash.equals(storedHash)) {
+                        if (storedHash.equals(inputHash)) {
                             String sid = UUID.randomUUID().toString();
-                            String ruolo = rs.getString("ruolo");
+                            String ruoloStr = rs.getString("ruolo").toUpperCase(); // meglio maiuscolo per sicurezza
                             String username = rs.getString("username");
 
+                            Role ruolo = Role.valueOf(ruoloStr); // converte da String a enum Role
                             session = new SessionBean(sid, ruolo);
-                            session.setUsername(username);
+                            session.setUsername(username); // assicurati che questo metodo esista
                         }
                     }
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (SQLException | IllegalArgumentException e) {
+                e.printStackTrace(); // puoi gestire meglio l'eccezione in produzione
             }
-        }
-
-        return session;
-    }
-
-    public SessionBean userLoginGoogle(String email, String nome, String cognome) {
-        SessionBean session = null;
-
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            String checkQuery = "SELECT username, ruolo FROM Utente WHERE email = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(checkQuery)) {
-                stmt.setString(1, email);
-                ResultSet rs = stmt.executeQuery();
-
-                if (rs.next()) {
-                    String username = rs.getString("username");
-                    String ruolo = rs.getString("ruolo");
-                    session = new SessionBean(UUID.randomUUID().toString(), ruolo);
-                    session.setUsername(username);
-                } else {
-                    // Registrazione automatica nuovo utente Google come cliente
-                    String generatedUsername = nome.toLowerCase() + "." + cognome.toLowerCase();
-                    String insertQuery = "INSERT INTO Utente (username, email, ruolo, login_google) VALUES (?, ?, 'cliente', TRUE)";
-                    try (PreparedStatement insertStmt = conn.prepareStatement(insertQuery)) {
-                        insertStmt.setString(1, generatedUsername);
-                        insertStmt.setString(2, email);
-                        insertStmt.executeUpdate();
-
-                        session = new SessionBean(UUID.randomUUID().toString(), "cliente");
-                        session.setUsername(generatedUsername);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
         return session;
     }
 }
+

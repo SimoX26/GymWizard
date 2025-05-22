@@ -10,7 +10,7 @@ import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
 
-public class CreaAttivitaBoundary {
+public class CreaAttivitaGUIController {
 
     @FXML
     private TextField nomeField;

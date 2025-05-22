@@ -8,7 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import java.util.Optional;
 
-public class DashboardTrainerBoundary extends AbstractGUIController{
+public class DashboardTrainerGUIController extends AbstractGUIController{
 
     @FXML
     private Label welcomeLabel;
@@ -24,7 +24,7 @@ public class DashboardTrainerBoundary extends AbstractGUIController{
     @FXML
     public void onChatListBtnClick(ActionEvent chatListEvent) {
         System.out.println("CHAT button clicked.");
-        switchScene(chatListEvent, "/views/ListaChatView.fxml");
+        switchScene("/views/ListaChatView.fxml", chatListEvent);
     }
 
     @FXML
@@ -47,7 +47,7 @@ public class DashboardTrainerBoundary extends AbstractGUIController{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             SessionManager.getInstance().clearAll();
-            switchScene(logoutEvent, "/views/HomeView.fxml");
+            switchScene("/views/HomeView.fxml", logoutEvent);
         }
     }
 }

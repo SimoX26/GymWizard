@@ -4,12 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
-public class CodiceAccessoBoundary extends AbstractGUIController{
+public class CodiceAccessoGUIController extends AbstractGUIController{
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene(backEvent, "/views/DashboardClienteView.fxml");
+        this.switchScene("/views/DashboardClienteView.fxml", backEvent);
     }
 
     @FXML
@@ -25,6 +25,6 @@ public class CodiceAccessoBoundary extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homeEvent, "/views/DashboardClienteView.fxml");
+        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
     }
 }

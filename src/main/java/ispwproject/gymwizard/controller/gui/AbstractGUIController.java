@@ -8,33 +8,27 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
-public class AbstractGUIController {
+public abstract class AbstractGUIController {
 
-    protected void switchScene(ActionEvent event, String path) {
-        if(path == null || event == null){
-            return;
-        }
+    protected void switchScene(String fxmlPath, ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            URL location = getClass().getResource(fxmlPath);
+            if (location == null) {
+                throw new RuntimeException("FXML non trovato: " + fxmlPath);
+            }
+
+            FXMLLoader loader = new FXMLLoader(location);
             Parent root = loader.load();
 
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.show();
+
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Errore durante il cambio scena: " + fxmlPath, e);
         }
     }
-/*
-    protected void displayFeaturePopup(Event event){
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        PopupFactory popupFactory = new PopupFactory();
-        popupFactory.createBasePopup("Feature non implementata!").show(stage);
-    }
 
- */
 }

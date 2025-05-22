@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ChatBoundary {
+public class ChatGUIController {
 
     @FXML private TextField inputField;
     @FXML private Button sendBtn;

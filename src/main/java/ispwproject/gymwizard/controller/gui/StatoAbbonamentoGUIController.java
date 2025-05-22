@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
-public class StatoAbbonamentoBoundary extends AbstractGUIController{
+public class StatoAbbonamentoGUIController extends AbstractGUIController{
 
     @FXML
     private Label statoLabel, dataLabel, tipologiaLabel;
@@ -13,14 +13,14 @@ public class StatoAbbonamentoBoundary extends AbstractGUIController{
     @FXML
     private void onRinnovaClick(ActionEvent rinnovaEvent) {
         System.out.println("RINNOVA button clicked.");
-        switchScene(rinnovaEvent, "/views/RinnovaAbbonamentoView.fxml");
+        switchScene("/views/RinnovaAbbonamentoView.fxml", rinnovaEvent);
     }
 
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        switchScene(backEvent, "/views/DashboardClienteView.fxml");
+        switchScene("/views/DashboardClienteView.fxml", backEvent);
     }
 
     @FXML
@@ -40,6 +40,6 @@ public class StatoAbbonamentoBoundary extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homeEvent, "/views/DashboardClienteView.fxml");
+        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
     }
 }

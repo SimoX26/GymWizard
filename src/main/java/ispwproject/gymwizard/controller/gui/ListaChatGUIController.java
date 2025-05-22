@@ -6,11 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
-public class ListaChatBoundary extends AbstractGUIController{
+public class ListaChatGUIController extends AbstractGUIController{
 
     @FXML private VBox chatListVBox;
 
-    String homePage = SessionManager.getInstance().getAttributo("homePage");
+    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
 
     @FXML
     public void initialize() {
@@ -29,13 +29,13 @@ public class ListaChatBoundary extends AbstractGUIController{
     @FXML
     public void onChatBtnClick(ActionEvent chatEvent) {
         System.out.println("CHAT button clicked.");
-        this.switchScene(chatEvent, "/views/ChatView.fxml");
+        this.switchScene("/views/ChatView.fxml", chatEvent);
     }
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene(backEvent, homePage);
+        this.switchScene(homePage, backEvent);
     }
 
     @FXML
@@ -52,6 +52,6 @@ public class ListaChatBoundary extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homeEvent, homePage);
+        this.switchScene(homePage, homeEvent);
     }
 }

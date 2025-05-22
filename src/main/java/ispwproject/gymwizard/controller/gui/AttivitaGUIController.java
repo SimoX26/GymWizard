@@ -4,18 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
-public class AttivitaBoundary extends AbstractGUIController{
+public class AttivitaGUIController extends AbstractGUIController{
 
     @FXML
     public void onAttivitaClick(ActionEvent attivitaEvent){
         System.out.println("ATTIVITA button clicked.");
-        this.switchScene(attivitaEvent, "/views/RiepilogoAttivitaView.fxml");
+        this.switchScene("/views/RiepilogoAttivitaView.fxml", attivitaEvent);
     }
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene(backEvent, "/views/DashboardClienteView.fxml");
+        this.switchScene("/views/DashboardClienteView.fxml", backEvent);
     }
 
     @FXML
@@ -32,6 +32,6 @@ public class AttivitaBoundary extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homeEvent,"/views/DashboardClienteView.fxml");
+        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
     }
 }

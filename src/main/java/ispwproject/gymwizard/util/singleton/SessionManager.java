@@ -6,48 +6,51 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SessionManager {
-
-    private static final SessionManager instance = new SessionManager();
-
-    private SessionBean sessionBean;
-
-    // Contesto dinamico (solo stringhe)
-    private final Map<String, String> attributi = new HashMap<>();
+    private static SessionManager instance;
+    private SessionBean session;
+    private final Map<String, Object> attributi = new HashMap<>(); // ✅ Mappa per attributi personalizzati
 
     private SessionManager() {}
 
     public static SessionManager getInstance() {
+        if (instance == null) {
+            instance = new SessionManager();
+        }
         return instance;
     }
 
-    public SessionBean getSessionBean() {
-        return sessionBean;
+    public void setSession(SessionBean session) {
+        this.session = session;
     }
 
-    public void setSessionBean(SessionBean sessionBean) {
-        this.sessionBean = sessionBean;
+    public SessionBean getSession() {
+        return session;
     }
 
-    // Attributi dinamici
-    public void setAttributo(String key, String value) {
-        attributi.put(key, value);
+    public void clearSession() {
+        this.session = null;
+        attributi.clear(); // ✅ pulisci anche gli attributi
     }
 
-    public String getAttributo(String key) {
-        return attributi.get(key);
+    public boolean isLoggedIn() {
+        return session != null;
     }
 
-    public void removeAttributo(String key) {
-        attributi.remove(key);
+    // ✅ Metodi per attributi personalizzati
+    public void setAttributo(String chiave, Object valore) {
+        attributi.put(chiave, valore);
     }
 
-    public void clearAttributi() {
-        attributi.clear();
+    public Object getAttributo(String chiave) {
+        return attributi.get(chiave);
     }
 
-    // Pulizia completa (es. al logout)
+    public void removeAttributo(String chiave) {
+        attributi.remove(chiave);
+    }
+
     public void clearAll() {
-        sessionBean = null;
-        attributi.clear();
+        clearSession(); // delega
     }
+
 }

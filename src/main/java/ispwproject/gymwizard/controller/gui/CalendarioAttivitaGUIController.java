@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class CalendarioAttivitaBoundary {
+public class CalendarioAttivitaGUIController {
 
     @FXML
     private Label backIcon, helpIcon, homeIcon;

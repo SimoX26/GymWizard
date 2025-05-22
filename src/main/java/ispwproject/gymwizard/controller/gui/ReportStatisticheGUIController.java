@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import java.io.IOException;
 import java.util.Optional;
 
-public class ReportStatisticheBoundary {
+public class ReportStatisticheGUIController {
 
     @FXML
     private Label backIcon, helpIcon, homeIcon;

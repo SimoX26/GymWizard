@@ -11,7 +11,7 @@
 <AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="900.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ispwproject.gymwizard.controller.gui.LoginBoundary">
+            fx:controller="ispwproject.gymwizard.controller.gui.LoginGUIController">
 
     <!-- Contenuto Login centrato -->
     <VBox alignment="CENTER" spacing="20"
@@ -61,20 +61,5 @@
                 <Font size="14.0" />
             </font>
         </Button>
-
-        <!-- Pulsante Login con Google -->
-        <Button
-                maxWidth="207.0" prefHeight="45.0" prefWidth="207.0"
-                text="Accedi con Google"
-                style="-fx-cursor: hand; -fx-background-color: green; -fx-text-fill: white;
-                       -fx-font-size: 14px; -fx-font-weight: bold;
-                       -fx-background-radius: 30; -fx-border-color: white;
-                       -fx-border-width: 2; -fx-border-radius: 30;
-                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.2, 0, 1);">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-
     </VBox>
 </AnchorPane>

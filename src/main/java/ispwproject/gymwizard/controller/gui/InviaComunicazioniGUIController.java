@@ -11,7 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
 import java.util.Optional;
 
-public class InviaComunicazioniBoundary {
+public class InviaComunicazioniGUIController {
 
     @FXML
     private Label backIcon, helpIcon, homeIcon;

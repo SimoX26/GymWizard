@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
-public class RiepilogoAttivitaBoundary extends AbstractGUIController{
+public class RiepilogoAttivitaGUIController extends AbstractGUIController{
 
     @FXML
     private Label nomeLabel;
@@ -30,7 +30,7 @@ public class RiepilogoAttivitaBoundary extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene(backEvent, "/views/AttivitaView.fxml");
+        this.switchScene("/views/AttivitaView.fxml", backEvent);
     }
 
     @FXML
@@ -46,6 +46,6 @@ public class RiepilogoAttivitaBoundary extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homeEvent, "/views/DashboardClienteView.fxml");
+        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
     }
 }

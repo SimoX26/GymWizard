@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
-public class RiepilogoOrdineBoundary extends AbstractGUIController{
+public class RiepilogoOrdineGUIController extends AbstractGUIController{
 
     @FXML
     private Label titoloAbbonamentoLabel;
@@ -27,7 +27,7 @@ public class RiepilogoOrdineBoundary extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene(backEvent, "/views/RinnovaAbbonamentoView.fxml");
+        this.switchScene("/views/RinnovaAbbonamentoView.fxml", backEvent);
     }
 
     @FXML
@@ -44,6 +44,6 @@ public class RiepilogoOrdineBoundary extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homeEvent, "/views/DashboardClienteView.fxml");
+        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
     }
 }

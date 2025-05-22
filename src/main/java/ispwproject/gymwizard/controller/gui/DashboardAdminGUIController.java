@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class DashboardAdminBoundary {
+public class DashboardAdminGUIController {
 
     @FXML
     private Label backIcon, helpIcon, homeIcon;

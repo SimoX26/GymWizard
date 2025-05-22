@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import java.util.Optional;
 
-public class DashboardClienteBoundary extends AbstractGUIController{
+public class DashboardClienteGUIController extends AbstractGUIController{
 
     @FXML
     private Label welcomeLabel;
@@ -24,31 +24,31 @@ public class DashboardClienteBoundary extends AbstractGUIController{
     @FXML
     public void onSchedaBtnClick(ActionEvent trainingCardEvent) {
         System.out.println("TRAINING CARD button clicked.");
-        this.switchScene(trainingCardEvent, "/views/SchedaView.fxml");
+        this.switchScene("/views/SchedaView.fxml", trainingCardEvent);
     }
 
     @FXML
     public void onAttivitaBtnClick(ActionEvent coursesEvent) {
         System.out.println("COURSES button clicked.");
-        this.switchScene(coursesEvent, "/views/AttivitaView.fxml");
+        this.switchScene("/views/AttivitaView.fxml", coursesEvent);
     }
 
     @FXML
     public void onStatoAbbonamentoBtnClick(ActionEvent event) {
         System.out.println("STATO ABBONAMENTO button clicked.");
-        this.switchScene(event, "/views/StatoAbbonamentoView.fxml");
+        this.switchScene("/views/StatoAbbonamentoView.fxml", event);
     }
 
     @FXML
     public void onChatListBtnClick(ActionEvent event) {
         System.out.println("CHAT button clicked.");
-        this.switchScene(event, "/views/ListaChatView.fxml");
+        this.switchScene("/views/ListaChatView.fxml", event);
     }
 
     @FXML
     public void onCodiceAccessoBtnClick(ActionEvent event) {
         System.out.println("ACCESS CODE button clicked.");
-        this.switchScene(event, "/views/CodiceAccessoView.fxml");
+        this.switchScene("/views/CodiceAccessoView.fxml", event);
     }
 
     @FXML
@@ -71,7 +71,7 @@ public class DashboardClienteBoundary extends AbstractGUIController{
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             SessionManager.getInstance().clearAll();
-            switchScene(logoutEvent, "/views/HomeView.fxml");
+            switchScene("/views/HomeView.fxml", logoutEvent);
         }
     }
 /*

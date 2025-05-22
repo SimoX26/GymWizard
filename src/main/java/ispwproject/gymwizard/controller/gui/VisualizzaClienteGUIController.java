@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.Optional;
 
-public class VisualizzaClienteBoundary {
+public class VisualizzaClienteGUIController {
 
     @FXML private Label clienteLabel, backIcon, helpIcon, homeIcon;
     @FXML private Button schedaBtn, schedaBtn1;

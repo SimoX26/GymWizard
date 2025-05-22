@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-public class HomeBoundary extends AbstractGUIController {
+public class HomeGUIController extends AbstractGUIController {
 
     @FXML
     private AnchorPane anchorPane;
@@ -31,6 +31,6 @@ public class HomeBoundary extends AbstractGUIController {
 
     @FXML
     private void onLoginBtnClick(ActionEvent loginEvent) {
-        this.switchScene(loginEvent, "/views/LoginView.fxml");
+        this.switchScene("/views/LoginView.fxml", loginEvent);
     }
 }
