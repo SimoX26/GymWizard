@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.DAO.StatisticaDAO;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class ReportStatisticheGUIController {
@@ -35,7 +37,6 @@ public class ReportStatisticheGUIController {
     public void initialize() {
         backIcon.setOnMouseClicked(event -> switchScene("/views/DashboardAdminView.fxml"));
         helpIcon.setOnMouseClicked(event -> handleHelpClick());
-
         homeIcon.setOnMouseClicked(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Logout");
@@ -47,26 +48,40 @@ public class ReportStatisticheGUIController {
             }
         });
 
-        // Dati fittizi (esempio)
-        utentiAttiviLabel.setText("120");
-        prenotazioniLabel.setText("450");
-        attivitaLabel.setText("15");
+        try {
+            StatisticaDAO dao = new StatisticaDAO();
+            utentiAttiviLabel.setText(String.valueOf(dao.getTotaleClienti()));
+            prenotazioniLabel.setText(String.valueOf(dao.getTotalePrenotazioni()));
+            attivitaLabel.setText(String.valueOf(dao.getTotaleAttivita()));
 
-        xAxis.setLabel("Giorno");
-        yAxis.setLabel("Prenotazioni");
+            // Facoltativo: popolamento dinamico bar chart (placeholder statico per ora)
+            xAxis.setLabel("Giorno");
+            yAxis.setLabel("Prenotazioni");
 
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Prenotazioni Settimanali");
-        series.getData().add(new XYChart.Data<>("Lunedì", 50));
-        series.getData().add(new XYChart.Data<>("Martedì", 75));
-        series.getData().add(new XYChart.Data<>("Mercoledì", 90));
-        series.getData().add(new XYChart.Data<>("Giovedì", 60));
-        series.getData().add(new XYChart.Data<>("Venerdì", 80));
-        series.getData().add(new XYChart.Data<>("Sabato", 95));
-        series.getData().add(new XYChart.Data<>("Domenica", 40));
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Prenotazioni Settimanali");
 
-        barChart.getData().add(series);
+            // Sostituibile con query settimanale reale in seguito
+            series.getData().add(new XYChart.Data<>("Lunedì", 50));
+            series.getData().add(new XYChart.Data<>("Martedì", 75));
+            series.getData().add(new XYChart.Data<>("Mercoledì", 90));
+            series.getData().add(new XYChart.Data<>("Giovedì", 60));
+            series.getData().add(new XYChart.Data<>("Venerdì", 80));
+            series.getData().add(new XYChart.Data<>("Sabato", 95));
+            series.getData().add(new XYChart.Data<>("Domenica", 40));
+
+            barChart.getData().add(series);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore Statistiche");
+            alert.setHeaderText("Errore durante il caricamento delle statistiche");
+            alert.setContentText("Controlla la connessione al database.");
+            alert.showAndWait();
+        }
     }
+
 
     private void handleHelpClick() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
