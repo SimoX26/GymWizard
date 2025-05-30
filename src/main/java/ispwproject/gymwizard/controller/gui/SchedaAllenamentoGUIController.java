@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 
-public class SchedaGUIController extends AbstractGUIController{
+public class SchedaAllenamentoGUIController extends AbstractGUIController{
 
     @FXML
     private ImageView schedaImage;

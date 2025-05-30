@@ -5,29 +5,59 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import java.util.Scanner;
 
 public class DashboardTrainerCLIController {
+
+    private final Scanner scanner = new Scanner(System.in);
+
     public void start() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("\n🏋️ Dashboard Trainer");
-        System.out.println("1. Vedi lista clienti");
-        System.out.println("2. Logout");
+        // Messaggio di benvenuto
+        String username = SessionManager.getInstance().getSession().getUsername();
+        System.out.println("\n👋 Benvenuto " + (username != null ? username : "trainer") + "!");
+        menu();
+    }
 
-        System.out.print("👉 Scelta: ");
-        String choice = sc.nextLine();
+    private void menu() {
+        while (true) {
+            System.out.println("\n📋 DASHBOARD TRAINER:");
+            System.out.println("1. Lista Clienti");
+            System.out.println("2. Lista Chat");
+            System.out.println("3. Aiuto");
+            System.out.println("0. Logout");
 
-        switch (choice) {
-            case "1" -> {
-                System.out.println("- Cliente: Mario Rossi");
-                start();
-            }
-            case "2" -> {
-                SessionManager.getInstance().clearAll();
-                System.out.println("🔒 Logout.");
-                new LoginCLIController().start();
-            }
-            default -> {
-                System.out.println("❌ Scelta non valida.");
-                start();
+            System.out.print("👉 Scelta: ");
+            String input = scanner.nextLine();
+
+            switch (input) {
+                case "1" -> switchToListaClienti();
+                case "2" -> onChatListBtnClick();
+                case "3" -> onHelpClick();
+                case "0" -> {
+                    onLogoutClick();
+                    return;
+                }
+                default -> System.out.println("❌ Scelta non valida.");
             }
         }
     }
+
+    private void switchToListaClienti() {
+        System.out.println("📁 [Lista Clienti] Visualizzazione dei clienti associati...");
+        // TODO: collegare alla logica dei clienti
+    }
+
+    private void onChatListBtnClick() {
+        System.out.println("💬 [Chat] Lista delle conversazioni disponibili...");
+        // TODO: collegare alla logica della chat
+    }
+
+    private void onHelpClick() {
+        System.out.println("🆘 Guida Interfaccia:");
+        System.out.println("Puoi accedere alla lista dei clienti oppure alla chat con loro.");
+    }
+
+    private void onLogoutClick() {
+        System.out.println("🚪 Logout in corso...");
+        SessionManager.getInstance().clearAll();
+        System.out.println("✅ Logout effettuato. Ritorno al menu principale.");
+    }
 }
+
