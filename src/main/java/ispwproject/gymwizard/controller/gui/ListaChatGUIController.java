@@ -28,7 +28,7 @@ public class ListaChatGUIController extends AbstractGUIController{
 
     @FXML
     public void onChatBtnClick(ActionEvent chatEvent) {
-        System.out.println("CHAT button clicked.");
+        System.out.println("CHAT LIST button clicked.");
         this.switchScene("/views/ChatView.fxml", chatEvent);
     }
 

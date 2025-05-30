@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.util;
+package ispwproject.gymwizard.util.exception;
 
 public class InvalidParameterException extends RuntimeException {
 

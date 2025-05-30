@@ -82,7 +82,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>ispwproject.gymwizard.App</mainClass>
+                    <mainClass>ispwproject.gymwizard.controller.MainGUI</mainClass>
                 </configuration>
             </plugin>
 
