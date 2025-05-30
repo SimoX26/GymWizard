@@ -27,7 +27,6 @@ public class AttivitaCLIController {
 
         if ("0".equals(scelta)) {
             System.out.println("🔙 Ritorno alla dashboard cliente...");
-            return;
         } else {
             System.out.println("ℹ️ Funzionalità di dettaglio non ancora implementata.");
         }

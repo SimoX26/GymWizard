@@ -24,7 +24,7 @@
        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="383.0" prefWidth="173.0" style="-fx-background-color: transparent;">
            <ImageView fx:id="schedaImage" fitHeight="381.0" fitWidth="499.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                   <Image url="@../images/Scheda%201.png" />
+                   <Image url="@../images/Scheda2.png" />
                </image>
            </ImageView>
          <padding>

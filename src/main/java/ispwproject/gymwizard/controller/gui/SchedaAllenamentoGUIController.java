@@ -40,7 +40,7 @@ public class SchedaAllenamentoGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onHelpClick(ActionEvent event) {
+    public void onHelpClick() {
         System.out.println("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
