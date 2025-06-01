@@ -4,6 +4,9 @@ import ispwproject.gymwizard.model.Credentials;
 import ispwproject.gymwizard.model.Role;
 import ispwproject.gymwizard.util.exception.DAOException;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,20 +25,21 @@ public class LoginProcedureDAO {
         return instance;
     }
 
-    public Credentials execute(String username, String password) throws DAOException {
+    public Credentials execute(String email, String passwordPlainText) throws DAOException {
         int roleId;
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             CallableStatement cs = connection.prepareCall("{call login(?,?, ?)}")) {
+        String passwordHash = hashPassword(passwordPlainText); // SHA-256 hashing
 
-            cs.setString(1, username);
-            cs.setString(2, password); // ⚠️ password in chiaro, coerente con la stored procedure
+        try (Connection connection = ConnectionFactory.getConnection();
+             CallableStatement cs = connection.prepareCall("{call login(?, ?, ?)}")) {
+
+            cs.setString(1, email);
+            cs.setString(2, passwordHash); // hashed password
             cs.registerOutParameter(3, Types.INTEGER);
 
             cs.execute();
             roleId = cs.getInt(3);
 
-            // 🔐 Controllo fallimento login
             if (roleId == 0) {
                 throw new DAOException("Credenziali non valide.");
             }
@@ -45,7 +49,23 @@ public class LoginProcedureDAO {
         }
 
         Role role = Role.fromInt(roleId);
-        return new Credentials(username, password, role);
+        return new Credentials(email, passwordHash, role);
+    }
+
+    private String hashPassword(String password) throws DAOException {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+
+            return sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new DAOException("Errore durante l'hash della password", e);
+        }
     }
 }
-
