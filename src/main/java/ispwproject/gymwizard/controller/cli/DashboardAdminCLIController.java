@@ -4,71 +4,85 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.util.Scanner;
 
-public class DashboardAdminCLIController {
+public class DashboardAdminCLIController{
 
     private final Scanner scanner = new Scanner(System.in);
 
     public void start() {
         // Messaggio di benvenuto
         String username = SessionManager.getInstance().getSession().getUsername();
-        System.out.println("\n👋 Benvenuto amministratore" + (username != null ? ", " + username : "") + "!");
+        System.out.println("\n👋 Benvenuto " + (username != null ? username : "admin") + "!");
         menu();
     }
 
-    private void menu() {
+    public void menu() {
         while (true) {
-            System.out.println("\n📋 DASHBOARD AMMINISTRATORE:");
-            System.out.println("1. Gestione Listino Attività");
-            System.out.println("2. Report e Statistiche");
-            System.out.println("3. Invia Comunicazioni");
-            System.out.println("4. Aiuto");
-            System.out.println("0. Logout");
+            System.out.println("""
+            \n🛠️ DASHBOARD AMMINISTRATORE:
+            1. Gestione Listino Attività
+            2. Visualizza Report e Statistiche
+            3. Invia Comunicazioni
+            4. Aiuto
+            0. Logout
+            """);
 
             System.out.print("👉 Scelta: ");
-            String input = scanner.nextLine();
+            String scelta = scanner.nextLine();
 
-            switch (input) {
-                case "1" -> gestioneListino();
-                case "2" -> visualizzaReport();
-                case "3" -> inviaComunicazioni();
-                case "4" -> mostraGuida();
+            switch (scelta) {
+                case "1" -> onGestioneListino();
+                case "2" -> onVisualizzaReport();
+                case "3" -> onInviaComunicazioni();
+                case "4" -> onHelp();
                 case "0" -> {
-                    logout();
+                    onLogout();
                     return;
                 }
                 default -> System.out.println("❌ Scelta non valida.");
             }
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
         }
     }
 
-    private void gestioneListino() {
-        System.out.println("📋 [Listino] Gestione delle attività disponibili...");
-        // TODO: integrare logica di business
+    private void onGestioneListino() {
+        System.out.println("\n📦 [GESTIONE LISTINO]");
+        System.out.println("Funzionalità in sviluppo..."); // TODO: chiamare controller CLI specifico
+        System.out.print("👉 Premi invio per tornare al menu: ");
+        scanner.nextLine();
     }
 
-    private void visualizzaReport() {
-        System.out.println("📈 [Report] Visualizzazione statistiche...");
-        // TODO: integrare logica di business
+    private void onVisualizzaReport() {
+        System.out.println("\n📊 [REPORT E STATISTICHE]");
+        System.out.println("Funzionalità in sviluppo..."); // TODO: chiamare controller CLI specifico
+        System.out.print("👉 Premi invio per tornare al menu: ");
+        scanner.nextLine();
     }
 
-    private void inviaComunicazioni() {
-        System.out.println("📢 [Comunicazioni] Invio messaggi agli utenti...");
-        // TODO: integrare logica di business
+    private void onInviaComunicazioni() {
+        System.out.println("\n📢 [INVIO COMUNICAZIONI]");
+        System.out.println("Funzionalità in sviluppo..."); // TODO: chiamare controller CLI specifico
+        System.out.print("👉 Premi invio per tornare al menu: ");
+        scanner.nextLine();
     }
 
-    private void mostraGuida() {
+    private void onHelp() {
         System.out.println("""
-        🆘 Guida Interfaccia Amministratore:
-        - Gestione Listino: modifica attività disponibili
-        - Report: consulta statistiche della palestra
-        - Comunicazioni: invia messaggi globali agli utenti
+        🆘 Guida Amministratore:
+        - Gestione Listino: Aggiungi, modifica o rimuovi attività.
+        - Report: Statistiche su utenti e performance.
+        - Comunicazioni: Invia messaggi globali ai clienti o ai coach.
         """);
+        System.out.print("👉 Premi invio per tornare al menu: ");
+        scanner.nextLine();
     }
 
-    private void logout() {
+    private void onLogout() {
         System.out.println("🚪 Logout in corso...");
         SessionManager.getInstance().clearAll();
         System.out.println("✅ Logout effettuato. Ritorno al menu principale.");
     }
 }
+
 

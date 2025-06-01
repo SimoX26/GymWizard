@@ -29,7 +29,7 @@ public class SchedaAllenamentoCLIController {
 
             try (InputStream in = imageUrl.openStream()) {
                 // Copia in file temporaneo
-                Path tempFile = Files.createTempFile("Scheda", ".png");
+                Path tempFile = Files.createTempFile("scheda_", ".png");
                 Files.copy(in, tempFile, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
                 tempFile.toFile().deleteOnExit();
 
@@ -51,3 +51,4 @@ public class SchedaAllenamentoCLIController {
         scanner.nextLine();
     }
 }
+

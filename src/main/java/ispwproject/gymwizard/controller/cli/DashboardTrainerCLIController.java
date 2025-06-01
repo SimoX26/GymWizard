@@ -17,11 +17,13 @@ public class DashboardTrainerCLIController {
 
     private void menu() {
         while (true) {
-            System.out.println("\n📋 DASHBOARD TRAINER:");
-            System.out.println("1. Lista Clienti");
-            System.out.println("2. Lista Chat");
-            System.out.println("3. Aiuto");
-            System.out.println("0. Logout");
+            System.out.println("""
+            \n📋 DASHBOARD TRAINER:
+            1. Lista Clienti
+            2. Lista Chat
+            3. Aiuto
+            0. Logout
+            """);
 
             System.out.print("👉 Scelta: ");
             String input = scanner.nextLine();
@@ -35,6 +37,9 @@ public class DashboardTrainerCLIController {
                     return;
                 }
                 default -> System.out.println("❌ Scelta non valida.");
+            }
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
             }
         }
     }
@@ -50,8 +55,10 @@ public class DashboardTrainerCLIController {
     }
 
     private void onHelpClick() {
-        System.out.println("🆘 Guida Interfaccia:");
-        System.out.println("Puoi accedere alla lista dei clienti oppure alla chat con loro.");
+        System.out.println("""
+        🆘 Guida Interfaccia:
+        Puoi accedere alla lista dei clienti oppure alla chat con loro.
+        """);
     }
 
     private void onLogoutClick() {

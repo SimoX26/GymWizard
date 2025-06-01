@@ -11,20 +11,22 @@ public class DashboardClientCLIController {
     public void start() {
         // Messaggio di benvenuto
         String username = SessionManager.getInstance().getSession().getUsername();
-        System.out.println("\n👋 Benvenuto " + (username != null ? username : "utente") + "!");
+        System.out.println("\n👋 Benvenuto " + (username != null ? username : "cliente") + "!");
         menu();
     }
 
     private void menu() {
         while (true) {
-            System.out.println("\n📋 DASHBOARD CLIENTE:");
-            System.out.println("1. Visualizza Scheda Allenamento");
-            System.out.println("2. Visualizza Attività");
-            System.out.println("3. Stato Abbonamento");
-            System.out.println("4. Lista Chat");
-            System.out.println("5. Codice Accesso");
-            System.out.println("6. Aiuto");
-            System.out.println("0. Logout");
+            System.out.println("""
+            \n📋 DASHBOARD CLIENTE:
+            1. Scheda Allenamento
+            2. Lista Attività
+            3. Stato Abbonamento
+            4. Lista Chat
+            5. Codice Accesso
+            6. Aiuto
+            0. Logout
+            """);
 
             System.out.print("👉 Scelta: ");
             String input = scanner.nextLine();
@@ -42,6 +44,9 @@ public class DashboardClientCLIController {
                 }
                 default -> System.out.println("❌ Scelta non valida.");
             }
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
         }
     }
 
@@ -58,7 +63,6 @@ public class DashboardClientCLIController {
     private void onStatoAbbonamento() {
         // System.out.println("📄 [Stato Abbonamento] Mostra stato abbonamento...");
         new StatoAbbonamentoCLIController().start();
-
     }
 
     private void onListaChat() {
@@ -72,8 +76,14 @@ public class DashboardClientCLIController {
     }
 
     private void onHelp() {
-        System.out.println("🆘 Guida Interfaccia:");
-        System.out.println("Puoi accedere alla scheda allenamento, attività, chat e codice accesso.");
+        System.out.println("""
+        🆘 Guida Interfaccia:
+        - Scheda Allenamento: Visualizza la scheda di allenamento assegnata.
+        - Lista Attività: Visualizza la lista delle attività disponibili in modo da prenotarsi.
+        - Stato Abbonamento: Visualizza lo stato di abbonamento ed eventualmente effettuare un rinnovo.
+        - Lista Chat: Visuliazza la lista delle chat con i trainer.
+        - Codice D'Accesso: Visualizza il codice QR per accedere alla struttura
+        """);
     }
 
     private void onLogout() {
