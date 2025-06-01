@@ -41,7 +41,7 @@ public class AttivitaDAO {
                         rs.getTime("ora_inizio").toLocalTime(),
                         rs.getTime("ora_fine").toLocalTime(),
                         rs.getInt("posti_disponibili"),
-                        rs.getInt("trainer_id")
+                        rs.getString("trainer_name")
                 );
                 attivitaList.add(attivita);
             }
@@ -54,7 +54,7 @@ public class AttivitaDAO {
     }
 
     public void inserisciAttivita(Attivita attivita) throws DAOException {
-        String query = "INSERT INTO Attivita (nome, descrizione, data, ora_inizio, ora_fine, posti_disponibili, trainer_id) " +
+        String query = "INSERT INTO Attivita (nome, descrizione, data, ora_inizio, ora_fine, posti_disponibili, trainer_name) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -66,7 +66,7 @@ public class AttivitaDAO {
             ps.setTime(4, Time.valueOf(attivita.getOraInizio()));
             ps.setTime(5, Time.valueOf(attivita.getOraFine()));
             ps.setInt(6, attivita.getPostiDisponibili());
-            ps.setInt(7, attivita.getTrainerId());
+            ps.setString(7, attivita.getTrainerName());
 
             ps.executeUpdate();
 

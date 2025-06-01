@@ -3,7 +3,6 @@ package ispwproject.gymwizard.controller.gui;
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.DAO.AttivitaDAO;
 import ispwproject.gymwizard.util.exception.DAOException;
-import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,13 +13,13 @@ import java.time.LocalTime;
 
 public class CreaAttivitaGUIController extends AbstractGUIController{
 
-
     @FXML private TextField nomeField;
     @FXML private TextArea descrizioneField;
     @FXML private DatePicker dataPicker;
     @FXML private TextField oraInizioField;
     @FXML private TextField oraFineField;
     @FXML private TextField postiDisponibiliField;
+    @FXML private TextField trainerNameField;
 
     @FXML
     private void onCreaAttivita() {
@@ -31,10 +30,9 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
             LocalTime oraInizio = LocalTime.parse(oraInizioField.getText());
             LocalTime oraFine = LocalTime.parse(oraFineField.getText());
             int posti = Integer.parseInt(postiDisponibiliField.getText());
+            String trainerName = trainerNameField.getText();
 
-            // int trainerId = SessionManager.getInstance().getSession().getUtenteId();
-
-            Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, 0);
+            Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
             AttivitaDAO.getInstance().inserisciAttivita(nuova);
 

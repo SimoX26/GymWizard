@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -11,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.DatePicker?>
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CreaAttivitaGUIController">
 
      <!-- Titolo -->
@@ -32,7 +32,7 @@
     </HBox>
 
     <!-- Contenitore centrale -->
-    <VBox alignment="TOP_CENTER" spacing="80.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
+    <VBox alignment="TOP_CENTER" spacing="90.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
 
         <!-- Form -->
         <VBox prefWidth="600" spacing="30.0">
@@ -49,6 +49,19 @@
                   </font></TextField>
             </children>
          </HBox>
+         <HBox alignment="CENTER" prefHeight="72.0" prefWidth="730.0" spacing="20.0">
+            <children>
+      
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="147.0" style="-fx-text-fill: white;" text="Descrizione">
+                  <font>
+                     <Font size="14.0" />
+                  </font></Label>
+                  <TextArea fx:id="descrizioneField" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione">
+                  <font>
+                     <Font size="14.0" />
+                  </font></TextArea>
+            </children>
+         </HBox>
          <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
             <children>
       
@@ -63,24 +76,49 @@
          <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
             <children>
       
-                  <Label style="-fx-text-fill: white;" text="Ora">
+                  <Label style="-fx-text-fill: white;" text="Ora di inizio">
                   <font>
                      <Font size="14.0" />
                   </font></Label>
-                  <ComboBox fx:id="oraComboBox" promptText="Seleziona l'ora" />
+                  <TextField fx:id="oraInizioField" promptText="Seleziona l'ora" />
             </children>
          </HBox>
-         <HBox alignment="CENTER" prefHeight="72.0" prefWidth="730.0" spacing="20.0">
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
             <children>
-      
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="147.0" style="-fx-text-fill: white;" text="Descrizione">
+               <Label style="-fx-text-fill: white;" text="Ora di fine">
                   <font>
                      <Font size="14.0" />
-                  </font></Label>
-                  <TextArea fx:id="descrizioneField" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione">
+                  </font>
+               </Label>
+               <TextField fx:id="oraFineField" promptText="Seleziona l'ora" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
+            <children>
+               <Label style="-fx-text-fill: white;" text="Posti disponibili">
                   <font>
                      <Font size="14.0" />
-                  </font></TextArea>
+                  </font>
+               </Label>
+               <TextField fx:id="postiDisponibiliField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il numero di posti">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </TextField>
+            </children>
+         </HBox>
+         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
+            <children>
+               <Label style="-fx-text-fill: white;" text="Nome del trainer">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <TextField fx:id="trainerNameField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il numero di posti" text="Inserisci il nome">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </TextField>
             </children>
          </HBox>
         </VBox>
@@ -88,7 +126,7 @@
         <!-- Pulsante Salva -->
         <Button onAction="#onCreaAttivita" style="-fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Salva">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="16.0" />
          </font></Button>
     </VBox>
 

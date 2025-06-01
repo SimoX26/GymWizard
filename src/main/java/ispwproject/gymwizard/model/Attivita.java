@@ -12,10 +12,10 @@ public class Attivita {
     private LocalTime oraInizio;
     private LocalTime oraFine;
     private int postiDisponibili;
-    private int trainerId; // puoi sostituirlo con oggetto Trainer se vuoi
+    private String trainerName;
 
     public Attivita(int id, String nome, String descrizione, LocalDate data, LocalTime oraInizio,
-                    LocalTime oraFine, int postiDisponibili, int trainerId) {
+                    LocalTime oraFine, int postiDisponibili, String trainerName) {
         this.id = id;
         this.nome = nome;
         this.descrizione = descrizione;
@@ -23,7 +23,7 @@ public class Attivita {
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
         this.postiDisponibili = postiDisponibili;
-        this.trainerId = trainerId;
+        this.trainerName = trainerName;
     }
 
     // Getters e Setters
@@ -34,7 +34,7 @@ public class Attivita {
     public LocalTime getOraInizio() { return oraInizio; }
     public LocalTime getOraFine() { return oraFine; }
     public int getPostiDisponibili() { return postiDisponibili; }
-    public int getTrainerId() { return trainerId; }
+    public String getTrainerName() { return trainerName; }
 
     public void setPostiDisponibili(int postiDisponibili) { this.postiDisponibili = postiDisponibili; }
 
