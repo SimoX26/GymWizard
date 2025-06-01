@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.DatePicker?>
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CreaAttivitaGUIController">
 
      <!-- Titolo -->
@@ -25,9 +26,9 @@
 
     <!-- Pulsanti in alto a destra -->
     <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
-        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="↩" />
-        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="?" />
-        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="⌂" />
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenitore centrale -->
@@ -56,7 +57,7 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-                  <ComboBox fx:id="giornoComboBox" promptText="Seleziona il giorno" />
+                  <DatePicker fx:id="dataPicker" promptText="Seleziona il giorno" />
             </children>
          </HBox>
          <HBox alignment="CENTER" prefHeight="0.0" prefWidth="730.0" spacing="20.0">
@@ -76,7 +77,7 @@
                   <font>
                      <Font size="14.0" />
                   </font></Label>
-                  <TextArea fx:id="descrizioneArea" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione">
+                  <TextArea fx:id="descrizioneField" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione">
                   <font>
                      <Font size="14.0" />
                   </font></TextArea>
@@ -85,7 +86,7 @@
         </VBox>
 
         <!-- Pulsante Salva -->
-        <Button onAction="#handleSalva" style="-fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Salva">
+        <Button onAction="#onCreaAttivita" style="-fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Salva">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>

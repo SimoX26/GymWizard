@@ -1,75 +1,59 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.DAO.AttivitaDAO;
+import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.singleton.SessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 
-import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-public class CreaAttivitaGUIController {
+public class CreaAttivitaGUIController extends AbstractGUIController{
 
-    @FXML
-    private TextField nomeField;
 
-    @FXML
-    private ComboBox<String> giornoComboBox;
-
-    @FXML
-    private ComboBox<String> oraComboBox;
-
-    @FXML
-    private TextArea descrizioneArea;
+    @FXML private TextField nomeField;
+    @FXML private TextArea descrizioneField;
+    @FXML private DatePicker dataPicker;
+    @FXML private TextField oraInizioField;
+    @FXML private TextField oraFineField;
+    @FXML private TextField postiDisponibiliField;
 
     @FXML
-    private Label backIcon, helpIcon, homeIcon;
+    private void onCreaAttivita() {
+        try {
+            String nome = nomeField.getText();
+            String descrizione = descrizioneField.getText();
+            LocalDate data = dataPicker.getValue();
+            LocalTime oraInizio = LocalTime.parse(oraInizioField.getText());
+            LocalTime oraFine = LocalTime.parse(oraFineField.getText());
+            int posti = Integer.parseInt(postiDisponibiliField.getText());
 
-    @FXML
-    public void initialize() {
-        giornoComboBox.getItems().addAll("Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica");
-        oraComboBox.getItems().addAll("9:00", "10:00", "11:00", "16:00", "17:00", "18:00", "19:00", "20:00");
+            // int trainerId = SessionManager.getInstance().getSession().getUtenteId();
 
-        backIcon.setOnMouseClicked(event -> handleBackClick());
-        helpIcon.setOnMouseClicked(event -> handleHelpClick());
-        homeIcon.setOnMouseClicked(event -> handleHomeClick());
-    }
+            Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, 0);
 
-    @FXML
-    private void handleSalva() {
-        String nome = nomeField.getText();
-        String giorno = giornoComboBox.getValue();
-        String ora = oraComboBox.getValue();
-        String descrizione = descrizioneArea.getText();
+            AttivitaDAO.getInstance().inserisciAttivita(nuova);
 
-        if (nome == null || giorno == null || ora == null || descrizione == null ||
-                nome.isEmpty() || giorno.isEmpty() || ora.isEmpty() || descrizione.isEmpty()) {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Campi mancanti");
-            alert.setHeaderText(null);
-            alert.setContentText("Per favore, compila tutti i campi.");
-            alert.showAndWait();
-            return;
+            showSuccess("Attività creata con successo!");
+
+        } catch (DAOException e) {
+            showError("Errore durante il salvataggio: " + e.getMessage());
+        } catch (Exception e) {
+            showError("Dati non validi: " + e.getMessage());
         }
-
-        // Logica per salvare l'attività (es. salvataggio su database o lista)
-
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Attività salvata");
-        alert.setHeaderText(null);
-        alert.setContentText("L'attività è stata salvata con successo.");
-        alert.showAndWait();
-
-        handleBackClick(); // ritorno alla schermata precedente
     }
 
-    private void handleBackClick() {
-        switchScene("/views/CalendarioAttivitaView.fxml");
+    @FXML
+    private void onBackClick(ActionEvent event) {
+        switchScene("/views/CalendarioAttivitaView.fxml",event);
     }
 
-    private void handleHelpClick() {
+    @FXML
+    private void onHelpClick() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Guida");
         alert.setHeaderText(null);
@@ -78,27 +62,24 @@ public class CreaAttivitaGUIController {
         alert.showAndWait();
     }
 
-    private void handleHomeClick() {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("Vuoi effettuare il logout?");
-        alert.setContentText("Verrai riportato alla schermata iniziale.");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            switchScene("/views/HomeView.fxml");
-        }
+    @FXML
+    private void onHomeClick(ActionEvent event) {
+        switchScene("/views/DashboardAdminView.fxml", event);
     }
 
-    private void switchScene(String path) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-            Parent root = loader.load();
-            Stage stage = (Stage) backIcon.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // imposta dimensioni fisse
-            stage.setScene(scene);
-            stage.setResizable(false);               // blocca resize
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void showError(String msg) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Errore");
+        alert.setHeaderText("Impossibile creare l’attività");
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
+    private void showSuccess(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Successo");
+        alert.setHeaderText("Attività creata");
+        alert.setContentText(msg);
+        alert.showAndWait();
     }
 }

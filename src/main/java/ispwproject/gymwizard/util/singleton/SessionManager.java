@@ -29,14 +29,14 @@ public class SessionManager {
 
     public void clearSession() {
         this.session = null;
-        attributi.clear(); // ✅ pulisci anche gli attributi
+        attributi.clear(); // pulisci anche gli attributi
     }
 
     public boolean isLoggedIn() {
         return session != null;
     }
 
-    // ✅ Metodi per attributi personalizzati
+    // Metodi per attributi personalizzati
     public void setAttributo(String chiave, Object valore) {
         attributi.put(chiave, valore);
     }
