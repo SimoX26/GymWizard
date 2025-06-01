@@ -24,7 +24,7 @@ public class DashboardClienteGUIController extends AbstractGUIController{
     @FXML
     public void onSchedaBtnClick(ActionEvent trainingCardEvent) {
         System.out.println("TRAINING CARD button clicked.");
-        this.switchScene("/views/SchedaView.fxml", trainingCardEvent);
+        this.switchScene("/views/SchedaAllenamentoView.fxml", trainingCardEvent);
     }
 
     @FXML

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CalendarioAttivitaGUIController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CalendarioAttivitaGUIController">
 
     <!-- Intestazione -->
     <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
@@ -25,7 +25,7 @@
       </font></Label>
 
     <!-- Griglia attività -->
-    <GridPane fx:id="attivitaGrid" gridLinesVisible="true" layoutX="45.0" layoutY="113.0" prefHeight="582.0" prefWidth="728.0" style="-fx-border-color: white;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="108.0">
+    <GridPane fx:id="attivitaGrid" gridLinesVisible="true" layoutX="40.0" layoutY="79.0" prefHeight="582.0" prefWidth="728.0" style="-fx-border-color: white;" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="79.0">
         <columnConstraints>
          <ColumnConstraints minWidth="10.0" percentWidth="6.0" prefWidth="100.0" />
             <ColumnConstraints percentWidth="15.45" />
@@ -37,18 +37,18 @@
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="24.5" minHeight="16.0" prefHeight="17.0" />
-            <RowConstraints maxHeight="74.0" minHeight="60.0" prefHeight="73.0" />
-            <RowConstraints minHeight="60.0" />
-            <RowConstraints minHeight="60.0" />
-            <RowConstraints minHeight="60.0" />
-            <RowConstraints minHeight="60.0" />
-            <RowConstraints minHeight="60.0" />
-            <RowConstraints minHeight="60.0" />
-            <RowConstraints minHeight="60.0" />
-            <RowConstraints minHeight="60.0" />
-         <RowConstraints minHeight="60.0" prefHeight="30.0" />
-         <RowConstraints minHeight="60.0" prefHeight="30.0" />
-         <RowConstraints minHeight="60.0" prefHeight="30.0" />
+            <RowConstraints minHeight="40.0" />
+            <RowConstraints minHeight="40.0" />
+            <RowConstraints minHeight="40.0" />
+            <RowConstraints minHeight="40.0" />
+            <RowConstraints minHeight="40.0" />
+            <RowConstraints minHeight="40.0" />
+            <RowConstraints minHeight="40.0" />
+            <RowConstraints minHeight="40.0" />
+            <RowConstraints minHeight="40.0" />
+         <RowConstraints minHeight="40.0" />
+         <RowConstraints minHeight="40.0" />
+         <RowConstraints minHeight="40.0" />
         </rowConstraints>
 
         <!-- Giorni -->
@@ -77,5 +77,5 @@
     </GridPane>
 
     <!-- Pulsante Aggiungi -->
-    <Button fx:id="addBtn" onAction="#handleAddActivity" prefHeight="60.0" prefWidth="60.0" style="-fx-font-size: 24; -fx-background-color: green; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;" text="+" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+    <Button fx:id="addBtn" layoutX="805.0" layoutY="522.0" onAction="#handleAddActivity" prefHeight="60.0" prefWidth="60.0" style="-fx-font-size: 24; -fx-background-color: green; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;" text="+" AnchorPane.bottomAnchor="84.0" AnchorPane.rightAnchor="35.0" />
 </AnchorPane>
