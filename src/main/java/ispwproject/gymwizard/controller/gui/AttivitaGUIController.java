@@ -23,8 +23,15 @@ public class AttivitaGUIController extends AbstractGUIController{
         List<Attivita> attivitaList = AttivitaDAO.getInstance().getAllDisponibili();
 
         for (Attivita attivita : attivitaList) {
-            Button btn = new Button(attivita.getNome() + " - " + attivita.getData() + " " + attivita.getOraInizio());
+            Button btn = new Button(attivita.getNome() + " | " + attivita.getData() + " | " + attivita.getOraInizio() +  " - "+attivita.getOraFine());
             btn.setMaxWidth(Double.MAX_VALUE);
+            btn.setStyle(
+                    "-fx-background-color: white;" +
+                            "-fx-text-fill: black;" +
+                            "-fx-font-size: 14px;" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-padding: 10 20 10 20;"
+            );
             btn.setOnAction(event -> onAttivitaClick(attivita));
             attivitaContainer.getChildren().add(btn);
         }

@@ -17,25 +17,24 @@
 
     <!-- Icone in alto a destra -->
     <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
-        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 36; -fx-cursor: hand;" text="↩" />
-        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 36; -fx-cursor: hand;" text="?" />
-        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 36; -fx-cursor: hand;" text="⌂" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onLogoutClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenuti centrali -->
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
 
-        <Button fx:id="listinoBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="LISTINO ATTIVITÀ">
+        <Button onAction="#onListinoAttivitaClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="LISTINO ATTIVITÀ">
          <font>
             <Font size="14.0" />
          </font></Button>
 
-        <Button fx:id="reportBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="REPORT E STATISTICHE">
+        <Button onAction="#onReportClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="REPORT E STATISTICHE">
          <font>
             <Font size="14.0" />
          </font></Button>
 
-        <Button fx:id="comunicazioniBtn" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="INVIA COMUNICAZIONI">
+        <Button onAction="#onComunicazioneClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="INVIA COMUNICAZIONI">
          <font>
             <Font size="14.0" />
          </font></Button>
