@@ -1,4 +1,28 @@
 package ispwproject.gymwizard.controller.app;
 
+import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.DAO.AttivitaDAO;
+import ispwproject.gymwizard.util.exception.DAOException;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class AttivitaController {
+
+    public static List<Attivita> getAttivitaDisponibili() throws DAOException {
+            return AttivitaDAO.getInstance().getAllDisponibili();
+    }
+
+    public List<Attivita> getAttivitaDisponibiliMock(){
+        List<Attivita> attivitaList = new ArrayList<>();
+
+        attivitaList.add(new Attivita(1, "Yoga", "Lezione rilassante", LocalDate.now(), LocalTime.of(10, 0), LocalTime.of(11, 0), 20, "Luca"));
+        attivitaList.add(new Attivita(2, "Pilates", "Rinforzo posturale", LocalDate.now(), LocalTime.of(12, 0), LocalTime.of(13, 0), 8, "Marco"));
+        attivitaList.add(new Attivita(3,"CrossFit", "Allenamento intensivo", LocalDate.now().plusDays(1), LocalTime.of(18, 0), LocalTime.of(19, 0), 12, "Chiara"));
+
+        return attivitaList;
+    }
+
 }

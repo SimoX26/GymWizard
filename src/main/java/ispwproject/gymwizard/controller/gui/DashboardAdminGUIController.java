@@ -4,12 +4,24 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 
 public class DashboardAdminGUIController extends AbstractGUIController{
 
     @FXML
+    private Label welcomeLabel;
+
+    @FXML
+    private void initialize() {
+        System.out.println("** INIT EXEC - Dashboard Admin **");
+        SessionManager.getInstance().setAttributo("homePage", "/views/DashboardAdminView.fxml");
+
+        welcomeLabel.setText("Benvenuto " + "NOME UTENTE");
+    }
+
+    @FXML
     public void onListinoAttivitaClick(ActionEvent event){
-        switchScene("/views/CalendarioAttivitaView.fxml", event);
+        switchScene("/views/AttivitaView.fxml", event);
     }
 
     @FXML

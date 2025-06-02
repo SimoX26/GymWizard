@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,4 +32,19 @@ public abstract class AbstractGUIController {
         }
     }
 
+    protected void showError(String titolo, String messaggio) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titolo);
+        alert.setHeaderText(null);
+        alert.setContentText(messaggio);
+        alert.showAndWait();
+    }
+
+    protected void showPopup(String titolo, String intestazione, String messaggio) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titolo);
+        alert.setHeaderText(intestazione);
+        alert.setContentText(messaggio);
+        alert.showAndWait();
+    }
 }

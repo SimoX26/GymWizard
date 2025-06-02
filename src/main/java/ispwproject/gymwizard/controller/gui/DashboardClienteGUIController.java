@@ -15,7 +15,7 @@ public class DashboardClienteGUIController extends AbstractGUIController{
 
     @FXML
     private void initialize() {
-        System.out.println("** INIT EXEC **");
+        System.out.println("** INIT EXEC - Dashboard Client **");
         SessionManager.getInstance().setAttributo("homePage", "/views/DashboardClienteView.fxml");
 
         welcomeLabel.setText("Benvenuto " + "NOME UTENTE");

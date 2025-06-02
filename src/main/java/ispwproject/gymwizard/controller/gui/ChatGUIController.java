@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ChatGUIController {
+public class ChatGUIController extends AbstractGUIController{
 
     @FXML private TextField inputField;
     @FXML private Button sendBtn;
@@ -42,18 +42,5 @@ public class ChatGUIController {
 
     public void onHomeClick(ActionEvent event) {
         System.out.println("HOME button clicked.");
-    }
-
-    private void switchScene(String path, ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

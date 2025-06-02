@@ -1,34 +1,37 @@
 package ispwproject.gymwizard.controller.cli;
 
-import java.util.Arrays;
+import ispwproject.gymwizard.controller.app.AttivitaController;
+import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.exception.DAOException;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class AttivitaCLIController {
 
+    private final AttivitaController attivitaController = new AttivitaController();
     private final Scanner scanner = new Scanner(System.in);
 
     public void start() {
+        List<Attivita> attivitaList = attivitaController.getAttivitaDisponibiliMock();
+
         System.out.println("\n📌 ATTIVITÀ DISPONIBILI:\n");
+        for (int i = 0; i < attivitaList.size(); i++) {
+            Attivita a = attivitaList.get(i);
+            System.out.println((i + 1) + ". " + a.getNome() + " - " + a.getData() + " " + a.getOraInizio());
+        }
 
-        // Simulazione lista attività (in futuro andrà letta da un controller applicativo)
-        List<String> attivitaDisponibili = Arrays.asList(
-                "1. Yoga - Lunedì 10:00",
-                "2. Pilates - Martedì 16:00",
-                "3. Cardio - Mercoledì 18:00",
-                "4. CrossFit - Giovedì 12:00"
-        );
-
-        attivitaDisponibili.forEach(System.out::println);
-
+        Scanner sc = new Scanner(System.in);
         System.out.println("\n0. 🔙 Torna alla Dashboard");
-        System.out.print("👉 Seleziona un'attività per info dettagliate (non ancora attivo): ");
-        String scelta = scanner.nextLine();
+        System.out.print("👉 Seleziona un'attività per info dettagliate (numero): ");
+        String scelta = sc.nextLine();
 
         if ("0".equals(scelta)) {
             System.out.println("🔙 Ritorno alla dashboard cliente...");
         } else {
             System.out.println("ℹ️ Funzionalità di dettaglio non ancora implementata.");
+            System.out.print("👉 Premi invio per tornare: ");
+            scanner.nextLine();
         }
     }
 }

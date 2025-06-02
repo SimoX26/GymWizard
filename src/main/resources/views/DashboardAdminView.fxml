@@ -10,7 +10,7 @@
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardAdminGUIController">
 
     <!-- Benvenuto -->
-    <Label fx:id="welcomeLabel" alignment="CENTER" text="Benvenuto &quot;Nome Admin&quot;" textFill="WHITE" AnchorPane.leftAnchor="30" AnchorPane.topAnchor="20">
+    <Label fx:id="welcomeLabel" alignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="30" AnchorPane.topAnchor="20">
       <font>
          <Font name="System Bold" size="28.0" />
       </font></Label>

@@ -15,10 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
-public class CalendarioAttivitaGUIController {
-
-    @FXML
-    private Label backIcon, helpIcon, homeIcon;
+public class CalendarioAttivitaGUIController extends AbstractGUIController{
 
     @FXML
     private Button addBtn;
@@ -31,52 +28,32 @@ public class CalendarioAttivitaGUIController {
         aggiungiAttivita("Yoga", 1, 3);
         aggiungiAttivita("Crossfit", 1, 6);
 
-        backIcon.setOnMouseClicked(event -> switchScene("/views/DashboardAdminView.fxml"));
-        helpIcon.setOnMouseClicked(event -> handleHelpClick());
-        homeIcon.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Logout");
-            alert.setHeaderText("Vuoi effettuare il logout?");
-            alert.setContentText("Verrai riportato alla schermata iniziale.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                switchScene("/views/HomeView.fxml");
-            }
-        });
     }
 
     private void aggiungiAttivita(String nome, int colonna, int riga) {
         Button btn = new Button(nome);
         btn.setPrefSize(100, 40);
         btn.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 2; -fx-background-radius: 10; -fx-border-radius: 10;");
-        btn.setOnAction(e -> apriRiepilogoAttivita(nome));
+        btn.setOnAction(e -> apriRiepilogoAttivita(e, nome));
         attivitaGrid.add(btn, colonna, riga);
     }
 
-    private void apriRiepilogoAttivita(String nomeAttivita) {
-        switchScene("/views/RiepilogoAttivitaView.fxml");
+    public void apriRiepilogoAttivita(ActionEvent event, String nomeAttivita) {
+        switchScene("/views/RiepilogoAttivitaView.fxml", event);
     }
 
     @FXML
-    private void handleAddActivity(ActionEvent event) {
-        switchScene("/views/CreaAttivitaView.fxml");
-    }
-
-    private void switchScene(String path) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-            Parent root = loader.load();
-            Stage stage = (Stage) backIcon.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // dimensioni fisse
-            stage.setScene(scene);
-            stage.setResizable(false);              // blocca ridimensionamento
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void handleAddActivity(ActionEvent event) {
+        switchScene("/views/CreaAttivitaView.fxml",event);
     }
 
     @FXML
-    private void handleHelpClick() {
+    public void onBackClick(ActionEvent event) {
+        switchScene("/views/DashboardAdminView.fxml",event);
+    }
+
+    @FXML
+    public void onHelpClick(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
         alert.setHeaderText("Planner Settimanale");
@@ -90,4 +67,10 @@ public class CalendarioAttivitaGUIController {
                 """);
         alert.showAndWait();
     }
+
+    @FXML
+    private void onHomeClick(ActionEvent event) {
+        switchScene("/views/DashboardAdminView.fxml", event);
+    }
+
 }

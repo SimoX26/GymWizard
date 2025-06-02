@@ -22,7 +22,7 @@ public class DashboardTrainerGUIController extends AbstractGUIController{
 
     @FXML
     private void initialize() {
-        System.out.println("** INIT EXEC **");
+        System.out.println("** INIT EXEC - Dashboard Trainer**");
         SessionManager.getInstance().setAttributo("homePage", "/views/DashboardTrainerView.fxml");
 
         welcomeLabel.setText("Benvenuto " + "NOME UTENTE");

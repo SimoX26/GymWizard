@@ -22,7 +22,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
     @FXML private TextField trainerNameField;
 
     @FXML
-    private void onCreaAttivita() {
+    public void onCreaAttivita() {
         try {
             String nome = nomeField.getText();
             String descrizione = descrizioneField.getText();
@@ -46,12 +46,12 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    private void onBackClick(ActionEvent event) {
+    public void onBackClick(ActionEvent event) {
         switchScene("/views/CalendarioAttivitaView.fxml",event);
     }
 
     @FXML
-    private void onHelpClick() {
+    public void onHelpClick() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Guida");
         alert.setHeaderText(null);
@@ -61,7 +61,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    private void onHomeClick(ActionEvent event) {
+    public void onHomeClick(ActionEvent event) {
         switchScene("/views/DashboardAdminView.fxml", event);
     }
 
