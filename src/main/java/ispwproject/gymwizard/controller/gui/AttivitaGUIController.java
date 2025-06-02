@@ -26,7 +26,7 @@ public class AttivitaGUIController extends AbstractGUIController{
         if("/views/DashboardAdminView.fxml".equals(homePage)){
             Button btn = new Button("+");
             btn.setStyle("-fx-font-size: 24; -fx-background-color: green; -fx-cursor: hand; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;");
-            btn.setOnAction(event -> handleAddActivity(event));
+            btn.setOnAction(this::handleAddActivity);
             addBtn.getChildren().add(btn);
         }
 
@@ -56,6 +56,7 @@ public class AttivitaGUIController extends AbstractGUIController{
 
     @FXML
     public void handleAddActivity(ActionEvent event) {
+        System.out.println("ADD button clicked.");
         switchScene("/views/CreaAttivitaView.fxml",event);
     }
 
@@ -69,7 +70,7 @@ public class AttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", backEvent);
+        this.switchScene(homePage, backEvent);
     }
 
     @FXML
@@ -82,6 +83,6 @@ public class AttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
+        this.switchScene(homePage, homeEvent);
     }
 }

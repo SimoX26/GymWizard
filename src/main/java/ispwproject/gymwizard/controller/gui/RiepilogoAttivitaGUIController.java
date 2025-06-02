@@ -1,30 +1,27 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
+import java.time.LocalTime;
 
 public class RiepilogoAttivitaGUIController extends AbstractGUIController{
 
-    @FXML
-    private Label nomeLabel;
+    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
 
     @FXML
-    private Label giornoLabel;
+    private Label nome, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
 
-    @FXML
-    private Label oraLabel;
-
-    @FXML
-    private TextArea descrizioneArea;
-
-    public void setDettagliAttivita(String nome, String giorno, String ora, String descrizione) {
-        nomeLabel.setText(nome);
-        giornoLabel.setText(giorno);
-        oraLabel.setText(ora);
-        descrizioneArea.setText(descrizione);
+    public void initialize(String nome, String description, String dateTime, LocalTime startTime, LocalTime finishTime, String placesAvailable, String nomeTrainer) {
+        this.nome.setText(nome);
+        this.description.setText(description);
+        this.dateTime.setText(dateTime);
+        this.nomeTrainer.setText(nomeTrainer);
     }
 
     @FXML
@@ -36,16 +33,12 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onHelpClick(ActionEvent event) {
         System.out.println("HELP button clicked.");
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Guida Interfaccia");
-        alert.setHeaderText("Codice D'Accesso");
-        alert.setContentText("Utilizza questo codice QR per accedere alla struttura.");
-        alert.showAndWait();
+        this.showPopup("Guida Interfaccia", "Riepilogo Attività", "Riepilogo dati dell'attività selezionata.");
     }
 
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
+        this.switchScene(homePage, homeEvent);
     }
 }

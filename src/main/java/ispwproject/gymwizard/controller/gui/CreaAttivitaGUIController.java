@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.gui;
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.DAO.AttivitaDAO;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,6 +13,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class CreaAttivitaGUIController extends AbstractGUIController{
+
+    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
 
     @FXML private TextField nomeField;
     @FXML private TextArea descrizioneField;
@@ -23,6 +26,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
 
     @FXML
     public void onCreaAttivita() {
+        System.out.println("SAVE button clicked.");
         try {
             String nome = nomeField.getText();
             String descrizione = descrizioneField.getText();
@@ -36,48 +40,31 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
 
             AttivitaDAO.getInstance().inserisciAttivita(nuova);
 
-            showSuccess("Attività creata con successo!");
+            showPopup("Successo","Attività creata", "Attività creata con successo!");
 
         } catch (DAOException e) {
-            showError("Errore durante il salvataggio: " + e.getMessage());
+            this.showError("Errore durante il salvataggio: ", e.getMessage());
         } catch (Exception e) {
-            showError("Dati non validi: " + e.getMessage());
+            this. showError("Dati non validi: ", e.getMessage());
         }
     }
 
     @FXML
     public void onBackClick(ActionEvent event) {
-        switchScene("/views/CalendarioAttivitaView.fxml",event);
+        System.out.println("BACK button clicked.");
+        this.switchScene("/views/AttivitaView.fxml",event);
     }
 
     @FXML
     public void onHelpClick() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Guida");
-        alert.setHeaderText(null);
-        alert.setContentText("Compila tutti i campi per creare una nuova attività. " +
+        System.out.println("HELP button clicked.");
+        this.showPopup("Guida Inerfaccia", "Crea Attività", "Compila tutti i campi per creare una nuova attività. " +
                 "Assicurati di inserire un nome, selezionare un giorno e un'ora, e fornire una descrizione.");
-        alert.showAndWait();
     }
 
     @FXML
     public void onHomeClick(ActionEvent event) {
-        switchScene("/views/DashboardAdminView.fxml", event);
-    }
-
-    private void showError(String msg) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Errore");
-        alert.setHeaderText("Impossibile creare l’attività");
-        alert.setContentText(msg);
-        alert.showAndWait();
-    }
-
-    private void showSuccess(String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Successo");
-        alert.setHeaderText("Attività creata");
-        alert.setContentText(msg);
-        alert.showAndWait();
+        System.out.println("HOME button clicked.");
+        this.switchScene(homePage, event);
     }
 }
