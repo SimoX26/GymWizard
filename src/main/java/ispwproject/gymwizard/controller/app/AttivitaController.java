@@ -41,12 +41,13 @@ public class AttivitaController {
 
         AttivitaDAO.getInstance().inserisciAttivita(nuova);
     }
-
-    public void prenotaAttivita(Attivita attivita) throws DAOException {
+/*
+  public void prenotaAttivita(Attivita attivita) throws DAOException {
         // Ottieni ID cliente dalla sessione
         int idCliente = SessionManager.getInstance().getSession().getIdUtente(); // Assicurati che SessionBean abbia questo metodo
 
         // Chiamata alla DAO
         PrenotazioneDAO.getInstance().inserisciPrenotazione(attivita.getId(), idCliente);
     }
+ */
 }
