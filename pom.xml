@@ -22,13 +22,6 @@
             <version>1.42.0</version>
         </dependency>
 
-        <!-- ✅ Google API Services OAuth2 -->
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-oauth2</artifactId>
-            <version>v2-rev136-1.23.0</version>
-        </dependency>
-
         <!-- ✅ JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -40,6 +33,7 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+
         <!-- JavaFX Web (WebView e WebEngine) -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -56,6 +50,7 @@
     </dependencies>
 
     <build>
+
         <plugins>
             <!-- ✅ JavaFX plugin -->
             <plugin>
