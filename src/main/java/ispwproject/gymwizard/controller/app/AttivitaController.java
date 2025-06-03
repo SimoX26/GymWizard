@@ -25,4 +25,18 @@ public class AttivitaController {
         return attivitaList;
     }
 
+    public void creaAttivita(Attivita attivita) throws DAOException {
+        Attivita nuova = new Attivita(
+                0,
+                attivita.getNome(),
+                attivita.getDescrizione(),
+                attivita.getData(),
+                attivita.getOraInizio(),
+                attivita.getOraFine(),
+                attivita.getPostiDisponibili(),
+                attivita.getTrainerName()
+        );
+
+        AttivitaDAO.getInstance().inserisciAttivita(nuova);
+    }
 }

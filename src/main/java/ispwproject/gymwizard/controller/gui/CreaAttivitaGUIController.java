@@ -1,13 +1,12 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.model.Attivita;
-import ispwproject.gymwizard.util.DAO.AttivitaDAO;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -38,7 +37,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
 
             Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
-            AttivitaDAO.getInstance().inserisciAttivita(nuova);
+            new AttivitaController().creaAttivita(nuova);
 
             showPopup("Successo","Attività creata", "Attività creata con successo!");
 

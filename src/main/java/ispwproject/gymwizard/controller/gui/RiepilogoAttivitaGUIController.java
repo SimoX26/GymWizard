@@ -1,14 +1,10 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-
-import java.time.LocalTime;
 
 public class RiepilogoAttivitaGUIController extends AbstractGUIController{
 
@@ -17,11 +13,27 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     @FXML
     private Label nome, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
 
-    public void initialize(String nome, String description, String dateTime, LocalTime startTime, LocalTime finishTime, String placesAvailable, String nomeTrainer) {
-        this.nome.setText(nome);
-        this.description.setText(description);
-        this.dateTime.setText(dateTime);
-        this.nomeTrainer.setText(nomeTrainer);
+    @FXML
+    public void initialize() {
+        Object obj = SessionManager.getInstance().getAttributo("attivitaSelezionata");
+
+        if (obj instanceof Attivita attivita) {
+            nome.setText(attivita.getNome());
+            description.setText(attivita.getDescrizione());
+            dateTime.setText(attivita.getData().toString());
+            startTime.setText(attivita.getOraInizio().toString());
+            finishTime.setText(attivita.getOraFine().toString());
+            placesAvailable.setText(String.valueOf(attivita.getPostiDisponibili()));
+            nomeTrainer.setText(attivita.getTrainerName());
+        } else {
+            showError("ERRORE!", "Nessuna attività selezionata trovata nella sessione.");
+        }
+    }
+
+    @FXML
+    public void handlePrenota(ActionEvent event){
+        System.out.println("PRENOTA button clicked.");
+        this.showPopup("Attivita prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
     }
 
     @FXML
