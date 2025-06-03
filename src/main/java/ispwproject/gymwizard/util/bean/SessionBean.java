@@ -5,19 +5,11 @@ import ispwproject.gymwizard.model.Role;
 public class SessionBean {
     private final String email;
     private final Role role;
-    private int idUtente;
+    private String username; // ✅ Aggiunto campo opzionale
 
     public SessionBean(String email, Role role) {
         this.email = email;
         this.role = role;
-    }
-
-    public int getIdUtente() {
-        return idUtente;
-    }
-
-    public void setIdUtente(int idUtente) {
-        this.idUtente = idUtente;
     }
 
     public String getEmail() {
@@ -26,5 +18,14 @@ public class SessionBean {
 
     public Role getRole() {
         return role;
+    }
+
+    // ✅ Aggiunto getter e setter per username
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
