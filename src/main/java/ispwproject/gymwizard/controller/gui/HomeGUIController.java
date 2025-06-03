@@ -10,22 +10,7 @@ import javafx.scene.layout.*;
 public class HomeGUIController extends AbstractGUIController {
 
     @FXML
-    private RadioButton select;
-
-    @FXML
-    private RadioButton radioInsegnante;
-
-    @FXML
-    private RadioButton radioContanti;
-
-    @FXML
-    private RadioButton radioCarta;
-
-    @FXML
-    private ToggleGroup version;
-
-    @FXML
-    private ToggleGroup memory;
+    private ToggleGroup version, memory;
 
     @FXML
     private AnchorPane anchorPane;
@@ -58,14 +43,40 @@ public class HomeGUIController extends AbstractGUIController {
             String version = selectVersion.getText();
             String memory = selectMemory.getText();
 
-            System.out.println("Versione: " + version + " - Memorizzazione: " + memory);
-
-            // Puoi anche passare questi valori al Model o Controller
-            // esempioController.salvaScelta(tipoUtente, tipoPagamento);
+            // Combinazioni possibili (4 casi)
+            if (version.equals("GUI VERSION") && memory.equals("DBMS")) {
+                manageGuiDbms(loginEvent);
+            } else if (version.equals("GUI VERSION") && memory.equals("FILE SYSTEM")) {
+                manageGuiFileSystem(loginEvent);
+            } else if (version.equals("CLI VERSION") && memory.equals("DBMS")) {
+                manageCliDbms(loginEvent);
+            } else if (version.equals("CLI VERSION") && memory.equals("FILE SYSTEM")) {
+                manageCliFileSystem(loginEvent);
+            } else {
+                showError("Errore!", "Combinazione non supportata.");
+            }
         } else {
             this.showError("Errore!", "Seleziona una scelta per entrambi i gruppi.");
         }
+    }
 
+    private void manageGuiDbms(ActionEvent loginEvent) {
+        System.out.println("GUI VERSION + DBMS");
         this.switchScene("/views/LoginView.fxml", loginEvent);
+    }
+
+    private void manageGuiFileSystem(ActionEvent loginEvent) {
+        System.out.println("GUI VERSION + FILE SYSTEM");
+        this.showError("Warning", "Funzionalità ancora da implementare");
+    }
+
+    private void manageCliDbms(ActionEvent loginEvent) {
+        System.out.println("CLI VERSION + DBMS");
+        this.showError("Warning", "Funzionalità ancora da implementare");
+    }
+
+    private void manageCliFileSystem(ActionEvent loginEvent) {
+        System.out.println("CLI VERSION + FILE SYSTEM");
+        this.showError("Warning", "Funzionalità ancora da implementare");
     }
 }
