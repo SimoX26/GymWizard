@@ -6,6 +6,7 @@ module ispwproject.gymwizard {
 
     exports ispwproject.gymwizard.controller;
     exports ispwproject.gymwizard.controller.app;
+    exports ispwproject.gymwizard.model;
     exports ispwproject.gymwizard.util.DAO;
     exports ispwproject.gymwizard.util.exception;
 
