@@ -6,16 +6,16 @@ import java.util.Scanner;
 
 public class DashboardAdminCLIController{
 
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public void start() {
+    public static void start() {
         // Messaggio di benvenuto
         String username = SessionManager.getInstance().getSession().getUsername();
         System.out.println("\n👋 Benvenuto " + (username != null ? username : "admin") + "!");
         menu();
     }
 
-    public void menu() {
+    public static void menu() {
         while (true) {
             System.out.println("""
             \n🛠️ DASHBOARD AMMINISTRATORE:
@@ -46,28 +46,28 @@ public class DashboardAdminCLIController{
         }
     }
 
-    private void onGestioneListino() {
+    private static void onGestioneListino() {
         System.out.println("\n📦 [GESTIONE LISTINO]");
         System.out.println("Funzionalità in sviluppo..."); // TODO: chiamare controller CLI specifico
         System.out.print("👉 Premi invio per tornare al menu: ");
         scanner.nextLine();
     }
 
-    private void onVisualizzaReport() {
+    private static void onVisualizzaReport() {
         System.out.println("\n📊 [REPORT E STATISTICHE]");
         System.out.println("Funzionalità in sviluppo..."); // TODO: chiamare controller CLI specifico
         System.out.print("👉 Premi invio per tornare al menu: ");
         scanner.nextLine();
     }
 
-    private void onInviaComunicazioni() {
+    private static void onInviaComunicazioni() {
         System.out.println("\n📢 [INVIO COMUNICAZIONI]");
         System.out.println("Funzionalità in sviluppo..."); // TODO: chiamare controller CLI specifico
         System.out.print("👉 Premi invio per tornare al menu: ");
         scanner.nextLine();
     }
 
-    private void onHelp() {
+    private static void onHelp() {
         System.out.println("""
         🆘 Guida Amministratore:
         - Gestione Listino: Aggiungi, modifica o rimuovi attività.
@@ -78,7 +78,7 @@ public class DashboardAdminCLIController{
         scanner.nextLine();
     }
 
-    private void onLogout() {
+    private static void onLogout() {
         System.out.println("🚪 Logout in corso...");
         SessionManager.getInstance().clearAll();
         System.out.println("✅ Logout effettuato. Ritorno al menu principale.");

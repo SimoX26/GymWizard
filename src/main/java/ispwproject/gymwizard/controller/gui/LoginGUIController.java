@@ -1,19 +1,15 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.LoginController;
-import ispwproject.gymwizard.model.Credentials;
-import ispwproject.gymwizard.util.bean.SessionBean;
-import ispwproject.gymwizard.util.singleton.SessionManager;
-import ispwproject.gymwizard.util.DAO.ConnectionFactory;
 import ispwproject.gymwizard.util.exception.DAOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+
+import java.util.Objects;
 
 public class LoginGUIController extends AbstractGUIController {
 
@@ -28,7 +24,7 @@ public class LoginGUIController extends AbstractGUIController {
 
     @FXML
     public void initialize() {
-        Image backgroundImage = new Image(getClass().getResource("/images/Sfondo_home.png").toExternalForm());
+        Image backgroundImage = new Image(Objects.requireNonNull(getClass().getResource("/images/Sfondo_home.png")).toExternalForm());
 
         BackgroundSize backgroundSize = new BackgroundSize(
                 100, 100, true, true, true, false
@@ -51,51 +47,24 @@ public class LoginGUIController extends AbstractGUIController {
         String password = passwordField.getText().trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            showAlert(AlertType.WARNING, "Campi obbligatori", "Inserisci email e password.");
+            this.showError("Campi obbligatori", "Inserisci email e password.");
             return;
         }
 
         try {
-            // 1. Crea oggetto credenziali
-            Credentials rawCred = new Credentials(email, password, null);
+            LoginController loginController = new LoginController();
+            LoginController.LoginResult result = loginController.login(email, password);
 
-            // 2. Chiama il controller applicativo
-            LoginController loginController = new LoginController(rawCred);
-            Credentials fullCred = loginController.login();
-
-            if (fullCred.getRole() == null) {
-                showAlert(AlertType.ERROR, "Login fallito", "Credenziali non valide.");
-                return;
+            switch (result) {
+                case SUCCESSO_CLIENTE -> switchScene("/views/DashboardClienteView.fxml", mainPageEvent);
+                case SUCCESSO_TRAINER -> switchScene("/views/DashboardTrainerView.fxml", mainPageEvent);
+                case SUCCESSO_ADMIN -> switchScene("/views/DashboardAdminView.fxml", mainPageEvent);
+                case CREDENZIALI_INVALIDE -> this.showError("Login fallito", "Credenziali non valide.");
+                case ERRORE -> this.showError("Errore", "Errore sconosciuto durante il login.");
             }
-
-            // 3. Cambio connessione in base al ruolo
-            ConnectionFactory.changeRole(fullCred.getRole());
-
-            // 4. Salva la sessione
-            SessionBean sessionBean = new SessionBean(fullCred.getEmail(), fullCred.getRole());
-            SessionManager.getInstance().setSession(sessionBean);
-
-            // 5. Routing in base al ruolo
-            switch (fullCred.getRole()) {
-                case CLIENTE -> switchScene("/views/DashboardClienteView.fxml", mainPageEvent);
-                case TRAINER -> switchScene("/views/DashboardTrainerView.fxml", mainPageEvent);
-                case ADMIN -> switchScene("/views/DashboardAdminView.fxml", mainPageEvent);
-                default -> showAlert(AlertType.ERROR, "Errore", "Ruolo sconosciuto.");
-            }
-
         } catch (DAOException e) {
-            showAlert(AlertType.ERROR, "Errore di accesso al database", e.getMessage());
-        } catch (Exception e) {
-            showAlert(AlertType.ERROR, "Errore imprevisto", e.getMessage());
+            this.showError("Errore DB", e.getMessage());
         }
-    }
-
-    private void showAlert(AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }
 

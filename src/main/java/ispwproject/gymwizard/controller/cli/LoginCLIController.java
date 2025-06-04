@@ -1,43 +1,57 @@
 package ispwproject.gymwizard.controller.cli;
 
-import ispwproject.gymwizard.model.Role;
-import ispwproject.gymwizard.util.bean.SessionBean;
-import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.controller.app.LoginController;
+import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.util.Scanner;
 
 public class LoginCLIController {
 
-    public static void start() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Seleziona il tipo di login:");
-        for (Role role : Role.values()) {
-            System.out.println(role.getId() + ". " + role.name());
-        }
+    private static Scanner scanner;
 
-        System.out.print("👉 Scelta: ");
-        try {
-            int scelta = Integer.parseInt(sc.nextLine());
-            Role selectedRole = Role.fromInt(scelta);
-            loginAs(selectedRole);
-        } catch (Exception e) {
-            System.out.println("❌ Scelta non valida.");
-            start();
-        }
+    public LoginCLIController() {
+        scanner = new Scanner(System.in); // ✅ inizializzazione corretta
     }
 
-    private static void loginAs(Role role) {
-        SessionBean session = new SessionBean("SESSION-" + role.name(), role);
-        session.setUsername("utente_" + role.name().toLowerCase());
-        SessionManager.getInstance().setSession(session);
+    public static void start() {
+        System.out.println("===== LOGIN GYM WIZARD CLI =====");
 
-        System.out.println("✅ Login effettuato come " + session.getUsername());
+        System.out.print("Email: ");
+        String email = scanner.nextLine().trim();
 
-        switch (role) {
-            case CLIENTE -> new DashboardClientCLIController().start();
-            case TRAINER -> new DashboardTrainerCLIController().start();
-            case ADMIN -> new DashboardAdminCLIController().start();
+        System.out.print("Password: ");
+        String password = scanner.nextLine().trim();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            System.out.println("❌ Inserisci sia email che password.");
+            return;
+        }
+
+        try {
+            LoginController loginController = new LoginController();
+            LoginController.LoginResult result = loginController.login(email, password);
+
+            switch (result) {
+                case SUCCESSO_CLIENTE -> {
+                    System.out.println("✅ Login effettuato! Benvenuto Cliente.");
+                    DashboardClientCLIController.start();
+                }
+                case SUCCESSO_TRAINER -> {
+                    System.out.println("✅ Login effettuato! Benvenuto Trainer.");
+                    DashboardTrainerCLIController.start();
+                }
+                case SUCCESSO_ADMIN -> {
+                    System.out.println("✅ Login effettuato! Benvenuto Admin.");
+                    DashboardAdminCLIController.start();
+                }
+                case CREDENZIALI_INVALIDE -> System.out.println("❌ Credenziali non valide.");
+                case ERRORE -> System.out.println("❌ Errore imprevisto durante il login.");
+            }
+
+        } catch (DAOException e) {
+            System.out.println("❌ Errore di accesso al database: " + e.getMessage());
         }
     }
 }
+
 

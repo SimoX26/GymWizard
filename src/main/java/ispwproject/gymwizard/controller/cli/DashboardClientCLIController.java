@@ -6,16 +6,16 @@ import java.util.Scanner;
 
 public class DashboardClientCLIController {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public void start() {
+    public static void start() {
         // Messaggio di benvenuto
         String username = SessionManager.getInstance().getSession().getUsername();
         System.out.println("\n👋 Benvenuto " + (username != null ? username : "cliente") + "!");
         menu();
     }
 
-    private void menu() {
+    private static void menu() {
         while (true) {
             System.out.println("""
             \n📋 DASHBOARD CLIENTE:
@@ -50,32 +50,32 @@ public class DashboardClientCLIController {
         }
     }
 
-    private void onScheda() {
+    private static void onScheda() {
         // System.out.println("📘 [Scheda Allenamento] Mostra dettagli allenamento...");
         new SchedaAllenamentoCLIController().start();
     }
 
-    private void onAttivita() {
+    private static void onAttivita() {
         // System.out.println("🏃 [Attività] Elenco attività disponibili...");
         new AttivitaCLIController().start();
     }
 
-    private void onStatoAbbonamento() {
+    private static void onStatoAbbonamento() {
         // System.out.println("📄 [Stato Abbonamento] Mostra stato abbonamento...");
         new StatoAbbonamentoCLIController().start();
     }
 
-    private void onListaChat() {
+    private static void onListaChat() {
         // System.out.println("💬 [Chat] Mostra chat disponibili...");
         new ListaChatCLIController().start();
     }
 
-    private void onCodiceAccesso() {
+    private static void onCodiceAccesso() {
         // System.out.println("🔐 [Codice Accesso] Codice generato o attivo: ABC123");
         new CodiceAccessoCLIController().start();
     }
 
-    private void onHelp() {
+    private static void onHelp() {
         System.out.println("""
         🆘 Guida Interfaccia:
         - Scheda Allenamento: Visualizza la scheda di allenamento assegnata.
@@ -86,7 +86,7 @@ public class DashboardClientCLIController {
         """);
     }
 
-    private void onLogout() {
+    private static void onLogout() {
         System.out.println("🚪 Logout in corso...");
         SessionManager.getInstance().clearAll();
         System.out.println("✅ Logout effettuato. Ritorno al menu principale.");
