@@ -19,7 +19,6 @@ public class LoginController {
 
     public LoginResult login(String email, String password) throws DAOException {
         try {
-            Credentials rawCred = new Credentials(email, password, null);
             Credentials fullCred = LoginProcedureDAO.getInstance().execute(email, password);
 
             if (fullCred == null || fullCred.getRole() == null) {

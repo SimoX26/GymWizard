@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class AttivitaCLIController {
 
-    private final AttivitaController attivitaController = new AttivitaController();
     private final Scanner scanner = new Scanner(System.in);
 
     public void start() throws DAOException {

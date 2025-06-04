@@ -2,13 +2,8 @@ package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.DAO.AttivitaDAO;
-import ispwproject.gymwizard.util.DAO.PrenotazioneDAO;
 import ispwproject.gymwizard.util.exception.DAOException;
-import ispwproject.gymwizard.util.singleton.SessionManager;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AttivitaController {

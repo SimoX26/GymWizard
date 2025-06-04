@@ -73,7 +73,7 @@ public class AttivitaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onHelpClick(ActionEvent event) {
+    public void onHelpClick() {
         System.out.println("HELP button clicked.");
         this.showPopup("Guida Interfaccia","Lista delle attività","Puoi visualizzare la lista delle attività disponibili.\n" +
                 "Puoi scollare per scorrere la lista e scegliere l'attività a cui vuoi prenotarti");
