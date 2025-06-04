@@ -31,11 +31,10 @@ public class AttivitaGUIController extends AbstractGUIController{
         }
 
         try{
-            // Chiamata coerente con la tua classe AttivitaDAO
             List<Attivita> attivitaList = AttivitaController.getAttivitaDisponibili();
 
             for (Attivita attivita : attivitaList) {
-                Button btn = new Button(attivita.getNome() + " | " + attivita.getData() + " | " + attivita.getOraInizio() +  " - "+attivita.getOraFine());
+                Button btn = new Button(attivita.getNome() + " | " + attivita.getData() + " | " + attivita.getOraInizio() +  " - "+attivita.getOraFine() + " | posti rimanenti: " + attivita.getPostiDisponibili());
                 btn.setMaxWidth(Double.MAX_VALUE);
                 btn.setStyle(
                         "-fx-background-color: white;" +
