@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class LoginCLIController {
 
-    public void start() {
+    public static void start() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Seleziona il tipo di login:");
         for (Role role : Role.values()) {
@@ -26,7 +26,7 @@ public class LoginCLIController {
         }
     }
 
-    private void loginAs(Role role) {
+    private static void loginAs(Role role) {
         SessionBean session = new SessionBean("SESSION-" + role.name(), role);
         session.setUsername("utente_" + role.name().toLowerCase());
         SessionManager.getInstance().setSession(session);

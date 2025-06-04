@@ -32,6 +32,11 @@ public abstract class AbstractGUIController {
         }
     }
 
+    protected void closeWindow(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
     protected void showError(String titolo, String messaggio) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titolo);
