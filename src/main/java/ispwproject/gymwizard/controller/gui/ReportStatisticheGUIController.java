@@ -55,12 +55,7 @@ public class ReportStatisticheGUIController extends AbstractGUIController{
             barChart.getData().add(series);
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Errore Statistiche");
-            alert.setHeaderText("Errore durante il caricamento delle statistiche");
-            alert.setContentText("Controlla la connessione al database.");
-            alert.showAndWait();
+            this.showError("Errore Statistiche", e.getMessage());
         }
     }
 

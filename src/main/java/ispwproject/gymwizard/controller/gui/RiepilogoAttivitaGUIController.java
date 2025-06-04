@@ -31,7 +31,7 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void handlePrenota(ActionEvent event){
+    public void handlePrenota(){
         System.out.println("PRENOTA button clicked.");
         this.showPopup("Attivita prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
     }
@@ -43,7 +43,7 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onHelpClick(ActionEvent event) {
+    public void onHelpClick() {
         System.out.println("HELP button clicked.");
         this.showPopup("Guida Interfaccia", "Riepilogo Attività", "Riepilogo dati dell'attività selezionata.");
     }

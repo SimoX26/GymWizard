@@ -13,7 +13,7 @@
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
 
         <!-- Benvenuto -->
-        <Label fx:id="nome" style="-fx-text-fill: white; -fx-font-weight: bold;" text="ATTIVITA SELEZIONATA">
+        <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="ATTIVITA SELEZIONATA">
          <font>
             <Font size="28.0" />
          </font></Label>

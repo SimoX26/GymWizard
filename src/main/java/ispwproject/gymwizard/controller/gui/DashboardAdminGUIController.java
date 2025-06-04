@@ -38,17 +38,17 @@ public class DashboardAdminGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onHelpClick(ActionEvent helpEvent) {
+    public void onHelpClick() {
         System.out.println("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
         alert.setHeaderText("Dashboard Admin");
         alert.setContentText("""
-                In questa schermata puoi:\n" +
-                - Gestire il listino delle attività disponibili\n" +
-                - Visualizzare i report e le statistiche della palestra\n" +
-                - Inviare comunicazioni globali agli utenti\n" +
-                Le icone in alto permettono di tornare indietro (↩), accedere alla guida (?), o effettuare il logout (⌂).\n
+                In questa schermata puoi:" +
+                - Gestire il listino delle attività disponibili" +
+                - Visualizzare i report e le statistiche della palestra" +
+                - Inviare comunicazioni globali agli utenti" +
+                Le icone in alto permettono di tornare indietro (↩), accedere alla guida (?), o effettuare il logout (⌂).
                 """);
         alert.showAndWait();
     }

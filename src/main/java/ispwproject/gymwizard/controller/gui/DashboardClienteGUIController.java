@@ -52,7 +52,7 @@ public class DashboardClienteGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onHelpClick(ActionEvent helpEvent) {
+    public void onHelpClick() {
         System.out.println("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");

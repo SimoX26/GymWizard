@@ -17,9 +17,6 @@ public class InviaComunicazioniGUIController extends AbstractGUIController{
     private TextField inputMessaggio;
 
     @FXML
-    private Button sendBtn, plusBtn;
-
-    @FXML
     private void handleSendMessage() {
         String messaggio = inputMessaggio.getText().trim();
 
