@@ -74,36 +74,4 @@ public class DashboardClienteGUIController extends AbstractGUIController{
             switchScene("/views/HomeView.fxml", logoutEvent);
         }
     }
-/*
-    private void switchScene(String path, ActionEvent event, String context) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-            Parent root = loader.load();
-
-            Object controller = loader.getController();
-            // Controllo generico: se il controller ha un metodo chiamato "setContext"
-            try {
-                try {
-                    controller.getClass()
-                            .getMethod("setContext", String.class)
-                            .invoke(controller, context);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
-                }
-            } catch (NoSuchMethodException ignored) {
-                System.out.println("Controller " + controller.getClass().getSimpleName() + " non ha setContext()");
-            }
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
- */
 }

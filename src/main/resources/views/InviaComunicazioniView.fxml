@@ -24,9 +24,9 @@
 
     <!-- Intestazione -->
     <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
-        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="↩" />
-        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="?" />
-        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="⌂" />
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenuto centrale -->

@@ -4,7 +4,10 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+
+import java.util.Optional;
 
 public class DashboardAdminGUIController extends AbstractGUIController{
 
@@ -51,9 +54,16 @@ public class DashboardAdminGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onLogoutClick(ActionEvent homeEvent) {
-        System.out.println("🚪 Logout in corso...");
-        SessionManager.getInstance().clearAll();
-        System.out.println("✅ Logout effettuato. Ritorno al menu principale.");
+    public void onLogoutClick(ActionEvent logoutEvent) {
+        System.out.println("LOGOUT button clicked.");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma Logout");
+        alert.setHeaderText("Vuoi effettuare il logout?");
+        alert.setContentText("Verrai riportato alla schermata iniziale.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            SessionManager.getInstance().clearAll();
+            switchScene("/views/HomeView.fxml", logoutEvent);
+        }
     }
 }

@@ -1,25 +1,20 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.util.DAO.StatisticaDAO;
+import ispwproject.gymwizard.util.singleton.SessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Optional;
 
-public class ReportStatisticheGUIController {
+public class ReportStatisticheGUIController extends AbstractGUIController{
 
-    @FXML
-    private Label backIcon, helpIcon, homeIcon;
+    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
 
     @FXML
     private Label utentiAttiviLabel, prenotazioniLabel, attivitaLabel;
@@ -35,19 +30,6 @@ public class ReportStatisticheGUIController {
 
     @FXML
     public void initialize() {
-        backIcon.setOnMouseClicked(event -> switchScene("/views/DashboardAdminView.fxml"));
-        helpIcon.setOnMouseClicked(event -> handleHelpClick());
-        homeIcon.setOnMouseClicked(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Logout");
-            alert.setHeaderText("Vuoi effettuare il logout?");
-            alert.setContentText("Verrai riportato alla schermata iniziale.");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                switchScene("/views/HomeView.fxml");
-            }
-        });
-
         try {
             StatisticaDAO dao = new StatisticaDAO();
             utentiAttiviLabel.setText(String.valueOf(dao.getTotaleClienti()));
@@ -82,12 +64,16 @@ public class ReportStatisticheGUIController {
         }
     }
 
+    @FXML
+    public void onBackClick(ActionEvent event) {
+        System.out.println("BACK button clicked.");
+        this.switchScene(homePage,event);
+    }
 
-    private void handleHelpClick() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Guida Interfaccia");
-        alert.setHeaderText("Report e Statistiche");
-        alert.setContentText("""
+    @FXML
+    public void onHelpClick() {
+        System.out.println("HELP button clicked.");
+        this.showPopup("Guida Inerfaccia", "Report e Statistiche", """
                 Questa schermata mostra:
                 - Numero totale di utenti attivi
                 - Numero complessivo di prenotazioni
@@ -96,19 +82,11 @@ public class ReportStatisticheGUIController {
 
                 Usa ↩ per tornare alla dashboard, ⌂ per fare logout.
                 """);
-        alert.showAndWait();
     }
 
-    private void switchScene(String path) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-            Parent root = loader.load();
-            Stage stage = (Stage) backIcon.getScene().getWindow();
-            Scene scene = new Scene(root, 900, 600); // dimensione fissa
-            stage.setScene(scene);
-            stage.setResizable(false);              // blocca resize
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @FXML
+    public void onHomeClick(ActionEvent event) {
+        System.out.println("HOME button clicked.");
+        this.switchScene(homePage, event);
     }
 }

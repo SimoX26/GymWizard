@@ -11,14 +11,14 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
 
     @FXML
-    private Label nome, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
+    private Label name, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
 
     @FXML
     public void initialize() {
         Object obj = SessionManager.getInstance().getAttributo("attivitaSelezionata");
 
         if (obj instanceof Attivita attivita) {
-            nome.setText(attivita.getNome());
+            name.setText(attivita.getNome());
             description.setText(attivita.getDescrizione());
             dateTime.setText(attivita.getData().toString());
             startTime.setText(attivita.getOraInizio().toString());
