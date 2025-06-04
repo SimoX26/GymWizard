@@ -6,15 +6,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+
 import java.util.Optional;
 
 public class DashboardClienteGUIController extends AbstractGUIController{
-
     @FXML
     private Label welcomeLabel;
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
     private void initialize() {
+        anchorPane.setBackground(new Background(this.background()));
+
         System.out.println("** INIT EXEC - Dashboard Client **");
         SessionManager.getInstance().setAttributo("homePage", "/views/DashboardClienteView.fxml");
 

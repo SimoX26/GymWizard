@@ -6,10 +6,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public abstract class AbstractGUIController {
 
@@ -51,5 +57,11 @@ public abstract class AbstractGUIController {
         alert.setHeaderText(intestazione);
         alert.setContentText(messaggio);
         alert.showAndWait();
+    }
+
+    protected BackgroundImage background(){
+        Image backgroundImage = new Image(Objects.requireNonNull(getClass().getResource("/images/Sfondo_home.png")).toExternalForm());
+        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
+        return new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
     }
 }

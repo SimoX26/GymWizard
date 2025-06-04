@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-
-import java.util.Objects;
 
 public class LoginGUIController extends AbstractGUIController {
 
@@ -24,21 +21,7 @@ public class LoginGUIController extends AbstractGUIController {
 
     @FXML
     public void initialize() {
-        Image backgroundImage = new Image(Objects.requireNonNull(getClass().getResource("/images/Sfondo_home.png")).toExternalForm());
-
-        BackgroundSize backgroundSize = new BackgroundSize(
-                100, 100, true, true, true, false
-        );
-
-        BackgroundImage background = new BackgroundImage(
-                backgroundImage,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                backgroundSize
-        );
-
-        anchorPane.setBackground(new Background(background));
+        anchorPane.setBackground(new Background(this.background()));
     }
 
     @FXML

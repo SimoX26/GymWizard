@@ -2,41 +2,23 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardClienteGUIController">
-
-    <!-- Contenitore principale -->
-    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
-      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
-         <children>
-      
-             <!-- Benvenuto -->
-              <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;">
-               <font>
-                  <Font size="28.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="102.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/User.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
-
-        <!-- Pulsanti -->
-        <VBox alignment="CENTER" spacing="15">
-            <Button onAction="#onSchedaBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="LA TUA SCHEDA">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardClienteGUIController">
+    <!-- Pannello principale -->
+    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+         <Label fx:id="welcomeLabel" alignment="CENTER" style="-fx-text-fill: white; -fx-font-weight: bold;">
+            <font>
+                <Font size="28.0" />
+            </font></Label>
+         <Button onAction="#onSchedaBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="LA TUA SCHEDA">
             <font>
                <Font size="14.0" />
             </font></Button>
-            <Button onAction="#onAttivitaBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA ATTIVITÀ">
+         <Button onAction="#onAttivitaBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA ATTIVITÀ">
             <font>
                <Font size="14.0" />
             </font></Button>
@@ -44,7 +26,7 @@
             <font>
                <Font size="14.0" />
             </font></Button>
-         <Button prefHeight="50" onAction="#onChatListBtnClick" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CHAT">
+         <Button onAction="#onChatListBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CHAT">
             <font>
                <Font size="14.0" />
             </font></Button>
@@ -52,7 +34,6 @@
             <font>
                <Font size="14.0" />
             </font></Button>
-        </VBox>
     </VBox>
 
     <!-- Intestazione inferiore -->
