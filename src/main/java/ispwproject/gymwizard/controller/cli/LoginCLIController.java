@@ -7,20 +7,16 @@ import java.util.Scanner;
 
 public class LoginCLIController {
 
-    private static Scanner scanner;
-
-    public LoginCLIController() {
-        scanner = new Scanner(System.in); // ✅ inizializzazione corretta
-    }
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void start() {
-        System.out.println("===== LOGIN GYM WIZARD CLI =====");
+        System.out.println("\n===== LOGIN GYM WIZARD CLI =====\n");
 
         System.out.print("Email: ");
-        String email = scanner.nextLine().trim();
+        String email = scanner.nextLine();
 
         System.out.print("Password: ");
-        String password = scanner.nextLine().trim();
+        String password = scanner.nextLine();
 
         if (email.isEmpty() || password.isEmpty()) {
             System.out.println("❌ Inserisci sia email che password.");

@@ -56,7 +56,6 @@ public class HomeGUIController extends AbstractGUIController {
             } else if (version.equals("CLI VERSION") && memory.equals("DBMS")) {
                 System.out.println("CLI VERSION + DBMS");
                 this.closeWindow(event);
-                System.out.println("Benvenuto in GymWizard (CLI Mode)");
                 LoginCLIController.start();
             } else if (version.equals("CLI VERSION") && memory.equals("FILE SYSTEM")) {
                 System.out.println("CLI VERSION + FILE SYSTEM");

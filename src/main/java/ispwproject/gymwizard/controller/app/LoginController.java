@@ -37,7 +37,6 @@ public class LoginController {
                 case CLIENTE -> LoginResult.SUCCESSO_CLIENTE;
                 case TRAINER -> LoginResult.SUCCESSO_TRAINER;
                 case ADMIN -> LoginResult.SUCCESSO_ADMIN;
-                default -> LoginResult.ERRORE;
             };
 
         } catch (DAOException e) {
