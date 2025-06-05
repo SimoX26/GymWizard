@@ -12,14 +12,6 @@ public class SessionBean {
         this.role = role;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
     public String getUsername() {
         return username;
     }
