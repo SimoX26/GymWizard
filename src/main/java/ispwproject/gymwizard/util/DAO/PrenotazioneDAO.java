@@ -53,7 +53,7 @@ public class PrenotazioneDAO {
         return lista;
     }
 
-    public void inserisciPrenotazione(int idAttivita, int idCliente) throws DAOException {
+    public void add(int idAttivita, int idCliente) throws DAOException {
         String query = "INSERT INTO Prenotazione (id_attivita, id_cliente) VALUES (?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();

@@ -1,6 +1,8 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,8 +33,9 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void handlePrenota(){
+    public void handlePrenota() throws DAOException {
         System.out.println("PRENOTA button clicked.");
+        AttivitaController.prenotaAttivita((Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata"));
         this.showPopup("Attivita prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
     }
 

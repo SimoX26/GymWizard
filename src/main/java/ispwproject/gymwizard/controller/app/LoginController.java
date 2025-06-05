@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Credentials;
+import ispwproject.gymwizard.util.DAO.UtenteDAO;
 import ispwproject.gymwizard.util.DAO.ConnectionFactory;
 import ispwproject.gymwizard.util.DAO.LoginProcedureDAO;
 import ispwproject.gymwizard.util.bean.SessionBean;
@@ -31,6 +32,8 @@ public class LoginController {
             // Salva la sessione
             SessionBean sessionBean = new SessionBean(fullCred.getEmail(), fullCred.getRole());
             SessionManager.getInstance().setSession(sessionBean);
+            new UtenteDAO();
+            SessionManager.getInstance().setAttributo("utente", UtenteDAO.getByEmail(email));
 
             return switch (fullCred.getRole()) {
                 case CLIENTE -> LoginResult.SUCCESSO_CLIENTE;

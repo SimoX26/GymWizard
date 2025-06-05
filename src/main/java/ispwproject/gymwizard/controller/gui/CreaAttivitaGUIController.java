@@ -35,9 +35,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
             int posti = Integer.parseInt(postiDisponibiliField.getText());
             String trainerName = trainerNameField.getText();
 
-            Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
-
-            new AttivitaController().creaAttivita(nuova);
+            new AttivitaController().creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
             showPopup("Successo","Attività creata", "Attività creata con successo!");
 
