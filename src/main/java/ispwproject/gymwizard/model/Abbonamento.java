@@ -10,9 +10,8 @@ public class Abbonamento {
     private String tipo;
     private String stato;
 
-    public Abbonamento() {
-        // Costruttore vuoto per frameworks o inizializzazioni base
-    }
+    // Costruttori
+    public Abbonamento() {}
 
     public Abbonamento(int idAbbonamento, Date dataInizio, Date dataFine, String tipo, String stato) {
         this.idAbbonamento = idAbbonamento;
@@ -22,6 +21,7 @@ public class Abbonamento {
         this.stato = stato;
     }
 
+    // Getter e Setter
     public int getIdAbbonamento() {
         return idAbbonamento;
     }

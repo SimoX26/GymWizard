@@ -1,11 +1,14 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 public class RiepilogoOrdineGUIController extends AbstractGUIController{
+
+    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
 
     @FXML
     private Label titoloAbbonamentoLabel;
@@ -31,19 +34,15 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onHelpClick(ActionEvent event) {
+    public void onHelpClick() {
         System.out.println("HELP button clicked.");
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Guida Interfaccia");
-        alert.setHeaderText("Riepilogo Ordine");
-        alert.setContentText("In questa schermata puoi visualizzare il riepilogo del tuo abbonamento selezionato.\n" +
+        this.showPopup("Guida Interfaccia", "Riepilogo Ordine", "In questa schermata puoi visualizzare il riepilogo del tuo abbonamento selezionato.\n" +
                 "                Premi \"Procedi con l'acquisto\" per confermare e completare l'acquisto.");
-        alert.showAndWait();
     }
 
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
+        this.switchScene(homePage, homeEvent);
     }
 }

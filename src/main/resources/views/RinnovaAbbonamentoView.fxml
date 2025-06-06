@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,63 +20,62 @@
          </font></Label>
 
         <!-- Pulsanti -->
-        <VBox alignment="CENTER" spacing="15">
-         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
+        <VBox alignment="CENTER">
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
             <children>
-               <Label text="10 INGRESSI  " textFill="WHITE">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Label>
-               <Button onAction="#on10IngressiClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Button>
+               <VBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="50.0">
+                  <children>
+                     <Label text=" 10 ingressi:" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <Label text="Mensile:" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <Label text="Trimestrale:" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                     <Label text="Annuale:" textFill="WHITE">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </VBox>
+               <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="35.0">
+                  <children>
+                     <Button onAction="#on10IngressiClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Button>
+                     <Button onAction="#onMensileClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Button>
+                     <Button onAction="#onTrimestraleClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Button>
+                     <Button onAction="#onAnnualeClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="330 $">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </Button>
+                  </children>
+               </VBox>
             </children>
          </HBox>
-         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
-            <children>
-               <Label text="MENSILE        " textFill="WHITE">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Label>
-               <Button onAction="#onMensileClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Button>
-            </children>
-         </HBox>
-         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
-            <children>
-               <Label text="TRIMESTRALE" textFill="WHITE">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Label>
-               <Button onAction="#onTrimestraleClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Button>
-            </children>
-         </HBox>
-         <HBox alignment="CENTER" prefHeight="0.0" prefWidth="630.0" spacing="40.0">
-            <children>
-               <Label text="ANNUALE       " textFill="WHITE">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Label>
-               <Button onAction="#onAnnualeClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="330 $">
-                  <font>
-                     <Font size="14.0" />
-                  </font>
-               </Button>
-            </children>
-         </HBox>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
         </VBox>
     </VBox>
 
