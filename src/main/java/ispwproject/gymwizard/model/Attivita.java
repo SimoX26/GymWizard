@@ -36,8 +36,6 @@ public class Attivita {
     public int getPostiDisponibili() { return postiDisponibili; }
     public String getTrainerName() { return trainerName; }
 
-    public void setPostiDisponibili(int postiDisponibili) { this.postiDisponibili = postiDisponibili; }
-
     // ToString utile per debug
     @Override
     public String toString() {

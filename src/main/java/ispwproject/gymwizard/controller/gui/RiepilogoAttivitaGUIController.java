@@ -10,8 +10,6 @@ import javafx.scene.control.Label;
 
 public class RiepilogoAttivitaGUIController extends AbstractGUIController{
 
-    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
-
     @FXML
     private Label name, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
 
@@ -54,6 +52,6 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homePage, homeEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }

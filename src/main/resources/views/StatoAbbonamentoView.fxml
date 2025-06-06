@@ -9,12 +9,11 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.StatoAbbonamentoGUIController">
-
     <!-- Contenitore principale -->
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
 
         <!-- Benvenuto -->
-        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="ABBONAMENTO">
+        <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="ABBONAMENTO">
          <font>
             <Font size="28.0" />
          </font>
@@ -24,58 +23,52 @@
 
         <!-- Pulsanti -->
         <VBox alignment="CENTER" spacing="15.0">
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-            <children>
-               <VBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="30.0">
-                  <children>
-                     <Label text="Tipologia abbonamento:" textFill="WHITE">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                <VBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="30.0">
+                    <Label text="Tipologia abbonamento:" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label text="Data di emissione:" textFill="WHITE">
+                    </Label>
+                    <Label text="Data di emissione:" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label text="Data di scadenza:" textFill="WHITE">
+                    </Label>
+                    <Label text="Data di scadenza:" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label text="Stato abbonamento:" textFill="WHITE">
+                    </Label>
+                    <Label text="Stato abbonamento:" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                  </children>
-               </VBox>
-               <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="30.0">
-                  <children>
-                     <Label fx:id="name" textFill="WHITE">
+                    </Label>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="30.0">
+                    <Label fx:id="tipologia" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label fx:id="description" textFill="WHITE">
+                    </Label>
+                    <Label fx:id="dataEmissione" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label fx:id="dateTime" textFill="WHITE">
+                    </Label>
+                    <Label fx:id="dataScadenza" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label fx:id="description1" textFill="WHITE">
+                    </Label>
+                    <Label fx:id="stato" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                  </children>
-               </VBox>
-            </children>
-         </HBox>
+                    </Label>
+                </VBox>
+            </HBox>
          <Button onAction="#onRinnovaClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="RINNOVA ABBONAMENTO">
             <VBox.margin>
                <Insets top="40.0" />

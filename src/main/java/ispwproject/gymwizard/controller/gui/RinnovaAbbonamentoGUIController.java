@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -55,6 +56,6 @@ public class RinnovaAbbonamentoGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }

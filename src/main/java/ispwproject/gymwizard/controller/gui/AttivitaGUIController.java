@@ -17,13 +17,11 @@ public class AttivitaGUIController extends AbstractGUIController{
     private VBox addBtn;
 
     @FXML
-    private VBox attivitaContainer; // deve essere collegato al VBox dentro lo ScrollPane in FXML
-
-    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
+    private VBox attivitaContainer;
 
     @FXML
     public void initialize(){
-        if("/views/DashboardAdminView.fxml".equals(homePage)){
+        if("/views/DashboardAdminView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))){
             Button btn = new Button("+");
             btn.setStyle("-fx-font-size: 24; -fx-background-color: green; -fx-cursor: hand; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;");
             btn.setOnAction(this::handleAddActivity);
@@ -69,7 +67,7 @@ public class AttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene(homePage, backEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), backEvent);
     }
 
     @FXML
@@ -82,6 +80,6 @@ public class AttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homePage, homeEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }

@@ -8,8 +8,6 @@ import javafx.scene.control.Label;
 
 public class RiepilogoOrdineGUIController extends AbstractGUIController{
 
-    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
-
     @FXML
     private Label titoloAbbonamentoLabel;
 
@@ -43,6 +41,6 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homePage, homeEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }

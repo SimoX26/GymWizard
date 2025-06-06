@@ -1,20 +1,24 @@
 package ispwproject.gymwizard.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Abbonamento {
 
-    private int idAbbonamento;
-    private Date dataInizio;
-    private Date dataFine;
+
+    private int id;
+    private int idUtente;
     private String tipo;
+    private LocalDate dataInizio;
+    private LocalDate dataFine;
     private String stato;
+    private String riferimentoPagamento;
 
     // Costruttori
-    public Abbonamento() {}
+    public Abbonamento() {
+    }
 
-    public Abbonamento(int idAbbonamento, Date dataInizio, Date dataFine, String tipo, String stato) {
-        this.idAbbonamento = idAbbonamento;
+    public Abbonamento(int idAbbonamento, LocalDate dataInizio, LocalDate dataFine, String tipo, String stato) {
+        this.id = idAbbonamento;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
         this.tipo = tipo;
@@ -22,27 +26,27 @@ public class Abbonamento {
     }
 
     // Getter e Setter
-    public int getIdAbbonamento() {
-        return idAbbonamento;
+    public int getId() {
+        return id;
     }
 
-    public void setIdAbbonamento(int idAbbonamento) {
-        this.idAbbonamento = idAbbonamento;
+    public void setId(int idAbbonamento) {
+        this.id = idAbbonamento;
     }
 
-    public Date getDataInizio() {
+    public LocalDate getDataInizio() {
         return dataInizio;
     }
 
-    public void setDataInizio(Date dataInizio) {
+    public void setDataInizio(LocalDate dataInizio) {
         this.dataInizio = dataInizio;
     }
 
-    public Date getDataFine() {
+    public LocalDate getDataFine() {
         return dataFine;
     }
 
-    public void setDataFine(Date dataFine) {
+    public void setDataFine(LocalDate dataFine) {
         this.dataFine = dataFine;
     }
 
@@ -60,18 +64,5 @@ public class Abbonamento {
 
     public void setStato(String stato) {
         this.stato = stato;
-    }
-
-    // Metodo utile di dominio: verifica se l’abbonamento è attivo
-    public boolean isAttivo() {
-        Date oggi = new Date();
-        return stato.equalsIgnoreCase("Attivo") && dataFine.after(oggi);
-    }
-
-    // Metodo utile di dominio: rinnova la scadenza di un mese (esempio)
-    public void rinnova() {
-        long MILLIS_IN_MESE = 30L * 24 * 60 * 60 * 1000;
-        this.dataFine = new Date(this.dataFine.getTime() + MILLIS_IN_MESE);
-        this.stato = "Attivo";
     }
 }
