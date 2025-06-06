@@ -1,40 +1,58 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
+import ispwproject.gymwizard.controller.app.PagamentoController;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
+import java.awt.*;
+import java.net.URI;
+
 public class RiepilogoOrdineGUIController extends AbstractGUIController{
 
+    private String tipo;
+
     @FXML
-    private Label name, dataEmissione, dataScadenza;
+    private Label name, price, dataEmissione, dataScadenza;
 
     @FXML
     private TextArea description;
 
     @FXML
     public void initialize() {
-        String tipo = (String) SessionManager.getInstance().getAttributo("tipoAbbonamento");
+        tipo = (String) SessionManager.getInstance().getAttributo("tipoAbbonamento");
 
         if (tipo != null) {
             name.setText(AbbonamentoController.getNomeAbbonamento(tipo));
             description.setText(AbbonamentoController.getDescrizioneAbbonamento(tipo));
-            dataEmissione.setText(String.valueOf(AbbonamentoController.getDataEmissione(tipo)));
+            price.setText(String.valueOf(AbbonamentoController.getPrezzoAbbonamento(tipo)));
+            dataEmissione.setText(String.valueOf(AbbonamentoController.getDataEmissione()));
             dataScadenza.setText(String.valueOf(AbbonamentoController.getDataScadenza(tipo)));
         } else {
             name.setText("Tipo non selezionato");
             description.setText("-");
+            price.setText("-");
             dataEmissione.setText("-");
             dataScadenza.setText("-");
         }
     }
 
     @FXML
-    private void onRinnovaClick() {
+    private void onPagamentoClick() {
         System.out.println("ACQUISTA button clicked.");
+
+        int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
+        try {
+            PagamentoController paypal = new PagamentoController();
+            String url = paypal.creaOrdine(prezzo);
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            this.showError("Errore", "Errore durante l'avvio del pagamento." + e.getMessage());
+        }
+
         this.showPopup("Acquisto completato", null, "Grazie per il tuo acquisto! Il tuo abbonamento è stato attivato.");
     }
 

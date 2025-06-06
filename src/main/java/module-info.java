@@ -3,6 +3,7 @@ module ispwproject.gymwizard {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires java.net.http;
 
     exports ispwproject.gymwizard.controller;
     exports ispwproject.gymwizard.controller.app;

@@ -60,7 +60,7 @@ public class AbbonamentoController {
         };
     }
 
-    public static LocalDate getDataEmissione(String tipo) {
+    public static LocalDate getDataEmissione() {
         return LocalDate.now();
     }
 
@@ -71,5 +71,16 @@ public class AbbonamentoController {
             case "annuale" -> LocalDate.now().plusDays(365);
             default -> null;
         };
+    }
+
+    public static int getPrezzoAbbonamento(String tipo) {
+        return switch (tipo.toLowerCase()) {
+            case "mensile" -> 3999;
+            case "trimestrale" -> 9999;
+            case "annuale" -> 29999;
+            case "10ingressi" -> 4999;
+            default -> 0;
+        };
+
     }
 }
