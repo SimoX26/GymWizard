@@ -21,6 +21,7 @@ public class AttivitaController {
         Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
         AttivitaDAO.getInstance().inserisciAttivita(nuova);
+        //AttivitaFS.getInstance().inserisciAttivita(nuova);
     }
 
     public static void prenotaAttivita(Attivita attivita) throws DAOException {

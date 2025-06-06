@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.SchedaAllenamentoGUIController">
+
+    <!-- Intestazione -->
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
+        <Label fx:id="backIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="↩" />
+        <Label fx:id="helpIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="?" />
+        <Label fx:id="homeIcon" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand;" text="⌂" />
+    </HBox>
+
+    <!-- Titolo -->
+    <Label style="-fx-text-fill: white; -fx-font-size: 28; -fx-font-weight: bold; -fx-background-color: green; -fx-border-color: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-width: 3; -fx-padding: 10 20;" text="CREA SCHEDA DI ALLENAMENTO" AnchorPane.leftAnchor="30" AnchorPane.topAnchor="20" />
+
+    <!-- Contenuto principale -->
+    <VBox spacing="20" AnchorPane.bottomAnchor="30" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="100">
+        <Label style="-fx-text-fill: white; -fx-font-size: 20; -fx-underline: true;" />
+
+        <TableView fx:id="tabellaEsercizi" editable="true" style="-fx-background-color: #1E1E1E;">
+            <columns>
+                <TableColumn fx:id="esercizioCol" prefWidth="300.0" text="Esercizio" />
+                <TableColumn fx:id="serieCol" prefWidth="150.0" text="Serie" />
+                <TableColumn fx:id="ripetizioniCol" prefWidth="150.0" text="Ripetizioni" />
+            </columns>
+        </TableView>
+
+        <HBox alignment="CENTER" spacing="15">
+            <Button fx:id="aggiungiRigaBtn" style="-fx-background-color: green; -fx-text-fill: white; -fx-font-weight: bold;" text="➕ Aggiungi esercizio" />
+
+            <Button fx:id="salvaSchedaBtn" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-weight: bold;" text="✅ Salva scheda" />
+        </HBox>
+    </VBox>
+
+</AnchorPane>
