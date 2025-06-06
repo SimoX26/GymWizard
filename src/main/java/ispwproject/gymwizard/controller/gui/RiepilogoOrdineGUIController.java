@@ -1,28 +1,41 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 public class RiepilogoOrdineGUIController extends AbstractGUIController{
 
     @FXML
-    private Label titoloAbbonamentoLabel;
+    private Label name, dataEmissione, dataScadenza;
 
-    // Questo metodo viene chiamato da GUIRinnovaAbbonamentoController
-    public void setTipoAbbonamento(String tipo) {
-        titoloAbbonamentoLabel.setText(tipo);
+    @FXML
+    private TextArea description;
+
+    @FXML
+    public void initialize() {
+        String tipo = (String) SessionManager.getInstance().getAttributo("tipoAbbonamento");
+
+        if (tipo != null) {
+            name.setText(AbbonamentoController.getNomeAbbonamento(tipo));
+            description.setText(AbbonamentoController.getDescrizioneAbbonamento(tipo));
+            dataEmissione.setText(String.valueOf(AbbonamentoController.getDataEmissione(tipo)));
+            dataScadenza.setText(String.valueOf(AbbonamentoController.getDataScadenza(tipo)));
+        } else {
+            name.setText("Tipo non selezionato");
+            description.setText("-");
+            dataEmissione.setText("-");
+            dataScadenza.setText("-");
+        }
     }
 
     @FXML
-    private void handleAcquistaClick(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Acquisto completato");
-        alert.setHeaderText(null);
-        alert.setContentText("Grazie per il tuo acquisto! Il tuo abbonamento è stato attivato.");
-        alert.showAndWait();
+    private void onRinnovaClick() {
+        System.out.println("ACQUISTA button clicked.");
+        this.showPopup("Acquisto completato", null, "Grazie per il tuo acquisto! Il tuo abbonamento è stato attivato.");
     }
 
     @FXML
