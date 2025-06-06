@@ -28,6 +28,7 @@ public class CalendarioAttivitaGUIController extends AbstractGUIController{
         aggiungiAttivita("Yoga", 1, 3);
         aggiungiAttivita("Crossfit", 1, 6);
 
+
     }
 
     private void aggiungiAttivita(String nome, int colonna, int riga) {
