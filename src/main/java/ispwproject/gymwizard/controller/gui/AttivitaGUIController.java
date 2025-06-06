@@ -7,11 +7,16 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
 
 public class AttivitaGUIController extends AbstractGUIController{
+
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     private VBox addBtn;
@@ -21,6 +26,8 @@ public class AttivitaGUIController extends AbstractGUIController{
 
     @FXML
     public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+
         if("/views/DashboardAdminView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))){
             Button btn = new Button("+");
             btn.setStyle("-fx-font-size: 24; -fx-background-color: green; -fx-cursor: hand; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;");
