@@ -6,6 +6,8 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 public class StatoAbbonamentoGUIController extends AbstractGUIController{
 
@@ -13,7 +15,12 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController{
     private Label stato, dataEmissione, dataScadenza, tipologia;
 
     @FXML
-    public void initialize() {
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+
         Abbonamento abbonamento = AbbonamentoController.getDatiAbbonamento();
 
         if (abbonamento != null) {

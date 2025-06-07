@@ -5,16 +5,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 public class InviaComunicazioniGUIController extends AbstractGUIController{
-
-    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
 
     @FXML
     private TextArea areaMessaggi;
 
     @FXML
     private TextField inputMessaggio;
+
+    @FXML
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+    }
 
     @FXML
     private void handleSendMessage() {
@@ -42,7 +50,7 @@ public class InviaComunicazioniGUIController extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent event) {
         System.out.println("BACK button clicked.");
-        this.switchScene(homePage,event);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"),event);
     }
 
     @FXML
@@ -60,6 +68,6 @@ public class InviaComunicazioniGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent event) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homePage, event);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), event);
     }
 }

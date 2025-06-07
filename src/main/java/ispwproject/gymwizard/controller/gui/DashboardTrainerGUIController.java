@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,7 +23,12 @@ public class DashboardTrainerGUIController extends AbstractGUIController{
     private Label welcomeLabel;
 
     @FXML
+    AnchorPane anchorPane;
+
+    @FXML
     private void initialize() {
+        anchorPane.setBackground(new Background(this.background()));
+
         System.out.println("** INIT EXEC - Dashboard Trainer**");
         SessionManager.getInstance().setAttributo("homePage", "/views/DashboardTrainerView.fxml");
 

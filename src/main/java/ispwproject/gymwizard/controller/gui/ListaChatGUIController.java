@@ -4,26 +4,20 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
 public class ListaChatGUIController extends AbstractGUIController{
 
     @FXML private VBox chatListVBox;
 
-    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
+    @FXML
+    AnchorPane anchorPane;
 
     @FXML
-    public void initialize() {
-        /*
-        // Esempio mock utenti
-        for (int i = 1; i <= 5; i++) {
-            Label utente = new Label("🗨️ Chat con Utente " + i);
-            utente.setStyle("-fx-text-fill: white; -fx-font-size: 16; -fx-font-family: 'Comic Sans MS'; -fx-cursor: hand; -fx-padding: 8 10; -fx-background-color: #444; -fx-background-radius: 8;");
-            int finalI = i;
-            utente.setOnMouseClicked(event -> onChatClick(finalI, event));
-            chatListVBox.getChildren().add(utente);
-        }
-        */
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
     }
 
     @FXML
@@ -35,7 +29,7 @@ public class ListaChatGUIController extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene(homePage, backEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), backEvent);
     }
 
     @FXML
@@ -52,6 +46,6 @@ public class ListaChatGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homePage, homeEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }

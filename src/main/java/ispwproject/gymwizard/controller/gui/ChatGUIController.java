@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -19,6 +21,14 @@ public class ChatGUIController extends AbstractGUIController{
     @FXML private VBox messagesBox;
 
     private String context;
+
+    @FXML
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+    }
 
     // Metodo che imposta il contesto di esecuzione in base alla schermata da cui è stata chiamata questa
     public void setContext(String context) {

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Abbonamento {
 
-
     private int id;
     private int idUtente;
     private String tipo;

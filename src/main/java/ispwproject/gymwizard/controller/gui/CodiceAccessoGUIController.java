@@ -3,8 +3,18 @@ package ispwproject.gymwizard.controller.gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 public class CodiceAccessoGUIController extends AbstractGUIController{
+
+    @FXML
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+    }
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {

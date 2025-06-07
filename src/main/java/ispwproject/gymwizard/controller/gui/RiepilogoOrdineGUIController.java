@@ -1,28 +1,66 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.controller.app.AbbonamentoController;
+import ispwproject.gymwizard.controller.app.PagamentoController;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+
+import java.awt.*;
+import java.net.URI;
 
 public class RiepilogoOrdineGUIController extends AbstractGUIController{
 
-    @FXML
-    private Label titoloAbbonamentoLabel;
+    private String tipo;
 
-    // Questo metodo viene chiamato da GUIRinnovaAbbonamentoController
-    public void setTipoAbbonamento(String tipo) {
-        titoloAbbonamentoLabel.setText(tipo);
+    @FXML
+    private Label name, price, dataEmissione, dataScadenza;
+
+    @FXML
+    private TextArea description;
+
+    @FXML
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+
+        tipo = (String) SessionManager.getInstance().getAttributo("tipoAbbonamento");
+
+        if (tipo != null) {
+            name.setText(AbbonamentoController.getNomeAbbonamento(tipo));
+            description.setText(AbbonamentoController.getDescrizioneAbbonamento(tipo));
+            price.setText(String.valueOf(AbbonamentoController.getPrezzoAbbonamento(tipo)));
+            dataEmissione.setText(String.valueOf(AbbonamentoController.getDataEmissione()));
+            dataScadenza.setText(String.valueOf(AbbonamentoController.getDataScadenza(tipo)));
+        } else {
+            name.setText("Tipo non selezionato");
+            description.setText("-");
+            price.setText("-");
+            dataEmissione.setText("-");
+            dataScadenza.setText("-");
+        }
     }
 
     @FXML
-    private void handleAcquistaClick(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Acquisto completato");
-        alert.setHeaderText(null);
-        alert.setContentText("Grazie per il tuo acquisto! Il tuo abbonamento è stato attivato.");
-        alert.showAndWait();
+    private void onPagamentoClick() {
+        System.out.println("ACQUISTA button clicked.");
+
+        int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
+        try {
+            PagamentoController paypal = new PagamentoController();
+            String url = paypal.creaOrdine(prezzo);
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            this.showError("Errore", "Errore durante l'avvio del pagamento." + e.getMessage());
+        }
+
+        this.showPopup("Acquisto completato", null, "Grazie per il tuo acquisto! Il tuo abbonamento è stato attivato.");
     }
 
     @FXML

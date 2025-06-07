@@ -7,6 +7,8 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 public class RiepilogoAttivitaGUIController extends AbstractGUIController{
 
@@ -14,7 +16,12 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     private Label name, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
 
     @FXML
-    public void initialize() {
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+
         Object obj = SessionManager.getInstance().getAttributo("attivitaSelezionata");
 
         if (obj instanceof Attivita attivita) {

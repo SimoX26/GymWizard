@@ -2,18 +2,9 @@ package ispwproject.gymwizard.controller.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Optional;
 
 public class CalendarioAttivitaGUIController extends AbstractGUIController{
 
@@ -27,6 +18,7 @@ public class CalendarioAttivitaGUIController extends AbstractGUIController{
     private void initialize() {
         aggiungiAttivita("Yoga", 1, 3);
         aggiungiAttivita("Crossfit", 1, 6);
+
 
     }
 

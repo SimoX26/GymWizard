@@ -6,13 +6,16 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class CreaAttivitaGUIController extends AbstractGUIController{
 
-    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML private TextField nomeField;
     @FXML private TextArea descrizioneField;
@@ -21,6 +24,11 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
     @FXML private TextField oraFineField;
     @FXML private TextField postiDisponibiliField;
     @FXML private TextField trainerNameField;
+
+    @FXML
+    private void initialize() {
+        anchorPane.setBackground(new Background(this.background()));
+    }
 
     @FXML
     public void onCreaAttivita() {
@@ -61,6 +69,6 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent event) {
         System.out.println("HOME button clicked.");
-        this.switchScene(homePage, event);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), event);
     }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.RinnovaAbbonamentoGUIController">
+<AnchorPane  fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.RinnovaAbbonamentoGUIController">
 
     <!-- Contenitore principale -->
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
@@ -21,58 +21,60 @@
 
         <!-- Pulsanti -->
         <VBox alignment="CENTER">
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-            <children>
-               <VBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="50.0">
-                  <children>
-                     <Label text=" 10 ingressi:" textFill="WHITE">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                <VBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="50.0">
+                    <Label text=" 10 ingressi:" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label text="Mensile:" textFill="WHITE">
+                    </Label>
+                    <Label text="Mensile:" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label text="Trimestrale:" textFill="WHITE">
+                    </Label>
+                    <Label text="Trimestrale:" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                     <Label text="Annuale:" textFill="WHITE">
+                    </Label>
+                    <Label text="Annuale:" textFill="WHITE">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Label>
-                  </children>
-               </VBox>
-               <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="35.0">
-                  <children>
-                     <Button onAction="#on10IngressiClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="25 $">
+                    </Label>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="35.0">
+                    <Button onAction="#on10IngressiClick" prefHeight="35.0" prefWidth="70.0"
+                            style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;"
+                            text="25 $">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Button>
-                     <Button onAction="#onMensileClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text=" 50 $">
+                    </Button>
+                    <Button onAction="#onMensileClick" prefHeight="35.0" prefWidth="70.0"
+                            style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;"
+                            text=" 50 $">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Button>
-                     <Button onAction="#onTrimestraleClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="110 $">
+                    </Button>
+                    <Button onAction="#onTrimestraleClick" prefHeight="35.0" prefWidth="70.0"
+                            style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;"
+                            text="110 $">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Button>
-                     <Button onAction="#onAnnualeClick" prefHeight="35.0" prefWidth="70.0" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="330 $">
+                    </Button>
+                    <Button onAction="#onAnnualeClick" prefHeight="35.0" prefWidth="70.0"
+                            style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;"
+                            text="330 $">
                         <font>
-                           <Font size="14.0" />
+                            <Font size="14.0"/>
                         </font>
-                     </Button>
-                  </children>
-               </VBox>
-            </children>
-         </HBox>
+                    </Button>
+                </VBox>
+            </HBox>
          <VBox.margin>
             <Insets top="30.0" />
          </VBox.margin>

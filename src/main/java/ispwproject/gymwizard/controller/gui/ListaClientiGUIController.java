@@ -7,13 +7,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
 
-public class ListaClientiGUIController {
+public class ListaClientiGUIController extends AbstractGUIController{
 
     @FXML
     private VBox clientListVBox;
@@ -21,7 +23,12 @@ public class ListaClientiGUIController {
     private Label backIcon, helpIcon, homeIcon;
 
     @FXML
+    AnchorPane anchorPane;
+
+    @FXML
     public void initialize() {
+        anchorPane.setBackground(new Background(this.background()));
+
         // Aggiunta clienti di esempio (sostituisci con dati reali)
         for (int i = 1; i <= 4; i++) {
             Label cliente = new Label("⚪ Nome Cliente " + i);

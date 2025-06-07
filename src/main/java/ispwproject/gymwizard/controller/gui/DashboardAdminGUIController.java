@@ -6,16 +6,23 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 import java.util.Optional;
 
 public class DashboardAdminGUIController extends AbstractGUIController{
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
     private Label welcomeLabel;
 
     @FXML
     private void initialize() {
+        anchorPane.setBackground(new Background(this.background()));
+
         System.out.println("** INIT EXEC - Dashboard Admin **");
         SessionManager.getInstance().setAttributo("homePage", "/views/DashboardAdminView.fxml");
 
