@@ -2,7 +2,7 @@ package ispwproject.gymwizard.util.DAO;
 
 import ispwproject.gymwizard.model.Credentials;
 import ispwproject.gymwizard.model.Role;
-import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.exception.CredenzialiException;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -25,7 +25,7 @@ public class LoginProcedureDAO {
         return instance;
     }
 
-    public Credentials execute(String email, String passwordPlainText) throws DAOException {
+    public Credentials execute(String email, String passwordPlainText) throws CredenzialiException {
         int roleId;
 
         String passwordHash = hashPassword(passwordPlainText); // SHA-256 hashing
@@ -41,18 +41,18 @@ public class LoginProcedureDAO {
             roleId = cs.getInt(3);
 
             if (roleId == 0) {
-                throw new DAOException("Credenziali non valide.");
+                throw new CredenzialiException("Credenziali non valide. Riprova.");
             }
 
         } catch (SQLException e) {
-            throw new DAOException("Errore durante il login: " + e.getMessage(), e);
+            throw new CredenzialiException("Errore durante il processo di login. Contatta l'assistenza. Dettagli: " + e.getMessage());
         }
 
         Role role = Role.fromInt(roleId);
         return new Credentials(email, passwordHash, role);
     }
 
-    private String hashPassword(String password) throws DAOException {
+    private String hashPassword(String password) throws CredenzialiException {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -65,7 +65,8 @@ public class LoginProcedureDAO {
             return sb.toString();
 
         } catch (NoSuchAlgorithmException e) {
-            throw new DAOException("Errore durante l'hash della password", e);
+            throw new CredenzialiException("Errore interno durante la codifica della password.");
         }
     }
 }
+
