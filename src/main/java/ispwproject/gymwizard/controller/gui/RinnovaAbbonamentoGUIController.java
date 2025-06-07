@@ -3,9 +3,17 @@ package ispwproject.gymwizard.controller.gui;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 public class RinnovaAbbonamentoGUIController extends AbstractGUIController{
+    @FXML
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+    }
 
     @FXML
     private void on10IngressiClick(ActionEvent event) {

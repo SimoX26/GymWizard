@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 import java.awt.*;
 import java.net.URI;
@@ -22,7 +24,12 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
     private TextArea description;
 
     @FXML
-    public void initialize() {
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+
         tipo = (String) SessionManager.getInstance().getAttributo("tipoAbbonamento");
 
         if (tipo != null) {

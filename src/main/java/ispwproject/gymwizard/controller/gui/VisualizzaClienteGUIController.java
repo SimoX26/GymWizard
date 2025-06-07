@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -12,7 +14,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.Optional;
 
-public class VisualizzaClienteGUIController {
+public class VisualizzaClienteGUIController extends AbstractGUIController{
 
     @FXML private Label clienteLabel, backIcon, helpIcon, homeIcon;
     @FXML private Button schedaBtn, schedaBtn1;
@@ -21,9 +23,12 @@ public class VisualizzaClienteGUIController {
     private final Path schedaSalvata = Paths.get("schede_cliente/scheda_cliente.pdf");
 
     @FXML
-    public void initialize() {
+    AnchorPane anchorPane;
 
-        // BACK
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+
         backIcon.setOnMouseClicked(event -> switchScene("/views/ListaClientiView.fxml"));
 
         // HELP

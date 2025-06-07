@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 public class SchedaAllenamentoGUIController extends AbstractGUIController{
 
@@ -11,7 +13,12 @@ public class SchedaAllenamentoGUIController extends AbstractGUIController{
     private ImageView schedaImage;
 
     @FXML
-    private void initialize() {
+    AnchorPane anchorPane;
+
+    @FXML
+    public void initialize(){
+        anchorPane.setBackground(new Background(this.background()));
+
         schedaImage.setOnScroll(e -> {
             double zoomFactor = e.getDeltaY() > 0 ? 1.1 : 0.9;
             double newScaleX = schedaImage.getScaleX() * zoomFactor;

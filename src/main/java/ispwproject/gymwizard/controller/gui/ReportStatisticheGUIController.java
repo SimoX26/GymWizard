@@ -9,6 +9,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 import java.sql.SQLException;
 
@@ -29,7 +31,12 @@ public class ReportStatisticheGUIController extends AbstractGUIController{
     private NumberAxis yAxis;
 
     @FXML
+    AnchorPane anchorPane;
+
+    @FXML
     public void initialize() {
+        anchorPane.setBackground(new Background(this.background()));
+
         try {
             StatisticaDAO dao = new StatisticaDAO();
             utentiAttiviLabel.setText(String.valueOf(dao.getTotaleClienti()));
