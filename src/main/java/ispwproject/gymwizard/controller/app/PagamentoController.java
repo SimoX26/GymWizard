@@ -17,7 +17,7 @@ public class PagamentoController {
 
     public PagamentoController() throws IOException {
         Properties props = new Properties();
-        props.load(new FileInputStream("paypal.properties"));
+        props.load(new FileInputStream("src/main/resources/paypal.properties"));
 
         CLIENT_ID = props.getProperty("paypal.clientId");
         CLIENT_SECRET = props.getProperty("paypal.clientSecret");

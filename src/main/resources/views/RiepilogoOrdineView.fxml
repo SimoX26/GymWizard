@@ -83,7 +83,7 @@
                 </Label>
              </VBox>
           </HBox>
-          <Button onAction="#onPagamentoClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PAGA CON NEXI">
+          <Button onAction="#onPagamentoClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PAGA CON PAYPAL">
              <VBox.margin>
                 <Insets top="40.0" />
              </VBox.margin>
