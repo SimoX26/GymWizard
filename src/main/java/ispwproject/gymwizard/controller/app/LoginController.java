@@ -41,8 +41,6 @@ public class LoginController {
                 case ADMIN -> LoginResult.SUCCESSO_ADMIN;
             };
 
-        } catch (DAOException e) {
-            throw e;
         } catch (Exception e) {
             e.printStackTrace();
             return LoginResult.ERRORE;

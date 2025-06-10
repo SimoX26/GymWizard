@@ -12,7 +12,12 @@ public class StatisticaDAO {
 
     // 1. Numero totale clienti iscritti
     public int getTotaleClienti() throws SQLException {
-        String sql = "SELECT COUNT(*) FROM cliente";
+        String sql = """
+            SELECT COUNT(*) 
+            FROM Utente U
+            JOIN Credenziali C ON U.email = C.email
+            WHERE C.ruolo = 1
+        """;
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
@@ -23,8 +28,15 @@ public class StatisticaDAO {
     // 2. Numero nuovi clienti iscritti nell'ultimo mese
     public int getNuoviClientiUltimoMese() throws SQLException {
         String sql = """
-            SELECT COUNT(*) FROM cliente
-            WHERE data_registrazione >= CURDATE() - INTERVAL 1 MONTH
+            SELECT COUNT(*) 
+            FROM Utente U
+            JOIN Credenziali C ON U.email = C.email
+            WHERE C.ruolo = 1
+              AND U.id IN (
+                  SELECT id_cliente 
+                  FROM Abbonamento 
+                  WHERE data_inizio >= CURDATE() - INTERVAL 1 MONTH
+              )
         """;
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -37,8 +49,12 @@ public class StatisticaDAO {
     public double getPercentualeRinnovi() throws SQLException {
         String sql = """
             SELECT 
-                ROUND((SELECT COUNT(*) FROM Abbonamento WHERE data_rinnovo IS NOT NULL) * 100.0 / 
-                      (SELECT COUNT(*) FROM Abbonamento), 2) AS percentuale_rinnovo
+                ROUND(
+                    (SELECT COUNT(*) FROM Abbonamento WHERE data_rinnovo IS NOT NULL)
+                    * 100.0 / 
+                    (SELECT COUNT(*) FROM Abbonamento),
+                    2
+                ) AS percentuale_rinnovo
         """;
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
@@ -70,11 +86,12 @@ public class StatisticaDAO {
     // 5. Fascia oraria più frequentata
     public String getFasciaOrariaPiuFrequentata() throws SQLException {
         String sql = """
-            SELECT CONCAT(LPAD(HOUR(orario), 2, '0'), ':00 - ', LPAD(HOUR(orario) + 1, 2, '0'), ':00') AS fascia_oraria,
-                   COUNT(*) AS totale
+            SELECT 
+                CONCAT(LPAD(HOUR(A.ora_inizio), 2, '0'), ':00 - ', LPAD(HOUR(A.ora_inizio) + 1, 2, '0'), ':00') AS fascia_oraria,
+                COUNT(*) AS totale
             FROM Prenotazione P
             JOIN Attivita A ON P.id_attivita = A.id
-            GROUP BY HOUR(orario)
+            GROUP BY HOUR(A.ora_inizio)
             ORDER BY totale DESC
             LIMIT 1
         """;
@@ -113,14 +130,13 @@ public class StatisticaDAO {
         }
     }
 
-    // Numero attività disponibili
+    // Numero attività disponibili (nessun campo `visibile` nel DB → rimuoviamo filtro)
     public int getTotaleAttivita() throws SQLException {
-        String sql = "SELECT COUNT(*) FROM Attivita WHERE visibile = TRUE";
+        String sql = "SELECT COUNT(*) FROM Attivita";
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
             return rs.getInt(1);
         }
     }
-
 }
