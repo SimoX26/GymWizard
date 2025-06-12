@@ -60,7 +60,7 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
             this.showError("Errore", "Errore durante l'avvio del pagamento." + e.getMessage());
         }
 
-        this.showPopup("Acquisto completato", null, "Grazie per il tuo acquisto! Il tuo abbonamento è stato attivato.");
+        this.showPopup("Pagamento in attesa", null, "Verifica lo stato del pagamento una volta completato su PayPal.");
     }
 
     @FXML
