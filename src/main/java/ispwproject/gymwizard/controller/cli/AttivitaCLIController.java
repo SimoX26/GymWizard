@@ -28,7 +28,9 @@ public class AttivitaCLIController {
         if ("0".equals(scelta)) {
             System.out.println("🔙 Ritorno alla dashboard cliente...");
         } else {
-            System.out.println("ℹ️ Funzionalità di dettaglio non ancora implementata.");
+            System.out.println("Attività " + scelta + " selezionata:\n");
+            Attivita a = attivitaList.get(Integer.parseInt(scelta) - 1);
+            System.out.println(a.getNome() + " | " + a.getData() + " | " + a.getOraInizio() + "-" + a.getOraFine() + " | posti disponibili: " + a.getPostiDisponibili());
             System.out.print("👉 Premi invio per tornare: ");
             scanner.nextLine();
         }
