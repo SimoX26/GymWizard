@@ -12,6 +12,7 @@ public class DashboardClientCLIController {
     public static void start() throws DAOException {
         // Messaggio di benvenuto
         String username = SessionManager.getInstance().getSession().getUsername();
+        SessionManager.getInstance().setAttributo("homePage", "Cliente");
         System.out.println("\n👋 Benvenuto " + (username != null ? username : "cliente") + "!");
         menu();
     }
@@ -52,27 +53,22 @@ public class DashboardClientCLIController {
     }
 
     private static void onScheda() {
-        // System.out.println("📘 [Scheda Allenamento] Mostra dettagli allenamento...");
         new SchedaAllenamentoCLIController().start();
     }
 
     private static void onAttivita() throws DAOException {
-        // System.out.println("🏃 [Attività] Elenco attività disponibili...");
         new AttivitaCLIController().start();
     }
 
     private static void onStatoAbbonamento() {
-        // System.out.println("📄 [Stato Abbonamento] Mostra stato abbonamento...");
         new StatoAbbonamentoCLIController().start();
     }
 
     private static void onListaChat() {
-        // System.out.println("💬 [Chat] Mostra chat disponibili...");
         new ListaChatCLIController().start();
     }
 
     private static void onCodiceAccesso() {
-        // System.out.println("🔐 [Codice Accesso] Codice generato o attivo: ABC123");
         new CodiceAccessoCLIController().start();
     }
 

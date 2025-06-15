@@ -31,6 +31,7 @@ public class LoginController {
 
             // Salva la sessione
             SessionBean sessionBean = new SessionBean(fullCred.getEmail(), fullCred.getRole());
+            // sessionBean.setUsername(UtenteDAO.getByEmail(email));
             SessionManager.getInstance().setSession(sessionBean);
             new UtenteDAO();
             SessionManager.getInstance().setAttributo("utente", UtenteDAO.getByEmail(email));

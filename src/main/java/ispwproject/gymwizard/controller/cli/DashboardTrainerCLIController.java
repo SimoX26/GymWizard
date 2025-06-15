@@ -11,6 +11,7 @@ public class DashboardTrainerCLIController {
     public static void start() {
         // Messaggio di benvenuto
         String username = SessionManager.getInstance().getSession().getUsername();
+        SessionManager.getInstance().setAttributo("homePage", "Trainer");
         System.out.println("\n👋 Benvenuto " + (username != null ? username : "trainer") + "!");
         menu();
     }

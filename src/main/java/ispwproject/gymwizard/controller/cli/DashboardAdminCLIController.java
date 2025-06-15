@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.cli;
 
+import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.util.Scanner;
@@ -8,14 +9,15 @@ public class DashboardAdminCLIController{
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void start() {
+    public static void start() throws DAOException {
         // Messaggio di benvenuto
-        String username = SessionManager.getInstance().getSession().getUsername();
+        String username = SessionManager.getInstance().getAttributo("utente").toString();
+        SessionManager.getInstance().setAttributo("homePage", "Admin");
         System.out.println("\n👋 Benvenuto " + (username != null ? username : "admin") + "!");
         menu();
     }
 
-    public static void menu() {
+    public static void menu() throws DAOException {
         while (true) {
             System.out.println("""
             \n🛠️ DASHBOARD AMMINISTRATORE:
@@ -46,11 +48,8 @@ public class DashboardAdminCLIController{
         }
     }
 
-    private static void onGestioneListino() {
-        System.out.println("\n📦 [GESTIONE LISTINO]");
-        System.out.println("Funzionalità in sviluppo..."); // TODO: chiamare controller CLI specifico
-        System.out.print("👉 Premi invio per tornare al menu: ");
-        scanner.nextLine();
+    private static void onGestioneListino() throws DAOException {
+       new AttivitaCLIController().start();
     }
 
     private static void onVisualizzaReport() {
