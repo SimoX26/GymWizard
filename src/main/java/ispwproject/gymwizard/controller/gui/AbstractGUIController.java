@@ -1,11 +1,13 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -16,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.Optional;
 
 public abstract class AbstractGUIController {
 
@@ -58,6 +61,21 @@ public abstract class AbstractGUIController {
         alert.setContentText(messaggio);
         alert.showAndWait();
     }
+
+    protected boolean logout() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conferma Logout");
+        alert.setHeaderText("Vuoi effettuare il logout?");
+        alert.setContentText("Verrai riportato alla schermata iniziale.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 
     protected BackgroundImage background(){
         Image backgroundImage = new Image(Objects.requireNonNull(getClass().getResource("/images/Sfondo_home.png")).toExternalForm());

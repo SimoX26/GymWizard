@@ -7,15 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Optional;
 
 public class DashboardTrainerGUIController extends AbstractGUIController{
 
@@ -49,32 +46,22 @@ public class DashboardTrainerGUIController extends AbstractGUIController{
         }
     }
 
-
     @FXML
     public void onChatListBtnClick(ActionEvent chatListEvent) {
         System.out.println("CHAT button clicked.");
-        switchScene("/views/ListaChatView.fxml", chatListEvent);
+        this.switchScene("/views/ListaChatView.fxml", chatListEvent);
     }
 
     @FXML
-    public void onHelpClick(ActionEvent event) {
+    public void onHelpClick() {
         System.out.println("HELP button clicked.");
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Guida Interfaccia");
-        alert.setHeaderText("Dashboard Coach");
-        alert.setContentText("Puoi accedere alla lista dei clienti oppure alla chat con loro.");
-        alert.showAndWait();
+        this.showPopup("Guida Interfaccia", "Dashboard Trainer", "Puoi accedere alla lista dei clienti oppure alla chat con loro.");
     }
 
     @FXML
     public void onLogoutClick(ActionEvent logoutEvent) {
         System.out.println("LOGOUT button clicked.");
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Conferma Logout");
-        alert.setHeaderText("Vuoi effettuare il logout?");
-        alert.setContentText("Verrai riportato alla schermata iniziale.");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (this.logout()) {
             SessionManager.getInstance().clearAll();
             switchScene("/views/HomeView.fxml", logoutEvent);
         }
