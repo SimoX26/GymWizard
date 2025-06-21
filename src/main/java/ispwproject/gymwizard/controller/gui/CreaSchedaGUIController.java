@@ -4,7 +4,7 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class SchedaPersonalGUIController extends AbstractGUIController{
+public class CreaSchedaGUIController extends AbstractGUIController{
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
@@ -15,8 +15,8 @@ public class SchedaPersonalGUIController extends AbstractGUIController{
     @FXML
     public void onHelpClick() {
         System.out.println("HELP button clicked.");
-        this.showPopup("Guida Interfaccia","Lista delle attività","Puoi visualizzare la lista delle attività disponibili.\n" +
-                "Puoi scollare per scorrere la lista e scegliere l'attività a cui vuoi prenotarti");
+        this.showPopup("Guida Interfaccia","Creazione scheda di allenamento","Schermata di creazione della scheda di allenamento\n" +
+                "Puoi aggiungere esercizi alla scheda associata al cliente.");
     }
 
     @FXML

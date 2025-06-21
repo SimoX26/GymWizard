@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-public class SchedaAllenamentoGUIController extends AbstractGUIController{
+public class VisualizzaSchedaGUIController extends AbstractGUIController{
 
     @FXML
     private ImageView schedaImage;
