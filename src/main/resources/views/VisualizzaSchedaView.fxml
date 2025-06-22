@@ -13,46 +13,51 @@
     <HBox spacing="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0">
         <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Scheda">
             <font>
-                <Font size="28.0"/>
+                <Font size="28.0" />
             </font>
         </Label>
         <HBox alignment="CENTER" spacing="10.0">
             <Button mnemonicParsing="false" text="LUN">
                 <font>
-                    <Font size="16.0"/>
+                    <Font size="16.0" />
                 </font>
             </Button>
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="MAR">
                 <font>
-                    <Font size="16.0"/>
+                    <Font size="16.0" />
                 </font>
             </Button>
             <Button mnemonicParsing="false" text="MER">
                 <font>
-                    <Font size="16.0"/>
+                    <Font size="16.0" />
                 </font>
             </Button>
             <Button mnemonicParsing="false" text="GIO">
                 <font>
-                    <Font size="16.0"/>
+                    <Font size="16.0" />
                 </font>
             </Button>
             <Button mnemonicParsing="false" text="VEN">
                 <font>
-                    <Font size="16.0"/>
+                    <Font size="16.0" />
                 </font>
             </Button>
             <Button mnemonicParsing="false" text="SAB">
                 <font>
-                    <Font size="16.0"/>
+                    <Font size="16.0" />
                 </font>
             </Button>
             <Button mnemonicParsing="false" text="DOM">
                 <font>
-                    <Font size="16.0"/>
+                    <Font size="16.0" />
                 </font>
             </Button>
         </HBox>
+    </HBox>
+    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
        <VBox AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="120.0">
            <TableView prefHeight="400.0" prefWidth="200.0">
@@ -63,9 +68,5 @@
                </columns>
            </TableView>
        </VBox>
-    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
-        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
-        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
-    </HBox>
+   <HBox fx:id="HBoxBtn" alignment="CENTER" prefHeight="20.0" prefWidth="20.0" spacing="30.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" />
 </AnchorPane>

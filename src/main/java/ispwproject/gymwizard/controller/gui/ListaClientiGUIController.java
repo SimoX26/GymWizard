@@ -51,7 +51,7 @@ public class ListaClientiGUIController extends AbstractGUIController{
 
     public void apriDettaglioCliente(ActionEvent event, int idCliente) {
         System.out.println("CLIENTE button clicked.");
-        this.switchScene("/views/CreaSchedaView.fxml", event);
+        this.switchScene("/views/VisualizzaSchedaView.fxml", event);
 
     }
 }

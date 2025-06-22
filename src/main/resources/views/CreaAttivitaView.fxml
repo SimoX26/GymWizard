@@ -13,21 +13,21 @@
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style=" -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CreaAttivitaGUIController">
 
      <!-- Titolo -->
-     <Label text="CREA NUOVA ATTIVITÀ" textFill="WHITE" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0">
+     <Label text="CREA NUOVA ATTIVITÀ" textFill="WHITE" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0">
       <font>
          <Font name="System Bold" size="28.0" />
       </font>
    </Label>
 
     <!-- Pulsanti in alto a destra -->
-    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
         <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
         <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
         <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenitore centrale -->
-    <VBox alignment="TOP_CENTER" spacing="60.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="120.0">
+    <VBox alignment="TOP_CENTER" spacing="60.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="140.0">
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
             <VBox alignment="TOP_RIGHT" prefWidth="300.0" spacing="42.0">
                 <Label style="-fx-text-fill: white;" text="Nome Attività">
