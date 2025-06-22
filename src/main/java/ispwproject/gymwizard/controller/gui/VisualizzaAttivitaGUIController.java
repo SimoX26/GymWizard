@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-public class RiepilogoAttivitaGUIController extends AbstractGUIController{
+public class VisualizzaAttivitaGUIController extends AbstractGUIController{
 
     @FXML
     private Label name, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
@@ -47,7 +47,7 @@ public class RiepilogoAttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene("/views/AttivitaView.fxml", backEvent);
+        this.switchScene("/views/ListinoAttivitaView.fxml", backEvent);
     }
 
     @FXML

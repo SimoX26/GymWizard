@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -14,88 +13,81 @@
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style=" -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CreaAttivitaGUIController">
 
      <!-- Titolo -->
-     <Label text="CREA NUOVA ATTIVITÀ" textFill="WHITE">
+     <Label text="CREA NUOVA ATTIVITÀ" textFill="WHITE" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0">
       <font>
          <Font name="System Bold" size="28.0" />
       </font>
-      <padding>
-         <Insets left="25.0" top="25.0" />
-      </padding>
    </Label>
 
     <!-- Pulsanti in alto a destra -->
-    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
         <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
         <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
         <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenitore centrale -->
-    <VBox alignment="TOP_CENTER" spacing="90.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="80.0">
+    <VBox alignment="TOP_CENTER" spacing="60.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="120.0">
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-            <VBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="30.0">
+            <VBox alignment="TOP_RIGHT" prefWidth="300.0" spacing="42.0">
                 <Label style="-fx-text-fill: white;" text="Nome Attività">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="147.0"
-                       style="-fx-text-fill: white;" text="Descrizione">
+                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="147.0" style="-fx-text-fill: white;" text="Descrizione">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
                 <Label style="-fx-text-fill: white;" text="Giorno">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
                 <Label style="-fx-text-fill: white;" text="Ora di inizio">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
                 <Label style="-fx-text-fill: white;" text="Ora di fine">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
                 <Label style="-fx-text-fill: white;" text="Posti disponibili">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
                 <Label style="-fx-text-fill: white;" text="Nome del trainer">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
             </VBox>
-            <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="30.0">
+            <VBox prefWidth="300.0" spacing="30.0">
                 <TextField fx:id="nomeField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il nome">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </TextField>
-                <TextArea fx:id="descrizioneField" prefHeight="42.0" prefRowCount="4" prefWidth="257.0"
-                          promptText="Inserisci una descrizione">
+                <TextArea fx:id="descrizioneField" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </TextArea>
-                <DatePicker fx:id="dataPicker" promptText="Seleziona il giorno"/>
-                <TextField fx:id="oraInizioField" promptText="Seleziona l'ora"/>
-                <TextField fx:id="oraFineField" promptText="Seleziona l'ora"/>
-                <TextField fx:id="postiDisponibiliField" prefHeight="27.0" prefWidth="204.0"
-                           promptText="Inserisci il numero di posti">
+                <DatePicker fx:id="dataPicker" promptText="Seleziona il giorno" />
+                <TextField fx:id="oraInizioField" promptText="Seleziona l'ora" />
+                <TextField fx:id="oraFineField" promptText="Seleziona l'ora" />
+                <TextField fx:id="postiDisponibiliField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il numero di posti">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="trainerNameField" prefHeight="27.0" prefWidth="204.0"
-                           promptText="Inserisci il nome">
+                <TextField fx:id="trainerNameField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il nome">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </TextField>
             </VBox>

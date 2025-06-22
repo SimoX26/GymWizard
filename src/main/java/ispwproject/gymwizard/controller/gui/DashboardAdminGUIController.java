@@ -27,7 +27,7 @@ public class DashboardAdminGUIController extends AbstractGUIController{
 
     @FXML
     public void onListinoAttivitaClick(ActionEvent event){
-        switchScene("/views/AttivitaView.fxml", event);
+        switchScene("/views/ListinoAttivitaView.fxml", event);
     }
 
     @FXML

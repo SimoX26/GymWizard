@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-public class AttivitaGUIController extends AbstractGUIController{
+public class ListinoAttivitaGUIController extends AbstractGUIController{
 
     @FXML
     private AnchorPane anchorPane;
@@ -68,7 +68,7 @@ public class AttivitaGUIController extends AbstractGUIController{
     public void onAttivitaClick(ActionEvent event, Attivita attivita){
         System.out.println("ATTIVITA button clicked.");
         SessionManager.getInstance().setAttributo("attivitaSelezionata", attivita);
-        this.switchScene("/views/RiepilogoAttivitaView.fxml", event);
+        this.switchScene("/views/VisualizzaAttivitaView.fxml", event);
     }
 
     @FXML

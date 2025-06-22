@@ -31,7 +31,7 @@ public class CalendarioAttivitaGUIController extends AbstractGUIController{
     }
 
     public void apriRiepilogoAttivita(ActionEvent event, String nomeAttivita) {
-        switchScene("/views/RiepilogoAttivitaView.fxml", event);
+        switchScene("/views/VisualizzaAttivitaView.fxml", event);
     }
 
     @FXML

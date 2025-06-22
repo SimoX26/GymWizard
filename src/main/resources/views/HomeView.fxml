@@ -13,31 +13,33 @@
    <!-- Contenitore verticale centrato -->
    <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
       <VBox alignment="CENTER_LEFT" maxWidth="130.0" prefHeight="200.0" spacing="10">
-         <children>
-            <RadioButton mnemonicParsing="false" selected="true" text="GUI VERSION" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="version" />
-               </toggleGroup></RadioButton>
-            <RadioButton mnemonicParsing="false" text="CLI VERSION" textFill="WHITE" toggleGroup="$version">
-               <font>
-                  <Font size="15.0" />
-               </font></RadioButton>
-            <Separator />
-            <RadioButton mnemonicParsing="false" selected="true" text="DBMS" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="memory" />
-               </toggleGroup></RadioButton>
-            <RadioButton mnemonicParsing="false" text="FILE SYSTEM" textFill="WHITE" toggleGroup="$memory">
-               <font>
-                  <Font size="15.0" />
-               </font></RadioButton>
-         </children>
+         <RadioButton mnemonicParsing="false" selected="true" text="GUI VERSION" textFill="WHITE">
+            <font>
+               <Font size="15.0"/>
+            </font>
+            <toggleGroup>
+               <ToggleGroup fx:id="version"/>
+            </toggleGroup>
+         </RadioButton>
+         <RadioButton mnemonicParsing="false" text="CLI VERSION" textFill="WHITE" toggleGroup="$version">
+            <font>
+               <Font size="15.0"/>
+            </font>
+         </RadioButton>
+         <Separator/>
+         <RadioButton mnemonicParsing="false" selected="true" text="DBMS" textFill="WHITE">
+            <font>
+               <Font size="15.0"/>
+            </font>
+            <toggleGroup>
+               <ToggleGroup fx:id="memory"/>
+            </toggleGroup>
+         </RadioButton>
+         <RadioButton mnemonicParsing="false" text="FILE SYSTEM" textFill="WHITE" toggleGroup="$memory">
+            <font>
+               <Font size="15.0"/>
+            </font>
+         </RadioButton>
       </VBox>
 
       <!-- Bottone Accedi -->

@@ -56,7 +56,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent event) {
         System.out.println("BACK button clicked.");
-        this.switchScene("/views/AttivitaView.fxml",event);
+        this.switchScene("/views/ListinoAttivitaView.fxml",event);
     }
 
     @FXML
