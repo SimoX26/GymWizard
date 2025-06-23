@@ -75,10 +75,10 @@ public class AbbonamentoController {
 
     public static int getPrezzoAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
-            case "mensile" -> 3999;
-            case "trimestrale" -> 9999;
-            case "annuale" -> 29999;
-            case "10ingressi" -> 4999;
+            case "mensile" -> 5000;
+            case "trimestrale" -> 11000;
+            case "annuale" -> 33000;
+            case "10ingressi" -> 2500;
             default -> 0;
         };
 
