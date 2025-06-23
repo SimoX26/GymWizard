@@ -1,11 +1,8 @@
 package ispwproject.gymwizard.util.DAO;
 
 import ispwproject.gymwizard.model.Prenotazione;
+import ispwproject.gymwizard.util.bean.PrenotazioneBean;
 import ispwproject.gymwizard.util.exception.DAOException;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,7 +12,7 @@ public class PrenotazioneDAO {
 
     private static PrenotazioneDAO instance;
 
-    private PrenotazioneDAO() {}
+    public PrenotazioneDAO() {}
 
     public static PrenotazioneDAO getInstance() {
         if (instance == null) {
@@ -67,5 +64,39 @@ public class PrenotazioneDAO {
             throw new DAOException("Errore durante l'inserimento della prenotazione", e);
         }
     }
+
+    /**
+     * Metodo per la view admin: storico prenotazioni con nome attività, data e stato.
+     */
+    public List<PrenotazioneBean> getStoricoPrenotazioni() throws DAOException {
+        List<PrenotazioneBean> lista = new ArrayList<>();
+
+        String query = """
+            SELECT u.username, a.nome AS attivita, p.data_creazione, p.stato
+            FROM Prenotazione p
+            JOIN Utente u ON p.id_cliente = u.id
+            JOIN Attivita a ON p.id_attivita = a.id
+            ORDER BY p.data_creazione DESC
+        """;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                lista.add(new PrenotazioneBean(
+                        rs.getString("data_creazione"),
+                        rs.getString("attivita"),
+                        rs.getString("stato")
+                ));
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Errore nel recupero dello storico prenotazioni", e);
+        }
+
+        return lista;
+    }
 }
+
 

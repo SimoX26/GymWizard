@@ -49,7 +49,12 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", backEvent);
+        String s = (String) SessionManager.getInstance().getAttributo("homePage");
+        if(s.equals("/views/DashboardTrainerView.fxml")){
+            this.switchScene("/views/ListaClientiView.fxml", backEvent);
+        } else {
+            this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), backEvent);
+        }
     }
 
     @FXML
@@ -62,6 +67,6 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }

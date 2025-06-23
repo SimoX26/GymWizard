@@ -8,24 +8,23 @@ import java.util.List;
 public class ClienteSubject implements Subject {
 
     private final List<Observer> observers = new ArrayList<>();
-
     private String username;
-    private double peso; // peso attuale
+    private String ultimoAccesso;
     private boolean abbonamentoAttivo;
 
-    public ClienteSubject(String username, double peso, boolean abbonamentoAttivo) {
+    public ClienteSubject(String username, String ultimoAccesso, boolean abbonamentoAttivo) {
         this.username = username;
-        this.peso = peso;
+        this.ultimoAccesso = ultimoAccesso;
         this.abbonamentoAttivo = abbonamentoAttivo;
     }
 
     @Override
-    public void attach(Observer o) {
+    public void registerObserver(Observer o) {
         observers.add(o);
     }
 
     @Override
-    public void detach(Observer o) {
+    public void removeObserver(Observer o) {
         observers.remove(o);
     }
 
@@ -36,27 +35,29 @@ public class ClienteSubject implements Subject {
         }
     }
 
+    // Getters per l'observer
     public String getUsername() {
         return username;
     }
 
-    public double getPeso() {
-        return peso;
+    public String getUltimoAccesso() {
+        return ultimoAccesso;
     }
 
     public boolean isAbbonamentoAttivo() {
         return abbonamentoAttivo;
     }
 
-    // Eventuali metodi per aggiornare i dati
-    public void setPeso(double peso) {
-        this.peso = peso;
+    // Setters che notificano
+    public void setUltimoAccesso(String ultimoAccesso) {
+        this.ultimoAccesso = ultimoAccesso;
         notifyObservers();
     }
 
-    public void setAbbonamentoAttivo(boolean abbonamentoAttivo) {
-        this.abbonamentoAttivo = abbonamentoAttivo;
+    public void setAbbonamentoAttivo(boolean stato) {
+        this.abbonamentoAttivo = stato;
         notifyObservers();
     }
 }
+
 

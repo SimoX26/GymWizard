@@ -1,94 +1,72 @@
 package ispwproject.gymwizard.controller.gui;
 
-import ispwproject.gymwizard.util.DAO.StatisticaDAO;
-import ispwproject.gymwizard.util.singleton.SessionManager;
-import javafx.event.ActionEvent;
+import ispwproject.gymwizard.controller.app.ReportStatisticheController;
+import ispwproject.gymwizard.util.bean.PagamentoBean;
+import ispwproject.gymwizard.util.bean.PrenotazioneBean;
+import ispwproject.gymwizard.util.bean.UtenteAttivoBean;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.fxml.Initializable;
 
-import java.sql.SQLException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class ReportStatisticheGUIController extends AbstractGUIController{
+public class ReportStatisticheGUIController extends AbstractGUIController implements Initializable {
 
-    String homePage = (String) SessionManager.getInstance().getAttributo("homePage");
+    // Tabelle storiche
+    @FXML private TableView<PagamentoBean> pagamentiTable;
+    @FXML private TableColumn<PagamentoBean, String> colDataPagamento;
+    @FXML private TableColumn<PagamentoBean, String> colImportoPagamento;
+    @FXML private TableColumn<PagamentoBean, String> colMetodoPagamento;
 
-    @FXML
-    private Label utentiAttiviLabel, prenotazioniLabel, attivitaLabel;
+    @FXML private TableView<PrenotazioneBean> prenotazioniTable;
+    @FXML private TableColumn<PrenotazioneBean, String> colDataPrenotazione;
+    @FXML private TableColumn<PrenotazioneBean, String> colAttivitaPrenotata;
+    @FXML private TableColumn<PrenotazioneBean, String> colStatoPrenotazione;
 
-    @FXML
-    private BarChart<String, Number> barChart;
+    @FXML private TableView<UtenteAttivoBean> utentiAttiviTable;
+    @FXML private TableColumn<UtenteAttivoBean, String> colUsername;
+    @FXML private TableColumn<UtenteAttivoBean, String> colNomeCompleto;
+    @FXML private TableColumn<UtenteAttivoBean, String> colUltimoAccesso;
 
-    @FXML
-    private CategoryAxis xAxis;
+    private final ReportStatisticheController controller = new ReportStatisticheController();
 
-    @FXML
-    private NumberAxis yAxis;
-
-    @FXML
-    AnchorPane anchorPane;
-
-    @FXML
-    public void initialize() {
-        anchorPane.setBackground(new Background(this.background()));
-
-        try {
-            StatisticaDAO dao = new StatisticaDAO();
-            utentiAttiviLabel.setText(String.valueOf(dao.getTotaleClienti()));
-            prenotazioniLabel.setText(String.valueOf(dao.getTotalePrenotazioni()));
-            attivitaLabel.setText(String.valueOf(dao.getTotaleAttivita()));
-
-            // Facoltativo: popolamento dinamico bar chart (placeholder statico per ora)
-            xAxis.setLabel("Giorno");
-            yAxis.setLabel("Prenotazioni");
-
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Prenotazioni Settimanali");
-
-            // Sostituibile con query settimanale reale in seguito
-            series.getData().add(new XYChart.Data<>("Lunedì", 50));
-            series.getData().add(new XYChart.Data<>("Martedì", 75));
-            series.getData().add(new XYChart.Data<>("Mercoledì", 90));
-            series.getData().add(new XYChart.Data<>("Giovedì", 60));
-            series.getData().add(new XYChart.Data<>("Venerdì", 80));
-            series.getData().add(new XYChart.Data<>("Sabato", 95));
-            series.getData().add(new XYChart.Data<>("Domenica", 40));
-
-            barChart.getData().add(series);
-
-        } catch (SQLException e) {
-            this.showError("Errore Statistiche", e.getMessage());
-        }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setupColumns();
+        loadData();
     }
 
-    @FXML
-    public void onBackClick(ActionEvent event) {
-        System.out.println("BACK button clicked.");
-        this.switchScene(homePage,event);
+    private void setupColumns() {
+        // Pagamenti
+        colDataPagamento.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colImportoPagamento.setCellValueFactory(new PropertyValueFactory<>("importo"));
+        colMetodoPagamento.setCellValueFactory(new PropertyValueFactory<>("metodo"));
+
+        // Prenotazioni
+        colDataPrenotazione.setCellValueFactory(new PropertyValueFactory<>("data"));
+        colAttivitaPrenotata.setCellValueFactory(new PropertyValueFactory<>("attivita"));
+        colStatoPrenotazione.setCellValueFactory(new PropertyValueFactory<>("stato"));
+
+        // Utenti Attivi
+        colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        colNomeCompleto.setCellValueFactory(new PropertyValueFactory<>("nomeCompleto"));
+        colUltimoAccesso.setCellValueFactory(new PropertyValueFactory<>("ultimoAccesso"));
     }
 
-    @FXML
-    public void onHelpClick() {
-        System.out.println("HELP button clicked.");
-        this.showPopup("Guida Inerfaccia", "Report e Statistiche", """
-                Questa schermata mostra:
-                - Numero totale di utenti attivi
-                - Numero complessivo di prenotazioni
-                - Attività disponibili
-                - Un grafico delle prenotazioni per giorno della settimana
+    private void loadData() {
+        List<PagamentoBean> pagamenti = controller.getStoricoPagamenti();
+        List<PrenotazioneBean> prenotazioni = controller.getStoricoPrenotazioni();
+        List<UtenteAttivoBean> utenti = controller.getUtentiAttivi();
 
-                Usa ↩ per tornare alla dashboard, ⌂ per fare logout.
-                """);
+        pagamentiTable.getItems().setAll(pagamenti);
+        prenotazioniTable.getItems().setAll(prenotazioni);
+        utentiAttiviTable.getItems().setAll(utenti);
     }
 
-    @FXML
-    public void onHomeClick(ActionEvent event) {
-        System.out.println("HOME button clicked.");
-        this.switchScene(homePage, event);
-    }
 }
+
+

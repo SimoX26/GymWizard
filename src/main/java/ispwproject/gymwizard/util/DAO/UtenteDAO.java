@@ -1,8 +1,12 @@
 package ispwproject.gymwizard.util.DAO;
 
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.UtenteAttivoBean;
+import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UtenteDAO {
 
@@ -25,7 +29,7 @@ public class UtenteDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace(); // oppure loggalo con un logger
+            e.printStackTrace();
         }
 
         return utente;
@@ -55,5 +59,37 @@ public class UtenteDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    /**
+     * Metodo per il report admin: recupera gli utenti attivi negli ultimi 30 giorni.
+     */
+    public List<UtenteAttivoBean> getUtentiAttivi() throws DAOException {
+        List<UtenteAttivoBean> lista = new ArrayList<>();
+
+        String query = """
+            SELECT username, email, ultimo_accesso
+            FROM Utente
+            WHERE ultimo_accesso >= NOW() - INTERVAL 30 DAY
+            ORDER BY ultimo_accesso DESC
+        """;
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String username = rs.getString("username");
+                String nomeCompleto = username + " (" + rs.getString("email") + ")";
+                String ultimoAccesso = rs.getString("ultimo_accesso");
+
+                lista.add(new UtenteAttivoBean(username, nomeCompleto, ultimoAccesso));
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Errore nel recupero degli utenti attivi", e);
+        }
+
+        return lista;
     }
 }
