@@ -10,11 +10,14 @@ import java.util.List;
 
 public class PrenotazioneDAO {
 
+    // Istanza singleton
     private static PrenotazioneDAO instance;
 
-    public PrenotazioneDAO() {}
+    // Costruttore privato
+    private PrenotazioneDAO() {}
 
-    public static PrenotazioneDAO getInstance() {
+    // Metodo statico per ottenere l'istanza singleton
+    public static synchronized PrenotazioneDAO getInstance() {
         if (instance == null) {
             instance = new PrenotazioneDAO();
         }
@@ -65,9 +68,6 @@ public class PrenotazioneDAO {
         }
     }
 
-    /**
-     * Metodo per la view admin: storico prenotazioni con nome attività, data e stato.
-     */
     public List<PrenotazioneBean> getStoricoPrenotazioni() throws DAOException {
         List<PrenotazioneBean> lista = new ArrayList<>();
 
@@ -98,5 +98,3 @@ public class PrenotazioneDAO {
         return lista;
     }
 }
-
-

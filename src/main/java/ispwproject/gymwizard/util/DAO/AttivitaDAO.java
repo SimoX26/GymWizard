@@ -4,15 +4,22 @@ import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AttivitaDAO {
 
-    public AttivitaDAO() {
-        // Costruttore pubblico, senza gestione singleton
+    private static AttivitaDAO instance;
+
+    // Costruttore privato per impedire l'istanziazione esterna
+    private AttivitaDAO() {}
+
+    // Metodo per ottenere l'unica istanza
+    public static synchronized AttivitaDAO getInstance() {
+        if (instance == null) {
+            instance = new AttivitaDAO();
+        }
+        return instance;
     }
 
     public List<Attivita> getAllDisponibili() throws DAOException {
