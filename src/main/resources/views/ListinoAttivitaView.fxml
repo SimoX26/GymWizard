@@ -17,7 +17,6 @@
              <Font size="28.0" />
          </font>
         </Label>
-        <ComboBox prefWidth="150.0" promptText="FILTRI" />
     </HBox>
 
     <!-- Intestazione inferiore -->
