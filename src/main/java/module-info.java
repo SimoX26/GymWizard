@@ -4,6 +4,8 @@ module ispwproject.gymwizard {
     requires java.sql;
     requires java.desktop;
     requires java.net.http;
+    requires com.google.zxing.javase;
+    requires com.google.zxing;
 
     exports ispwproject.gymwizard.controller;
     exports ispwproject.gymwizard.controller.app;

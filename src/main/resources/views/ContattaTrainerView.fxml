@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #1e1e1e; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.ListaChatGUIController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #1e1e1e; -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.ContattaTrainerGUIController">
 
     <VBox alignment="TOP_CENTER" spacing="30" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
 
         <!-- Titolo -->
-        <Label alignment="CENTER" prefHeight="107.0" prefWidth="218.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3;" text="LE TUE CHAT" textFill="WHITE">
+        <Label alignment="CENTER" prefHeight="107.0" prefWidth="218.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-width: 3;" text="CHAT TRAINER" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
