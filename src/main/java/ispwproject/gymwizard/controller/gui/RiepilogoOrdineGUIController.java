@@ -49,7 +49,7 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
 
     @FXML
     private void onPagamentoClick() {
-        System.out.println("ACQUISTA button clicked.");
+        System.out.println("PAGAMENTO button clicked.");
 
         int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
         try {

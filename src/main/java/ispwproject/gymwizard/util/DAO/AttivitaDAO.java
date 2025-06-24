@@ -2,7 +2,6 @@ package ispwproject.gymwizard.util.DAO;
 
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;
-import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -12,15 +11,8 @@ import java.util.List;
 
 public class AttivitaDAO {
 
-    private static AttivitaDAO instance;
-
-    private AttivitaDAO() {}
-
-    public static AttivitaDAO getInstance() {
-        if (instance == null) {
-            instance = new AttivitaDAO();
-        }
-        return instance;
+    public AttivitaDAO() {
+        // Costruttore pubblico, senza gestione singleton
     }
 
     public List<Attivita> getAllDisponibili() throws DAOException {
@@ -74,5 +66,4 @@ public class AttivitaDAO {
             throw new DAOException("Errore durante l'inserimento dell'attività", e);
         }
     }
-
 }

@@ -13,14 +13,19 @@ import java.util.List;
 
 public class AttivitaController {
 
+    private static AttivitaDAO attivitaDAO = new AttivitaDAO();
+
+    public AttivitaController() {
+        attivitaDAO = new AttivitaDAO();
+    }
+
     public static List<Attivita> getAttivitaDisponibili() throws DAOException {
-            return AttivitaDAO.getInstance().getAllDisponibili();
+        return attivitaDAO.getAllDisponibili();
     }
 
     public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName) throws DAOException {
         Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
-
-        AttivitaDAO.getInstance().inserisciAttivita(nuova);
+        attivitaDAO.inserisciAttivita(nuova);
     }
 
     public static void prenotaAttivita(Attivita attivita) throws DAOException {
