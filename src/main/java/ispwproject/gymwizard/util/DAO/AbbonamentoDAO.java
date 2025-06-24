@@ -9,7 +9,20 @@ import java.sql.SQLException;
 
 public class AbbonamentoDAO {
 
-    public static Abbonamento trovaAbbonamentoAttivoPerUtente(int idUtente) {
+    private static AbbonamentoDAO instance;
+
+    private AbbonamentoDAO() {
+        // Costruttore privato per impedire l'istanziazione esterna
+    }
+
+    public static synchronized AbbonamentoDAO getInstance() {
+        if (instance == null) {
+            instance = new AbbonamentoDAO();
+        }
+        return instance;
+    }
+
+    public Abbonamento trovaAbbonamentoAttivoPerUtente(int idUtente) {
         Abbonamento abbonamento = null;
 
         String query = "SELECT * FROM Abbonamento " +
@@ -37,6 +50,31 @@ public class AbbonamentoDAO {
         }
 
         return abbonamento;
+    }
+
+    public boolean inserisciAbbonamento(Abbonamento abbonamento) {
+        String query = """
+        INSERT INTO Abbonamento (id_utente, tipo, data_inizio, data_fine, stato, riferimento_pagamento)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, abbonamento.getIdUtente());
+            stmt.setString(2, abbonamento.getTipo());
+            stmt.setDate(3, java.sql.Date.valueOf(abbonamento.getDataInizio()));
+            stmt.setDate(4, java.sql.Date.valueOf(abbonamento.getDataFine()));
+            stmt.setString(5, abbonamento.getStato());
+            stmt.setString(6, abbonamento.getRiferimentoPagamento());
+
+            int rowsInserted = stmt.executeUpdate();
+            return rowsInserted > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

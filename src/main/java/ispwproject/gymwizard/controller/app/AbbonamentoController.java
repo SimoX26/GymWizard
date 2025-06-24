@@ -5,6 +5,8 @@ import ispwproject.gymwizard.util.DAO.AbbonamentoDAO;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
+import java.awt.*;
+import java.net.URI;
 import java.time.LocalDate;
 
 public class AbbonamentoController {
@@ -13,7 +15,21 @@ public class AbbonamentoController {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
         int idUtente = utente.getId();
 
-        return AbbonamentoDAO.trovaAbbonamentoAttivoPerUtente(idUtente);
+        return AbbonamentoDAO.getInstance().trovaAbbonamentoAttivoPerUtente(idUtente);
+    }
+
+    public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
+        Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
+
+        Abbonamento nuovoAbbonamento = new Abbonamento();
+        nuovoAbbonamento.setIdUtente(utente.getId());
+        nuovoAbbonamento.setTipo(tipo);
+        nuovoAbbonamento.setDataInizio(getDataEmissione());
+        nuovoAbbonamento.setDataFine(getDataScadenza(tipo));
+        nuovoAbbonamento.setStato("attivo"); // "attivo" dato che il pagamento è immediato
+        nuovoAbbonamento.setRiferimentoPagamento(riferimentoPagamento);
+
+        AbbonamentoDAO.getInstance().inserisciAbbonamento(nuovoAbbonamento);
     }
 
     public static String getNomeAbbonamento(String tipo) {
@@ -81,6 +97,23 @@ public class AbbonamentoController {
             case "10ingressi" -> 2500;
             default -> 0;
         };
+    }
 
+    public static void apriNelBrowser(String url) throws Exception {
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            Desktop.getDesktop().browse(new URI(url));
+        } else {
+            String os = System.getProperty("os.name").toLowerCase();
+
+            if (os.contains("linux")) {
+                Runtime.getRuntime().exec(new String[]{"xdg-open", url});
+            } else if (os.contains("mac")) {
+                Runtime.getRuntime().exec(new String[]{"open", url});
+            } else if (os.contains("win")) {
+                Runtime.getRuntime().exec(new String[]{"rundll32", "url.dll,FileProtocolHandler", url});
+            } else {
+                throw new UnsupportedOperationException("Apertura browser non supportata su questo sistema operativo.");
+            }
+        }
     }
 }

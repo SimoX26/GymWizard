@@ -10,9 +10,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-import java.awt.*;
-import java.net.URI;
-
 public class RiepilogoOrdineGUIController extends AbstractGUIController{
 
     private String tipo;
@@ -52,16 +49,24 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
         System.out.println("PAGAMENTO button clicked.");
 
         int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
+
         try {
             PagamentoController paypal = new PagamentoController();
             String url = paypal.creaOrdine(prezzo);
-            Desktop.getDesktop().browse(new URI(url));
-        } catch (Exception e) {
-            this.showError("Errore", "Errore durante l'avvio del pagamento." + e.getMessage());
-        }
 
-        this.showPopup("Pagamento in attesa", null, "Verifica lo stato del pagamento una volta completato su PayPal.");
+            AbbonamentoController.apriNelBrowser(url); // Apre il broswer di sistema in maniera compatibile
+
+            AbbonamentoController.aggiungiAbbonamento(tipo, "Pagamento mock");
+
+            this.showPopup("Pagamento in attesa", null, "Verifica lo stato del pagamento nel browser.");
+            this.showPopup("IGNORARE PAGAMENTO", null, "Per una questione dimostrativa abbiamo bypassato il pagamento.\n" +
+                    "é stato effettuato correttamente l'abbonamento selezionato.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.showError("Errore", "Errore durante l'avvio del pagamento.\n" + e.getMessage());
+        }
     }
+
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {

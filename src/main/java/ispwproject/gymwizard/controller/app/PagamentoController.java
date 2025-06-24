@@ -75,8 +75,4 @@ public class PagamentoController {
         int end = response.body().indexOf("\"", index + 8);
         return response.body().substring(index + 8, end).replace("\\u0026", "&");
     }
-
-    public void creaOrdineMock(int prezzoCentesimi){
-
-    }
 }

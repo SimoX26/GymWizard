@@ -64,4 +64,20 @@ public class Abbonamento {
     public void setStato(String stato) {
         this.stato = stato;
     }
+
+    public int getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(int idUtente) {
+        this.idUtente = idUtente;
+    }
+
+    public String getRiferimentoPagamento() {
+        return riferimentoPagamento;
+    }
+
+    public void setRiferimentoPagamento(String riferimentoPagamento) {
+        this.riferimentoPagamento = riferimentoPagamento;
+    }
 }
