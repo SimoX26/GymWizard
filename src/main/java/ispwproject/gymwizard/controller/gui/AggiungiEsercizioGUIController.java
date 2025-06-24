@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
@@ -26,7 +27,12 @@ public class AggiungiEsercizioGUIController extends AbstractGUIController{
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", backEvent);
+        if(SessionManager.getInstance().getAttributo("homePage").equals("/views/DashboardTrainerView.fxml")){
+            this.switchScene("/views/ListaClientiView.fxml", backEvent);
+
+        }else{
+            this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), backEvent);
+        }
     }
 
     @FXML
@@ -39,7 +45,7 @@ public class AggiungiEsercizioGUIController extends AbstractGUIController{
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         System.out.println("HOME button clicked.");
-        this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 
 

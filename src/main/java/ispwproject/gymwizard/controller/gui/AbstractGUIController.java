@@ -63,7 +63,7 @@ public abstract class AbstractGUIController {
     }
 
     protected boolean logout() {
-        SessionManager.getInstance().clearAll();
+        SessionManager.getInstance().clearAll(); // Pulire tutti i dati della sessione precedente
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conferma Logout");
         alert.setHeaderText("Vuoi effettuare il logout?");
