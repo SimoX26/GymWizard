@@ -6,14 +6,19 @@ import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.HBox;
 
 public class VisualizzaAttivitaGUIController extends AbstractGUIController{
 
     @FXML
     private Label name, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
+
+    @FXML
+    private HBox HBoxBtn;
 
     @FXML
     AnchorPane anchorPane;
@@ -35,12 +40,36 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
         } else {
             showError("ERRORE!", "Nessuna attività selezionata trovata nella sessione.");
         }
+
+        if("/views/DashboardClienteView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))){
+            Button contatta = new Button("CONTATTA TRAINER");
+            Button prenota = new Button("PRENOTA");
+
+            contatta.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
+            prenota.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
+
+            contatta.setOnAction(this::handleContatta);
+            prenota.setOnAction(this::handlePrenota);
+
+            HBoxBtn.getChildren().add(contatta);
+            HBoxBtn.getChildren().add(prenota);
+        }
     }
 
     @FXML
-    public void handlePrenota() throws DAOException {
+    public void handleContatta(ActionEvent event) {
+        System.out.println("CONTATTA button clicked.");
+        this.switchScene("/views/ContattaTrainerView.fxml", event);
+    }
+
+    @FXML
+    public void handlePrenota(ActionEvent event){
         System.out.println("PRENOTA button clicked.");
-        AttivitaController.prenotaAttivita((Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata"));
+        try {
+            AttivitaController.prenotaAttivita((Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata"));
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        }
         this.showPopup("Attivita prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
     }
 

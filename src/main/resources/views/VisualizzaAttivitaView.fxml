@@ -103,17 +103,6 @@
                  </Label>
              </VBox>
          </HBox>
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
-             <Button fx:id="contattaTrainer" prefHeight="50" prefWidth="210.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CONTATTA TRAINER">
-                 <font>
-                     <Font size="14.0" />
-                 </font>
-             </Button>
-             <Button onAction="#handlePrenota" prefHeight="50" prefWidth="210.0" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA">
-                 <font>
-                     <Font size="14.0" />
-                 </font>
-             </Button>
-         </HBox>
+         <HBox fx:id="HBoxBtn"  alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0"/>
     </VBox>
 </AnchorPane>
