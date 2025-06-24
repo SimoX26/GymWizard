@@ -52,7 +52,7 @@ public class AbbonamentoDAO {
         return abbonamento;
     }
 
-    public boolean inserisciAbbonamento(Abbonamento abbonamento) {
+    public void inserisciAbbonamento(Abbonamento abbonamento) {
         String query = """
         INSERT INTO Abbonamento (id_utente, tipo, data_inizio, data_fine, stato, riferimento_pagamento)
         VALUES (?, ?, ?, ?, ?, ?)
@@ -69,11 +69,9 @@ public class AbbonamentoDAO {
             stmt.setString(6, abbonamento.getRiferimentoPagamento());
 
             int rowsInserted = stmt.executeUpdate();
-            return rowsInserted > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
     }
 
