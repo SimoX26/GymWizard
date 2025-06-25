@@ -5,7 +5,10 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-public class AggiungiEsercizioGUIController  extends AbstractGUIController{
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AggiungiEsercizioGUIController extends AbstractGUIController{
 
     @FXML
     private AnchorPane anchorPane;
@@ -38,4 +41,6 @@ public class AggiungiEsercizioGUIController  extends AbstractGUIController{
         System.out.println("HOME button clicked.");
         this.switchScene("/views/DashboardClienteView.fxml", homeEvent);
     }
+
+
 }

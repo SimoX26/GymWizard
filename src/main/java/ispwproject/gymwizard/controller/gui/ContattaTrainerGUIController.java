@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ChatGUIController extends AbstractGUIController{
+public class ContattaTrainerGUIController extends AbstractGUIController{
 
     @FXML private TextField inputField;
     @FXML private Button sendBtn;
@@ -40,24 +40,25 @@ public class ChatGUIController extends AbstractGUIController{
 
     public void onBackClick(ActionEvent event) {
         System.out.println("BACK button clicked.");
-        switchScene("/views/ListaChatView.fxml", event);
+        switchScene("/views/VisualizzaAttivitaView.fxml", event);
     }
 
     public void onHelpClick(ActionEvent event) {
         System.out.println("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
-        alert.setHeaderText("Chat");
+        alert.setHeaderText("Chat Trainer");
         alert.setContentText("Scrivi un messaggio nel campo in basso e premi INVIA.");
         alert.showAndWait();
     }
 
     public void onHomeClick(ActionEvent event) {
         System.out.println("HOME button clicked.");
+        switchScene("/views/DashboardClienteView.fxml", event);
     }
 
 
-  //  public void initialize(URL location, ResourceBundle resources) {
+    //  public void initialize(URL location, ResourceBundle resources) {
 
 
 }
