@@ -12,6 +12,7 @@ module ispwproject.gymwizard {
     exports ispwproject.gymwizard.model;
     exports ispwproject.gymwizard.util.DAO;
     exports ispwproject.gymwizard.util.exception;
+    exports ispwproject.gymwizard.util.bean;
 
     opens ispwproject.gymwizard.controller to javafx.fxml;
     opens ispwproject.gymwizard.controller.gui to javafx.fxml;

@@ -1,5 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
+import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
+import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
@@ -9,7 +11,7 @@ public class DashboardAdminCLIController{
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void start() throws DAOException {
+    public static void start() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
         // Messaggio di benvenuto
         String username = SessionManager.getInstance().getAttributo("utente").toString();
         SessionManager.getInstance().setAttributo("homePage", "Admin");
@@ -17,7 +19,7 @@ public class DashboardAdminCLIController{
         menu();
     }
 
-    public static void menu() throws DAOException {
+    public static void menu() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
         while (true) {
             System.out.println("""
             \n🛠️ DASHBOARD AMMINISTRATORE:
@@ -48,7 +50,7 @@ public class DashboardAdminCLIController{
         }
     }
 
-    private static void onGestioneListino() throws DAOException {
+    private static void onGestioneListino() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
        new AttivitaCLIController().start();
     }
 

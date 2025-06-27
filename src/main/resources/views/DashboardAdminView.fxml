@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style=" -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardAdminGUIController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style=" -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardAdminGUIController">
     <!-- Pannello principale -->
-    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+    <VBox alignment="CENTER" layoutX="5.0" layoutY="234.0" spacing="20" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="4.599999999999909" AnchorPane.topAnchor="234.0">
         <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;">
              <font>
-                <Font size="28.0"/>
+                <Font size="28.0" />
              </font></Label>
         <Button onAction="#onListinoAttivitaClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="LISTINO ATTIVITÀ">
              <font>

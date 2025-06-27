@@ -4,8 +4,10 @@ import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.DAO.AttivitaDAO;
 import ispwproject.gymwizard.util.DAO.PrenotazioneDAO;
+import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,14 +23,26 @@ public class AttivitaController {
         return AttivitaDAO.getInstance().getAllDisponibili();
     }
 
-    public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName) throws DAOException {
+    public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
+            throws DAOException, AttivitaDuplicataException {
+
+        // Controllo duplicato
+        if (AttivitaDAO.getInstance().existsAttivita(nome, data, oraInizio)) {
+            throw new AttivitaDuplicataException(nome);
+        }
+
         Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
         AttivitaDAO.getInstance().inserisciAttivita(nuova);
     }
 
-    public static void prenotaAttivita(Attivita attivita) throws DAOException {
+    public static void prenotaAttivita(Attivita attivita) throws DAOException, AttivitaPienaException {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
+
         if (utente != null) {
+            if (attivita.getPostiDisponibili() <= 0) {
+                throw new AttivitaPienaException(attivita.getNome());
+            }
+
             int idUtente = utente.getId();
             System.out.println("ID utente loggato: " + idUtente);
             PrenotazioneDAO.getInstance().add(attivita.getId(), idUtente);
@@ -36,4 +50,6 @@ public class AttivitaController {
             System.out.println("Nessun utente loggato.");
         }
     }
+
 }
+

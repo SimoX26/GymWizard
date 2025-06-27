@@ -1,6 +1,8 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
+import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
+import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.time.LocalDate;
@@ -10,7 +12,7 @@ import java.util.Scanner;
 public class CreaAttivitaCLIController {
     private final Scanner scanner = new Scanner(System.in);
 
-    public void start() throws DAOException {
+    public void start() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
         System.out.println("\n=== CREA NUOVA ATTIVITÀ ===");
 
         System.out.print("Nome attività: ");

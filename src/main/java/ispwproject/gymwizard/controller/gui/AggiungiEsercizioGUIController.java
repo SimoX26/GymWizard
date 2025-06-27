@@ -6,9 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class AggiungiEsercizioGUIController extends AbstractGUIController{
 
     @FXML

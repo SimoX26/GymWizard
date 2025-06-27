@@ -4,6 +4,8 @@ import ispwproject.gymwizard.controller.app.ReportStatisticheController;
 import ispwproject.gymwizard.util.bean.PagamentoBean;
 import ispwproject.gymwizard.util.bean.PrenotazioneBean;
 import ispwproject.gymwizard.util.bean.UtenteAttivoBean;
+import ispwproject.gymwizard.util.singleton.SessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -65,6 +67,29 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
         pagamentiTable.getItems().setAll(pagamenti);
         prenotazioniTable.getItems().setAll(prenotazioni);
         utentiAttiviTable.getItems().setAll(utenti);
+    }
+
+    public void onBackClick(ActionEvent event) {
+        System.out.println("BACK button clicked.");
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"),event);
+    }
+
+    @FXML
+    public void onHelpClick() {
+        System.out.println("HELP button clicked.");
+        this.showPopup("Guida Inerfaccia", "Report e statistiche", """
+                Questa sezione ti permette di monitorare l'andamento dell'attività della palestra in tempo reale.
+                Cosa puoi visualizzare:
+                - Storico Pagamenti
+                - Storico Prenotazioni
+                - Utenti Attivi
+                """);
+    }
+
+    @FXML
+    public void onHomeClick(ActionEvent event) {
+        System.out.println("HOME button clicked.");
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), event);
     }
 
 }

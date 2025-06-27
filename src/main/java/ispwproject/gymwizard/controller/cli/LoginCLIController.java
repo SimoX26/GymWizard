@@ -1,8 +1,12 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.LoginController;
+import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
+import ispwproject.gymwizard.util.exception.AttivitaPienaException;
+import ispwproject.gymwizard.util.exception.CredenzialiException;
 import ispwproject.gymwizard.util.exception.DAOException;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class LoginCLIController {
@@ -40,12 +44,12 @@ public class LoginCLIController {
                     System.out.println("✅ Login effettuato! Benvenuto Admin.");
                     DashboardAdminCLIController.start();
                 }
-                case CREDENZIALI_INVALIDE -> System.out.println("❌ Credenziali non valide.");
-                case ERRORE -> System.out.println("❌ Errore imprevisto durante il login.");
             }
 
         } catch (DAOException e) {
             System.out.println("❌ Errore di accesso al database: " + e.getMessage());
+        } catch (AttivitaDuplicataException | AttivitaPienaException | SQLException | CredenzialiException e) {
+            throw new RuntimeException(e);
         }
     }
 }

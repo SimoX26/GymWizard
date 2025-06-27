@@ -4,6 +4,8 @@ import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,4 +75,28 @@ public class AttivitaDAO {
             throw new DAOException("Errore durante l'inserimento dell'attività", e);
         }
     }
+
+    public boolean existsAttivita(String nome, LocalDate data, LocalTime oraInizio) throws DAOException {
+        String query = "SELECT COUNT(*) FROM Attivita WHERE nome = ? AND data = ? AND ora_inizio = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, nome);
+            ps.setDate(2, Date.valueOf(data));
+            ps.setTime(3, Time.valueOf(oraInizio));
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Errore durante il controllo attività duplicata: " + e.getMessage(), e);
+        }
+
+        return false;
+    }
+
 }

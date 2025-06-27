@@ -10,40 +10,40 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style=" -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.InviaComunicazioniGUIController">
+<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.InviaComunicazioniGUIController">
 
-     <!-- Titolo -->
-     <Label text="COMUNICAZIONE GLOBALE" textFill="WHITE">
-      <font>
-         <Font name="System Bold" size="26.0" />
-      </font>
-      <padding>
-         <Insets left="30.0" top="25.0" />
-      </padding>
-   </Label>
-
-    <!-- Intestazione -->
-    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="20">
-        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
-        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
-    </HBox>
+    <!-- Titolo -->
+    <Label text="COMUNICAZIONE GLOBALE" textFill="WHITE">
+        <font>
+            <Font name="System Bold" size="26.0" />
+        </font>
+        <padding>
+            <Insets left="30.0" top="25.0" />
+        </padding>
+    </Label>
 
     <!-- Contenuto centrale -->
-    <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="80" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="90">
-
+    <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.bottomAnchor="120" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="90">
         <!-- Area messaggi -->
-        <TextArea fx:id="areaMessaggi" editable="false" style="-fx-text-fill: white; -fx-control-inner-background: #1E1E1E;" wrapText="true" VBox.vgrow="ALWAYS" />
+        <TextArea fx:id="areaMessaggi" editable="false" prefHeight="406.0" prefWidth="764.0" style="-fx-text-fill: white; -fx-control-inner-background: #1E1E1E;" wrapText="true" VBox.vgrow="ALWAYS" />
     </VBox>
 
-    <!-- Input e pulsanti -->
-    <HBox alignment="CENTER" spacing="10" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30">
+    <!-- Input e pulsanti di invio -->
+    <HBox alignment="CENTER" spacing="10" AnchorPane.bottomAnchor="70" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30">
         <TextField fx:id="inputMessaggio" promptText="Scrivi qui il tuo messaggio..." style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
-         <font>
-            <Font size="14.0" />
-         </font></TextField>
+            <font>
+                <Font size="14.0" />
+            </font>
+        </TextField>
         <Button fx:id="sendBtn" onAction="#handleSendMessage" style="-fx-font-size: 20; -fx-background-color: green; -fx-text-fill: white;" text="↪" />
         <Button fx:id="plusBtn" style="-fx-font-size: 20; -fx-background-color: green; -fx-text-fill: white;" text="+" />
+    </HBox>
+
+    <!-- Pulsanti Back, Help e Home centrati in basso -->
+    <HBox alignment="CENTER" layoutX="9.6" prefHeight="89.0" prefWidth="1070.0" spacing="40" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 30; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
 </AnchorPane>

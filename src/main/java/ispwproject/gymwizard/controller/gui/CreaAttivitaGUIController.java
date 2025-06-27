@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
+import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
@@ -12,7 +13,7 @@ import javafx.scene.layout.Background;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class CreaAttivitaGUIController extends AbstractGUIController{
+public class CreaAttivitaGUIController extends AbstractGUIController {
 
     @FXML
     private AnchorPane anchorPane;
@@ -44,25 +45,30 @@ public class CreaAttivitaGUIController extends AbstractGUIController{
 
             new AttivitaController().creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
-            showPopup("Successo","Attività creata", "Attività creata con successo!");
+            showPopup("Successo", "Attività creata", "Attività creata con successo!");
+            switchScene("/views/ListinoAttivitaView.fxml", null);
+
+        } catch (AttivitaDuplicataException e) {
+            showPopup("Attività Duplicata", "Errore", e.getMessage());
 
         } catch (DAOException e) {
-            this.showError("Errore durante il salvataggio: ", e.getMessage());
+            showError("Errore durante il salvataggio:", e.getMessage());
+
         } catch (Exception e) {
-            this. showError("Dati non validi: ", e.getMessage());
+            showError("Dati non validi:", e.getMessage());
         }
     }
 
     @FXML
     public void onBackClick(ActionEvent event) {
         System.out.println("BACK button clicked.");
-        this.switchScene("/views/ListinoAttivitaView.fxml",event);
+        this.switchScene("/views/ListinoAttivitaView.fxml", event);
     }
 
     @FXML
     public void onHelpClick() {
         System.out.println("HELP button clicked.");
-        this.showPopup("Guida Inerfaccia", "Crea Attività", "Compila tutti i campi per creare una nuova attività. " +
+        this.showPopup("Guida Interfaccia", "Crea Attività", "Compila tutti i campi per creare una nuova attività. " +
                 "Assicurati di inserire un nome, selezionare un giorno e un'ora, e fornire una descrizione.");
     }
 

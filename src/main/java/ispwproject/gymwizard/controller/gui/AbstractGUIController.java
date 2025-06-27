@@ -69,11 +69,7 @@ public abstract class AbstractGUIController {
         alert.setHeaderText("Vuoi effettuare il logout?");
         alert.setContentText("Verrai riportato alla schermata iniziale.");
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            return true;
-        }else{
-            return false;
-        }
+        return result.isPresent() && result.get() == ButtonType.OK;
     }
 
 

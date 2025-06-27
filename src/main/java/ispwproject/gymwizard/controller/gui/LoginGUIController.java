@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.LoginController;
+import ispwproject.gymwizard.util.exception.CredenzialiException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,11 +43,16 @@ public class LoginGUIController extends AbstractGUIController {
                 case SUCCESSO_CLIENTE -> switchScene("/views/DashboardClienteView.fxml", mainPageEvent);
                 case SUCCESSO_TRAINER -> switchScene("/views/DashboardTrainerView.fxml", mainPageEvent);
                 case SUCCESSO_ADMIN -> switchScene("/views/DashboardAdminView.fxml", mainPageEvent);
-                case CREDENZIALI_INVALIDE -> this.showError("Login fallito", "Credenziali non valide.");
-                case ERRORE -> this.showError("Errore", "Errore sconosciuto durante il login.");
             }
+
+        } catch (CredenzialiException e) {
+            this.showPopup("Login fallito", "Credenziali non valide", e.getMessage());
+
         } catch (DAOException e) {
             this.showError("Errore DB", e.getMessage());
+
+        } catch (Exception e) {
+            this.showError("Errore", "Errore imprevisto: " + e.getMessage());
         }
     }
 }

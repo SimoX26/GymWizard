@@ -2,6 +2,8 @@ package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
+import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
@@ -12,7 +14,7 @@ public class AttivitaCLIController {
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public void start() throws DAOException {
+    public void start() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
         List<Attivita> attivitaList = AttivitaController.getAttivitaDisponibili();
 
         if(SessionManager.getInstance().getAttributo("homePage").equals("Admin")){

@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
@@ -69,6 +70,8 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
             AttivitaController.prenotaAttivita((Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata"));
         } catch (DAOException e) {
             throw new RuntimeException(e);
+        } catch (AttivitaPienaException e) {
+            throw new RuntimeException(e);
         }
         this.showPopup("Attivita prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
     }
@@ -90,4 +93,9 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
         System.out.println("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
+
+   /* public void handleContatta(ActionEvent actionEvent) {
+        System.out.println("CONTATTA button clicked.");
+        this.switchScene("/views/ContattaTrainerView.fxml", actionEvent);
+    }*/
 }

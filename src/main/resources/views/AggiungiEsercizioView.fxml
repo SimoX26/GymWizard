@@ -18,14 +18,14 @@
     </Label>
 
     <!-- Pulsanti in alto a destra -->
-    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
+    <HBox alignment="CENTER_RIGHT" layoutX="406.0" layoutY="569.0" spacing="20" AnchorPane.rightAnchor="405.20000000000005" AnchorPane.topAnchor="569.0">
         <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
         <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
         <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenitore centrale -->
-    <VBox alignment="TOP_CENTER" spacing="60.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="120.0">
+    <VBox alignment="TOP_CENTER" layoutX="85.0" layoutY="205.0" spacing="60.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="84.59999999999991" AnchorPane.topAnchor="205.0">
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
             <VBox alignment="TOP_RIGHT" prefWidth="300.0" spacing="42.0">
                 <Label style="-fx-text-fill: white;" text="Nome esercizio">
