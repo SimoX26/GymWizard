@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -12,32 +11,23 @@
 
    <!-- Contenitore verticale centrato -->
    <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-      <VBox alignment="CENTER_LEFT" maxWidth="130.0" prefHeight="200.0" spacing="10">
-         <RadioButton mnemonicParsing="false" selected="true" text="GUI VERSION" textFill="WHITE">
+      <VBox alignment="CENTER_LEFT" maxWidth="150.0" prefHeight="200.0" spacing="10">
+         <RadioButton mnemonicParsing="false" selected="true" text="GUI VERSION" textFill="WHITE" toggleGroup="$version">
             <font>
-               <Font size="15.0"/>
+               <Font size="15.0" />
             </font>
             <toggleGroup>
-               <ToggleGroup fx:id="version"/>
+               <ToggleGroup fx:id="version" />
             </toggleGroup>
          </RadioButton>
          <RadioButton mnemonicParsing="false" text="CLI VERSION" textFill="WHITE" toggleGroup="$version">
             <font>
-               <Font size="15.0"/>
+               <Font size="15.0" />
             </font>
          </RadioButton>
-         <Separator/>
-         <RadioButton mnemonicParsing="false" selected="true" text="DBMS" textFill="WHITE">
+         <RadioButton mnemonicParsing="false" text="DEMO VERSION" textFill="WHITE" toggleGroup="$version">
             <font>
-               <Font size="15.0"/>
-            </font>
-            <toggleGroup>
-               <ToggleGroup fx:id="memory"/>
-            </toggleGroup>
-         </RadioButton>
-         <RadioButton mnemonicParsing="false" text="FILE SYSTEM" textFill="WHITE" toggleGroup="$memory">
-            <font>
-               <Font size="15.0"/>
+               <Font size="15.0" />
             </font>
          </RadioButton>
       </VBox>

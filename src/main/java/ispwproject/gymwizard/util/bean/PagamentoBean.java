@@ -1,25 +1,36 @@
 package ispwproject.gymwizard.util.bean;
-
 public class PagamentoBean {
-    private final String data;
-    private final String importo;
-    private final String metodo;
+    private final String tipo;
+    private final String data_inizio;
+    private final String data_fine;
+    private final String stato;
+    private final String riferimento;
 
-    public PagamentoBean(String data, String importo, String metodo) {
-        this.data = data;
-        this.importo = importo;
-        this.metodo = metodo;
+    public PagamentoBean(String tipo, String data_inizio, String data_fine, String stato, String riferimento) {
+        this.tipo = tipo;
+        this.data_inizio = data_inizio;
+        this.data_fine = data_fine;
+        this.stato = stato;
+        this.riferimento = riferimento;
     }
 
-    public String getData() {
-        return data;
+    public String getTipo() {
+        return tipo;
     }
 
-    public String getImporto() {
-        return importo;
+    public String getData_inizio() {
+        return data_inizio;
     }
 
-    public String getMetodo() {
-        return metodo;
+    public String getData_fine() {
+        return data_fine;
+    }
+
+    public String getStato() {
+        return stato;
+    }
+
+    public String getRiferimento() {
+        return riferimento;
     }
 }

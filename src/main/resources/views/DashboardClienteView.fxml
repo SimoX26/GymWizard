@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardClienteGUIController">
     <!-- Pannello principale -->
-    <VBox alignment="CENTER" layoutX="105.0" layoutY="194.0" spacing="20" AnchorPane.leftAnchor="105.0" AnchorPane.rightAnchor="104.59999999999991" AnchorPane.topAnchor="194.0">
+    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="140.0">
          <Button onAction="#onSchedaBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="LA TUA SCHEDA">
             <font>
                <Font size="14.0" />
@@ -38,7 +38,7 @@
      </Label>
 
      <!-- Intestazione inferiore -->
-     <HBox alignment="CENTER_RIGHT" layoutX="435.0" layoutY="577.0" spacing="40" AnchorPane.rightAnchor="435.4" AnchorPane.topAnchor="577.0">
+     <HBox alignment="CENTER_RIGHT" spacing="40" style="-fx-background-color: rgba(255, 255, 255, 0.3); -fx-background-radius: 10; -fx-padding: 0 10 0 10;" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
          <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
          <Button onAction="#onLogoutClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
      </HBox>

@@ -3,7 +3,6 @@ package ispwproject.gymwizard.controller.app;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.DAO.AbbonamentoDAO;
 import ispwproject.gymwizard.model.Abbonamento;
-import ispwproject.gymwizard.util.exception.AbbonamentoScadutoException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.awt.*;
@@ -16,28 +15,7 @@ public class AbbonamentoController {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
         int idUtente = utente.getId();
 
-        Abbonamento abbonamento = AbbonamentoDAO.getInstance().trovaAbbonamentoAttivoPerUtente(idUtente);
-
-        // Aggiorna anche lo stato nella sessione, se vuoi usare checkAbbonamentoAttivo() altrove
-        if (abbonamento == null || !"attivo".equalsIgnoreCase(abbonamento.getStato())) {
-            SessionManager.getInstance().setAttributo("abbonamentoAttivo", false);
-        } else {
-            SessionManager.getInstance().setAttributo("abbonamentoAttivo", true);
-        }
-
-        return abbonamento;
-    }
-
-    // Versione alternativa con eccezione, da usare dove vuoi forzare il controllo
-    public static Abbonamento getDatiAbbonamentoOrThrow() throws AbbonamentoScadutoException {
-        Abbonamento abbonamento = getDatiAbbonamento();
-        Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
-
-        if (abbonamento == null || !"attivo".equalsIgnoreCase(abbonamento.getStato())) {
-            throw new AbbonamentoScadutoException(utente.getUsername());
-        }
-
-        return abbonamento;
+        return AbbonamentoDAO.getInstance().trovaAbbonamentoAttivoPerUtente(idUtente);
     }
 
     public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
@@ -139,4 +117,3 @@ public class AbbonamentoController {
         }
     }
 }
-

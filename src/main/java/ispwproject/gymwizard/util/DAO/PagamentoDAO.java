@@ -13,10 +13,10 @@ public class PagamentoDAO {
         List<PagamentoBean> lista = new ArrayList<>();
 
         String query = """
-            SELECT u.username, a.data_rinnovo, a.prezzo, a.riferimento_pagamento
+            SELECT u.username, a.tipo, a.data_inizio, a.data_fine, a.stato, a.riferimento_pagamento
             FROM Abbonamento a
             JOIN Utente u ON a.id_utente = u.id
-            ORDER BY a.data_rinnovo DESC
+            ORDER BY a.data_inizio DESC
         """;
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -24,11 +24,13 @@ public class PagamentoDAO {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                String data = rs.getString("data_rinnovo");
-                String importo = rs.getString("prezzo");
-                String metodo = rs.getString("riferimento_pagamento");
+                String tipo = rs.getString("tipo");
+                String data_inizio = rs.getString("data_inizio");
+                String data_fine = rs.getString("data_fine");
+                String stato = rs.getString("stato");
+                String riferimento = rs.getString("riferimento_pagamento");
 
-                lista.add(new PagamentoBean(data, importo, metodo));
+                lista.add(new PagamentoBean(tipo, data_inizio, data_fine, stato, riferimento));
             }
 
         } catch (SQLException e) {

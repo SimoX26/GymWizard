@@ -68,9 +68,7 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
         System.out.println("PRENOTA button clicked.");
         try {
             AttivitaController.prenotaAttivita((Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata"));
-        } catch (DAOException e) {
-            throw new RuntimeException(e);
-        } catch (AttivitaPienaException e) {
+        } catch (DAOException | AttivitaPienaException e) {
             throw new RuntimeException(e);
         }
         this.showPopup("Attivita prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");

@@ -20,14 +20,14 @@
    </Label>
 
     <!-- Pulsanti in alto a destra -->
-    <HBox alignment="CENTER_RIGHT" layoutX="405.0" layoutY="612.0" spacing="20" AnchorPane.rightAnchor="406.20000000000005" AnchorPane.topAnchor="612.0">
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
         <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
         <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
         <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenitore centrale -->
-    <VBox alignment="TOP_CENTER" layoutX="85.0" layoutY="113.0" spacing="60.0" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="84.59999999999991" AnchorPane.topAnchor="113.0">
+    <VBox alignment="TOP_CENTER" spacing="60.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="140.0">
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
             <VBox alignment="TOP_RIGHT" prefWidth="300.0" spacing="42.0">
                 <Label style="-fx-text-fill: white;" text="Nome Attività">
@@ -94,7 +94,7 @@
         </HBox>
 
         <!-- Pulsante Salva -->
-        <Button onAction="#onCreaAttivita" prefHeight="29.0" prefWidth="89.0" style="-fx-cursor: hand; -fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Salva">
+        <Button onAction="#onCreaAttivita" style="-fx-cursor: hand; -fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Salva">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>

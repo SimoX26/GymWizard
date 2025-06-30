@@ -10,12 +10,8 @@ import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ReportStatisticheController {
-
-    private static final Logger LOGGER = Logger.getLogger(ReportStatisticheController.class.getName());
 
     private final PagamentoDAO pagamentoDAO = new PagamentoDAO();
     private final PrenotazioneDAO prenotazioneDAO = PrenotazioneDAO.getInstance();
@@ -25,7 +21,7 @@ public class ReportStatisticheController {
         try {
             return pagamentoDAO.getStoricoPagamenti();
         } catch (DAOException e) {
-            LOGGER.log(Level.SEVERE, "Errore nel recupero dello storico pagamenti", e);
+            e.printStackTrace();
             return Collections.emptyList();
         }
     }
@@ -34,7 +30,7 @@ public class ReportStatisticheController {
         try {
             return prenotazioneDAO.getStoricoPrenotazioni();
         } catch (DAOException e) {
-            LOGGER.log(Level.SEVERE, "Errore nel recupero dello storico prenotazioni", e);
+            e.printStackTrace();
             return Collections.emptyList();
         }
     }
@@ -43,8 +39,9 @@ public class ReportStatisticheController {
         try {
             return utenteDAO.getUtentiAttivi();
         } catch (DAOException e) {
-            LOGGER.log(Level.SEVERE, "Errore nel recupero degli utenti attivi", e);
+            e.printStackTrace();
             return Collections.emptyList();
         }
     }
 }
+
