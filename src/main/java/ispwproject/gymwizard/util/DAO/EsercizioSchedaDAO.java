@@ -9,6 +9,20 @@ import java.util.List;
 
 public class EsercizioSchedaDAO {
 
+    // 🔒 Singleton instance
+    private static EsercizioSchedaDAO instance;
+
+    // 🔐 Costruttore privato
+    public EsercizioSchedaDAO() {}
+
+    // 🚪 Metodo di accesso pubblico
+    public static synchronized EsercizioSchedaDAO getInstance() {
+        if (instance == null) {
+            instance = new EsercizioSchedaDAO();
+        }
+        return instance;
+    }
+
     public List<EsercizioScheda> getEserciziByClientId(int idCliente) throws DAOException {
         List<EsercizioScheda> esercizi = new ArrayList<>();
 
@@ -17,7 +31,7 @@ public class EsercizioSchedaDAO {
         FROM esercizio_scheda es
         JOIN scheda s ON es.id_scheda = s.id
         WHERE s.id_cliente = ?
-    """;
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -28,9 +42,8 @@ public class EsercizioSchedaDAO {
                 while (rs.next()) {
                     EsercizioScheda es = new EsercizioScheda();
                     es.setId(rs.getInt("id"));
-                    es.setId_scheda(rs.getInt("id_scheda"));
-                    es.setId_esercizio(rs.getInt("id_esercizio"));
-                    es.setGiorno_settimana(rs.getString("giorno_settimana"));
+                    es.setIdScheda(rs.getInt("id_scheda"));
+                    es.setNomeEsercizio(rs.getString("nome_esercizio"));
                     es.setSerie(rs.getInt("serie"));
                     es.setRipetizioni(rs.getInt("ripetizioni"));
                     es.setNote(rs.getString("note"));
@@ -45,26 +58,79 @@ public class EsercizioSchedaDAO {
         return esercizi;
     }
 
+    public void insertEsercizio(EsercizioScheda esercizio) {
+        String query = "INSERT INTO EsercizioScheda (id_scheda, nome_esercizio, serie, ripetizioni, note) VALUES (?, ?, ?, ?, ?)";
 
-    public void insertEsercizio(EsercizioScheda esercizio) throws DAOException {
-        String query = "INSERT INTO esercizio_scheda (id_scheda, id_esercizio, giorno_settimana, serie, ripetizioni, note) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setInt(1, esercizio.getIdScheda());
+            stmt.setString(2, esercizio.getNomeEsercizio());
+            stmt.setInt(3, esercizio.getSerie());
+            stmt.setInt(4, esercizio.getRipetizioni());
+            stmt.setString(5, esercizio.getNote());
+
+            int affected = stmt.executeUpdate();
+            if (affected == 0) return;
+
+            try (ResultSet keys = stmt.getGeneratedKeys()) {
+                if (keys.next()) {
+                    esercizio.setId(keys.getInt(1));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<EsercizioScheda> getEserciziByScheda(int idScheda) {
+        List<EsercizioScheda> esercizi = new ArrayList<>();
+        String query = "SELECT * FROM EsercizioScheda WHERE id_scheda = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
-            stmt.setInt(1, esercizio.getId_scheda());
-            stmt.setInt(2, esercizio.getId_esercizio());
-            stmt.setString(3, esercizio.getGiorno_settimana());
-            stmt.setInt(4, esercizio.getSerie());
-            stmt.setInt(5, esercizio.getRipetizioni());
-            stmt.setString(6, esercizio.getNote());
+            stmt.setInt(1, idScheda);
+            ResultSet rs = stmt.executeQuery();
 
-            stmt.executeUpdate();
+            while (rs.next()) {
+                EsercizioScheda es = new EsercizioScheda(
+                        rs.getInt("id_scheda"),
+                        rs.getString("nome_esercizio"),
+                        rs.getInt("serie"),
+                        rs.getInt("ripetizioni"),
+                        rs.getString("note")
+                );
+                esercizi.add(es);
+            }
 
         } catch (SQLException e) {
-            throw new DAOException("Errore durante l'inserimento dell'esercizio nella scheda", e);
+            e.printStackTrace();
         }
+
+        return esercizi;
     }
 
-    // Aggiungibili anche: updateEsercizio, deleteEsercizio, getById se necessario
+    public boolean existsEsercizio(int idScheda, String nomeEsercizio) {
+        String query = "SELECT COUNT(*) FROM EsercizioScheda WHERE id_scheda = ? AND nome_esercizio = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, idScheda);
+            stmt.setString(2, nomeEsercizio);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

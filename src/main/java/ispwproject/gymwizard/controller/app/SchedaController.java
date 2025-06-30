@@ -14,7 +14,21 @@ public class SchedaController {
         return dao.getEserciziByClientId(idCliente);
     }
 
-    public static void aggiungiEsercizio(EsercizioScheda esercizio) throws DAOException {
-        dao.insertEsercizio(esercizio);
+    public void aggiungiEsercizio(int idScheda, String nomeEsercizio, int serie, int ripetizioni, String note)
+            throws DAOException, EsercizioDuplicatoException {
+
+        // Controllo duplicati
+        if (EsercizioSchedaDAO.getInstance().existsEsercizio(idScheda, nomeEsercizio)) {
+            throw new EsercizioDuplicatoException(nomeEsercizio);
+        }
+
+        EsercizioScheda nuovo = new EsercizioScheda(idScheda, nomeEsercizio, serie, ripetizioni, note);
+        EsercizioSchedaDAO.getInstance().insertEsercizio(nuovo);
+    }
+
+    public static class EsercizioDuplicatoException extends Exception {
+        public EsercizioDuplicatoException(String nomeEsercizio) {
+            super("L'esercizio \"" + nomeEsercizio + "\" è già presente nella scheda.");
+        }
     }
 }

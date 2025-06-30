@@ -63,16 +63,22 @@ CREATE TABLE Prenotazione (
     FOREIGN KEY (id_cliente) REFERENCES Utente(id) ON DELETE CASCADE
 );
 
-CREATE TABLE SchedaAllenamento (
+CREATE TABLE Scheda (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
-    id_trainer INT NOT NULL,
-    nome VARCHAR(100),
-    descrizione TEXT,
+    nome_esercizio VARCHAR(100),
     data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ultima_modifica TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_cliente) REFERENCES Utente(id),
-    FOREIGN KEY (id_trainer) REFERENCES Utente(id)
+    FOREIGN KEY (id_cliente) REFERENCES Utente(id)
+);
+
+CREATE TABLE EsercizioScheda (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_scheda INT NOT NULL,
+    nome_esercizio VARCHAR(100),
+    serie INT NOT NULL,
+    ripetizioni INT NOT NULL,
+    note VARCHAR(100),
+    FOREIGN KEY (id_scheda) REFERENCES Scheda(id)
 );
 
 CREATE TABLE Report (
@@ -262,17 +268,40 @@ CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY 'admin123!';
 
 GRANT EXECUTE ON PROCEDURE PalestraDB.login TO 'login'@'localhost';
 
-GRANT SELECT, INSERT ON PalestraDB.Utente TO 'cliente'@'localhost';
-GRANT SELECT, INSERT ON PalestraDB.Prenotazione TO 'cliente'@'localhost';
-GRANT SELECT, INSERT ON PalestraDB.Abbonamento TO 'cliente'@'localhost';
-GRANT SELECT ON PalestraDB.Attivita TO 'cliente'@'localhost';
-GRANT SELECT ON PalestraDB.SchedaAllenamento TO 'cliente'@'localhost';
-GRANT EXECUTE ON PROCEDURE PalestraDB.RinnovaAbbonamento TO 'cliente'@'localhost';
-GRANT EXECUTE ON PROCEDURE PalestraDB.login TO 'cliente'@'localhost';
+-- Credenziali e Utente
+GRANT SELECT ON PalestraDB.Credenziali TO 'cliente'@'localhost';
+GRANT SELECT ON PalestraDB.Utente TO 'cliente'@'localhost';
 
+-- Attività e prenotazioni
+GRANT SELECT ON PalestraDB.Attivita TO 'cliente'@'localhost';
+GRANT SELECT, INSERT ON PalestraDB.Prenotazione TO 'cliente'@'localhost';
+
+-- Abbonamenti
+GRANT SELECT, INSERT, UPDATE ON PalestraDB.Abbonamento TO 'cliente'@'localhost';
+
+-- Visualizzazione schede e esercizi
+GRANT SELECT ON PalestraDB.Scheda TO 'cliente'@'localhost';
+GRANT SELECT ON PalestraDB.EsercizioScheda TO 'cliente'@'localhost';
+
+-- Procedure
+GRANT EXECUTE ON PROCEDURE PalestraDB.login TO 'cliente'@'localhost';
+GRANT EXECUTE ON PROCEDURE PalestraDB.RinnovaAbbonamento TO 'cliente'@'localhost';
+
+
+-- Credenziali e utenti
+GRANT SELECT ON PalestraDB.Credenziali TO 'trainer'@'localhost';
 GRANT SELECT, INSERT ON PalestraDB.Utente TO 'trainer'@'localhost';
-GRANT SELECT, INSERT, UPDATE ON PalestraDB.SchedaAllenamento TO 'trainer'@'localhost';
+
+-- Schede e esercizi: pieno accesso
+GRANT SELECT, INSERT, UPDATE, DELETE ON PalestraDB.Scheda TO 'trainer'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON PalestraDB.EsercizioScheda TO 'trainer'@'localhost';
+
+-- Attività (per creazione e gestione sessioni)
+GRANT SELECT, INSERT, UPDATE ON PalestraDB.Attivita TO 'trainer'@'localhost';
+
+-- Procedure
 GRANT EXECUTE ON PROCEDURE PalestraDB.login TO 'trainer'@'localhost';
+
 
 GRANT ALL PRIVILEGES ON PalestraDB.* TO 'admin'@'localhost';
 
@@ -293,3 +322,7 @@ INSERT INTO Utente (username, email) VALUES
 ('cliente1', 'cliente1@example.com'),
 ('trainer1', 'trainer1@example.com'),
 ('admin1', 'admin1@example.com');
+
+
+INSERT INTO Scheda (id_cliente, nome_esercizio)
+VALUES (1, 'Scheda 1');

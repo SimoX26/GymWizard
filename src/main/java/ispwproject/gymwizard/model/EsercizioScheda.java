@@ -1,16 +1,24 @@
 package ispwproject.gymwizard.model;
 
 public class EsercizioScheda {
-
     private int id;
-    private int id_scheda;
-    private int id_esercizio;
-    private String giorno_settimana;
+    private int idScheda;
+    private String nomeEsercizio;
     private int serie;
     private int ripetizioni;
     private String note;
 
-    // Getter e Setter
+    public EsercizioScheda(int idScheda, String nomeEsercizio, int serie, int ripetizioni, String note) {
+        this.idScheda = idScheda;
+        this.nomeEsercizio = nomeEsercizio;
+        this.serie = serie;
+        this.ripetizioni = ripetizioni;
+        this.note = note;
+    }
+
+    public EsercizioScheda() {
+
+    }
 
     public int getId() {
         return id;
@@ -20,28 +28,20 @@ public class EsercizioScheda {
         this.id = id;
     }
 
-    public int getId_scheda() {
-        return id_scheda;
+    public int getIdScheda() {
+        return idScheda;
     }
 
-    public void setId_scheda(int id_scheda) {
-        this.id_scheda = id_scheda;
+    public void setIdScheda(int idScheda) {
+        this.idScheda = idScheda;
     }
 
-    public int getId_esercizio() {
-        return id_esercizio;
+    public String getNomeEsercizio() {
+        return nomeEsercizio;
     }
 
-    public void setId_esercizio(int id_esercizio) {
-        this.id_esercizio = id_esercizio;
-    }
-
-    public String getGiorno_settimana() {
-        return giorno_settimana;
-    }
-
-    public void setGiorno_settimana(String giorno_settimana) {
-        this.giorno_settimana = giorno_settimana;
+    public void setNomeEsercizio(String nomeEsercizio) {
+        this.nomeEsercizio = nomeEsercizio;
     }
 
     public int getSerie() {
