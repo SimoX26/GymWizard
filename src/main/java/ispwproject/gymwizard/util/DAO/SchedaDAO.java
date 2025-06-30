@@ -8,6 +8,20 @@ import java.util.List;
 
 public class SchedaDAO {
 
+    // Istanza singleton
+    private static SchedaDAO instance;
+
+    // Costruttore privato
+    private SchedaDAO() {}
+
+    // 🚪Metodo di accesso pubblico
+    public static synchronized SchedaDAO getInstance() {
+        if (instance == null) {
+            instance = new SchedaDAO();
+        }
+        return instance;
+    }
+
     public boolean insertScheda(Scheda scheda) {
         String query = "INSERT INTO Scheda (id_cliente, nome_esercizio) VALUES (?, ?)";
 
@@ -15,7 +29,7 @@ public class SchedaDAO {
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setInt(1, scheda.getIdCliente());
-            stmt.setString(2, scheda.getNomeEsercizio());
+            stmt.setString(2, scheda.getNomeScheda());
 
             int affected = stmt.executeUpdate();
             if (affected == 0) return false;

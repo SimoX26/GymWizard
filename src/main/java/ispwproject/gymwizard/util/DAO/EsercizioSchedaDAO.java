@@ -9,13 +9,13 @@ import java.util.List;
 
 public class EsercizioSchedaDAO {
 
-    // 🔒 Singleton instance
+    // Singleton instance
     private static EsercizioSchedaDAO instance;
 
-    // 🔐 Costruttore privato
+    // 🔐Costruttore privato
     public EsercizioSchedaDAO() {}
 
-    // 🚪 Metodo di accesso pubblico
+    // Metodo di accesso pubblico
     public static synchronized EsercizioSchedaDAO getInstance() {
         if (instance == null) {
             instance = new EsercizioSchedaDAO();
@@ -23,12 +23,12 @@ public class EsercizioSchedaDAO {
         return instance;
     }
 
-    public List<EsercizioScheda> getEserciziByClientId(int idCliente) throws DAOException {
+    public static List<EsercizioScheda> getEserciziByClientId(int idCliente) throws DAOException {
         List<EsercizioScheda> esercizi = new ArrayList<>();
 
         String query = """
         SELECT es.*
-        FROM esercizio_scheda es
+        FROM EsercizioScheda es
         JOIN scheda s ON es.id_scheda = s.id
         WHERE s.id_cliente = ?
         """;
