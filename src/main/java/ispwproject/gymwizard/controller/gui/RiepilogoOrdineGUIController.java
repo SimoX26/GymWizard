@@ -45,7 +45,7 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
     }
 
     @FXML
-    private void onPagamentoClick() {
+    private void onPagamentoClick(ActionEvent event) {
         System.out.println("PAGAMENTO button clicked.");
 
         int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
@@ -61,6 +61,8 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
             this.showPopup("Pagamento in attesa", null, "Verifica lo stato del pagamento nel browser.");
             this.showPopup("IGNORARE PAGAMENTO", null, "Per una questione dimostrativa abbiamo bypassato il pagamento.\n" +
                     "é stato effettuato correttamente l'abbonamento selezionato.");
+
+            this.switchScene("/views/StatoAbbonamentoView.fxml", event);
         } catch (Exception e) {
             e.printStackTrace();
             this.showError("Errore", "Errore durante l'avvio del pagamento.\n" + e.getMessage());

@@ -35,6 +35,8 @@ public class AggiungiEsercizioGUIController extends AbstractGUIController{
         String note = noteField.getText();
 
         new SchedaController().aggiungiEsercizio(nome, serie, rep, note);
+
+        this.switchScene("/views/VisualizzaSchedaView.fxml", event);
     }
 
 

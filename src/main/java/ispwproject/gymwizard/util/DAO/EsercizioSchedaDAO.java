@@ -29,7 +29,7 @@ public class EsercizioSchedaDAO {
         String query = """
         SELECT es.*
         FROM EsercizioScheda es
-        JOIN scheda s ON es.id_scheda = s.id
+        JOIN Scheda s ON es.id_scheda = s.id
         WHERE s.id_cliente = ?
         """;
 

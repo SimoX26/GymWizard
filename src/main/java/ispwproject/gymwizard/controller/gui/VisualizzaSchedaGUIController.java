@@ -65,6 +65,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
             HBoxBtn.getChildren().add(flush);
         }
 
+        // Popolamento del ComboBox
         List<Scheda> schede = SchedaController.getNomiSchedeByIdCliente();
         List<String> nomiSchede = schede.stream()
                 .map(Scheda::getNomeScheda)
@@ -72,7 +73,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
         ObservableList<String> lista = FXCollections.observableArrayList(nomiSchede);
         comboBoxSchede.setItems(lista);
 
-        // 🔽 Listener per intercettare la selezione
+        // Listener per intercettare la selezione
         comboBoxSchede.setOnAction(event -> {
             try {
                 onSchedaSelezionata(event);
@@ -81,6 +82,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
             }
         });
 
+        // Viene selezionata la prima scheda disponibile
         comboBoxSchede.setItems(lista);
         if (!lista.isEmpty()) {
             comboBoxSchede.getSelectionModel().selectFirst();
@@ -112,6 +114,14 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
 
             List<EsercizioScheda> esercizi = SchedaController.getEserciziScheda(schedaSelezionata.getId());
             ObservableList<EsercizioScheda> eserciziObs = FXCollections.observableArrayList(esercizi);
+
+            // DEBUG TEMPORANEO
+            System.out.println("Esercizi trovati: " + esercizi.size());
+            for (EsercizioScheda e : esercizi) {
+                System.out.println(" - " + e.getNomeEsercizio() + " (" + e.getSerie() + "x" + e.getRipetizioni() + ")");
+            }
+
+
             tableViewEsercizi.setItems(eserciziObs);
         }
     }
