@@ -314,10 +314,18 @@ FLUSH PRIVILEGES;
 
 INSERT INTO Credenziali (email, password_hash, ruolo) VALUES
 ('cliente1@example.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1),
+('cliente2@example.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1),
+('cliente3@example.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1),
+('cliente4@example.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1),
 ('trainer1@example.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 2),
+('trainer2@example.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 2),
 ('admin1@example.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 3);
 
 INSERT INTO Utente (username, email) VALUES
-('cliente1', 'cliente1@example.com'),
-('trainer1', 'trainer1@example.com'),
-('admin1', 'admin1@example.com');
+('cliente 1', 'cliente1@example.com'),
+('cliente 2', 'cliente2@example.com'),
+('cliente 3', 'cliente3@example.com'),
+('cliente 4', 'cliente4@example.com'),
+('trainer 1', 'trainer1@example.com'),
+('trainer 2', 'trainer2@example.com'),
+('admin 1', 'admin1@example.com');
