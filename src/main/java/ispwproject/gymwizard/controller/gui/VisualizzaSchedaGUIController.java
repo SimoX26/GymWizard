@@ -48,7 +48,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     public void initialize() throws DAOException {
         anchorPane.setBackground(new Background(this.background()));
 
-        Utente u = new Utente();
+        Utente u;
 
         if("/views/DashboardTrainerView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))){
             Button nuova = new Button("CREA NUOVA SCHEDA");
