@@ -13,7 +13,7 @@ import java.util.List;
 public class SchedaController {
 
     public static List<EsercizioScheda> getEserciziScheda(int idScheda) throws DAOException {
-        return EsercizioSchedaDAO.getEserciziByClientId(idScheda);
+        return EsercizioSchedaDAO.getEserciziByScheda(idScheda);
     }
 
     public static List<Scheda> getNomiSchedeByIdCliente(){

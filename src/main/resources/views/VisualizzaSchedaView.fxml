@@ -25,7 +25,7 @@
         <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
        <VBox AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="120.0">
-           <TableView fx:id="tableViewEsercizi" prefHeight="500.0" prefWidth="200.0">
+           <TableView fx:id="tableViewEsercizi" prefHeight="400.0" prefWidth="200.0">
                <columns>
                    <TableColumn fx:id="colNome" prefWidth="436.5" resizable="false" text="Esercizio" />
                    <TableColumn fx:id="colSerie" minWidth="0.0" prefWidth="212.0" resizable="false" text="Serie" />

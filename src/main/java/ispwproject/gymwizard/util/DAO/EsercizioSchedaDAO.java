@@ -23,41 +23,6 @@ public class EsercizioSchedaDAO {
         return instance;
     }
 
-    public static List<EsercizioScheda> getEserciziByClientId(int idCliente) throws DAOException {
-        List<EsercizioScheda> esercizi = new ArrayList<>();
-
-        String query = """
-        SELECT es.*
-        FROM EsercizioScheda es
-        JOIN Scheda s ON es.id_scheda = s.id
-        WHERE s.id_cliente = ?
-        """;
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-
-            stmt.setInt(1, idCliente);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    EsercizioScheda es = new EsercizioScheda();
-                    es.setId(rs.getInt("id"));
-                    es.setIdScheda(rs.getInt("id_scheda"));
-                    es.setNomeEsercizio(rs.getString("nome_esercizio"));
-                    es.setSerie(rs.getInt("serie"));
-                    es.setRipetizioni(rs.getInt("ripetizioni"));
-                    es.setNote(rs.getString("note"));
-                    esercizi.add(es);
-                }
-            }
-
-        } catch (SQLException e) {
-            throw new DAOException("Errore nel recupero degli esercizi della scheda del cliente", e);
-        }
-
-        return esercizi;
-    }
-
     public void insertEsercizio(EsercizioScheda esercizio) {
         String query = "INSERT INTO EsercizioScheda (id_scheda, nome_esercizio, serie, ripetizioni, note) VALUES (?, ?, ?, ?, ?)";
 
@@ -84,7 +49,7 @@ public class EsercizioSchedaDAO {
         }
     }
 
-    public List<EsercizioScheda> getEserciziByScheda(int idScheda) {
+    public static List<EsercizioScheda> getEserciziByScheda(int idScheda) {
         List<EsercizioScheda> esercizi = new ArrayList<>();
         String query = "SELECT * FROM EsercizioScheda WHERE id_scheda = ?";
 

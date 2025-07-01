@@ -18,14 +18,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import javafx.util.StringConverter;
 
-import java.util.Collection;
 import java.util.List;
 
 public class VisualizzaSchedaGUIController extends AbstractGUIController{
 
     @FXML
-    private ComboBox<String> comboBoxSchede;
+    private ComboBox<Scheda> comboBoxSchede;
 
     @FXML
     private HBox HBoxBtn;
@@ -67,26 +67,44 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
 
         // Popolamento del ComboBox
         List<Scheda> schede = SchedaController.getNomiSchedeByIdCliente();
-        List<String> nomiSchede = schede.stream()
-                .map(Scheda::getNomeScheda)
-                .toList();
-        ObservableList<String> lista = FXCollections.observableArrayList(nomiSchede);
+        ObservableList<Scheda> lista = FXCollections.observableArrayList(schede);
         comboBoxSchede.setItems(lista);
 
-        // Listener per intercettare la selezione
-        comboBoxSchede.setOnAction(event -> {
-            try {
-                onSchedaSelezionata(event);
-            } catch (DAOException e) {
-                throw new RuntimeException(e);
+        // Conversione in stringhe per mostrare solo il nome della scheda
+        comboBoxSchede.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Scheda scheda) {
+                return (scheda != null) ? scheda.getNomeScheda() : "";
+            }
+
+            @Override
+            public Scheda fromString(String nome) {
+                return comboBoxSchede.getItems().stream()
+                        .filter(s -> s.getNomeScheda().equals(nome))
+                        .findFirst()
+                        .orElse(null);
             }
         });
 
+        // Listener per intercettare la selezione
+        comboBoxSchede.setOnAction(event -> {
+            Scheda selezionata = comboBoxSchede.getSelectionModel().getSelectedItem();
+            if (selezionata != null) {
+                try {
+                    onSchedaSelezionata(selezionata);
+                } catch (DAOException e) {
+                    throw new RuntimeException("Errore nel caricamento degli esercizi", e);
+                }
+            }
+        });
+
+
         // Viene selezionata la prima scheda disponibile
-        comboBoxSchede.setItems(lista);
         if (!lista.isEmpty()) {
             comboBoxSchede.getSelectionModel().selectFirst();
-            onSchedaSelezionata(null);
+            Scheda selezionata = comboBoxSchede.getSelectionModel().getSelectedItem();
+            SessionManager.getInstance().setAttributo("scheda", selezionata);
+            onSchedaSelezionata(selezionata);
         }
 
         colNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomeEsercizio()));
@@ -95,38 +113,30 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onSchedaSelezionata(ActionEvent event) throws DAOException {
-        String nomeSelezionato = comboBoxSchede.getValue();
-
-        if (nomeSelezionato == null || nomeSelezionato.isBlank()) {
+    public void onSchedaSelezionata(Scheda schedaSelezionata) throws DAOException {
+        if (schedaSelezionata == null) {
             return;
         }
 
-        List<Scheda> schede = SchedaController.getNomiSchedeByIdCliente();
-        Scheda schedaSelezionata = schede.stream()
-                .filter(s -> s.getNomeScheda().equals(nomeSelezionato))
-                .findFirst()
-                .orElse(null);
+        System.out.println("Scheda selezionata: " + schedaSelezionata.getNomeScheda()
+                + " [ID: " + schedaSelezionata.getId() + "]");
 
-        if (schedaSelezionata != null) {
-            System.out.println("Scheda selezionata: " + schedaSelezionata.getNomeScheda());
-            SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
+        // Salva l'intera scheda nella sessione
+        SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
 
-            List<EsercizioScheda> esercizi = SchedaController.getEserciziScheda(schedaSelezionata.getId());
-            ObservableList<EsercizioScheda> eserciziObs = FXCollections.observableArrayList(esercizi);
+        // Carica gli esercizi associati alla scheda
+        List<EsercizioScheda> esercizi = SchedaController.getEserciziScheda(schedaSelezionata.getId());
+        ObservableList<EsercizioScheda> eserciziObs = FXCollections.observableArrayList(esercizi);
 
-            // DEBUG TEMPORANEO
-            System.out.println("Esercizi trovati: " + esercizi.size());
-            for (EsercizioScheda e : esercizi) {
-                System.out.println(" - " + e.getNomeEsercizio() + " (" + e.getSerie() + "x" + e.getRipetizioni() + ")");
-            }
-
-
-            tableViewEsercizi.setItems(eserciziObs);
+        // DEBUG TEMPORANEO
+        System.out.println("Esercizi trovati: " + esercizi.size());
+        for (EsercizioScheda e : esercizi) {
+            System.out.println(" - " + e.getNomeEsercizio() + " (" + e.getSerie() + "x" + e.getRipetizioni() + ")");
         }
+
+        // Imposta gli esercizi nella tabella
+        tableViewEsercizi.setItems(eserciziObs);
     }
-
-
 
     @FXML
     public void handleNewTrainingCard(ActionEvent event){
