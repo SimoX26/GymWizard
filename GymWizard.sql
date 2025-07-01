@@ -13,7 +13,6 @@ CREATE TABLE Credenziali (
     email VARCHAR(50) PRIMARY KEY,
     password_hash VARCHAR(255) NOT NULL,
     ruolo INT NOT NULL -- 1 = CLIENTE, 2 = PERSONAL_TRAINER, 3 = ADMIN
-    -- Nota: CHECK non sempre è applicato da MySQL < 8.0.16
 );
 
 -- ==========================

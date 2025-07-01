@@ -42,4 +42,6 @@ public class LoginController {
             case ADMIN -> LoginResult.SUCCESSO_ADMIN;
         };
     }
+
+
 }

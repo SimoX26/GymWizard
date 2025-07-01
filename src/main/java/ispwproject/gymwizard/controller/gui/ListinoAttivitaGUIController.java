@@ -46,7 +46,8 @@ public class ListinoAttivitaGUIController extends AbstractGUIController{
                                 "-fx-text-fill: black;" +
                                 "-fx-font-size: 14px;" +
                                 "-fx-font-weight: bold;" +
-                                "-fx-padding: 10 20 10 20;"
+                                "-fx-padding: 10 20 10 20;" +
+                                "-fx-cursor: hand"
                 );
                 btn.setOnAction(event -> onAttivitaClick(event, attivita));
                 attivitaContainer.getChildren().add(btn);

@@ -128,12 +128,6 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
         List<EsercizioScheda> esercizi = SchedaController.getEserciziScheda(schedaSelezionata.getId());
         ObservableList<EsercizioScheda> eserciziObs = FXCollections.observableArrayList(esercizi);
 
-        // DEBUG TEMPORANEO
-        System.out.println("Esercizi trovati: " + esercizi.size());
-        for (EsercizioScheda e : esercizi) {
-            System.out.println(" - " + e.getNomeEsercizio() + " (" + e.getSerie() + "x" + e.getRipetizioni() + ")");
-        }
-
         // Imposta gli esercizi nella tabella
         tableViewEsercizi.setItems(eserciziObs);
     }

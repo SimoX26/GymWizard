@@ -1,5 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.controller.app.ClientiController;
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class ListaClientiGUIController extends AbstractGUIController{
 
@@ -17,16 +22,24 @@ public class ListaClientiGUIController extends AbstractGUIController{
     AnchorPane anchorPane;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         anchorPane.setBackground(new Background(this.background()));
 
-        // Aggiunta clienti di esempio (sostituisci con dati reali)
-        for (int i = 1; i <= 4; i++) {
-            Button cliente = new Button("⚪ Nome Cliente " + i);
-            cliente.setStyle("-fx-text-fill: white; -fx-font-family: 'Comic Sans MS'; -fx-font-size: 16; -fx-cursor: hand;");
-            int finalI = i;
-            cliente.setOnAction(event -> apriDettaglioCliente(event, finalI));
-            clientListVBox.getChildren().add(cliente);
+        List<Utente> clientiList = ClientiController.getClienti();
+
+        for (Utente cliente : clientiList) {
+            Button btn = new Button(cliente.getUsername() );
+            btn.setMaxWidth(Double.MAX_VALUE);
+            btn.setStyle(
+                    "-fx-background-color: white;" +
+                            "-fx-text-fill: black;" +
+                            "-fx-font-size: 14px;" +
+                            "-fx-font-weight: bold;" +
+                            "-fx-padding: 10 20 10 20;" +
+                            "-fx-cursor: hand"
+            );
+            btn.setOnAction(event -> onClienteClick(event, cliente));
+            clientListVBox.getChildren().add(btn);
         }
     }
 
@@ -49,8 +62,9 @@ public class ListaClientiGUIController extends AbstractGUIController{
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 
-    public void apriDettaglioCliente(ActionEvent event, int idCliente) {
+    public void onClienteClick(ActionEvent event, Utente cliente) {
         System.out.println("CLIENTE button clicked.");
+        SessionManager.getInstance().setAttributo("clienteSelezionato", cliente);
         this.switchScene("/views/VisualizzaSchedaView.fxml", event);
 
     }

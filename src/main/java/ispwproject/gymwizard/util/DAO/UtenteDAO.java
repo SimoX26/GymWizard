@@ -61,6 +61,34 @@ public class UtenteDAO {
         }
     }
 
+    public List<Utente> getClienti() throws SQLException {
+        List<Utente> clienti = new ArrayList<>();
+
+        String query = """
+        SELECT u.id, u.username, u.email, u.ultimo_accesso
+        FROM Utente u
+        JOIN Credenziali c ON u.email = c.email
+        WHERE c.ruolo = 1
+        """;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Utente u = new Utente(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("email")
+                );
+                clienti.add(u);
+            }
+        }
+
+        return clienti;
+    }
+
+
     /**
      * Metodo per il report admin: recupera gli utenti attivi negli ultimi 30 giorni.
      */
