@@ -16,16 +16,12 @@ public class SchedaController {
         return EsercizioSchedaDAO.getEserciziByScheda(idScheda);
     }
 
-    public static List<Scheda> getNomiSchedeByIdCliente(){
-        // Recupero utente loggato
-        Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
-
-        // Recupero schede, legate all'utente loggato, dal DB
-        return SchedaDAO.getInstance().getSchedeByUtente(utente.getId());
+    public static List<Scheda> getSchedeByIdCliente(int idCliente){
+        // Recupero schede, legate all'id utente passato come parametro, dal DB
+        return SchedaDAO.getInstance().getSchedeByUtente(idCliente);
     }
 
-    public void aggiungiEsercizio(String nomeEsercizio, int serie, int ripetizioni, String note)
-            throws EsercizioDuplicatoException {
+    public void aggiungiEsercizio(String nomeEsercizio, int serie, int ripetizioni, String note) throws EsercizioDuplicatoException {
 
         // Recupera l'id della scheda selezionata
         Scheda scheda = (Scheda) SessionManager.getInstance().getAttributo("scheda");
@@ -41,8 +37,8 @@ public class SchedaController {
     }
 
     public void creaScheda(String nome) throws DAOException {
-        // Recupero dell'utente loggato
-        Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
+        // Recupero dell'utente selezionato
+        Utente utente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
 
         // Costruzione della scheda
         Scheda nuovaScheda = new Scheda(utente.getId(), nome);

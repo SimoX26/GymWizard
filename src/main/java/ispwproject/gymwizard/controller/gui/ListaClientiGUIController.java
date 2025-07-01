@@ -66,6 +66,5 @@ public class ListaClientiGUIController extends AbstractGUIController{
         System.out.println("CLIENTE button clicked.");
         SessionManager.getInstance().setAttributo("clienteSelezionato", cliente);
         this.switchScene("/views/VisualizzaSchedaView.fxml", event);
-
     }
 }

@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.controller.app.SchedaController;
@@ -47,6 +48,8 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     public void initialize() throws DAOException {
         anchorPane.setBackground(new Background(this.background()));
 
+        Utente u = new Utente();
+
         if("/views/DashboardTrainerView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))){
             Button nuova = new Button("CREA NUOVA SCHEDA");
             Button add = new Button("AGGIUNGI ESERCIZIO");
@@ -63,10 +66,14 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
             HBoxBtn.getChildren().add(nuova);
             HBoxBtn.getChildren().add(add);
             HBoxBtn.getChildren().add(flush);
+
+            u = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
+        } else {
+            u = (Utente) SessionManager.getInstance().getAttributo("utente");
         }
 
-        // Popolamento del ComboBox
-        List<Scheda> schede = SchedaController.getNomiSchedeByIdCliente();
+        // Popolamento del ComboBox (lista varie schede)
+        List<Scheda> schede = SchedaController.getSchedeByIdCliente(u.getId());
         ObservableList<Scheda> lista = FXCollections.observableArrayList(schede);
         comboBoxSchede.setItems(lista);
 
