@@ -24,7 +24,7 @@ public class SchedaDAO {
     }
 
     public void insertScheda(Scheda scheda) throws DAOException {
-        String query = "INSERT INTO Scheda (id_cliente, nome_esercizio) VALUES (?, ?)";
+        String query = "INSERT INTO Scheda (id_cliente, nome_scheda) VALUES (?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -52,7 +52,7 @@ public class SchedaDAO {
                 Scheda s = new Scheda(
                         rs.getInt("id"),
                         rs.getInt("id_cliente"),
-                        rs.getString("nome_esercizio"),
+                        rs.getString("nome_scheda"),
                         rs.getTimestamp("data_creazione")
                 );
                 schede.add(s);

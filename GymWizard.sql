@@ -66,7 +66,7 @@ CREATE TABLE Prenotazione (
 CREATE TABLE Scheda (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
-    nome_esercizio VARCHAR(100),
+    nome_scheda VARCHAR(100),
     data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_cliente) REFERENCES Utente(id)
 );
@@ -322,7 +322,3 @@ INSERT INTO Utente (username, email) VALUES
 ('cliente1', 'cliente1@example.com'),
 ('trainer1', 'trainer1@example.com'),
 ('admin1', 'admin1@example.com');
-
-
-INSERT INTO Scheda (id_cliente, nome_esercizio)
-VALUES (1, 'Scheda 1');
