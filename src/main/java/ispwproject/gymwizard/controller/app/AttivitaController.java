@@ -31,7 +31,10 @@ public class AttivitaController {
             throw new AttivitaDuplicataException(nome);
         }
 
+        // Costruzione della nuova attività
         Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
+
+        // Inserimento dell'attività nel DB
         AttivitaDAO.getInstance().inserisciAttivita(nuova);
     }
 

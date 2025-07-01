@@ -17,7 +17,10 @@ public class SchedaController {
     }
 
     public static List<Scheda> getNomiSchedeByIdCliente(){
+        // Recupero utente loggato
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
+
+        // Recupero schede, legate all'utente loggato, dal DB
         return SchedaDAO.getInstance().getSchedeByUtente(utente.getId());
     }
 
@@ -37,18 +40,15 @@ public class SchedaController {
         EsercizioSchedaDAO.getInstance().insertEsercizio(nuovo);
     }
 
-    public void creaScheda(String nome) {
+    public void creaScheda(String nome) throws DAOException {
+        // Recupero dell'utente loggato
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
 
         // Costruzione della scheda
         Scheda nuovaScheda = new Scheda(utente.getId(), nome);
 
-        // Inserimento nel database
-        boolean successo = SchedaDAO.getInstance().insertScheda(nuovaScheda);
-
-        if (!successo) {
-            throw new RuntimeException("Errore durante la creazione della scheda.");
-        }
+        // Inserimento della scheda nel DB
+        SchedaDAO.getInstance().insertScheda(nuovaScheda);
     }
 
     public static class EsercizioDuplicatoException extends Exception {

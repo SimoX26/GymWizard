@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.util.DAO;
 
 import ispwproject.gymwizard.model.Scheda;
+import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,29 +23,18 @@ public class SchedaDAO {
         return instance;
     }
 
-    public boolean insertScheda(Scheda scheda) {
+    public void insertScheda(Scheda scheda) throws DAOException {
         String query = "INSERT INTO Scheda (id_cliente, nome_esercizio) VALUES (?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setInt(1, scheda.getIdCliente());
             stmt.setString(2, scheda.getNomeScheda());
 
-            int affected = stmt.executeUpdate();
-            if (affected == 0) return false;
-
-            try (ResultSet keys = stmt.getGeneratedKeys()) {
-                if (keys.next()) {
-                    scheda.setId(keys.getInt(1));
-                }
-            }
-
-            return true;
-
+            stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            throw new DAOException("Errore durante l'inserimento dell'attività", e);
         }
     }
 

@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.SchedaController;
+import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,11 +21,12 @@ public class CreaSchedaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onCreaScheda(ActionEvent event) {
+    public void onCreaScheda(ActionEvent event) throws DAOException {
         System.out.println("CREA SCHEDA button clicked.");
         String nome = nomeScheda.getText();
         new SchedaController().creaScheda(nome);
-
+        showPopup("Successo", "Scheda creata", "Scheda creata con successo!");
+        switchScene("/views/VisualizzaSchedaView.fxml", event);
     }
 
     @FXML
