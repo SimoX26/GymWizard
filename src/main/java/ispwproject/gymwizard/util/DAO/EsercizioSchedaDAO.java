@@ -1,7 +1,6 @@
 package ispwproject.gymwizard.util.DAO;
 
 import ispwproject.gymwizard.model.EsercizioScheda;
-import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.sql.*;
 import java.util.ArrayList;

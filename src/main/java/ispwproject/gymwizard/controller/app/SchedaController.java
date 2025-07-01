@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SchedaController {
 
-    public static List<EsercizioScheda> getEserciziScheda(int idScheda) throws DAOException {
+    public static List<EsercizioScheda> getEserciziScheda(int idScheda){
         return EsercizioSchedaDAO.getEserciziByScheda(idScheda);
     }
 
@@ -25,7 +25,7 @@ public class SchedaController {
     }
 
     public void aggiungiEsercizio(String nomeEsercizio, int serie, int ripetizioni, String note)
-            throws DAOException, EsercizioDuplicatoException {
+            throws EsercizioDuplicatoException {
 
         // Recupera l'id della scheda selezionata
         Scheda scheda = (Scheda) SessionManager.getInstance().getAttributo("scheda");
