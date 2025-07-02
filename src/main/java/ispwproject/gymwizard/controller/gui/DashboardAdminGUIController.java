@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +23,8 @@ public class DashboardAdminGUIController extends AbstractGUIController{
         System.out.println("** INIT EXEC - Dashboard Admin **");
         SessionManager.getInstance().setAttributo("homePage", "/views/DashboardAdminView.fxml");
 
-        welcomeLabel.setText("Benvenuto " + "NOME UTENTE");
+        Utente u = (Utente) SessionManager.getInstance().getAttributo("utente");
+        welcomeLabel.setText("Benvenuto " + u.getUsername());
     }
 
     @FXML
