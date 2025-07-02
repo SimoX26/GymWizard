@@ -72,6 +72,7 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
             throw new RuntimeException(e);
         }
         this.showPopup("Attivita prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
+        this.switchScene("/views/ListinoAttivitaView.fxml", event);
     }
 
     @FXML
