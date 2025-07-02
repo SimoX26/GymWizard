@@ -44,7 +44,7 @@ public class DashboardTrainerGUIController extends AbstractGUIController{
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            this.showError("Errore", "Errore nel login");
         }
     }
 
