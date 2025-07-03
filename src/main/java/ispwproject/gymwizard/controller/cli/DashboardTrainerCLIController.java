@@ -9,7 +9,7 @@ public class DashboardTrainerCLIController {
 
     public CLIState start() {
         String username = SessionManager.getInstance().getSession().getUsername();
-        SessionManager.getInstance().setAttributo("homePage", "Trainer");
+        SessionManager.getInstance().setAttributo("homePage", "trainer");
         view.mostraBenvenuto(username);
 
         return loopMenu();

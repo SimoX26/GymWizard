@@ -12,7 +12,7 @@ public class DashboardAdminCLIController {
 
     public CLIState start() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
         String username = SessionManager.getInstance().getAttributo("utente").toString();
-        SessionManager.getInstance().setAttributo("homePage", "Admin");
+        SessionManager.getInstance().setAttributo("homePage", "admin");
         view.mostraBenvenuto(username);
 
         return loopMenu();

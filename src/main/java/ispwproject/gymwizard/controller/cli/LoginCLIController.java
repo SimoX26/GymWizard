@@ -44,7 +44,8 @@ public class LoginCLIController {
             view.mostraErroreDB(e.getMessage());
             return CLIState.LOGIN;
         } catch (SQLException | CredenzialiException e) {
-            throw new RuntimeException(e); // Puoi gestirlo meglio se vuoi restare nello stato LOGIN
+            System.out.println("❌ Login fallito: " + e.getMessage());
+            return CLIState.LOGIN; // torna alla schermata di login
         }
     }
 }

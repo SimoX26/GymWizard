@@ -22,14 +22,26 @@ public class VisualizzaListaSchedeCLIController {
         int scelta = view.scegliScheda(schedeDisponibili, false);
 
         if (scelta == -1) {
-            return CLIState.DASHBOARD_CLIENTE;
+            String homePage = SessionManager.getInstance().getAttributo("homePage").toString();
+            return homePage.equals("trainer") ? CLIState.LISTA_CLIENTI : CLIState.DASHBOARD_CLIENTE;
         }
 
-        String nomeSchedaSelezionata = schedeDisponibili.get(scelta);
-        SessionManager.getInstance().setAttributo("schedaSelezionata", nomeSchedaSelezionata);
+        if (scelta == -2) {
+            return CLIState.CREA_SCHEDA_CLIENTE; // solo se `mostraCreaScheda = true`
+        }
 
-        return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
+        // ✅ Sicuro di essere in un range valido
+        if (scelta >= 0 && scelta < schedeDisponibili.size()) {
+            String nomeSchedaSelezionata = schedeDisponibili.get(scelta);
+            SessionManager.getInstance().setAttributo("schedaSelezionata", nomeSchedaSelezionata);
+            return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
+        } else {
+            view.mostraMessaggio("❌ Scelta non valida.");
+            view.attesaInvio();
+            return start(); // ricomincia la schermata
+        }
     }
+
 
     private List<String> getSchedePerUtenteLoggato() {
         // MOCK: In futuro usa DAO
