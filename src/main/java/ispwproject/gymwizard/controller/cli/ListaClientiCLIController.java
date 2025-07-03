@@ -1,36 +1,57 @@
 package ispwproject.gymwizard.controller.cli;
 
+import ispwproject.gymwizard.controller.app.ClientiController;
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.ListaClientiView;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListaClientiCLIController {
 
     private final ListaClientiView view = new ListaClientiView();
-
     public CLIState start() {
-        String trainer = SessionManager.getInstance().getSession().getUsername();
-        List<String> clienti = getClientiPresentiPerTrainer(trainer);
+        List<Utente> clienti;
 
-        if (clienti.isEmpty()) {
-            view.mostraMessaggio("❌ Nessun cliente disponibile.");
+        try {
+            clienti = ClientiController.getClienti();
+        } catch (SQLException e) {
+            view.mostraMessaggio("❌ Errore durante il caricamento dei clienti: " + e.getMessage());
             view.attesaInvio();
             return CLIState.DASHBOARD_TRAINER;
         }
 
-        int scelta = view.selezionaCliente(clienti);
-        if (scelta == -1) {
+        if (clienti.isEmpty()) {
+            view.mostraMessaggio("⚠️ Nessun cliente trovato nel sistema.");
+            view.attesaInvio();
             return CLIState.DASHBOARD_TRAINER;
         }
 
-        String clienteSelezionato = clienti.get(scelta);
+        // Converti gli utenti in nomi leggibili
+        List<String> nomiClienti = clienti.stream()
+                .map(Utente::getUsername)
+                .collect(Collectors.toList());
+
+        int scelta = view.selezionaCliente(nomiClienti); // 1-based + opzione 0 per tornare
+
+        if (scelta == 0) {
+            return CLIState.DASHBOARD_TRAINER;
+        }
+
+        if (scelta < 1 || scelta > clienti.size()) {
+            view.mostraMessaggio("❌ Scelta non valida.");
+            view.attesaInvio();
+            return CLIState.LISTA_CLIENTI;
+        }
+
+        Utente clienteSelezionato = clienti.get(scelta - 1);
         SessionManager.getInstance().setAttributo("clienteSelezionato", clienteSelezionato);
 
-        return CLIState.SELEZIONA_SCHEDA_CLIENTE;
-    }
+        view.mostraMessaggio("✅ Hai selezionato: " + clienteSelezionato.getUsername() + "\n");
+        view.attesaInvio();
 
-    private List<String> getClientiPresentiPerTrainer(String trainerUsername) {
-        return List.of("Mario Rossi", "Giulia Verdi", "Luca Bianchi");
+        return CLIState.SELEZIONA_SCHEDA_CLIENTE;
     }
 }

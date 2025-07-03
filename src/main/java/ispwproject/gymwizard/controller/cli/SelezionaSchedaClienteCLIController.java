@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.VisualizzaListaSchedeView;
 
@@ -11,13 +12,11 @@ public class SelezionaSchedaClienteCLIController {
     private final VisualizzaListaSchedeView view = new VisualizzaListaSchedeView();
 
     public CLIState start() {
-        String cliente = (String) SessionManager.getInstance().getAttributo("clienteSelezionato");
+        Utente cliente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
 
-        List<String> schede = getSchedePerCliente(cliente);
+        List<String> schede = getSchedePerCliente(String.valueOf(cliente));
         if (schede.isEmpty()) {
-            view.mostraMessaggio("⚠️ Nessuna scheda trovata per " + cliente);
-            view.attesaInvio();
-            return CLIState.LISTA_CLIENTI;
+            view.mostraMessaggio("⚠️ Nessuna scheda trovata per " + cliente.getUsername());
         }
 
         int scelta = view.scegliScheda(schede, true); // true → mostra crea nuova scheda

@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.cli;
 
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -11,9 +12,9 @@ public class DashboardAdminCLIController {
     private final DashboardAdminView view = new DashboardAdminView();
 
     public CLIState start() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
-        String username = SessionManager.getInstance().getAttributo("utente").toString();
+        Utente u = (Utente) SessionManager.getInstance().getAttributo("utente");
         SessionManager.getInstance().setAttributo("homePage", "admin");
-        view.mostraBenvenuto(username);
+        view.mostraBenvenuto(u.getUsername());
 
         return loopMenu();
     }

@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.cli;
 
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.DashboardTrainerView;
 
@@ -8,9 +9,9 @@ public class DashboardTrainerCLIController {
     private final DashboardTrainerView view = new DashboardTrainerView();
 
     public CLIState start() {
-        String username = SessionManager.getInstance().getSession().getUsername();
+        Utente u = (Utente) SessionManager.getInstance().getAttributo("utente");
         SessionManager.getInstance().setAttributo("homePage", "trainer");
-        view.mostraBenvenuto(username);
+        view.mostraBenvenuto(u.getUsername());
 
         return loopMenu();
     }
