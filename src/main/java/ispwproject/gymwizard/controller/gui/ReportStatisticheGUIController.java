@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.controller.app.ReportStatisticheController;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.bean.PrenotazioneBean;
@@ -48,9 +49,13 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
     private void setupColumns() {
         // Pagamenti
         colTipoAbbonamento.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-        colImportoAbbonamento.setCellValueFactory(cellData -> new SimpleStringProperty("50"));
-        //colDataInizio.setCellValueFactory(new PropertyValueFactory<>("dataEmissione"));
-        colDataInizio.setCellValueFactory(cellData -> new SimpleStringProperty("2025-03-21"));
+        colImportoAbbonamento.setCellValueFactory(cellData -> {
+            String tipo = cellData.getValue().getTipo();
+            int prezzoCent = AbbonamentoController.getPrezzoAbbonamento(tipo);
+            String prezzoFormattato = String.format("%.2f €", prezzoCent / 100.0);
+            return new SimpleStringProperty(prezzoFormattato);
+        });
+        colDataInizio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDataInizio().toString()));
         colStato.setCellValueFactory(new PropertyValueFactory<>("stato"));
 
         // Prenotazioni
