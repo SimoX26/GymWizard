@@ -17,8 +17,7 @@ public class ListaClientiView {
         System.out.print("👉 Scelta: ");
         try {
             int scelta = Integer.parseInt(scanner.nextLine());
-            if (scelta == 0) return -1;
-            if (scelta >= 1 && scelta <= clienti.size()) return scelta - 1;
+            return scelta;
         } catch (NumberFormatException ignored) {}
 
         System.out.println("❌ Scelta non valida.");

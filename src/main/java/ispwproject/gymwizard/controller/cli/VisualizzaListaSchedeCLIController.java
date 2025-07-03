@@ -50,7 +50,7 @@ public class VisualizzaListaSchedeCLIController {
 
         if (scelta >= 0 && scelta < listaSchede.size()) {
             Scheda schedaSelezionata = listaSchede.get(scelta);
-            SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
+            SessionManager.getInstance().setAttributo("schedaSelezionata", schedaSelezionata);
             return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
         } else {
             view.mostraMessaggio("❌ Scelta non valida.");

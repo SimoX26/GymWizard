@@ -50,7 +50,6 @@ public class ListaClientiCLIController {
         SessionManager.getInstance().setAttributo("clienteSelezionato", clienteSelezionato);
 
         view.mostraMessaggio("✅ Hai selezionato: " + clienteSelezionato.getUsername() + "\n");
-        view.attesaInvio();
 
         return CLIState.SELEZIONA_SCHEDA_CLIENTE;
     }

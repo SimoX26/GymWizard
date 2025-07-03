@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.cli;
 
+import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.VisualizzaEserciziSchedaView;
 
@@ -11,17 +12,17 @@ public class VisualizzaEserciziSchedaCLIController {
     private final VisualizzaEserciziSchedaView view = new VisualizzaEserciziSchedaView();
 
     public CLIState start() {
-        String scheda = (String) SessionManager.getInstance().getAttributo("schedaSelezionata");
+        Scheda schedaSelezionata = (Scheda) SessionManager.getInstance().getAttributo("schedaSelezionata");
         String ruolo = (String) SessionManager.getInstance().getAttributo("homePage"); // cliente | trainer | admin
 
-        if (scheda == null) {
+        if (schedaSelezionata == null) {
             view.mostraMessaggio("⚠️ Nessuna scheda selezionata.");
             return CLIState.DASHBOARD_CLIENTE;
         }
 
-        List<String> esercizi = getEserciziPerScheda(scheda);
+        List<String> esercizi = getEserciziPerScheda(schedaSelezionata.getNomeScheda());
 
-        int scelta = view.mostraScheda(scheda, esercizi, ruolo.equals("trainer"));
+        int scelta = view.mostraScheda(schedaSelezionata.getNomeScheda(), esercizi, ruolo.equals("trainer"));
 
         return switch (scelta) {
             case -1 -> ruolo.equals("trainer") ? CLIState.SELEZIONA_SCHEDA_CLIENTE : CLIState.SELEZIONA_SCHEDA;
