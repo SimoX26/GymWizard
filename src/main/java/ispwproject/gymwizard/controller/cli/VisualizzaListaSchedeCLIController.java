@@ -1,37 +1,38 @@
 package ispwproject.gymwizard.controller.cli;
 
+
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.VisualizzaListaSchedeView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class VisualizzaListaSchedeCLIController {
+
     private final VisualizzaListaSchedeView view = new VisualizzaListaSchedeView();
 
-    public void selezionaScheda() {
-        List<String> schede = getSchedeUtente(); // Mock o DAO
-        int index = view.mostraSchedeDisponibili(schede);
-        String nomeScheda = schede.get(index);
+    public CLIState start() {
+        List<String> schedeDisponibili = getSchedePerUtenteLoggato();
 
-        List<String> esercizi = getEserciziScheda(nomeScheda); // Mock o DAO
-        view.mostraEsercizi(esercizi);
-
-        int scelta = view.mostraMenuEsercizi();
-        if (scelta == 1) {
-            new VisualizzaEserciziSchedaCLIController().aggiungiEsercizio(nomeScheda);
+        if (schedeDisponibili.isEmpty()) {
+            view.mostraMessaggio("⚠️ Nessuna scheda trovata per questo utente.");
+            view.attesaInvio();
+            return CLIState.DASHBOARD_CLIENTE;
         }
+
+        int scelta = view.scegliScheda(schedeDisponibili, false);
+
+        if (scelta == -1) {
+            return CLIState.DASHBOARD_CLIENTE;
+        }
+
+        String nomeSchedaSelezionata = schedeDisponibili.get(scelta);
+        SessionManager.getInstance().setAttributo("schedaSelezionata", nomeSchedaSelezionata);
+
+        return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
     }
 
-    private List<String> getSchedeUtente() {
-        return List.of("Scheda Forza", "Scheda Ipertrofia");
-    }
-
-    private List<String> getEserciziScheda(String nomeScheda) {
-        return switch (nomeScheda) {
-            case "Scheda Forza" -> List.of("Squat 5x5", "Panca 5x5");
-            case "Scheda Ipertrofia" -> List.of("Curl 3x12", "Leg Extension 4x10");
-            default -> new ArrayList<>();
-        };
+    private List<String> getSchedePerUtenteLoggato() {
+        // MOCK: In futuro usa DAO
+        return List.of("Scheda Forza", "Scheda Ipertrofia", "Scheda Recupero");
     }
 }
-

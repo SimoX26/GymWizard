@@ -15,20 +15,27 @@ public class MainCLI {
 
                 case DASHBOARD_CLIENTE ->
                         statoCorrente = new DashboardClienteCLIController().start();
-/*
+
+                case SELEZIONA_SCHEDA -> statoCorrente = new VisualizzaListaSchedeCLIController().start();
+                case VISUALIZZA_ESERCIZI_SCHEDA -> statoCorrente = new VisualizzaEserciziSchedaCLIController().start();
+
+ /*
                 case ATTIVITA -> statoCorrente = new AttivitaCLIController().start();
-                case SCHEDA_CLIENTE -> statoCorrente = new VisualizzaListaSchedeCLIController().start();
                 case GESTIONE_ABBONAMENTI -> statoCorrente = new StatoAbbonamentoCLIController().start();
                 case CHAT -> statoCorrente = new ListaChatCLIController().start();
                 case CODICE_ACCESSO -> statoCorrente = new CodiceAccessoCLIController().start();
 */
                 case DASHBOARD_TRAINER ->
                         statoCorrente = new DashboardTrainerCLIController().start();
-/*
-                case LISTA_CLIENTI -> statoCorrente = new ListaClientiCLIController().start();
-                case CHAT -> statoCorrente = new ListaChatCLIController().start();
 
- */
+                case LISTA_CLIENTI -> statoCorrente = new ListaClientiCLIController().start();
+                case SELEZIONA_SCHEDA_CLIENTE -> statoCorrente = new SelezionaSchedaClienteCLIController().start();
+                case CREA_SCHEDA_CLIENTE -> statoCorrente = new CreaSchedaClienteCLIController().start();
+                case AGGIUNGI_ESERCIZIO -> statoCorrente = new AggiungiEsercizioCLIController().start();
+
+                //             case CHAT -> statoCorrente = new ListaChatCLIController().start();
+
+
                 case DASHBOARD_ADMIN ->
                         statoCorrente = new DashboardAdminCLIController().start();
                 /*

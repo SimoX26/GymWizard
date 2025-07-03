@@ -25,7 +25,7 @@ public class DashboardClienteCLIController {
 
             switch (scelta) {
                 case "1" -> {
-                    return CLIState.SCHEDA_CLIENTE;
+                    return CLIState.SELEZIONA_SCHEDA;
                 }
                 case "2" -> {
                     return CLIState.ATTIVITA;
