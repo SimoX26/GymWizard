@@ -55,6 +55,7 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
             String prezzoFormattato = String.format("%.2f €", prezzoCent / 100.0);
             return new SimpleStringProperty(prezzoFormattato);
         });
+
         colDataInizio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDataInizio().toString()));
         colStato.setCellValueFactory(new PropertyValueFactory<>("stato"));
 
