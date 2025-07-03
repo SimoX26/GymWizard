@@ -1,6 +1,5 @@
 package ispwproject.gymwizard.controller.cli;
 
-import ispwproject.gymwizard.controller.cli.CLIState;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -19,7 +18,7 @@ public class DashboardAdminCLIController {
         return loopMenu();
     }
 
-    private CLIState loopMenu() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
+    private CLIState loopMenu() throws AttivitaDuplicataException, AttivitaPienaException {
         while (true) {
             view.mostraMenu();
             String scelta = view.chiediScelta();

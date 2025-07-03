@@ -31,19 +31,25 @@ public class HomeGUIController extends AbstractGUIController {
             String version = selectVersion.getText();
 
             // Scelta 3 casi
-            if (version.equals("GUI VERSION")) {
-                System.out.println("GUI VERSION");
-                this.switchScene("/views/LoginView.fxml", event);
-            } else if (version.equals("CLI VERSION")) {
-                System.out.println("CLI VERSION");
-                this.closeWindow(event);
-                MainCLI.start();
-            } else if (version.equals("DEMO VERSION")) {
-                System.out.println("DEMO VERSION");
-                this.showError("Warning", "Funzionalità ancora da implementare");
-            } else {
-                showError("Errore!", "Scelta non supportata.");
+            switch (version) {
+                case "GUI VERSION" -> {
+                    System.out.println("GUI VERSION");
+                    this.switchScene("/views/LoginView.fxml", event);
+                }
+                case "CLI VERSION" -> {
+                    System.out.println("CLI VERSION");
+                    this.closeWindow(event);
+                    MainCLI.start();
+                }
+                case "DEMO VERSION" -> {
+                    System.out.println("DEMO VERSION");
+                    this.showError("Warning", "Funzionalità ancora da implementare");
+                }
+                default -> {
+                    showError("Errore!", "Scelta non supportata.");
+                }
             }
+
         } else {
             this.showError("Errore!", "Seleziona una scelta!");
         }

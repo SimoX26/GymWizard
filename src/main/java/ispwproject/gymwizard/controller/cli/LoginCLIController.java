@@ -3,7 +3,6 @@ package ispwproject.gymwizard.controller.cli;
 import ispwproject.gymwizard.controller.app.LoginController;
 import ispwproject.gymwizard.util.exception.CredenzialiException;
 import ispwproject.gymwizard.util.exception.DAOException;
-import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.LoginView;
 
 import java.sql.SQLException;
