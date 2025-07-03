@@ -13,11 +13,11 @@ import java.util.List;
 
 public class ReportStatisticheController {
 
-    private final AbbonamentoDAO abbonamentoDAO = AbbonamentoDAO.getInstance();
-    private final PrenotazioneDAO prenotazioneDAO = PrenotazioneDAO.getInstance();
-    private final UtenteDAO utenteDAO = new UtenteDAO();
+    private static final AbbonamentoDAO abbonamentoDAO = AbbonamentoDAO.getInstance();
+    private static final PrenotazioneDAO prenotazioneDAO = PrenotazioneDAO.getInstance();
+    private static final UtenteDAO utenteDAO = new UtenteDAO();
 
-    public List<Abbonamento> getStoricoAbbonamenti() {
+    public static List<Abbonamento> getStoricoAbbonamenti() {
         try {
             return abbonamentoDAO.getAllDisponibili();
         } catch (DAOException e) {
@@ -26,7 +26,7 @@ public class ReportStatisticheController {
         }
     }
 
-    public List<PrenotazioneBean> getStoricoPrenotazioni() {
+    public static List<PrenotazioneBean> getStoricoPrenotazioni() {
         try {
             return prenotazioneDAO.getStoricoPrenotazioni();
         } catch (DAOException e) {
@@ -35,7 +35,7 @@ public class ReportStatisticheController {
         }
     }
 
-    public List<UtenteAttivoBean> getUtentiAttivi() {
+    public static List<UtenteAttivoBean> getUtentiAttivi() {
         try {
             return utenteDAO.getUtentiAttivi();
         } catch (DAOException e) {

@@ -1,55 +1,51 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.LoginController;
-import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
-import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.CredenzialiException;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.view.LoginView;
 
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class LoginCLIController {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private final LoginView view = new LoginView();
 
-    public static void start() {
-        System.out.println("\n===== LOGIN GYM WIZARD CLI =====\n");
-
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
-
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
+    public CLIState start() {
+        String[] credenziali = view.chiediCredenziali();
+        String email = credenziali[0];
+        String password = credenziali[1];
 
         if (email.isEmpty() || password.isEmpty()) {
-            System.out.println("❌ Inserisci sia email che password.");
-            return;
+            view.mostraErroreInput();
+            return CLIState.LOGIN;
         }
 
         try {
             LoginController loginController = new LoginController();
             LoginController.LoginResult result = loginController.login(email, password);
 
-            switch (result) {
+            return switch (result) {
                 case SUCCESSO_CLIENTE -> {
-                    System.out.println("✅ Login effettuato! Benvenuto Cliente.");
-                    DashboardClientCLIController.start();
+                    view.mostraSuccesso();
+                    yield CLIState.DASHBOARD_CLIENTE;
                 }
                 case SUCCESSO_TRAINER -> {
-                    System.out.println("✅ Login effettuato! Benvenuto Trainer.");
-                    DashboardTrainerCLIController.start();
+                    view.mostraSuccesso();
+                    yield CLIState.DASHBOARD_TRAINER;
                 }
                 case SUCCESSO_ADMIN -> {
-                    System.out.println("✅ Login effettuato! Benvenuto Admin.");
-                    DashboardAdminCLIController.start();
+                    view.mostraSuccesso();
+                    yield CLIState.DASHBOARD_ADMIN;
                 }
-            }
+            };
 
         } catch (DAOException e) {
-            System.out.println("❌ Errore di accesso al database: " + e.getMessage());
-        } catch (AttivitaDuplicataException | AttivitaPienaException | SQLException | CredenzialiException e) {
-            throw new RuntimeException(e);
+            view.mostraErroreDB(e.getMessage());
+            return CLIState.LOGIN;
+        } catch (SQLException | CredenzialiException e) {
+            throw new RuntimeException(e); // Puoi gestirlo meglio se vuoi restare nello stato LOGIN
         }
     }
 }

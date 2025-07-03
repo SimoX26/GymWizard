@@ -1,6 +1,9 @@
 package ispwproject.gymwizard.controller.gui;
 
-import ispwproject.gymwizard.controller.cli.LoginCLIController;
+import ispwproject.gymwizard.controller.cli.MainCLI;
+import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
+import ispwproject.gymwizard.util.exception.AttivitaPienaException;
+import ispwproject.gymwizard.util.exception.DAOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
@@ -21,7 +24,7 @@ public class HomeGUIController extends AbstractGUIController {
     }
 
     @FXML
-    private void onLoginBtnClick(ActionEvent event) {
+    private void onLoginBtnClick(ActionEvent event) throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
         RadioButton selectVersion = (RadioButton) version.getSelectedToggle();
 
         if (selectVersion != null) {
@@ -34,7 +37,7 @@ public class HomeGUIController extends AbstractGUIController {
             } else if (version.equals("CLI VERSION")) {
                 System.out.println("CLI VERSION");
                 this.closeWindow(event);
-                LoginCLIController.start();
+                MainCLI.start();
             } else if (version.equals("DEMO VERSION")) {
                 System.out.println("DEMO VERSION");
                 this.showError("Warning", "Funzionalità ancora da implementare");

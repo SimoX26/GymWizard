@@ -1,45 +1,45 @@
 package ispwproject.gymwizard.controller.cli;
 
-import ispwproject.gymwizard.controller.cli.CLIState;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
-import ispwproject.gymwizard.view.DashboardAdminView;
+import ispwproject.gymwizard.view.DashboardClienteView;
 
-public class DashboardAdminCLIController {
+public class DashboardClienteCLIController {
 
-    private final DashboardAdminView view = new DashboardAdminView();
+    private final DashboardClienteView view = new DashboardClienteView();
 
     public CLIState start() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
         String username = SessionManager.getInstance().getAttributo("utente").toString();
-        SessionManager.getInstance().setAttributo("homePage", "Admin");
+        SessionManager.getInstance().setAttributo("homePage", "Cliente");
         view.mostraBenvenuto(username);
 
         return loopMenu();
     }
 
-    private CLIState loopMenu() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
+    private CLIState loopMenu() {
         while (true) {
             view.mostraMenu();
             String scelta = view.chiediScelta();
 
             switch (scelta) {
                 case "1" -> {
-                    return CLIState.ATTIVITA;
+                    return CLIState.SCHEDA_CLIENTE;
                 }
                 case "2" -> {
-                    mostraFunzioneInSviluppo("📊 [REPORT E STATISTICHE]");
-                    continue;
+                    return CLIState.ATTIVITA;
                 }
                 case "3" -> {
-                    mostraFunzioneInSviluppo("📢 [INVIO COMUNICAZIONI]");
-                    continue;
+                    return CLIState.GESTIONE_ABBONAMENTI;
                 }
                 case "4" -> {
-                    view.mostraHelp();
-                    continue;
+                    return CLIState.CHAT;
                 }
+                case "5" -> {
+                    return CLIState.CODICE_ACCESSO;
+                }
+                case "6" -> view.mostraAiuto();
                 case "0" -> {
                     onLogout();
                     return CLIState.LOGIN;
@@ -49,12 +49,6 @@ public class DashboardAdminCLIController {
 
             view.pulisciSchermo();
         }
-    }
-
-    private void mostraFunzioneInSviluppo(String titolo) {
-        view.mostraMessaggio("\n" + titolo);
-        view.mostraMessaggio("Funzionalità in sviluppo...");
-        view.attesaInvioPerContinuare();
     }
 
     private void onLogout() {
