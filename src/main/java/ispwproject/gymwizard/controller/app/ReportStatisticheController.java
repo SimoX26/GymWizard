@@ -1,9 +1,9 @@
 package ispwproject.gymwizard.controller.app;
 
-import ispwproject.gymwizard.util.DAO.PagamentoDAO;
+import ispwproject.gymwizard.model.Abbonamento;
+import ispwproject.gymwizard.util.DAO.AbbonamentoDAO;
 import ispwproject.gymwizard.util.DAO.PrenotazioneDAO;
 import ispwproject.gymwizard.util.DAO.UtenteDAO;
-import ispwproject.gymwizard.util.bean.PagamentoBean;
 import ispwproject.gymwizard.util.bean.PrenotazioneBean;
 import ispwproject.gymwizard.util.bean.UtenteAttivoBean;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -13,13 +13,13 @@ import java.util.List;
 
 public class ReportStatisticheController {
 
-    private final PagamentoDAO pagamentoDAO = new PagamentoDAO();
+    private final AbbonamentoDAO abbonamentoDAO = AbbonamentoDAO.getInstance();
     private final PrenotazioneDAO prenotazioneDAO = PrenotazioneDAO.getInstance();
     private final UtenteDAO utenteDAO = new UtenteDAO();
 
-    public List<PagamentoBean> getStoricoPagamenti() {
+    public List<Abbonamento> getStoricoAbbonamenti() {
         try {
-            return pagamentoDAO.getStoricoPagamenti();
+            return abbonamentoDAO.getAllDisponibili();
         } catch (DAOException e) {
             e.printStackTrace();
             return Collections.emptyList();

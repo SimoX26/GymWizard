@@ -22,15 +22,16 @@
                        style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
 
                 <!-- Storico Pagamenti -->
-                <TitledPane text="Storico Pagamenti" expanded="true"
+                <TitledPane text="Storico Abbonamenti" expanded="true"
                             style="-fx-text-fill: white;">
                     <content>
                         <TableView fx:id="pagamentiTable" prefHeight="150.0"
                                    style="-fx-background-color: white;">
                             <columns>
-                                <TableColumn fx:id="colDataPagamento" text="Data" prefWidth="100.0"/>
-                                <TableColumn fx:id="colImportoPagamento" text="Importo (€)" prefWidth="100.0"/>
-                                <TableColumn fx:id="colMetodoPagamento" text="Metodo" prefWidth="100.0"/>
+                                <TableColumn fx:id="colTipoAbbonamento" text="Tipo" prefWidth="100.0"/>
+                                <TableColumn fx:id="colImportoAbbonamento" text="Importo (€)" prefWidth="100.0"/>
+                                <TableColumn fx:id="colDataInizio" text="Data Inizio" prefWidth="100.0"/>
+                                <TableColumn fx:id="colStato" text="Stato" prefWidth="100.0"/>
                             </columns>
                         </TableView>
                     </content>

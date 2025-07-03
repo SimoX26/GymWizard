@@ -1,11 +1,15 @@
 package ispwproject.gymwizard.util.DAO;
 
 import ispwproject.gymwizard.model.Abbonamento;
+import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AbbonamentoDAO {
 
@@ -75,4 +79,30 @@ public class AbbonamentoDAO {
         }
     }
 
+    public List<Abbonamento> getAllDisponibili() throws DAOException {
+        List<Abbonamento> abbonamentoList = new ArrayList<>();
+
+        String query = "SELECT * FROM Abbonamento WHERE data_inizio >= CURDATE() ORDER BY data_inizio";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Abbonamento abbonamento = new Abbonamento(
+                        rs.getInt("id"),
+                        rs.getDate("data_inizio").toLocalDate(),
+                        rs.getDate("data_fine").toLocalDate(),
+                        rs.getString("tipo"),
+                        rs.getString("stato")
+                );
+                abbonamentoList.add(abbonamento);
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Errore durante il recupero degli abbonamenti: " + e.getMessage(), e);
+        }
+
+        return abbonamentoList;
+    }
 }
