@@ -32,7 +32,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController {
     }
 
     @FXML
-    public void onCreaAttivita() {
+    public void onCreaAttivita(ActionEvent event) {
         System.out.println("SAVE button clicked.");
         try {
             String nome = nomeField.getText();
@@ -46,7 +46,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController {
             new AttivitaController().creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
             showPopup("Successo", "Attività creata", "Attività creata con successo!");
-            switchScene("/views/ListinoAttivitaView.fxml", null);
+            switchScene("/views/ListinoAttivitaView.fxml", event);
 
         } catch (AttivitaDuplicataException e) {
             showPopup("Attività Duplicata", "Errore", e.getMessage());
