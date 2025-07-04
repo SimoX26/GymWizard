@@ -29,7 +29,7 @@ public class DashboardClienteCLIController {
                     return CLIState.SELEZIONA_SCHEDA;
                 }
                 case "2" -> {
-                    return CLIState.ATTIVITA;
+                    return CLIState.LISTINO_ATTIVITA;
                 }
                 case "3" -> {
                     return CLIState.GESTIONE_ABBONAMENTI;

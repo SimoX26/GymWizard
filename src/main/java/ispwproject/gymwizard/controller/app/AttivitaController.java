@@ -23,7 +23,7 @@ public class AttivitaController {
         return AttivitaDAO.getInstance().getAllDisponibili();
     }
 
-    public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
+    public static void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
             throws DAOException, AttivitaDuplicataException {
 
         // Controllo duplicato

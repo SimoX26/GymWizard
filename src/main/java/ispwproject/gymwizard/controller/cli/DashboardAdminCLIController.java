@@ -26,7 +26,7 @@ public class DashboardAdminCLIController {
 
             switch (scelta) {
                 case "1" -> {
-                    return CLIState.ATTIVITA;
+                    return CLIState.LISTINO_ATTIVITA;
                 }
                 case "2" -> {
                     mostraFunzioneInSviluppo("📊 [REPORT E STATISTICHE]");
