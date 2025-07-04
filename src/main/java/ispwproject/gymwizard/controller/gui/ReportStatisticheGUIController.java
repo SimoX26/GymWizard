@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -38,14 +37,13 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
     @FXML private TableColumn<UtenteAttivoBean, String> colNomeCompleto;
     @FXML private TableColumn<UtenteAttivoBean, String> colUltimoAccesso;
 
-    private final ReportStatisticheController controller = new ReportStatisticheController();
-
-    @Override
+    @FXML
     public void initialize(URL location, ResourceBundle resources) {
         setupColumns();
         loadData();
     }
 
+    @FXML
     private void setupColumns() {
         // Pagamenti
         colTipoAbbonamento.setCellValueFactory(new PropertyValueFactory<>("tipo"));
@@ -55,7 +53,6 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
             String prezzoFormattato = String.format("%.2f €", prezzoCent / 100.0);
             return new SimpleStringProperty(prezzoFormattato);
         });
-
         colDataInizio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDataInizio().toString()));
         colStato.setCellValueFactory(new PropertyValueFactory<>("stato"));
 
@@ -70,16 +67,18 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
         colUltimoAccesso.setCellValueFactory(new PropertyValueFactory<>("ultimoAccesso"));
     }
 
+    @FXML
     private void loadData() {
-        List<Abbonamento> abbonamenti = controller.getStoricoAbbonamenti();
-        List<PrenotazioneBean> prenotazioni = controller.getStoricoPrenotazioni();
-        List<UtenteAttivoBean> utenti = controller.getUtentiAttivi();
+        List<Abbonamento> abbonamenti = ReportStatisticheController.getStoricoAbbonamenti();
+        List<PrenotazioneBean> prenotazioni = ReportStatisticheController.getStoricoPrenotazioni();
+        List<UtenteAttivoBean> utenti = ReportStatisticheController.getUtentiAttivi();
 
         pagamentiTable.getItems().setAll(abbonamenti);
         prenotazioniTable.getItems().setAll(prenotazioni);
         utentiAttiviTable.getItems().setAll(utenti);
     }
 
+    @FXML
     public void onBackClick(ActionEvent event) {
         System.out.println("BACK button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"),event);

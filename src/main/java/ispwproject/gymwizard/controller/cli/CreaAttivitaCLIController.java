@@ -2,44 +2,37 @@ package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
-import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.view.CreaAttivitaView;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Scanner;
 
 public class CreaAttivitaCLIController {
-    private final Scanner scanner = new Scanner(System.in);
 
-    public void start() throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
-        System.out.println("\n=== CREA NUOVA ATTIVITÀ ===");
+    private final CreaAttivitaView view = new CreaAttivitaView();
 
-        System.out.print("Nome attività: ");
-        String nome = scanner.nextLine();
+    public CLIState start() {
+        view.mostraTitolo();
 
-        System.out.print("Descrizione: ");
-        String descrizione = scanner.nextLine();
+        String nome = view.chiediStringa("🏷️ Nome attività: ");
+        String descrizione = view.chiediStringa("🗒️ Descrizione attività: ");
+        LocalDate data = LocalDate.parse(view.chiediStringa("📅 Data (YYYY-MM-DD): "));
+        LocalTime oraInizio = LocalTime.parse(view.chiediStringa("⏰ Ora inizio (HH:MM): "));
+        LocalTime oraFine = LocalTime.parse(view.chiediStringa("⏱️ Ora fine (HH:MM): "));
+        int posti = view.chiediNumero("👥 Numero posti disponibili: ");
+        String nomeTrainer = view.chiediStringa("👤 Nome del trainer: ");
 
-        System.out.print("Data (formato yyyy-mm-dd): ");
-        LocalDate data = LocalDate.parse(scanner.nextLine());
+        try {
+            AttivitaController.creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, nomeTrainer);
+            view.mostraMessaggio("✅ Attività creata con successo!");
+        } catch (DAOException e) {
+            view.mostraMessaggio("❌ Errore durante la creazione: " + e.getMessage());
+        } catch (AttivitaDuplicataException e) {
+            throw new RuntimeException(e);
+        }
 
-        System.out.print("Orario di inizio (formato HH:mm): ");
-        LocalTime oraInizio = LocalTime.parse(scanner.nextLine());
-
-        System.out.print("Orario di fine (formato HH:mm): ");
-        LocalTime oraFine = LocalTime.parse(scanner.nextLine());
-
-        System.out.print("Numero posti disponibili: ");
-        int posti = scanner.nextInt();
-
-        System.out.print("Nome del trainer: ");
-        String trainerName = scanner.nextLine();
-
-        scanner.nextLine(); // consuma newline
-
-        new AttivitaController().creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
-
-        new AttivitaCLIController().start();
+        view.attesaInvio();
+        return CLIState.LISTINO_ATTIVITA;
     }
 }

@@ -1,71 +1,48 @@
 package ispwproject.gymwizard.controller.cli;
 
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
-
-import java.util.Scanner;
+import ispwproject.gymwizard.view.DashboardTrainerView;
 
 public class DashboardTrainerCLIController {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private final DashboardTrainerView view = new DashboardTrainerView();
 
-    public static void start() {
-        // Messaggio di benvenuto
-        String username = SessionManager.getInstance().getSession().getUsername();
-        SessionManager.getInstance().setAttributo("homePage", "Trainer");
-        System.out.println("\n👋 Benvenuto " + (username != null ? username : "trainer") + "!");
-        menu();
+    public CLIState start() {
+        Utente u = (Utente) SessionManager.getInstance().getAttributo("utente");
+        SessionManager.getInstance().setAttributo("homePage", "trainer");
+        view.mostraBenvenuto(u.getUsername());
+
+        return loopMenu();
     }
 
-    private static void menu() {
+    private CLIState loopMenu() {
         while (true) {
-            System.out.println("""
-            \n📋 DASHBOARD TRAINER:
-            1. Lista Clienti
-            2. Lista Chat
-            3. Aiuto
-            0. Logout
-            """);
-
-            System.out.print("👉 Scelta: ");
-            String input = scanner.nextLine();
+            view.mostraMenu();
+            String input = view.chiediScelta();
 
             switch (input) {
-                case "1" -> switchToListaClienti();
-                case "2" -> onChatListBtnClick();
-                case "3" -> onHelpClick();
+                case "1" -> {
+                    return CLIState.LISTA_CLIENTI;
+                }
+                case "2" -> {
+                    return CLIState.CHAT;
+                }
+                case "3" -> view.mostraAiuto();
                 case "0" -> {
                     onLogoutClick();
-                    return;
+                    return CLIState.LOGIN;
                 }
-                default -> System.out.println("❌ Scelta non valida.");
+                default -> view.mostraMessaggio("❌ Scelta non valida.");
             }
-            for (int i = 0; i < 50; i++) {
-                System.out.println();
-            }
+
+            view.pulisciSchermo();
         }
     }
 
-    private static void switchToListaClienti() {
-        System.out.println("📁 [Lista Clienti] Visualizzazione dei clienti associati...");
-        // TODO: collegare alla logica dei clienti
-    }
-
-    private static void onChatListBtnClick() {
-        System.out.println("💬 [Chat] Lista delle conversazioni disponibili...");
-        // TODO: collegare alla logica della chat
-    }
-
-    private static void onHelpClick() {
-        System.out.println("""
-        🆘 Guida Interfaccia:
-        Puoi accedere alla lista dei clienti oppure alla chat con loro.
-        """);
-    }
-
-    private static void onLogoutClick() {
-        System.out.println("🚪 Logout in corso...");
+    private void onLogoutClick() {
+        view.mostraMessaggio("🚪 Logout in corso...");
         SessionManager.getInstance().clearAll();
-        System.out.println("✅ Logout effettuato. Ritorno al menu principale.");
+        view.mostraMessaggio("✅ Logout effettuato. Ritorno al menu principale.");
     }
 }
-
