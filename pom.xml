@@ -33,8 +33,6 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
-
-        <!-- JavaFX Web (WebView e WebEngine) -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
@@ -48,6 +46,7 @@
             <version>8.0.33</version>
         </dependency>
 
+        <!-- ✅ ZXing (QR Code) -->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
@@ -59,11 +58,23 @@
             <version>3.5.2</version>
         </dependency>
 
+        <!-- ✅ JUnit 5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
-
     <build>
-
         <plugins>
             <!-- ✅ JavaFX plugin -->
             <plugin>
@@ -75,7 +86,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ✅ Compiler plugin con accesso a moduli non modulari -->
+            <!-- ✅ Compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -90,6 +101,14 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
+
+            <!-- ✅ JUnit 5 test runner -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M9</version>
+            </plugin>
         </plugins>
     </build>
 </project>
+

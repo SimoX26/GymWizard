@@ -329,3 +329,23 @@ INSERT INTO Utente (username, email) VALUES
 ('trainer 1', 'trainer1@example.com'),
 ('trainer 2', 'trainer2@example.com'),
 ('admin 1', 'admin1@example.com');
+
+-- AGGIUNTE PER IL TESTING
+
+-- TESTING 1: OGNI UTENTE HA ACCESSO SOLO ALLA SUA SCHEDA
+GRANT SELECT ON PalestraDB.Scheda TO 'login'@'localhost';
+FLUSH PRIVILEGES;
+
+-- TESTING 2: NON È POSSIBILE INSERIRE ESERCIZI DUPLICATI
+
+INSERT INTO scheda (id_cliente, nome_scheda, data_creazione)
+VALUES (1, 'Scheda Test', CURRENT_DATE());
+INSERT INTO esercizioscheda (id_scheda, nome_esercizio, serie, ripetizioni, note)
+VALUES (1, 'Panca Piana', 3, 12, 'test duplicato');
+GRANT SELECT, INSERT ON PalestraDB.EsercizioScheda TO 'login'@'localhost';
+FLUSH PRIVILEGES;
+
+-- TESTING 3: NON E' POSSIBILE INSERIRE ATTIVITA DUPLICATE
+GRANT SELECT, INSERT, UPDATE, DELETE ON PalestraDB.Attivita TO 'login'@'localhost';
+FLUSH PRIVILEGES;
+
