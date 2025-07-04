@@ -40,7 +40,7 @@ public class SelezionaSchedaClienteCLIController {
 
         // Salva la scheda selezionata nel SessionManager
         Scheda schedaSelezionata = listaSchede.get(scelta);
-        SessionManager.getInstance().setAttributo("schedaSelezionata", schedaSelezionata);
+        SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
 
         return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
     }
