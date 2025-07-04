@@ -21,8 +21,9 @@ public class ReportStatisticheController {
         try {
             return abbonamentoDAO.getAllDisponibili();
         } catch (DAOException e) {
-            e.printStackTrace();
+            System.err.println("Errore durante il recupero dei dati dal database: " + e.getMessage());
             return Collections.emptyList();
+
         }
     }
 
@@ -30,8 +31,9 @@ public class ReportStatisticheController {
         try {
             return prenotazioneDAO.getStoricoPrenotazioni();
         } catch (DAOException e) {
-            e.printStackTrace();
+            System.err.println("Errore durante il recupero dei dati dal database: " + e.getMessage());
             return Collections.emptyList();
+
         }
     }
 
@@ -39,8 +41,9 @@ public class ReportStatisticheController {
         try {
             return utenteDAO.getUtentiAttivi();
         } catch (DAOException e) {
-            e.printStackTrace();
+            System.err.println("Errore durante il recupero dei dati dal database: " + e.getMessage());
             return Collections.emptyList();
+
         }
     }
 }

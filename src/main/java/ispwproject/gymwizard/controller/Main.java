@@ -22,8 +22,9 @@ public class Main extends Application {
             primaryStage.centerOnScreen();        // Centra la finestra
             primaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Errore imprevisto: " + e.getMessage());
         }
+
     }
 
     public static void main(String[] args) {

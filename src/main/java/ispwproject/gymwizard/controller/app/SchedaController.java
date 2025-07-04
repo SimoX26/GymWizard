@@ -17,9 +17,21 @@ public class SchedaController {
     }
 
     public static List<Scheda> getSchedeByIdCliente(int idCliente){
-        // Recupero schede, legate all'id utente passato come parametro, dal DB
+        Utente loggato = (Utente) SessionManager.getInstance().getAttributo("utente");
+
+        if (loggato == null) {
+            throw new SecurityException("Utente non loggato.");
+        }
+
+        // Se il chiamante è il cliente stesso, tutto ok
+        // Altrimenti, accettiamo l'accesso perché siamo nella GUI del trainer (dove si seleziona il cliente manualmente)
         return SchedaDAO.getInstance().getSchedeByUtente(idCliente);
     }
+
+
+
+
+
 
     public void aggiungiEsercizio(String nomeEsercizio, int serie, int ripetizioni, String note) throws EsercizioDuplicatoException {
 

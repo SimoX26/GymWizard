@@ -1,8 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.SchedaController;
-import ispwproject.gymwizard.model.Scheda;
-import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +24,7 @@ public class AggiungiEsercizioGUIController extends AbstractGUIController{
         anchorPane.setBackground(new Background(this.background()));
     }
 
-    public void onAggiungiEsercizio(ActionEvent event) throws DAOException, SchedaController.EsercizioDuplicatoException {
+    public void onAggiungiEsercizio(ActionEvent event) throws SchedaController.EsercizioDuplicatoException {
         System.out.println("AGGIUNGI ESERCIZIO button clicked.");
 
         String nome = nomeEsercizioField.getText();
