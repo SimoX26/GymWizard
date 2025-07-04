@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.model.Scheda;
+import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.VisualizzaListaSchedeView;
 
@@ -14,25 +15,22 @@ public class VisualizzaListaSchedeCLIController {
 
     public CLIState start() {
         // Recupero l'utente loggato dalla sessione
-        Object utenteObj = SessionManager.getInstance().getAttributo("utente");
-        if (utenteObj == null) {
+        Utente cliente = (Utente) SessionManager.getInstance().getAttributo("utente");
+        if (cliente == null) {
             view.mostraMessaggio("❌ Errore: utente non loggato.");
             view.attesaInvio();
             return CLIState.LOGIN; // o qualsiasi stato appropriato
         }
 
-        int idUtente = ((ispwproject.gymwizard.model.Utente) utenteObj).getId();
-        List<Scheda> listaSchede = SchedaController.getSchedeByIdCliente(idUtente);
+        // Carica le schede dal DB usando il controller reale
+        List<Scheda> listaSchede = SchedaController.getSchedeByIdCliente(cliente.getId());
 
-        if (listaSchede.isEmpty()) {
-            view.mostraMessaggio("⚠️ Nessuna scheda trovata per questo utente.");
-            view.attesaInvio();
-
-            String homePage = SessionManager.getInstance().getAttributo("homePage").toString();
-            return homePage.equals("trainer") ? CLIState.LISTA_CLIENTI : CLIState.DASHBOARD_CLIENTE;
+        if (listaSchede == null || listaSchede.isEmpty()) {
+            view.mostraMessaggio("⚠️ Nessuna scheda trovata per " + cliente.getUsername());
+            return CLIState.CREA_SCHEDA_CLIENTE;
         }
 
-        // Lista di nomi da visualizzare
+        // Estrai i nomi delle schede da visualizzare
         List<String> nomiSchede = listaSchede.stream()
                 .map(Scheda::getNomeScheda)
                 .collect(Collectors.toList());
@@ -43,14 +41,13 @@ public class VisualizzaListaSchedeCLIController {
             String homePage = SessionManager.getInstance().getAttributo("homePage").toString();
             return homePage.equals("trainer") ? CLIState.LISTA_CLIENTI : CLIState.DASHBOARD_CLIENTE;
         }
-
         if (scelta == -2) {
             return CLIState.CREA_SCHEDA_CLIENTE;
         }
 
         if (scelta >= 0 && scelta < listaSchede.size()) {
             Scheda schedaSelezionata = listaSchede.get(scelta);
-            SessionManager.getInstance().setAttributo("schedaSelezionata", schedaSelezionata);
+            SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
             return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
         } else {
             view.mostraMessaggio("❌ Scelta non valida.");
