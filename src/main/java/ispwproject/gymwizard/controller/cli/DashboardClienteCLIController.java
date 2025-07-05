@@ -32,7 +32,7 @@ public class DashboardClienteCLIController {
                     return CLIState.LISTINO_ATTIVITA;
                 }
                 case "3" -> {
-                    return CLIState.GESTIONE_ABBONAMENTI;
+                    return CLIState.STATO_ABBONAMENTO;
                 }
                 case "4" -> {
                     return CLIState.CHAT;

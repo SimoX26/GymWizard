@@ -1,29 +1,33 @@
 package ispwproject.gymwizard.controller.cli;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Scanner;
+import ispwproject.gymwizard.controller.app.AbbonamentoController;
+import ispwproject.gymwizard.model.Abbonamento;
+import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.view.StatoAbbonamentoView;
 
 public class StatoAbbonamentoCLIController {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final StatoAbbonamentoView view = new StatoAbbonamentoView();
 
-    public void start() {
-        System.out.println("\n📋 STATO DELL’ABBONAMENTO\n");
+    public CLIState start() {
+        Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
 
-        // Simulazione dati (in un'app reale proverrebbero da DB o controller applicativo)
-        String tipoAbbonamento = "Mensile";
-        LocalDate dataInizio = LocalDate.of(2024, 5, 1);
-        LocalDate dataFine = dataInizio.plusMonths(1);
-        long giorniRimanenti = ChronoUnit.DAYS.between(LocalDate.now(), dataFine);
+        if (utente == null) {
+            view.mostraMessaggio("❌ Nessun utente loggato.");
+            view.attesaInvio();
+            return CLIState.LOGIN;
+        }
 
-        System.out.println("📦 Tipo: " + tipoAbbonamento);
-        System.out.println("📅 Inizio: " + dataInizio);
-        System.out.println("📅 Scadenza: " + dataFine);
-        System.out.println("⏳ Giorni rimanenti: " + (giorniRimanenti > 0 ? giorniRimanenti : "Scaduto"));
+        Abbonamento abbonamento = AbbonamentoController.getDatiAbbonamento();
 
-        System.out.println("\n0. 🔙 Torna alla Dashboard");
-        System.out.print("👉 Premi invio per tornare: ");
-        scanner.nextLine();
+        // ✅ Mostra comunque la schermata, anche se abbonamento è null
+        int scelta = view.mostraAbbonamento(abbonamento);
+
+        return switch (scelta) {
+            case 1 -> CLIState.RINNOVA_ABBONAMENTO;
+            case 0 -> CLIState.DASHBOARD_CLIENTE;
+            default -> CLIState.DASHBOARD_CLIENTE;
+        };
     }
 }

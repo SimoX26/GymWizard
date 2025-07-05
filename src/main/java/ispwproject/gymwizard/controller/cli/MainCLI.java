@@ -19,6 +19,10 @@ public class MainCLI {
                 case SELEZIONA_SCHEDA -> statoCorrente = new VisualizzaListaSchedeCLIController().start();
                 case VISUALIZZA_ESERCIZI_SCHEDA -> statoCorrente = new VisualizzaEserciziSchedaCLIController().start();
 
+                case STATO_ABBONAMENTO -> statoCorrente = new StatoAbbonamentoCLIController().start();
+                case RINNOVA_ABBONAMENTO -> statoCorrente = new RinnovaAbbonamentoCLIController().start();
+                case RIEPILOGO_ABBONAMENTO -> statoCorrente = new RiepilogoAbbonamentoCLIController().start();
+
                 case LISTINO_ATTIVITA -> statoCorrente = new ListinoAttivitaCLIController().start();
                 case VISUALIZZA_ATTIVITA -> statoCorrente = new VisualizzaAttivitaCLIController().start();
                 case CREA_ATTIVITA -> statoCorrente = new CreaAttivitaCLIController().start();

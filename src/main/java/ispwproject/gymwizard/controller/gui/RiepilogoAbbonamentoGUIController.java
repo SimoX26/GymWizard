@@ -10,7 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-public class RiepilogoOrdineGUIController extends AbstractGUIController{
+public class RiepilogoAbbonamentoGUIController extends AbstractGUIController{
 
     private String tipo;
 
@@ -49,24 +49,23 @@ public class RiepilogoOrdineGUIController extends AbstractGUIController{
         System.out.println("PAGAMENTO button clicked.");
 
         int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
-
         try {
             PagamentoController paypal = new PagamentoController();
             String url = paypal.creaOrdine(prezzo);
 
-            AbbonamentoController.apriNelBrowser(url); // Apre il broswer di sistema in maniera compatibile
-
+            AbbonamentoController.apriNelBrowser(url);
             AbbonamentoController.aggiungiAbbonamento(tipo, "Pagamento mock");
 
             this.showPopup("Pagamento in attesa", null, "Verifica lo stato del pagamento nel browser.");
-            this.showPopup("IGNORARE PAGAMENTO", null, "Per una questione dimostrativa abbiamo bypassato il pagamento.\n" +
-                    "é stato effettuato correttamente l'abbonamento selezionato.");
-
+            this.showPopup("IGNORARE PAGAMENTO", null, "Dimostrazione: abbonamento attivato senza pagamento reale.");
             this.switchScene("/views/StatoAbbonamentoView.fxml", event);
+
+        } catch (IllegalStateException e) {
+            this.showError("Abbonamento esistente", "Hai già un abbonamento attivo.");
         } catch (Exception e) {
-            e.printStackTrace();
-            this.showError("Errore", "Errore durante l'avvio del pagamento.\n" + e.getMessage());
+            this.showError("Errore generico", "Errore durante l’avvio del pagamento: " + e.getMessage());
         }
+
     }
 
 

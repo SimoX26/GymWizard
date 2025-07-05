@@ -21,16 +21,25 @@ public class AbbonamentoController {
     public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
 
+        AbbonamentoDAO dao = AbbonamentoDAO.getInstance();
+
+        // ✅ BLOCCO se esiste già un abbonamento attivo
+        Abbonamento abbonamentoEsistente = dao.trovaAbbonamentoAttivoPerUtente(utente.getId());
+        if (abbonamentoEsistente != null) {
+            throw new IllegalStateException("Esiste già un abbonamento attivo per questo utente.");
+        }
+
         Abbonamento nuovoAbbonamento = new Abbonamento();
         nuovoAbbonamento.setIdUtente(utente.getId());
         nuovoAbbonamento.setTipo(tipo);
         nuovoAbbonamento.setDataInizio(getDataEmissione());
         nuovoAbbonamento.setDataFine(getDataScadenza(tipo));
-        nuovoAbbonamento.setStato("attivo"); // "attivo" dato che il pagamento è immediato
+        nuovoAbbonamento.setStato("attivo");
         nuovoAbbonamento.setRiferimentoPagamento(riferimentoPagamento);
 
-        AbbonamentoDAO.getInstance().inserisciAbbonamento(nuovoAbbonamento);
+        dao.inserisciAbbonamento(nuovoAbbonamento);
     }
+
 
     public static String getNomeAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
@@ -84,7 +93,8 @@ public class AbbonamentoController {
         return switch (tipo.toLowerCase()) {
             case "mensile" -> LocalDate.now().plusDays(30);
             case "trimestrale" -> LocalDate.now().plusDays(90);
-            case "annuale" -> LocalDate.now().plusDays(365);
+            case "annuale", "10ingressi" -> LocalDate.now().plusDays(365);
+
             default -> null;
         };
     }

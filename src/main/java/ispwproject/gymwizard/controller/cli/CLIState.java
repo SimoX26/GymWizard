@@ -8,6 +8,9 @@ public enum CLIState {
 
     VISUALIZZA_ESERCIZI_SCHEDA, // Visualizzazione degli esercizi della scheda scelta
     SELEZIONA_SCHEDA, // Scelta della scheda assegnata
+    STATO_ABBONAMENTO,
+    RINNOVA_ABBONAMENTO,
+    RIEPILOGO_ABBONAMENTO,
 
 // Stati del flusso trainer
     DASHBOARD_TRAINER,
@@ -26,7 +29,6 @@ public enum CLIState {
     CREA_ATTIVITA,
 
 
-    GESTIONE_ABBONAMENTI,
     CHAT,
     CODICE_ACCESSO,
 
