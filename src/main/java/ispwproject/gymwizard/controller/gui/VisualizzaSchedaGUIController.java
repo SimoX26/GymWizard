@@ -1,7 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.SchedaController;
-import ispwproject.gymwizard.controller.DEMO.DemoFactory;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;

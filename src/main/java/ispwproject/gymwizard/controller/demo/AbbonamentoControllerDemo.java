@@ -1,11 +1,9 @@
-package ispwproject.gymwizard.controller.DEMO;
+package ispwproject.gymwizard.controller.demo;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
-
-import java.time.LocalDate;
 
 public class AbbonamentoControllerDemo extends AbbonamentoController {
 

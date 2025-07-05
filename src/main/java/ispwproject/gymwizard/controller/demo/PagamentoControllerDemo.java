@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.controller.DEMO;
+package ispwproject.gymwizard.controller.demo;
 
 import ispwproject.gymwizard.controller.app.PagamentoController;
 
