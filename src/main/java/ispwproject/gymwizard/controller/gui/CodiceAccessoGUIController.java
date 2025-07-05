@@ -1,7 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import com.google.zxing.WriterException;
-import ispwproject.gymwizard.util.singleton2.QRCodeGenerator;
+import ispwproject.gymwizard.util.singleton.QRCodeGenerator;
 import ispwproject.gymwizard.util.QRCodeUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

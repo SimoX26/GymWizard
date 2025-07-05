@@ -8,6 +8,9 @@ public class Scheda {
     private String nomeScheda;
     private Timestamp dataCreazione;
 
+    // Costruttore vuoto richiesto da Gson
+    public Scheda() {}
+
     public Scheda(int id, int idCliente, String nome, Timestamp dataCreazione) {
         this.id = id;
         this.idCliente = idCliente;
@@ -20,24 +23,37 @@ public class Scheda {
         this.nomeScheda = nome;
     }
 
+    // Getter e Setter
+
     public int getId() {
         return id;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public String getNomeScheda() {
-        return nomeScheda;
-    }
-
-    public Timestamp getDataCreazione() {
-        return dataCreazione;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getNomeScheda() {
+        return nomeScheda;
+    }
+
+    public void setNomeScheda(String nomeScheda) {
+        this.nomeScheda = nomeScheda;
+    }
+
+    public Timestamp getDataCreazione() {
+        return dataCreazione;
+    }
+
+    public void setDataCreazione(Timestamp dataCreazione) {
+        this.dataCreazione = dataCreazione;
+    }
 }

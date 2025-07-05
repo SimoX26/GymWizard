@@ -1,10 +1,13 @@
 package ispwproject.gymwizard.controller.app;
 
+
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.DAO.EsercizioSchedaDAO;
 import ispwproject.gymwizard.util.DAO.SchedaDAO;
+import ispwproject.gymwizard.util.FileSystem.EsercizioSchedaFileDAO;
+import ispwproject.gymwizard.util.FileSystem.SchedaFileDAO;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
@@ -12,40 +15,64 @@ import java.util.List;
 
 public class SchedaController {
 
-    public List<EsercizioScheda> getEserciziScheda(int idScheda){
+    public  List<EsercizioScheda> getEserciziScheda(int idScheda) {
         return EsercizioSchedaDAO.getEserciziByScheda(idScheda);
     }
 
-    public List<Scheda> getSchedeByIdCliente(int idCliente){
+    public  List<Scheda> getSchedeByIdCliente(int idCliente) {
         Utente loggato = (Utente) SessionManager.getInstance().getAttributo("utente");
 
         if (loggato == null) {
             throw new SecurityException("Utente non loggato.");
         }
 
-        // Se il chiamante è il cliente stesso, tutto ok
-        // Altrimenti, accettiamo l’accesso perché siamo nella GUI del trainer (dove si seleziona il cliente manualmente)
+        // Accesso da parte del cliente stesso o del trainer
         return SchedaDAO.getInstance().getSchedeByUtente(idCliente);
     }
 
-    public void aggiungiEsercizio(String nomeEsercizio, int serie, int ripetizioni, String note) throws EsercizioDuplicatoException {
-        Scheda scheda = (Scheda) SessionManager.getInstance().getAttributo("scheda");
-        int idScheda = scheda.getId();
+    public void creaScheda(String nome) throws DAOException {
+        Utente cliente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
+        if (cliente == null) {
+            throw new DAOException("Cliente non selezionato.");
+        }
 
-        // Controllo duplicati
+        Scheda nuovaScheda = new Scheda(cliente.getId(), nome);
+
+        // ✅ Salva nel DB
+        SchedaDAO.getInstance().insertScheda(nuovaScheda);
+
+        // ✅ Salva nel FileSystem (data/clienti/<idCliente>/schede.json)
+        try {
+            SchedaFileDAO.getInstance().insertScheda(nuovaScheda);
+        } catch (Exception e) {
+            System.err.println("⚠️ Errore salvataggio su FileSystem: " + e.getMessage());
+        }
+    }
+
+    public void aggiungiEsercizio(String nomeEsercizio, int serie, int ripetizioni, String note) throws EsercizioDuplicatoException {
+        Scheda schedaCorrente = (Scheda) SessionManager.getInstance().getAttributo("scheda");
+        if (schedaCorrente == null) {
+            throw new IllegalStateException("Scheda non selezionata.");
+        }
+
+        int idScheda = schedaCorrente.getId();
+
+        // ✅ Verifica duplicati su DB
         if (EsercizioSchedaDAO.getInstance().existsEsercizio(idScheda, nomeEsercizio)) {
             throw new EsercizioDuplicatoException(nomeEsercizio);
         }
 
         EsercizioScheda nuovo = new EsercizioScheda(idScheda, nomeEsercizio, serie, ripetizioni, note);
+
+        // ✅ Salva nel DB
         EsercizioSchedaDAO.getInstance().insertEsercizio(nuovo);
-    }
 
-    public void creaScheda(String nome) throws DAOException {
-        Utente utente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
-
-        Scheda nuovaScheda = new Scheda(utente.getId(), nome);
-        SchedaDAO.getInstance().insertScheda(nuovaScheda);
+        // ✅ Salva nel FileSystem (data/clienti/<idCliente>/esercizi_scheda.json)
+        try {
+            EsercizioSchedaFileDAO.getInstance().insertEsercizio(nuovo, schedaCorrente.getIdCliente());
+        } catch (Exception e) {
+            System.err.println("⚠️ Errore salvataggio esercizio su FileSystem: " + e.getMessage());
+        }
     }
 
     public static class EsercizioDuplicatoException extends Exception {

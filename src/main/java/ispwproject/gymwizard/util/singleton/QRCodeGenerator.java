@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.util.singleton2;
+package ispwproject.gymwizard.util.singleton;
 
 import java.security.SecureRandom;
 

@@ -1,7 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
-import ispwproject.gymwizard.controller.demo.DemoFactory;
+import ispwproject.gymwizard.controller.DEMO.DemoFactory;
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;

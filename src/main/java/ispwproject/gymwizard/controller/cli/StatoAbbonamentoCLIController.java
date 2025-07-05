@@ -1,7 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
-import ispwproject.gymwizard.controller.demo.DemoFactory;
+import ispwproject.gymwizard.controller.DEMO.DemoFactory;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;

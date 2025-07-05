@@ -1,0 +1,45 @@
+Ai fini dell'esame vengono riportate in questo file le credenziali per effetturare l'accesso:
+
+Modalità GUI e Modalità CLI
+
+    Cliente1:
+    Username -> cliente1@example.com
+    Password -> 1234
+
+    Cliente2:
+    Username -> cliente2@example.com
+    Password -> 1234
+
+    Cliente3:
+    Username -> cliente3@example.com
+    Password -> 1234
+
+    Cliente4:
+    Username -> cliente4@example.com
+    Password -> 1234
+
+    Trainer1:
+    Username -> trainer1@example.com
+    Password -> 1234
+
+    Trainer2:
+    Username -> trainer2@example.com
+    Password -> 1234
+
+    Admin1:
+    Username -> admin1@example.com
+    Password -> 1234
+
+Modalità DEMO
+
+    Cliente1:
+    Username -> cliente1@demo
+    Password -> 1234
+
+    Trainer1:
+    Username -> trainer1@demo
+    Password -> 1234
+
+    Admin1:
+    Username -> admin1@demo
+    Password -> 1234

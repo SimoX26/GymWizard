@@ -14,12 +14,17 @@ import static org.junit.Assert.assertThrows;
 
 public class AttivitaPienaTest {
 
+    private AttivitaController attivitaController;
+
     @Before
-    public void setupSession() {
+    public void setup() {
         // Imposta un utente fake loggato nella sessione
         Utente utente = new Utente();
         utente.setId(1);  // Assicurati che l’utente 1 esista nel DB
         SessionManager.getInstance().setAttributo("utente", utente);
+
+        // Inizializza il controller non statico
+        attivitaController = new AttivitaController();
     }
 
     @Test
@@ -38,7 +43,7 @@ public class AttivitaPienaTest {
 
         // Verifica che venga lanciata l’eccezione
         assertThrows(AttivitaPienaException.class, () -> {
-            AttivitaController.prenotaAttivita(attivitaPiena);
+            attivitaController.prenotaAttivita(attivitaPiena);
         });
     }
 }

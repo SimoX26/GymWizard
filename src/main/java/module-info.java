@@ -1,11 +1,12 @@
 module ispwproject.gymwizard {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.sql;
     requires java.desktop;
     requires java.net.http;
     requires com.google.zxing.javase;
     requires com.google.zxing;
+    requires com.google.gson;
+    requires java.sql;
 
     exports ispwproject.gymwizard.controller;
     exports ispwproject.gymwizard.controller.app;

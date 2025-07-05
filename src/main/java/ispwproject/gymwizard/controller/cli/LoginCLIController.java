@@ -1,7 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.LoginController;
-import ispwproject.gymwizard.controller.demo.DemoFactory;
+import ispwproject.gymwizard.controller.DEMO.DemoFactory;
 import ispwproject.gymwizard.util.exception.CredenzialiException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.view.LoginView;

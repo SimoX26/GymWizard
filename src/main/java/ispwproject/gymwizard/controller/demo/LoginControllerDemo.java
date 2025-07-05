@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.controller.demo;
+package ispwproject.gymwizard.controller.DEMO;
 
 import ispwproject.gymwizard.controller.app.LoginController;
 import ispwproject.gymwizard.model.Role;

@@ -8,6 +8,9 @@ public class EsercizioScheda {
     private int ripetizioni;
     private String note;
 
+    // Costruttore vuoto richiesto da Gson
+    public EsercizioScheda() {}
+
     public EsercizioScheda(int idScheda, String nomeEsercizio, int serie, int ripetizioni, String note) {
         this.idScheda = idScheda;
         this.nomeEsercizio = nomeEsercizio;
@@ -16,9 +19,7 @@ public class EsercizioScheda {
         this.note = note;
     }
 
-    public EsercizioScheda() {
-
-    }
+    // Getter e Setter
 
     public int getId() {
         return id;

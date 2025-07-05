@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.controller.demo;
+package ispwproject.gymwizard.controller.DEMO;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.model.Attivita;

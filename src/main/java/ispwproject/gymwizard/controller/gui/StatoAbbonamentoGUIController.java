@@ -1,7 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
-import ispwproject.gymwizard.controller.demo.DemoFactory;
+import ispwproject.gymwizard.controller.DEMO.DemoFactory;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;

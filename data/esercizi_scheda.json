@@ -1,0 +1,18 @@
+[
+  {
+    "id": 2,
+    "idScheda": 2,
+    "nomeEsercizio": "Squat",
+    "serie": 3,
+    "ripetizioni": 5,
+    "note": "fermo al parallelo"
+  },
+  {
+    "id": 3,
+    "idScheda": 2,
+    "nomeEsercizio": "pressa",
+    "serie": 2,
+    "ripetizioni": 8,
+    "note": "nessuna"
+  }
+]
