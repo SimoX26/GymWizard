@@ -15,9 +15,9 @@ import java.util.List;
 public class AttivitaControllerDemo extends AttivitaController {
 
     private static final List<Attivita> attivitaDemo = new ArrayList<>();
-    private static int nextId = 1;
+    private int nextId = 1;
 
-    static {
+    {
         // Inizializza demo con alcune attività fittizie
         attivitaDemo.add(new Attivita(nextId++, "Yoga", "Lezione di rilassamento", LocalDate.now().plusDays(1), LocalTime.of(10, 0), LocalTime.of(11, 0), 10, "Anna"));
         attivitaDemo.add(new Attivita(nextId++, "Crossfit", "Allenamento ad alta intensità", LocalDate.now().plusDays(2), LocalTime.of(18, 0), LocalTime.of(19, 0), 5, "Marco"));
@@ -25,7 +25,20 @@ public class AttivitaControllerDemo extends AttivitaController {
 
     @Override
     public List<Attivita> getAttivitaDisponibili() {
-        return new ArrayList<>(attivitaDemo);  // restituisce una copia
+        List<Attivita> copiaProfonda = new ArrayList<>();
+        for (Attivita a : attivitaDemo) {
+            copiaProfonda.add(new Attivita(
+                    a.getId(),
+                    a.getNome(),
+                    a.getDescrizione(),
+                    a.getData(),
+                    a.getOraInizio(),
+                    a.getOraFine(),
+                    a.getPostiDisponibili(),
+                    a.getTrainerName()
+            ));
+        }
+        return copiaProfonda;
     }
 
     @Override

@@ -40,8 +40,8 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
         }
 
         try {
-            List<Attivita> attivitaList = controller.getAttivitaDisponibili(); // ✅ uso del controller dinamico
-
+            List<Attivita> attivitaList = controller.getAttivitaDisponibili(); // Uso del controller dinamico
+            attivitaContainer.getChildren().clear(); // SVUOTA PRIMA
             for (Attivita attivita : attivitaList) {
                 Button btn = new Button(attivita.getNome() + " | " + attivita.getData() + " | " + attivita.getOraInizio() + " - " + attivita.getOraFine() + " | posti rimanenti: " + attivita.getPostiDisponibili());
                 btn.setMaxWidth(Double.MAX_VALUE);

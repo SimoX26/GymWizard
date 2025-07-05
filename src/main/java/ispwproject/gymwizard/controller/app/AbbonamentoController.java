@@ -12,7 +12,9 @@ import java.time.LocalDate;
 public class AbbonamentoController {
 
     public static final String MENSILE = "mensile";
-
+    public static final String TRIMESTRALE = "trimestrale";
+    public static final String ANNUALE = "annuale";
+    public static final String INGRESSI = "10ingressi";
 
     public Abbonamento getDatiAbbonamento() {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
@@ -26,7 +28,7 @@ public class AbbonamentoController {
 
         AbbonamentoDAO dao = AbbonamentoDAO.getInstance();
 
-        // ✅ BLOCCO se esiste già un abbonamento attivo
+        // BLOCCO se esiste già un abbonamento attivo
         Abbonamento abbonamentoEsistente = dao.trovaAbbonamentoAttivoPerUtente(utente.getId());
         if (abbonamentoEsistente != null) {
             throw new IllegalStateException("Esiste già un abbonamento attivo per questo utente.");
@@ -47,9 +49,9 @@ public class AbbonamentoController {
     public static String getNomeAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
             case MENSILE -> "Abbonamento Mensile";
-            case "trimestrale" -> "Abbonamento Trimestrale";
-            case "annuale" -> "Abbonamento Annuale";
-            case "10ingressi" -> "Abbonamento 10 Ingressi";
+            case TRIMESTRALE -> "Abbonamento Trimestrale";
+            case ANNUALE -> "Abbonamento Annuale";
+            case INGRESSI -> "Abbonamento 10 Ingressi";
             default -> "Abbonamento Sconosciuto";
         };
     }
@@ -63,21 +65,21 @@ public class AbbonamentoController {
                 Rinnovabile automaticamente o manualmente.
                 Ideale per utenti regolari.
             """;
-            case "trimestrale" -> """
+            case TRIMESTRALE -> """
                 Abbonamento Trimestrale:
                 Valido 90 giorni dalla data di attivazione.
                 Ottimo rapporto qualità/prezzo per una frequenza costante.
                 Include sconti su personal trainer e workshop.
                 Pensato per chi vuole mantenere una routine a medio termine.
             """;
-            case "annuale" -> """
+            case ANNUALE -> """
                 Abbonamento Annuale:
                 Valido 365 giorni con vantaggi esclusivi.
                 Accesso prioritario, eventi riservati e sospensione ferie inclusa.
                 Massima convenienza per clienti fedeli.
                 Raccomandato per chi frequenta regolarmente tutto l'anno.
             """;
-            case "10ingressi" -> """
+            case INGRESSI -> """
                 Abbonamento 10 Ingressi:
                 Pacchetto flessibile con 10 accessi singoli.
                 Nessuna scadenza immediata.
@@ -95,8 +97,8 @@ public class AbbonamentoController {
     public static LocalDate getDataScadenza(String tipo) {
         return switch (tipo.toLowerCase()) {
             case MENSILE -> LocalDate.now().plusDays(30);
-            case "trimestrale" -> LocalDate.now().plusDays(90);
-            case "annuale", "10ingressi" -> LocalDate.now().plusDays(365);
+            case TRIMESTRALE -> LocalDate.now().plusDays(90);
+            case ANNUALE, INGRESSI -> LocalDate.now().plusDays(365);
 
             default -> null;
         };
@@ -105,7 +107,7 @@ public class AbbonamentoController {
     public static int getPrezzoAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
             case MENSILE -> 5000;
-            case "trimestrale" -> 11000;
+            case TRIMESTRALE -> 11000;
             case "annuale" -> 33000;
             case "10ingressi" -> 2500;
             default -> 0;

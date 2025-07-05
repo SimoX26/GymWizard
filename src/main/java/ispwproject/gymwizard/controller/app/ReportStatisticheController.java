@@ -13,6 +13,8 @@ import java.util.List;
 
 public class ReportStatisticheController {
 
+    public static final String ERROR_MESSAGE = "Errore durante il recupero dei dati dal database: ";
+
     private static final AbbonamentoDAO abbonamentoDAO = AbbonamentoDAO.getInstance();
     private static final PrenotazioneDAO prenotazioneDAO = PrenotazioneDAO.getInstance();
     private static final UtenteDAO utenteDAO = new UtenteDAO();
@@ -21,7 +23,7 @@ public class ReportStatisticheController {
         try {
             return abbonamentoDAO.getAllDisponibili();
         } catch (DAOException e) {
-            System.err.println("Errore durante il recupero dei dati dal database: " + e.getMessage());
+            System.err.println(ERROR_MESSAGE + e.getMessage());
             return Collections.emptyList();
 
         }
@@ -31,7 +33,7 @@ public class ReportStatisticheController {
         try {
             return prenotazioneDAO.getStoricoPrenotazioni();
         } catch (DAOException e) {
-            System.err.println("Errore durante il recupero dei dati dal database: " + e.getMessage());
+            System.err.println(ERROR_MESSAGE + e.getMessage());
             return Collections.emptyList();
 
         }
@@ -41,7 +43,7 @@ public class ReportStatisticheController {
         try {
             return utenteDAO.getUtentiAttivi();
         } catch (DAOException e) {
-            System.err.println("Errore durante il recupero dei dati dal database: " + e.getMessage());
+            System.err.println(ERROR_MESSAGE + e.getMessage());
             return Collections.emptyList();
 
         }
