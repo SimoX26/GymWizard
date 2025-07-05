@@ -11,6 +11,9 @@ import java.time.LocalDate;
 
 public class AbbonamentoController {
 
+    public static final String MENSILE = "mensile";
+
+
     public Abbonamento getDatiAbbonamento() {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
         int idUtente = utente.getId();
@@ -43,7 +46,7 @@ public class AbbonamentoController {
 
     public static String getNomeAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
-            case "mensile" -> "Abbonamento Mensile";
+            case MENSILE -> "Abbonamento Mensile";
             case "trimestrale" -> "Abbonamento Trimestrale";
             case "annuale" -> "Abbonamento Annuale";
             case "10ingressi" -> "Abbonamento 10 Ingressi";
@@ -53,7 +56,7 @@ public class AbbonamentoController {
 
     public static String getDescrizioneAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
-            case "mensile" -> """
+            case MENSILE -> """
                 Abbonamento Mensile:
                 Valido 30 giorni dalla data di attivazione.
                 Accesso illimitato a tutte le attività e corsi base.
@@ -91,7 +94,7 @@ public class AbbonamentoController {
 
     public static LocalDate getDataScadenza(String tipo) {
         return switch (tipo.toLowerCase()) {
-            case "mensile" -> LocalDate.now().plusDays(30);
+            case MENSILE -> LocalDate.now().plusDays(30);
             case "trimestrale" -> LocalDate.now().plusDays(90);
             case "annuale", "10ingressi" -> LocalDate.now().plusDays(365);
 
@@ -101,7 +104,7 @@ public class AbbonamentoController {
 
     public static int getPrezzoAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
-            case "mensile" -> 5000;
+            case MENSILE -> 5000;
             case "trimestrale" -> 11000;
             case "annuale" -> 33000;
             case "10ingressi" -> 2500;
