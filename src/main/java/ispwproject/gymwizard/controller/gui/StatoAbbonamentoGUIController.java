@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
@@ -9,19 +10,22 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-public class StatoAbbonamentoGUIController extends AbstractGUIController{
+public class StatoAbbonamentoGUIController extends AbstractGUIController {
 
     @FXML
     private Label stato, dataEmissione, dataScadenza, tipologia;
 
     @FXML
-    AnchorPane anchorPane;
+    private AnchorPane anchorPane;
+
+    // ✅ Aggiunta: controller dinamico via DemoFactory
+    private final AbbonamentoController controller = DemoFactory.getAbbonamentoController();
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         anchorPane.setBackground(new Background(this.background()));
 
-        Abbonamento abbonamento = AbbonamentoController.getDatiAbbonamento();
+        Abbonamento abbonamento = controller.getDatiAbbonamento();  // usa il controller dinamico
 
         if (abbonamento != null) {
             tipologia.setText(abbonamento.getTipo());
@@ -34,7 +38,6 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController{
             dataEmissione.setText("N/A");
             dataScadenza.setText("N/A");
             stato.setText("N/A");
-
         }
     }
 
@@ -53,11 +56,11 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController{
     @FXML
     public void onHelpClick() {
         System.out.println("HELP button clicked.");
-        this.showPopup("Guida Interfaccia", "Stato Abbonamento", "\"\"\"\n" +
-                "                • Stato: può essere Attivo, Scaduto o In Scadenza (entro 10 giorni).\n" +
-                "                • Data di emissione: giorno in cui è stato emesso l'abbonamento.\n" +
-                "                • Tipologia: tipo di piano (es. Mensile, Trimestrale, Annuale).\n" +
-                "                \"\"\"");
+        this.showPopup("Guida Interfaccia", "Stato Abbonamento", """
+                • Stato: può essere Attivo, Scaduto o In Scadenza (entro 10 giorni).
+                • Data di emissione: giorno in cui è stato emesso l'abbonamento.
+                • Tipologia: tipo di piano (es. Mensile, Trimestrale, Annuale).
+                """);
     }
 
     @FXML

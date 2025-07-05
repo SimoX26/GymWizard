@@ -41,4 +41,8 @@ public class Attivita {
     public String toString() {
         return nome + " (" + data + " " + oraInizio + "-" + oraFine + ")";
     }
+
+    public void setPostiDisponibili(int i) {
+        this.postiDisponibili = i;
+    }
 }

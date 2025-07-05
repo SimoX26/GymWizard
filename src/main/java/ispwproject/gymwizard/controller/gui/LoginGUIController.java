@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.LoginController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.util.exception.CredenzialiException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import javafx.event.ActionEvent;
@@ -36,7 +37,7 @@ public class LoginGUIController extends AbstractGUIController {
         }
 
         try {
-            LoginController loginController = new LoginController();
+            LoginController loginController = DemoFactory.getLoginController();
             LoginController.LoginResult result = loginController.login(email, password);
 
             switch (result) {

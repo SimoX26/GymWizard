@@ -12,9 +12,12 @@ public class AbbonamentoSenzaLoginTest {
         // Simula assenza utente loggato
         SessionManager.getInstance().setAttributo("utente", null);
 
-        // Verifica che lancia eccezione
+        // ✅ Crea istanza del controller
+        AbbonamentoController controller = new AbbonamentoController();
+
+        // ✅ Verifica che lancia eccezione con metodo non statico
         assertThrows(NullPointerException.class, () -> {
-            AbbonamentoController.aggiungiAbbonamento("mensile", "TEST123");
+            controller.aggiungiAbbonamento("mensile", "TEST123");
         });
     }
 }

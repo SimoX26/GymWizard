@@ -15,13 +15,22 @@ public class PagamentoController {
     private final String CLIENT_SECRET;
     private final String BASE_URL;
 
-    public PagamentoController() throws IOException {
+    public PagamentoController() {
         Properties props = new Properties();
-        props.load(new FileInputStream("src/main/resources/paypal.properties"));
+        try (FileInputStream fis = new FileInputStream("src/main/resources/paypal.properties")) {
+            props.load(fis);
+        } catch (IOException e) {
+            System.err.println("❌ Errore nella lettura del file paypal.properties: " + e.getMessage());
+            throw new RuntimeException("Impossibile inizializzare PagamentoController. File mancante o corrotto.");
+        }
 
         CLIENT_ID = props.getProperty("paypal.clientId");
         CLIENT_SECRET = props.getProperty("paypal.clientSecret");
         BASE_URL = props.getProperty("paypal.baseUrl");
+
+        if (CLIENT_ID == null || CLIENT_SECRET == null || BASE_URL == null) {
+            throw new RuntimeException("❌ Parametri mancanti in paypal.properties");
+        }
     }
 
     private String getAccessToken() throws Exception {
@@ -48,12 +57,12 @@ public class PagamentoController {
         String body = """
         {
           "intent": "CAPTURE",
-          "purchase_units": [{
+          "purchase_units": [ {
             "amount": {
               "currency_code": "EUR",
               "value": "%s"
             }
-          }],
+          } ],
           "application_context": {
             "return_url": "https://example.com/successo",
             "cancel_url": "https://example.com/annullato"

@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.cli.MainCLI;
+import ispwproject.gymwizard.util.Config;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -13,7 +14,10 @@ import javafx.scene.layout.*;
 public class HomeGUIController extends AbstractGUIController {
 
     @FXML
-    private ToggleGroup version;
+    private ToggleGroup version; // GUI o CLI
+
+    @FXML
+    private RadioButton demoMode; // DEMO on/off
 
     @FXML
     private AnchorPane anchorPane;
@@ -25,33 +29,30 @@ public class HomeGUIController extends AbstractGUIController {
 
     @FXML
     private void onLoginBtnClick(ActionEvent event) throws DAOException, AttivitaDuplicataException, AttivitaPienaException {
-        RadioButton selectVersion = (RadioButton) version.getSelectedToggle();
+        RadioButton selectedVersion = (RadioButton) version.getSelectedToggle();
 
-        if (selectVersion != null) {
-            String version = selectVersion.getText();
+        if (selectedVersion == null) {
+            this.showError("Errore!", "Seleziona una versione (GUI o CLI).");
+            return;
+        }
 
-            // Scelta 3 casi
-            switch (version) {
-                case "GUI VERSION" -> {
-                    System.out.println("GUI VERSION");
-                    this.switchScene("/views/LoginView.fxml", event);
-                }
-                case "CLI VERSION" -> {
-                    System.out.println("CLI VERSION");
-                    this.closeWindow(event);
-                    MainCLI.start();
-                }
-                case "DEMO VERSION" -> {
-                    System.out.println("DEMO VERSION");
-                    this.showError("Warning", "Funzionalità ancora da implementare");
-                }
-                default -> {
-                    showError("Errore!", "Scelta non supportata.");
-                }
+        boolean isDemo = demoMode.isSelected();
+        String versionText = selectedVersion.getText();
+
+        // Imposta modalità demo dinamicamente
+        Config.setDemoMode(isDemo);
+
+        // Stampa debug
+        System.out.println((isDemo ? "DEMO" : "REALE") + " + " + versionText);
+
+        // Esegui in base alla combinazione
+        switch (versionText) {
+            case "GUI VERSION" -> this.switchScene("/views/LoginView.fxml", event);
+            case "CLI VERSION" -> {
+                this.closeWindow(event);
+                MainCLI.start();
             }
-
-        } else {
-            this.showError("Errore!", "Seleziona una scelta!");
+            default -> showError("Errore!", "Scelta non supportata.");
         }
     }
 }

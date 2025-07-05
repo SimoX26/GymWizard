@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.LoginController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.util.exception.CredenzialiException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.view.LoginView;
@@ -22,22 +23,21 @@ public class LoginCLIController {
         }
 
         try {
-            LoginController loginController = new LoginController();
+            // ✅ Usa controller dinamico
+            LoginController loginController = DemoFactory.getLoginController();
             LoginController.LoginResult result = loginController.login(email, password);
 
+            if (result == null) {
+                System.out.println("❌ Login fallito: credenziali non valide.");
+                return CLIState.LOGIN;
+            }
+
+            view.mostraSuccesso();
+
             return switch (result) {
-                case SUCCESSO_CLIENTE -> {
-                    view.mostraSuccesso();
-                    yield CLIState.DASHBOARD_CLIENTE;
-                }
-                case SUCCESSO_TRAINER -> {
-                    view.mostraSuccesso();
-                    yield CLIState.DASHBOARD_TRAINER;
-                }
-                case SUCCESSO_ADMIN -> {
-                    view.mostraSuccesso();
-                    yield CLIState.DASHBOARD_ADMIN;
-                }
+                case SUCCESSO_CLIENTE -> CLIState.DASHBOARD_CLIENTE;
+                case SUCCESSO_TRAINER -> CLIState.DASHBOARD_TRAINER;
+                case SUCCESSO_ADMIN -> CLIState.DASHBOARD_ADMIN;
             };
 
         } catch (DAOException e) {
@@ -45,9 +45,7 @@ public class LoginCLIController {
             return CLIState.LOGIN;
         } catch (SQLException | CredenzialiException e) {
             System.out.println("❌ Login fallito: " + e.getMessage());
-            return CLIState.LOGIN; // torna alla schermata di login
+            return CLIState.LOGIN;
         }
     }
 }
-
-

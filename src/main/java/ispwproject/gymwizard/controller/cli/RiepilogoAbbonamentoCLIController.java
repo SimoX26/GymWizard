@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.controller.app.PagamentoController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.RiepilogoAbbonamentoView;
@@ -9,6 +10,9 @@ import ispwproject.gymwizard.view.RiepilogoAbbonamentoView;
 public class RiepilogoAbbonamentoCLIController {
 
     private final RiepilogoAbbonamentoView view = new RiepilogoAbbonamentoView();
+
+    // Controller dinamico (DEMO o DBMS)
+    private final AbbonamentoController controller = DemoFactory.getAbbonamentoController();
 
     public CLIState start() {
         Abbonamento abbonamento = (Abbonamento) SessionManager.getInstance().getAttributo("abbonamentoInAttesa");
@@ -28,13 +32,14 @@ public class RiepilogoAbbonamentoCLIController {
         }
 
         String tipo = abbonamento.getTipo();
-        int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
+        int prezzo = controller.getPrezzoAbbonamento(tipo);  // ✅ non statico
+
         try {
             PagamentoController paypal = new PagamentoController();
             String url = paypal.creaOrdine(prezzo);
 
-            AbbonamentoController.apriNelBrowser(url);
-            AbbonamentoController.aggiungiAbbonamento(tipo, "Pagamento mock");
+            controller.apriNelBrowser(url);  // ✅ non statico
+            controller.aggiungiAbbonamento(tipo, "Pagamento mock");  // ✅ non statico
 
             view.mostraMessaggio("🌐 Verrai reindirizzato al pagamento PayPal...");
             view.mostraMessaggio("\n✅ Dimostrazione: abbonamento attivato correttamente.\n");

@@ -11,14 +11,14 @@ import java.time.LocalDate;
 
 public class AbbonamentoController {
 
-    public static Abbonamento getDatiAbbonamento() {
+    public Abbonamento getDatiAbbonamento() {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
         int idUtente = utente.getId();
 
         return AbbonamentoDAO.getInstance().trovaAbbonamentoAttivoPerUtente(idUtente);
     }
 
-    public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
+    public void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
 
         AbbonamentoDAO dao = AbbonamentoDAO.getInstance();

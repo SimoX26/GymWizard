@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -10,6 +11,7 @@ import ispwproject.gymwizard.view.VisualizzaAttivitaView;
 public class VisualizzaAttivitaCLIController {
 
     private final VisualizzaAttivitaView view = new VisualizzaAttivitaView();
+    private final AttivitaController controller = DemoFactory.getAttivitaController(); // ✅ Controller dinamico
 
     public CLIState start() {
         Attivita attivita = (Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata");
@@ -40,7 +42,7 @@ public class VisualizzaAttivitaCLIController {
         }
 
         try {
-            AttivitaController.prenotaAttivita(attivita);
+            controller.prenotaAttivita(attivita); // ✅ uso del controller dinamico
             view.mostraMessaggio("✅ Prenotazione effettuata con successo!");
         } catch (AttivitaPienaException e) {
             view.mostraMessaggio("❌ Attività al completo. Impossibile prenotare.");

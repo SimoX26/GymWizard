@@ -6,8 +6,8 @@ import ispwproject.gymwizard.util.DAO.AttivitaDAO;
 import ispwproject.gymwizard.util.DAO.PrenotazioneDAO;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
-import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
+import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,14 +16,14 @@ import java.util.List;
 public class AttivitaController {
 
     public AttivitaController() {
-        // costruttore vuoto, nessuna istanziazione diretta della DAO
+        // costruttore vuoto
     }
 
-    public static List<Attivita> getAttivitaDisponibili() throws DAOException {
+    public List<Attivita> getAttivitaDisponibili() throws DAOException {
         return AttivitaDAO.getInstance().getAllDisponibili();
     }
 
-    public static void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
+    public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
             throws DAOException, AttivitaDuplicataException {
 
         // Controllo duplicato
@@ -38,7 +38,7 @@ public class AttivitaController {
         AttivitaDAO.getInstance().inserisciAttivita(nuova);
     }
 
-    public static void prenotaAttivita(Attivita attivita) throws DAOException, AttivitaPienaException {
+    public void prenotaAttivita(Attivita attivita) throws DAOException, AttivitaPienaException {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
 
         if (utente != null) {
@@ -52,6 +52,4 @@ public class AttivitaController {
             System.out.println("Nessun utente loggato.");
         }
     }
-
 }
-

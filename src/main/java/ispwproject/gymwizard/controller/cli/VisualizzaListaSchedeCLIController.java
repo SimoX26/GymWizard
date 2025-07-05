@@ -44,5 +44,4 @@ public class VisualizzaListaSchedeCLIController {
         SessionManager.getInstance().setAttributo("scheda", selezionata);
         return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
     }
-
 }

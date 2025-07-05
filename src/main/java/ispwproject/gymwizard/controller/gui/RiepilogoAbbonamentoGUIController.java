@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.controller.app.PagamentoController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,9 +11,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-public class RiepilogoAbbonamentoGUIController extends AbstractGUIController{
+public class RiepilogoAbbonamentoGUIController extends AbstractGUIController {
 
     private String tipo;
+
+    private final AbbonamentoController controller = DemoFactory.getAbbonamentoController();
+    private final PagamentoController pagamentoController = DemoFactory.getPagamentoController();
 
     @FXML
     private Label name, price, dataEmissione, dataScadenza;
@@ -21,20 +25,20 @@ public class RiepilogoAbbonamentoGUIController extends AbstractGUIController{
     private TextArea description;
 
     @FXML
-    AnchorPane anchorPane;
+    private AnchorPane anchorPane;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         anchorPane.setBackground(new Background(this.background()));
 
         tipo = (String) SessionManager.getInstance().getAttributo("tipoAbbonamento");
 
         if (tipo != null) {
-            name.setText(AbbonamentoController.getNomeAbbonamento(tipo));
-            description.setText(AbbonamentoController.getDescrizioneAbbonamento(tipo));
-            price.setText(String.valueOf(AbbonamentoController.getPrezzoAbbonamento(tipo)));
-            dataEmissione.setText(String.valueOf(AbbonamentoController.getDataEmissione()));
-            dataScadenza.setText(String.valueOf(AbbonamentoController.getDataScadenza(tipo)));
+            name.setText(controller.getNomeAbbonamento(tipo));
+            description.setText(controller.getDescrizioneAbbonamento(tipo));
+            price.setText(String.valueOf(controller.getPrezzoAbbonamento(tipo)));
+            dataEmissione.setText(String.valueOf(controller.getDataEmissione()));
+            dataScadenza.setText(String.valueOf(controller.getDataScadenza(tipo)));
         } else {
             name.setText("Tipo non selezionato");
             description.setText("-");
@@ -48,13 +52,12 @@ public class RiepilogoAbbonamentoGUIController extends AbstractGUIController{
     private void onPagamentoClick(ActionEvent event) {
         System.out.println("PAGAMENTO button clicked.");
 
-        int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
+        int prezzo = controller.getPrezzoAbbonamento(tipo);
         try {
-            PagamentoController paypal = new PagamentoController();
-            String url = paypal.creaOrdine(prezzo);
+            String url = pagamentoController.creaOrdine(prezzo);
 
-            AbbonamentoController.apriNelBrowser(url);
-            AbbonamentoController.aggiungiAbbonamento(tipo, "Pagamento mock");
+            controller.apriNelBrowser(url);
+            controller.aggiungiAbbonamento(tipo, "Pagamento mock");
 
             this.showPopup("Pagamento in attesa", null, "Verifica lo stato del pagamento nel browser.");
             this.showPopup("IGNORARE PAGAMENTO", null, "Dimostrazione: abbonamento attivato senza pagamento reale.");
@@ -65,9 +68,7 @@ public class RiepilogoAbbonamentoGUIController extends AbstractGUIController{
         } catch (Exception e) {
             this.showError("Errore generico", "Errore durante l’avvio del pagamento: " + e.getMessage());
         }
-
     }
-
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
@@ -78,8 +79,10 @@ public class RiepilogoAbbonamentoGUIController extends AbstractGUIController{
     @FXML
     public void onHelpClick() {
         System.out.println("HELP button clicked.");
-        this.showPopup("Guida Interfaccia", "Riepilogo Ordine", "In questa schermata puoi visualizzare il riepilogo del tuo abbonamento selezionato.\n" +
-                "                Premi \"Procedi con l'acquisto\" per confermare e completare l'acquisto.");
+        this.showPopup("Guida Interfaccia", "Riepilogo Ordine", """
+                In questa schermata puoi visualizzare il riepilogo del tuo abbonamento selezionato.
+                Premi "Procedi con l'acquisto" per confermare e completare l'acquisto.
+                """);
     }
 
     @FXML

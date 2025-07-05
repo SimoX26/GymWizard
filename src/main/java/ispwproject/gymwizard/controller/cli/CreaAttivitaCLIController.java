@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.view.CreaAttivitaView;
@@ -11,6 +12,7 @@ import java.time.LocalTime;
 public class CreaAttivitaCLIController {
 
     private final CreaAttivitaView view = new CreaAttivitaView();
+    private final AttivitaController controller = DemoFactory.getAttivitaController(); // ✅ Controller dinamico
 
     public CLIState start() {
         view.mostraTitolo();
@@ -24,12 +26,12 @@ public class CreaAttivitaCLIController {
         String nomeTrainer = view.chiediStringa("👤 Nome del trainer: ");
 
         try {
-            AttivitaController.creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, nomeTrainer);
+            controller.creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, nomeTrainer); // ✅ uso dinamico
             view.mostraMessaggio("✅ Attività creata con successo!");
         } catch (DAOException e) {
             view.mostraMessaggio("❌ Errore durante la creazione: " + e.getMessage());
         } catch (AttivitaDuplicataException e) {
-            throw new RuntimeException(e);
+            view.mostraMessaggio("⚠️ Attività già esistente: " + e.getMessage());
         }
 
         view.attesaInvio();

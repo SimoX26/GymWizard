@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
@@ -9,6 +10,9 @@ import ispwproject.gymwizard.view.StatoAbbonamentoView;
 public class StatoAbbonamentoCLIController {
 
     private final StatoAbbonamentoView view = new StatoAbbonamentoView();
+
+    // Controller dinamico (DEMO o DBMS)
+    private final AbbonamentoController controller = DemoFactory.getAbbonamentoController();
 
     public CLIState start() {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
@@ -19,7 +23,8 @@ public class StatoAbbonamentoCLIController {
             return CLIState.LOGIN;
         }
 
-        Abbonamento abbonamento = AbbonamentoController.getDatiAbbonamento();
+        // ✅ Usa metodo dinamico non statico
+        Abbonamento abbonamento = controller.getDatiAbbonamento();
 
         // ✅ Mostra comunque la schermata, anche se abbonamento è null
         int scelta = view.mostraAbbonamento(abbonamento);

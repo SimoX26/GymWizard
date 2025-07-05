@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -13,7 +14,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 
-public class VisualizzaAttivitaGUIController extends AbstractGUIController{
+public class VisualizzaAttivitaGUIController extends AbstractGUIController {
+
+    private final AttivitaController controller = DemoFactory.getAttivitaController(); // Controller dinamico
 
     @FXML
     private Label name, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
@@ -25,7 +28,7 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
     AnchorPane anchorPane;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         anchorPane.setBackground(new Background(this.background()));
 
         Object obj = SessionManager.getInstance().getAttributo("attivitaSelezionata");
@@ -42,7 +45,7 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
             showError("ERRORE!", "Nessuna attività selezionata trovata nella sessione.");
         }
 
-        if("/views/DashboardClienteView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))){
+        if ("/views/DashboardClienteView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))) {
             Button contatta = new Button("CONTATTA TRAINER");
             Button prenota = new Button("PRENOTA");
 
@@ -64,15 +67,16 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void handlePrenota(ActionEvent event){
+    public void handlePrenota(ActionEvent event) {
         System.out.println("PRENOTA button clicked.");
         try {
-            AttivitaController.prenotaAttivita((Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata"));
+            Attivita attivita = (Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata");
+            controller.prenotaAttivita(attivita); // ✅ Metodo non statico
+            this.showPopup("Attività prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
+            this.switchScene("/views/ListinoAttivitaView.fxml", event);
         } catch (DAOException | AttivitaPienaException e) {
-            throw new RuntimeException(e);
+            this.showError("Errore prenotazione", e.getMessage());
         }
-        this.showPopup("Attivita prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
-        this.switchScene("/views/ListinoAttivitaView.fxml", event);
     }
 
     @FXML
@@ -92,9 +96,4 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController{
         System.out.println("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
-
-   /* public void handleContatta(ActionEvent actionEvent) {
-        System.out.println("CONTATTA button clicked.");
-        this.switchScene("/views/ContattaTrainerView.fxml", actionEvent);
-    }*/
 }
