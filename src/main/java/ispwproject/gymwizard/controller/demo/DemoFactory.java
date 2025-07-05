@@ -20,17 +20,17 @@ public class DemoFactory {
     public static AttivitaController getAttivitaController() {
         return Config.isDemoMode() ? new AttivitaControllerDemo() : new AttivitaController();
     }
-/*
+
     public static ClientiController getClientiController() {
         return Config.isDemoMode() ? new ClientiControllerDemo() : new ClientiController();
     }
 
-    public static ReportStatisticheController getReportStatisticheController() {
-        return Config.isDemoMode() ? new ReportStatisticheControllerDemo() : new ReportStatisticheController();
-    }
-
     public static SchedaController getSchedaController() {
         return Config.isDemoMode() ? new SchedaControllerDemo() : new SchedaController();
+    }
+/*
+    public static ReportStatisticheController getReportStatisticheController() {
+        return Config.isDemoMode() ? new ReportStatisticheControllerDemo() : new ReportStatisticheController();
     }
 */
 }

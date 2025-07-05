@@ -1,11 +1,12 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.controller.app.SchedaController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
-import ispwproject.gymwizard.controller.app.SchedaController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -23,7 +24,7 @@ import javafx.util.StringConverter;
 
 import java.util.List;
 
-public class VisualizzaSchedaGUIController extends AbstractGUIController{
+public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
     @FXML
     private ComboBox<Scheda> comboBoxSchede;
@@ -34,7 +35,6 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     @FXML
     AnchorPane anchorPane;
 
-
     @FXML
     private TableView<EsercizioScheda> tableViewEsercizi;
     @FXML
@@ -44,40 +44,38 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     @FXML
     private TableColumn<EsercizioScheda, Integer> colRipetizioni;
 
+    // 🔁 Controller reale o demo (in base a configurazione)
+    private final SchedaController controller = DemoFactory.getSchedaController();
+
     @FXML
     public void initialize() throws DAOException {
         anchorPane.setBackground(new Background(this.background()));
 
         Utente u;
 
-        if("/views/DashboardTrainerView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))){
+        if ("/views/DashboardTrainerView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))) {
             Button nuova = new Button("CREA NUOVA SCHEDA");
             Button add = new Button("AGGIUNGI ESERCIZIO");
             Button flush = new Button("SVUOTA SCHEDA");
 
             nuova.setStyle("-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
-            add.setStyle("-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
-            flush.setStyle("-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
+            add.setStyle(nuova.getStyle());
+            flush.setStyle(nuova.getStyle());
 
             nuova.setOnAction(this::handleNewTrainingCard);
             add.setOnAction(this::handleAddExercise);
             flush.setOnAction(this::handleFlushTrainingCard);
 
-            HBoxBtn.getChildren().add(nuova);
-            HBoxBtn.getChildren().add(add);
-            HBoxBtn.getChildren().add(flush);
-
+            HBoxBtn.getChildren().addAll(nuova, add, flush);
             u = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         } else {
             u = (Utente) SessionManager.getInstance().getAttributo("utente");
         }
 
-        // Popolamento del ComboBox (lista varie schede)
-        List<Scheda> schede = SchedaController.getSchedeByIdCliente(u.getId());
+        List<Scheda> schede = controller.getSchedeByIdCliente(u.getId());
         ObservableList<Scheda> lista = FXCollections.observableArrayList(schede);
         comboBoxSchede.setItems(lista);
 
-        // Conversione in stringhe per mostrare solo il nome della scheda
         comboBoxSchede.setConverter(new StringConverter<>() {
             @Override
             public String toString(Scheda scheda) {
@@ -93,7 +91,6 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
             }
         });
 
-        // Listener per intercettare la selezione
         comboBoxSchede.setOnAction(event -> {
             Scheda selezionata = comboBoxSchede.getSelectionModel().getSelectedItem();
             if (selezionata != null) {
@@ -105,8 +102,6 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
             }
         });
 
-
-        // Viene selezionata la prima scheda disponibile
         if (!lista.isEmpty()) {
             comboBoxSchede.getSelectionModel().selectFirst();
             Scheda selezionata = comboBoxSchede.getSelectionModel().getSelectedItem();
@@ -121,26 +116,19 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
 
     @FXML
     public void onSchedaSelezionata(Scheda schedaSelezionata) throws DAOException {
-        if (schedaSelezionata == null) {
-            return;
-        }
+        if (schedaSelezionata == null) return;
 
         System.out.println("Scheda selezionata: " + schedaSelezionata.getNomeScheda()
                 + " [ID: " + schedaSelezionata.getId() + "]");
 
-        // Salva l'intera scheda nella sessione
         SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
-
-        // Carica gli esercizi associati alla scheda
-        List<EsercizioScheda> esercizi = SchedaController.getEserciziScheda(schedaSelezionata.getId());
+        List<EsercizioScheda> esercizi = controller.getEserciziScheda(schedaSelezionata.getId());
         ObservableList<EsercizioScheda> eserciziObs = FXCollections.observableArrayList(esercizi);
-
-        // Imposta gli esercizi nella tabella
         tableViewEsercizi.setItems(eserciziObs);
     }
 
     @FXML
-    public void handleNewTrainingCard(ActionEvent event){
+    public void handleNewTrainingCard(ActionEvent event) {
         System.out.println("CREA NUOVA SCHEDA button clicked.");
         this.switchScene("/views/CreaSchedaView.fxml", event);
     }
@@ -148,6 +136,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     @FXML
     public void handleFlushTrainingCard(ActionEvent event) {
         System.out.println("SVUOTA SCHEDA button clicked.");
+        // Da implementare eventualmente in seguito
     }
 
     @FXML
@@ -160,7 +149,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     public void onBackClick(ActionEvent backEvent) {
         System.out.println("BACK button clicked.");
         String s = (String) SessionManager.getInstance().getAttributo("homePage");
-        if(s.equals("/views/DashboardTrainerView.fxml")){
+        if (s.equals("/views/DashboardTrainerView.fxml")) {
             this.switchScene("/views/ListaClientiView.fxml", backEvent);
         } else {
             this.switchScene(s, backEvent);
@@ -170,8 +159,8 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController{
     @FXML
     public void onHelpClick() {
         System.out.println("HELP button clicked.");
-        this.showPopup("Guida Interfaccia","Scheda allenamento","Puoi visualizzare la tua scheda di allenamento.\n" +
-                "Puoi scollare per effettuare uno zoom");
+        this.showPopup("Guida Interfaccia", "Scheda allenamento",
+                "Puoi visualizzare la tua scheda di allenamento.\nPuoi scollare per effettuare uno zoom");
     }
 
     @FXML

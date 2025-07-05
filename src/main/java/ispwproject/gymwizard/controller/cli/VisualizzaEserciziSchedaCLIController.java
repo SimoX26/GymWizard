@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.SchedaController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.util.singleton.SessionManager;
@@ -13,9 +14,12 @@ public class VisualizzaEserciziSchedaCLIController {
 
     private final VisualizzaEserciziSchedaView view = new VisualizzaEserciziSchedaView();
 
+    // Usa controller dinamico (reale o demo)
+    private final SchedaController controller = DemoFactory.getSchedaController();
+
     public CLIState start() {
         Scheda schedaSelezionata = (Scheda) SessionManager.getInstance().getAttributo("scheda");
-        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage"); // "cliente", "trainer", "admin"
+        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage");
 
         if (schedaSelezionata == null) {
             view.mostraMessaggio("⚠️ Nessuna scheda selezionata.");
@@ -23,7 +27,7 @@ public class VisualizzaEserciziSchedaCLIController {
             return ruolo.equalsIgnoreCase("Trainer") ? CLIState.DASHBOARD_TRAINER : CLIState.DASHBOARD_CLIENTE;
         }
 
-        List<EsercizioScheda> eserciziScheda = SchedaController.getEserciziScheda(schedaSelezionata.getId());
+        List<EsercizioScheda> eserciziScheda = controller.getEserciziScheda(schedaSelezionata.getId());
 
         List<String> esercizi = eserciziScheda.stream()
                 .map(e -> e.getNomeEsercizio() + " " + e.getSerie() + "x" + e.getRipetizioni())

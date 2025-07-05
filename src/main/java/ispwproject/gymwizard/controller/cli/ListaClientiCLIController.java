@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.cli;
 
 import ispwproject.gymwizard.controller.app.ClientiController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.ListaClientiView;
@@ -12,11 +13,13 @@ import java.util.stream.Collectors;
 public class ListaClientiCLIController {
 
     private final ListaClientiView view = new ListaClientiView();
+    private final ClientiController clientiController = DemoFactory.getClientiController(); // ✅ dynamic controller
+
     public CLIState start() {
         List<Utente> clienti;
 
         try {
-            clienti = ClientiController.getClienti();
+            clienti = clientiController.getClienti();
         } catch (SQLException e) {
             view.mostraMessaggio("❌ Errore durante il caricamento dei clienti: " + e.getMessage());
             view.attesaInvio();
@@ -29,12 +32,11 @@ public class ListaClientiCLIController {
             return CLIState.DASHBOARD_TRAINER;
         }
 
-        // Converti gli utenti in nomi leggibili
         List<String> nomiClienti = clienti.stream()
                 .map(Utente::getUsername)
                 .collect(Collectors.toList());
 
-        int scelta = view.selezionaCliente(nomiClienti); // 1-based + opzione 0 per tornare
+        int scelta = view.selezionaCliente(nomiClienti);
 
         if (scelta == 0) {
             return CLIState.DASHBOARD_TRAINER;

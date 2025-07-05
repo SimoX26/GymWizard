@@ -8,9 +8,13 @@ import java.util.List;
 
 public class ClientiController {
 
-    public static List<Utente> getClienti() throws SQLException {
-        UtenteDAO utenteDAO = new UtenteDAO();
-        return utenteDAO.getClienti();
+    private final UtenteDAO utenteDAO;
+
+    public ClientiController() {
+        this.utenteDAO = new UtenteDAO();
     }
 
+    public List<Utente> getClienti() throws SQLException {
+        return utenteDAO.getClienti();
+    }
 }
