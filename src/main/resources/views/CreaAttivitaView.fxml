@@ -78,8 +78,8 @@
                     </font>
                 </TextArea>
                 <DatePicker fx:id="dataPicker" promptText="Seleziona il giorno" />
-                <TextField fx:id="oraInizioField" promptText="Seleziona l'ora" />
-                <TextField fx:id="oraFineField" promptText="Seleziona l'ora" />
+                <TextField fx:id="oraInizioField" promptText="Orario di inizio HH:MM" />
+                <TextField fx:id="oraFineField" promptText="Orario di fine HH:MM" />
                 <TextField fx:id="postiDisponibiliField" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il numero di posti">
                     <font>
                         <Font size="14.0" />

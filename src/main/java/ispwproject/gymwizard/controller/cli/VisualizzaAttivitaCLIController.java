@@ -13,12 +13,30 @@ public class VisualizzaAttivitaCLIController {
 
     public CLIState start() {
         Attivita attivita = (Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata");
+        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage");
+
+        if (attivita == null) {
+            view.mostraMessaggio("❌ Nessuna attività selezionata.");
+            view.attesaInvio();
+            return CLIState.LISTINO_ATTIVITA;
+        }
+
         view.mostraRiepilogo(attivita);
 
-        String scelta = view.chiediConferma();
+        // Se Admin: niente conferma prenotazione
+        if ("Admin".equalsIgnoreCase(ruolo)) {
+            view.mostraMessaggio("👤 Sei un amministratore. Non puoi prenotare un'attività.");
+            view.attesaInvio();
+            return CLIState.LISTINO_ATTIVITA;
+        }
+
+        // Cliente normale → può prenotare
+        String scelta = view.chiediConferma(); // Attende 's' o 'n'
 
         if (scelta.equalsIgnoreCase("n")) {
-            return CLIState.VISUALIZZA_ATTIVITA;
+            view.mostraMessaggio("❌ Prenotazione annullata.");
+            view.attesaInvio();
+            return CLIState.LISTINO_ATTIVITA;
         }
 
         try {
@@ -31,8 +49,6 @@ public class VisualizzaAttivitaCLIController {
         }
 
         view.attesaInvio();
-        return CLIState.VISUALIZZA_ATTIVITA;
+        return CLIState.LISTINO_ATTIVITA;
     }
 }
-
-

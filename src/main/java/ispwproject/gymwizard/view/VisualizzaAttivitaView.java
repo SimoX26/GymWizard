@@ -18,7 +18,7 @@ public class VisualizzaAttivitaView {
 
     public String chiediConferma() {
         System.out.print("\n✅ Vuoi confermare la prenotazione? (s/n): ");
-        return scanner.nextLine().trim();
+        return scanner.nextLine().trim().toLowerCase();
     }
 
     public void mostraMessaggio(String msg) {

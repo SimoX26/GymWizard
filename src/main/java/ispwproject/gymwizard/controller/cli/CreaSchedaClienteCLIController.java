@@ -18,19 +18,19 @@ public class CreaSchedaClienteCLIController {
         if (nomeScheda == null || nomeScheda.isBlank()) {
             view.mostraMessaggio("❌ Nome scheda non valido.");
             view.attesaInvio();
-            return CLIState.SELEZIONA_SCHEDA_CLIENTE;
+            return CLIState.SELEZIONA_SCHEDA;
         }
 
         try {
             controller.creaScheda(nomeScheda);  // Salva la scheda nel DB
             view.mostraMessaggio("✅ Scheda \"" + nomeScheda + "\" creata per " + clienteNome + ".");
             view.attesaInvio();
-            return CLIState.SELEZIONA_SCHEDA_CLIENTE;
+            return CLIState.SELEZIONA_SCHEDA;
 
         } catch (DAOException e) {
             view.mostraMessaggio("❌ Errore durante la creazione della scheda: " + e.getMessage());
             view.attesaInvio();
-            return CLIState.SELEZIONA_SCHEDA_CLIENTE;
+            return CLIState.SELEZIONA_SCHEDA;
         }
     }
 }

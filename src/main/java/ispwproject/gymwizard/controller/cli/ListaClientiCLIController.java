@@ -51,6 +51,6 @@ public class ListaClientiCLIController {
 
         view.mostraMessaggio("✅ Hai selezionato: " + clienteSelezionato.getUsername() + "\n");
 
-        return CLIState.SELEZIONA_SCHEDA_CLIENTE;
+        return CLIState.SELEZIONA_SCHEDA;
     }
 }

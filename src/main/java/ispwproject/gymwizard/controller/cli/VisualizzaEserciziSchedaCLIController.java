@@ -15,14 +15,14 @@ public class VisualizzaEserciziSchedaCLIController {
 
     public CLIState start() {
         Scheda schedaSelezionata = (Scheda) SessionManager.getInstance().getAttributo("scheda");
-        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage"); // cliente | trainer | admin
+        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage"); // "cliente", "trainer", "admin"
 
         if (schedaSelezionata == null) {
             view.mostraMessaggio("⚠️ Nessuna scheda selezionata.");
-            return CLIState.DASHBOARD_CLIENTE;
+            view.attesaInvio();
+            return ruolo.equalsIgnoreCase("Trainer") ? CLIState.DASHBOARD_TRAINER : CLIState.DASHBOARD_CLIENTE;
         }
 
-        // ✅ Carica gli esercizi reali dal DB
         List<EsercizioScheda> eserciziScheda = SchedaController.getEserciziScheda(schedaSelezionata.getId());
 
         List<String> esercizi = eserciziScheda.stream()
@@ -33,13 +33,13 @@ public class VisualizzaEserciziSchedaCLIController {
             esercizi.add("⚠️ Nessun esercizio presente in questa scheda.");
         }
 
-        int scelta = view.mostraScheda(schedaSelezionata.getNomeScheda(), esercizi, ruolo.equals("trainer"));
+        boolean isTrainer = ruolo.equalsIgnoreCase("Trainer");
+        int scelta = view.mostraScheda(schedaSelezionata.getNomeScheda(), esercizi, isTrainer);
 
         return switch (scelta) {
-            case -1 -> ruolo.equals("trainer") ? CLIState.SELEZIONA_SCHEDA_CLIENTE : CLIState.SELEZIONA_SCHEDA;
-            case -2 -> CLIState.AGGIUNGI_ESERCIZIO;
+            case -1 -> CLIState.SELEZIONA_SCHEDA;
+            case -2 -> isTrainer ? CLIState.AGGIUNGI_ESERCIZIO : CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
             case -3 -> {
-                // In futuro: implementa svuotamento nel DB
                 view.mostraMessaggio("⚠️ Funzione di svuotamento scheda non ancora implementata.");
                 view.attesaInvio();
                 yield CLIState.VISUALIZZA_ESERCIZI_SCHEDA;

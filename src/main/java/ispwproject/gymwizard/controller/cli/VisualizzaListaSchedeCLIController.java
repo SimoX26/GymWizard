@@ -7,52 +7,42 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.VisualizzaListaSchedeView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class VisualizzaListaSchedeCLIController {
 
-    private final VisualizzaListaSchedeView view = new VisualizzaListaSchedeView();
-
     public CLIState start() {
-        // Recupero l'utente loggato dalla sessione
-        Utente cliente = (Utente) SessionManager.getInstance().getAttributo("utente");
-        if (cliente == null) {
-            view.mostraMessaggio("❌ Errore: utente non loggato.");
-            view.attesaInvio();
-            return CLIState.LOGIN; // o qualsiasi stato appropriato
+        VisualizzaListaSchedeView view = new VisualizzaListaSchedeView();
+        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage");
+
+        int idUtente;
+        if (ruolo.equalsIgnoreCase("Trainer")) {
+            Utente selezionato = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
+            if (selezionato == null) {
+                view.mostraMessaggio("❌ Nessun cliente selezionato.");
+                view.attesaInvio();
+                return CLIState.DASHBOARD_TRAINER;
+            }
+            idUtente = selezionato.getId();
+        } else {
+            Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
+            idUtente = utente.getId();
         }
 
-        // Carica le schede dal DB usando il controller reale
-        List<Scheda> listaSchede = SchedaController.getSchedeByIdCliente(cliente.getId());
+        List<Scheda> schede = SchedaController.getSchedeByIdCliente(idUtente);
+        List<String> nomiSchede = schede.stream().map(Scheda::getNomeScheda).toList();
 
-        if (listaSchede == null || listaSchede.isEmpty()) {
-            view.mostraMessaggio("⚠️ Nessuna scheda trovata per " + cliente.getUsername());
-            return CLIState.CREA_SCHEDA_CLIENTE;
-        }
-
-        // Estrai i nomi delle schede da visualizzare
-        List<String> nomiSchede = listaSchede.stream()
-                .map(Scheda::getNomeScheda)
-                .collect(Collectors.toList());
-
-        int scelta = view.scegliScheda(nomiSchede, false);
+        boolean mostraCrea = ruolo.equalsIgnoreCase("Trainer");
+        int scelta = view.scegliScheda(nomiSchede, mostraCrea);
 
         if (scelta == -1) {
-            String homePage = SessionManager.getInstance().getAttributo("homePage").toString();
-            return homePage.equals("trainer") ? CLIState.LISTA_CLIENTI : CLIState.DASHBOARD_CLIENTE;
-        }
-        if (scelta == -2) {
+            return ruolo.equalsIgnoreCase("Trainer") ? CLIState.DASHBOARD_TRAINER : CLIState.DASHBOARD_CLIENTE;
+        } else if (scelta == -2 && mostraCrea) {
             return CLIState.CREA_SCHEDA_CLIENTE;
         }
 
-        if (scelta >= 0 && scelta < listaSchede.size()) {
-            Scheda schedaSelezionata = listaSchede.get(scelta);
-            SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
-            return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
-        } else {
-            view.mostraMessaggio("❌ Scelta non valida.");
-            view.attesaInvio();
-            return start();
-        }
+        Scheda selezionata = schede.get(scelta);
+        SessionManager.getInstance().setAttributo("scheda", selezionata);
+        return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
     }
+
 }

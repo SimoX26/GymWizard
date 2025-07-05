@@ -37,7 +37,6 @@ public class MainCLI {
                         statoCorrente = new DashboardTrainerCLIController().start();
 
                 case LISTA_CLIENTI -> statoCorrente = new ListaClientiCLIController().start();
-                case SELEZIONA_SCHEDA_CLIENTE -> statoCorrente = new SelezionaSchedaClienteCLIController().start();
                 case CREA_SCHEDA_CLIENTE -> statoCorrente = new CreaSchedaClienteCLIController().start();
                 case AGGIUNGI_ESERCIZIO -> statoCorrente = new AggiungiEsercizioCLIController().start();
 

@@ -24,7 +24,7 @@ public class ListinoAttivitaView {
             }
 
             System.out.println("0. 🔙 Torna alla Dashboard");
-            System.out.print("👉 Seleziona (numero o 'c'): ");
+            System.out.print("👉 Seleziona : ");
 
             String input = scanner.nextLine();
 
