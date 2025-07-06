@@ -27,9 +27,12 @@ public class Main extends Application {
             primaryStage.centerOnScreen();        // Centra la finestra
             primaryStage.show();
         } catch (Exception e) {
+        if (LOGGER.isLoggable(Level.SEVERE)) {
             LOGGER.log(Level.SEVERE, "Errore imprevisto: " + e.getMessage(), e);
         }
     }
+
+}
 
     public static void main(String[] args) {
         launch();
