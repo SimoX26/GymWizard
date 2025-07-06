@@ -118,24 +118,24 @@ public class AbbonamentoController {
     }
 
     public static void apriNelBrowser(String url) throws BrowserAperturaException, IOException, URISyntaxException {
-        if (!url.startsWith("http://") && !url.startsWith("https://")) {
-            throw new IllegalArgumentException("URL non valido: " + url);
-        }
-
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             Desktop.getDesktop().browse(new URI(url));
         } else {
             String os = System.getProperty("os.name").toLowerCase();
 
+            ProcessBuilder processBuilder;
+
             if (os.contains("linux")) {
-                new ProcessBuilder("xdg-open", url).start();
+                processBuilder = new ProcessBuilder("xdg-open", url);
             } else if (os.contains("mac")) {
-                new ProcessBuilder("open", url).start();
+                processBuilder = new ProcessBuilder("open", url);
             } else if (os.contains("win")) {
-                new ProcessBuilder("rundll32", "url.dll,FileProtocolHandler", url).start();
+                processBuilder = new ProcessBuilder("rundll32", "url.dll,FileProtocolHandler", url);
             } else {
                 throw new BrowserAperturaException("Sistema operativo non supportato per aprire il browser.");
             }
+
+            processBuilder.start();
         }
     }
 
