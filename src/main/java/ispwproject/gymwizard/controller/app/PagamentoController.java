@@ -11,9 +11,9 @@ import java.util.Properties;
 
 public class PagamentoController {
 
-    private final String CLIENT_ID;
-    private final String CLIENT_SECRET;
-    private final String BASE_URL;
+    private final String clientId;
+    private final String clientSecret;
+    private final String baseUrl;
 
     public PagamentoController() {
         Properties props = new Properties();
@@ -24,21 +24,21 @@ public class PagamentoController {
             throw new RuntimeException("Impossibile inizializzare PagamentoController. File mancante o corrotto.");
         }
 
-        CLIENT_ID = props.getProperty("paypal.clientId");
-        CLIENT_SECRET = props.getProperty("paypal.clientSecret");
-        BASE_URL = props.getProperty("paypal.baseUrl");
+        clientId = props.getProperty("paypal.clientId");
+        clientSecret = props.getProperty("paypal.clientSecret");
+        baseUrl = props.getProperty("paypal.baseUrl");
 
-        if (CLIENT_ID == null || CLIENT_SECRET == null || BASE_URL == null) {
+        if (clientId == null || clientSecret == null || baseUrl == null) {
             throw new RuntimeException("❌ Parametri mancanti in paypal.properties");
         }
     }
 
     private String getAccessToken() throws Exception {
-        String auth = CLIENT_ID + ":" + CLIENT_SECRET;
+        String auth = clientId + ":" + clientSecret;
         String encoded = Base64.getEncoder().encodeToString(auth.getBytes());
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/v1/oauth2/token"))
+                .uri(URI.create(baseUrl + "/v1/oauth2/token"))
                 .header("Authorization", "Basic " + encoded)
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .POST(HttpRequest.BodyPublishers.ofString("grant_type=client_credentials"))
@@ -71,7 +71,7 @@ public class PagamentoController {
         """.formatted(String.format("%.2f", prezzoEuro).replace(",", "."));
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/v2/checkout/orders"))
+                .uri(URI.create(baseUrl + "/v2/checkout/orders"))
                 .header("Authorization", "Bearer " + token)
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(body))
