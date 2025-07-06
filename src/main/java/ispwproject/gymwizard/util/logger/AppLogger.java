@@ -25,4 +25,8 @@ public class AppLogger {
     public static Logger getLogger() {
         return LOGGER;
     }
+
+    public static void logError(String msg) {
+        LOGGER.log(Level.SEVERE, msg);
+    }
 }

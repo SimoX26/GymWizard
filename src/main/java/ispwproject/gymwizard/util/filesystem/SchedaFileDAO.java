@@ -24,7 +24,7 @@ public class SchedaFileDAO {
         return instance;
     }
 
-    public void insertScheda(Scheda scheda) throws DAOException {
+    public void insertScheda(Scheda scheda){
         int idCliente = scheda.getIdCliente();
         List<Scheda> schede = FileSystemManager.loadListFromFile(idCliente, FILE_NAME, LIST_TYPE);
 
