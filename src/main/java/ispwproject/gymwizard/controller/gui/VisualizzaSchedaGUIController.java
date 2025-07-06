@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.util.StringConverter;
-
+import ispwproject.gymwizard.util.logger.AppLogger;
 import java.util.List;
 
 public class VisualizzaSchedaGUIController extends AbstractGUIController {
@@ -30,7 +30,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
     private ComboBox<Scheda> comboBoxSchede;
 
     @FXML
-    private HBox HBoxBtn;
+    private HBox hBoxBtn;
 
     @FXML
     AnchorPane anchorPane;
@@ -66,7 +66,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
             add.setOnAction(this::handleAddExercise);
             flush.setOnAction(this::handleFlushTrainingCard);
 
-            HBoxBtn.getChildren().addAll(nuova, add, flush);
+            hBoxBtn.getChildren().addAll(nuova, add, flush);
             u = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         } else {
             u = (Utente) SessionManager.getInstance().getAttributo("utente");
@@ -118,7 +118,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
     public void onSchedaSelezionata(Scheda schedaSelezionata) throws DAOException {
         if (schedaSelezionata == null) return;
 
-        System.out.println("Scheda selezionata: " + schedaSelezionata.getNomeScheda()
+        AppLogger.getLogger().info("Scheda selezionata: " + schedaSelezionata.getNomeScheda()
                 + " [ID: " + schedaSelezionata.getId() + "]");
 
         SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
@@ -129,25 +129,25 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
     @FXML
     public void handleNewTrainingCard(ActionEvent event) {
-        System.out.println("CREA NUOVA SCHEDA button clicked.");
+        AppLogger.getLogger().info("CREA NUOVA SCHEDA button clicked.");
         this.switchScene("/views/CreaSchedaView.fxml", event);
     }
 
     @FXML
     public void handleFlushTrainingCard(ActionEvent event) {
-        System.out.println("SVUOTA SCHEDA button clicked.");
+        AppLogger.getLogger().info("SVUOTA SCHEDA button clicked.");
         // Da implementare eventualmente in seguito
     }
 
     @FXML
     public void handleAddExercise(ActionEvent event) {
-        System.out.println("AGGIUNGI ESERCIZIO button clicked.");
+        AppLogger.getLogger().info("AGGIUNGI ESERCIZIO button clicked.");
         this.switchScene("/views/AggiungiEsercizioView.fxml", event);
     }
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
-        System.out.println("BACK button clicked.");
+        AppLogger.getLogger().info("BACK button clicked.");
         String s = (String) SessionManager.getInstance().getAttributo("homePage");
         if (s.equals("/views/DashboardTrainerView.fxml")) {
             this.switchScene("/views/ListaClientiView.fxml", backEvent);
@@ -158,14 +158,14 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
+        AppLogger.getLogger().info("HELP button clicked.");
         this.showPopup("Guida Interfaccia", "Scheda allenamento",
                 "Puoi visualizzare la tua scheda di allenamento.\nPuoi scollare per effettuare uno zoom");
     }
 
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
-        System.out.println("HOME button clicked.");
+        AppLogger.getLogger().info("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }
