@@ -5,6 +5,10 @@ import ispwproject.gymwizard.util.Config;
 
 public class DemoFactory {
 
+    private DemoFactory() {
+        throw new UnsupportedOperationException("Classe di utilità - non istanziabile");
+    }
+
     public static LoginController getLoginController() {
         return Config.isDemoMode() ? new LoginControllerDemo() : new LoginController();
     }
