@@ -10,7 +10,7 @@ import java.util.Base64;
 import java.util.Properties;
 import ispwproject.gymwizard.util.logger.AppLogger;
 import java.util.logging.Level;
-
+import ispwproject.gymwizard.util.exception.PagamentoInitException;
 
 public class PagamentoController {
 
@@ -24,7 +24,7 @@ public class PagamentoController {
             props.load(fis);
         } catch (IOException e) {
             AppLogger.getLogger().log(Level.SEVERE, "Errore nella lettura del file paypal.properties", e);
-            throw new RuntimeException("Impossibile inizializzare PagamentoController. File mancante o corrotto.");
+            throw new PagamentoInitException("Impossibile inizializzare PagamentoController. File mancante o corrotto.", e);
         }
 
 
@@ -33,8 +33,9 @@ public class PagamentoController {
         baseUrl = props.getProperty("paypal.baseUrl");
 
         if (clientId == null || clientSecret == null || baseUrl == null) {
-            throw new RuntimeException("❌ Parametri mancanti in paypal.properties");
+            throw new PagamentoInitException("Parametri mancanti in paypal.properties");
         }
+
     }
 
     private String getAccessToken() throws Exception {
@@ -54,11 +55,12 @@ public class PagamentoController {
         return response.body().split("\"access_token\":\"")[1].split("\"")[0];
     }
 
-    public String creaOrdine(int prezzoCentesimi) throws Exception {
-        String token = getAccessToken();
-        double prezzoEuro = prezzoCentesimi / 100.0;
+    public String creaOrdine(int prezzoCentesimi) {
+        try {
+            String token = getAccessToken();
+            double prezzoEuro = prezzoCentesimi / 100.0;
 
-        String body = """
+            String body = """
         {
           "intent": "CAPTURE",
           "purchase_units": [ {
@@ -74,18 +76,28 @@ public class PagamentoController {
         }
         """.formatted(String.format("%.2f", prezzoEuro).replace(",", "."));
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl + "/v2/checkout/orders"))
-                .header("Authorization", "Bearer " + token)
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(body))
-                .build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(baseUrl + "/v2/checkout/orders"))
+                    .header("Authorization", "Bearer " + token)
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(body))
+                    .build();
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpClient client = HttpClient.newHttpClient();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        int index = response.body().indexOf("\"href\":\"https://www.sandbox.paypal.com/checkoutnow?");
-        int end = response.body().indexOf("\"", index + 8);
-        return response.body().substring(index + 8, end).replace("\\u0026", "&");
+            int index = response.body().indexOf("\"href\":\"https://www.sandbox.paypal.com/checkoutnow?");
+            if (index == -1) {
+                throw new PagamentoInitException("URL di checkout PayPal non trovato nella risposta.");
+            }
+
+            int end = response.body().indexOf("\"", index + 8);
+            return response.body().substring(index + 8, end).replace("\\u0026", "&");
+
+        } catch (Exception e) {
+            AppLogger.getLogger().log(Level.SEVERE, "Errore nella creazione dell’ordine PayPal", e);
+            throw new PagamentoInitException("Errore nella creazione dell’ordine PayPal", e);
+        }
     }
+
 }
