@@ -12,10 +12,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.stage.Stage;
+import java.util.logging.Logger;
 
 import java.io.IOException;
 
 public class DashboardTrainerGUIController extends AbstractGUIController{
+
+    private static final Logger logger = Logger.getLogger(DashboardTrainerGUIController.class.getName());
 
     @FXML
     private Label welcomeLabel;
@@ -27,7 +30,7 @@ public class DashboardTrainerGUIController extends AbstractGUIController{
     private void initialize() {
         anchorPane.setBackground(new Background(this.background()));
 
-        System.out.println("** INIT EXEC - Dashboard Trainer**");
+        logger.info("** INIT EXEC - Dashboard Trainer**");
         SessionManager.getInstance().setAttributo("homePage", "/views/DashboardTrainerView.fxml");
 
         Utente u = (Utente) SessionManager.getInstance().getAttributo("utente");
@@ -50,19 +53,19 @@ public class DashboardTrainerGUIController extends AbstractGUIController{
 
     @FXML
     public void onChatListBtnClick(ActionEvent chatListEvent) {
-        System.out.println("CHAT button clicked.");
+        logger.info("CHAT button clicked.");
         this.switchScene("/views/ListaChatView.fxml", chatListEvent);
     }
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
+        logger.info("HELP button clicked.");
         this.showPopup("Guida Interfaccia", "Dashboard Trainer", "Puoi accedere alla lista dei clienti oppure alla chat con loro.");
     }
 
     @FXML
     public void onLogoutClick(ActionEvent logoutEvent) {
-        System.out.println("LOGOUT button clicked.");
+        logger.info("LOGOUT button clicked.");
         if (this.logout()) {
             SessionManager.getInstance().clearAll();
             switchScene("/views/HomeView.fxml", logoutEvent);
