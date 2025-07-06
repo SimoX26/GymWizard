@@ -12,7 +12,7 @@ module ispwproject.gymwizard {
     exports ispwproject.gymwizard.controller.app;
     exports ispwproject.gymwizard.model;
     exports ispwproject.gymwizard.view;
-    exports ispwproject.gymwizard.util.DAO;
+    exports ispwproject.gymwizard.util.dao;
     exports ispwproject.gymwizard.util.exception;
     exports ispwproject.gymwizard.util.bean;
 

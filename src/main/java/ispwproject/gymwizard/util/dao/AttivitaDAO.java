@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.util.DAO;
+package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;

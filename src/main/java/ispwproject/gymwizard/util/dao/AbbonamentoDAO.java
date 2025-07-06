@@ -1,7 +1,6 @@
-package ispwproject.gymwizard.util.DAO;
+package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.Abbonamento;
-import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.sql.Connection;

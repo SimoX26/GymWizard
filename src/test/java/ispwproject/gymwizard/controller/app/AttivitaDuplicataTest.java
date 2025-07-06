@@ -1,7 +1,7 @@
 package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Attivita;
-import ispwproject.gymwizard.util.DAO.AttivitaDAO;
+import ispwproject.gymwizard.util.dao.AttivitaDAO;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import org.junit.Before;

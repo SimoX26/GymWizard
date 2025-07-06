@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.util.DAO;
+package ispwproject.gymwizard.util.dao;
 
 import java.sql.*;
 import java.util.LinkedHashMap;
