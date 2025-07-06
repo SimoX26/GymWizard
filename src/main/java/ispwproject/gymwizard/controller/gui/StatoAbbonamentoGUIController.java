@@ -9,12 +9,19 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import ispwproject.gymwizard.util.logger.AppLogger;
+import java.util.logging.Logger;
+
 
 public class StatoAbbonamentoGUIController extends AbstractGUIController {
 
-    @FXML
-    private Label stato, dataEmissione, dataScadenza, tipologia;
+    private static final Logger logger = AppLogger.getLogger();
 
+    @FXML
+    private Label stato;
+    private Label dataEmissione;
+    private Label dataScadenza;
+    private Label tipologia;
     @FXML
     private AnchorPane anchorPane;
 
@@ -43,19 +50,19 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController {
 
     @FXML
     private void onRinnovaClick(ActionEvent rinnovaEvent) {
-        System.out.println("RINNOVA button clicked.");
+        logger.info("RINNOVA button clicked.");
         switchScene("/views/RinnovaAbbonamentoView.fxml", rinnovaEvent);
     }
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
-        System.out.println("BACK button clicked.");
+        logger.info("BACK button clicked.");
         switchScene("/views/DashboardClienteView.fxml", backEvent);
     }
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
+        logger.info("HELP button clicked.");
         this.showPopup("Guida Interfaccia", "Stato Abbonamento", """
                 • Stato: può essere Attivo, Scaduto o In Scadenza (entro 10 giorni).
                 • Data di emissione: giorno in cui è stato emesso l'abbonamento.
@@ -65,7 +72,7 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController {
 
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
-        System.out.println("HOME button clicked.");
+        logger.info("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }
