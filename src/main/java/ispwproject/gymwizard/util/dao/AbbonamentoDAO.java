@@ -2,10 +2,12 @@ package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.logger.AppLogger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * DAO per la gestione degli abbonamenti.
@@ -57,9 +59,10 @@ public class AbbonamentoDAO { // NOSONAR
                 abbonamento.setRiferimentoPagamento(rs.getString("riferimento_pagamento"));
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }catch (SQLException e) {
+            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il recupero dell'abbonamento attivo per l'utente " + idUtente);
         }
+
 
         return abbonamento;
     }
@@ -83,8 +86,9 @@ public class AbbonamentoDAO { // NOSONAR
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il recupero dell'abbonamento attivo per l'utente ");
         }
+
     }
 
     public List<Abbonamento> getAllDisponibili() throws DAOException {
