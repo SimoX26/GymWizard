@@ -13,16 +13,23 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import ispwproject.gymwizard.util.logger.AppLogger;
 
 public class VisualizzaAttivitaGUIController extends AbstractGUIController {
 
     private final AttivitaController controller = DemoFactory.getAttivitaController(); // Controller dinamico
 
     @FXML
-    private Label name, description, dateTime, startTime, finishTime, placesAvailable, nomeTrainer;
+    private Label name;
+    private Label description;
+    private Label dateTime;
+    private Label startTime;
+    private Label finishTime;
+    private Label placesAvailable;
+    private Label nomeTrainer;
 
     @FXML
-    private HBox HBoxBtn;
+    private HBox hBoxBtn;
 
     @FXML
     AnchorPane anchorPane;
@@ -55,20 +62,20 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController {
             contatta.setOnAction(this::handleContatta);
             prenota.setOnAction(this::handlePrenota);
 
-            HBoxBtn.getChildren().add(contatta);
-            HBoxBtn.getChildren().add(prenota);
+            hBoxBtn.getChildren().add(contatta);
+            hBoxBtn.getChildren().add(prenota);
         }
     }
 
     @FXML
     public void handleContatta(ActionEvent event) {
-        System.out.println("CONTATTA button clicked.");
+        AppLogger.getLogger().info("CONTATTA button clicked.");
         this.switchScene("/views/ContattaTrainerView.fxml", event);
     }
 
     @FXML
     public void handlePrenota(ActionEvent event) {
-        System.out.println("PRENOTA button clicked.");
+        AppLogger.getLogger().info("PRENOTA button clicked.");
         try {
             Attivita attivita = (Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata");
             controller.prenotaAttivita(attivita); // ✅ Metodo non statico
@@ -81,19 +88,19 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController {
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
-        System.out.println("BACK button clicked.");
+        AppLogger.getLogger().info("BACK button clicked.");
         this.switchScene("/views/ListinoAttivitaView.fxml", backEvent);
     }
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
+        AppLogger.getLogger().info("HELP button clicked.");
         this.showPopup("Guida Interfaccia", "Riepilogo Attività", "Riepilogo dati dell'attività selezionata.");
     }
 
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
-        System.out.println("HOME button clicked.");
+        AppLogger.getLogger().info("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
 }

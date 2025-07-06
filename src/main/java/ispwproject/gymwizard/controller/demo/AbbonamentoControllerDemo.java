@@ -7,7 +7,7 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 
 public class AbbonamentoControllerDemo extends AbbonamentoController {
 
-    private Abbonamento abbonamentoMock = null;
+    private static Abbonamento abbonamentoMock = null;
 
     public Abbonamento getDatiAbbonamento() {
         if (abbonamentoMock == null) {
@@ -17,7 +17,7 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
         return abbonamentoMock;
     }
 
-    public void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
+    public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
         if (abbonamentoMock != null) {
             throw new IllegalStateException("Esiste già un abbonamento attivo per questo utente (DEMO).");
         }

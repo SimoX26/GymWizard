@@ -103,6 +103,6 @@
                  </Label>
              </VBox>
          </HBox>
-         <HBox fx:id="HBoxBtn"  alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0"/>
+         <HBox fx:id="hBoxBtn" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0"/>
     </VBox>
 </AnchorPane>
