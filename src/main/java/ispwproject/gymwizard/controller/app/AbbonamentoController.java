@@ -5,11 +5,7 @@ import ispwproject.gymwizard.util.dao.AbbonamentoDAO;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.exception.BrowserAperturaException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
-
-import java.io.IOException;
 import ispwproject.gymwizard.util.BrowserLauncher;
-
-import java.net.URISyntaxException;
 import java.time.LocalDate;
 
 public class AbbonamentoController {
