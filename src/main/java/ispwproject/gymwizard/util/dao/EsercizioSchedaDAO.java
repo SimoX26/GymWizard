@@ -75,7 +75,8 @@ public class EsercizioSchedaDAO { // NOSONAR
             }
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, "Errore durante il recupero esercizi per la scheda con id " + idScheda, e);
+            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il recupero esercizi per la scheda con id " + idScheda);
+
         }
 
         return esercizi;

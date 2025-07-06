@@ -36,7 +36,10 @@ public class UtenteDAO {
             }
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, "Errore durante il recupero dell’utente con email: " + email, e);
+            Utente finalUtente = utente;
+            AppLogger.getLogger().log(Level.SEVERE, e, () ->
+                                "Errore durante l’inserimento dell’utente: " + finalUtente.getEmail());
+
         }
 
         return utente;
@@ -63,7 +66,9 @@ public class UtenteDAO {
             return true;
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, "Errore durante l’inserimento dell’utente: " + utente.getEmail(), e);
+            AppLogger.getLogger().log(Level.SEVERE, e, () ->
+                                "Errore durante l’inserimento dell’utente: " + utente.getEmail());
+
             return false;
         }
     }

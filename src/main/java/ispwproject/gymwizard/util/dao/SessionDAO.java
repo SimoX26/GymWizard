@@ -38,7 +38,8 @@ public class SessionDAO {
                     }
                 }
             } catch (SQLException | IllegalArgumentException e) {
-                AppLogger.getLogger().log(Level.SEVERE, "Errore durante il login per l’utente: " + login.getEmail(), e);
+                AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il login per l’utente: " + login.getEmail());
+
             }
         }
 
