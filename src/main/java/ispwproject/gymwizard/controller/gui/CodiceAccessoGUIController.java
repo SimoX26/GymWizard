@@ -29,7 +29,6 @@ public class CodiceAccessoGUIController extends AbstractGUIController implements
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            String username = "cliente"; // sostituiscilo con l'utente loggato, se hai sessione
             String codice = QRCodeGenerator.getInstance().generaCodiceAccesso();
             Image qrImage = QRCodeUtils.generaQRCodeImage(codice, 200, 200);
             qrCodeImage.setImage(qrImage);

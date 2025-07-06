@@ -9,6 +9,7 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
 
     private static Abbonamento abbonamentoMock = null;
 
+    @Override
     public Abbonamento getDatiAbbonamento() {
         if (abbonamentoMock == null) {
             // Nessun abbonamento presente: simuliamo il caso
@@ -33,5 +34,9 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
         nuovoAbbonamento.setRiferimentoPagamento(riferimentoPagamento);
 
         abbonamentoMock = nuovoAbbonamento;
+    }
+
+    public static void resetMock() {
+        abbonamentoMock = null;
     }
 }
