@@ -1,10 +1,13 @@
 package ispwproject.gymwizard.controller;
 
+import ispwproject.gymwizard.util.logger.AppLogger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.logging.Level;
 
 public class Main extends Application {
 
@@ -22,7 +25,7 @@ public class Main extends Application {
             primaryStage.centerOnScreen();        // Centra la finestra
             primaryStage.show();
         } catch (Exception e) {
-            System.err.println("Errore imprevisto: " + e.getMessage());
+            AppLogger.getLogger().log(Level.SEVERE, "Errore imprevisto", e);
         }
 
     }
