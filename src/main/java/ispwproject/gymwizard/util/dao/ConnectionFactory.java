@@ -1,7 +1,6 @@
 package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.Role;
-import ispwproject.gymwizard.util.logger.AppLogger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
 
 public class ConnectionFactory {
 

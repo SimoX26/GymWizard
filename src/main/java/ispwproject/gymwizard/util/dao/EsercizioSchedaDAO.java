@@ -47,7 +47,8 @@ public class EsercizioSchedaDAO { // NOSONAR
             }
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, "Errore durante l'inserimento dell'esercizio: " + esercizio.getNomeEsercizio(), e);
+            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante l'inserimento dell'esercizio: " + esercizio.getNomeEsercizio());
+
         }
     }
 
@@ -96,7 +97,8 @@ public class EsercizioSchedaDAO { // NOSONAR
             }
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, "Errore durante il controllo dell'esistenza dell'esercizio '" + nomeEsercizio + "' per la scheda " + idScheda, e);
+            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il controllo dell'esistenza dell'esercizio '" + nomeEsercizio + "' per la scheda " + idScheda);
+
         }
 
         return false;
