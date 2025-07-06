@@ -11,10 +11,11 @@ public class EsercizioSchedaDAO {
     // Singleton instance
     private static EsercizioSchedaDAO instance;
 
-    // 🔐Costruttore privato
-    public EsercizioSchedaDAO() {}
+    // 🔐 Costruttore privato per prevenire l'istanziazione esterna
+    private EsercizioSchedaDAO() {
+        // Singleton: costruttore privato per impedire istanziazione diretta
+    }
 
-    // Metodo di accesso pubblico
     public static synchronized EsercizioSchedaDAO getInstance() {
         if (instance == null) {
             instance = new EsercizioSchedaDAO();
@@ -50,7 +51,8 @@ public class EsercizioSchedaDAO {
 
     public static List<EsercizioScheda> getEserciziByScheda(int idScheda) {
         List<EsercizioScheda> esercizi = new ArrayList<>();
-        String query = "SELECT * FROM EsercizioScheda WHERE id_scheda = ?";
+        String query = "SELECT id, id_scheda, nome_esercizio, serie, ripetizioni, note FROM EsercizioScheda WHERE id_scheda = ?";
+
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
