@@ -38,7 +38,7 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
 
         if ("/views/DashboardAdminView.fxml".equals(SessionManager.getInstance().getAttributo(HOME_PAGE_ATTR))) {
             Button btn = new Button("+");
-            btn.setStyle("-fx-font-size: 24; -fx-background-color: green; -fx-cursor: hand; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;");
+            btn.setStyle("-fx-font-size: 24; -fx-cursor: hand; -fx-font-family: 'Helvetica'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 50; -fx-border-radius: 50;");
             btn.setOnAction(this::handleAddActivity);
             addBtn.getChildren().add(btn);
         }
@@ -49,14 +49,7 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
             for (Attivita attivita : attivitaList) {
                 Button btn = new Button(attivita.getNome() + " | " + attivita.getData() + " | " + attivita.getOraInizio() + " - " + attivita.getOraFine() + " | posti rimanenti: " + attivita.getPostiDisponibili());
                 btn.setMaxWidth(Double.MAX_VALUE);
-                btn.setStyle(
-                        "-fx-background-color: white;" +
-                                "-fx-text-fill: black;" +
-                                "-fx-font-size: 14px;" +
-                                "-fx-font-weight: bold;" +
-                                "-fx-padding: 10 20 10 20;" +
-                                "-fx-cursor: hand"
-                );
+                btn.setStyle("-fx-font-size: 14px; -fx-cursor: hand; -fx-font-family: 'Helvetica'; -fx-font-weight: bold;");
                 btn.setOnAction(event -> onAttivitaClick(event, attivita));
                 attivitaContainer.getChildren().add(btn);
             }

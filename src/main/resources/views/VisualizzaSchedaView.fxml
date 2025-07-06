@@ -17,15 +17,15 @@
                 <Font size="28.0" />
             </font>
         </Label>
-      <ComboBox fx:id="comboBoxSchede"  prefWidth="250.0"/>
+      <ComboBox fx:id="comboBoxSchede"  prefWidth="250.0" style="-fx-font-size: 14px;"/>
     </HBox>
-    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
-        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
-        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
+    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
        <VBox AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="120.0">
-           <TableView fx:id="tableViewEsercizi" prefHeight="400.0" prefWidth="200.0">
+           <TableView fx:id="tableViewEsercizi" prefHeight="400.0" prefWidth="200.0" style="-fx-font-size: 14px;">
                <columns>
                    <TableColumn fx:id="colNome" prefWidth="436.5" resizable="false" text="Esercizio" />
                    <TableColumn fx:id="colSerie" minWidth="0.0" prefWidth="212.0" resizable="false" text="Serie" />

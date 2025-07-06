@@ -21,11 +21,17 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController {
 
     @FXML
     private Label name;
+    @FXML
     private Label description;
+    @FXML
     private Label dateTime;
+    @FXML
     private Label startTime;
+    @FXML
     private Label finishTime;
+    @FXML
     private Label placesAvailable;
+    @FXML
     private Label nomeTrainer;
 
     @FXML
@@ -56,8 +62,8 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController {
             Button contatta = new Button("CONTATTA TRAINER");
             Button prenota = new Button("PRENOTA");
 
-            contatta.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
-            prenota.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
+            contatta.setStyle("-fx-font-size: 16; -fx-cursor: hand; -fx-font-family: 'Helvetica'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
+            prenota.setStyle("-fx-font-size: 16; -fx-cursor: hand; -fx-font-family: 'Helvetica'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
 
             contatta.setOnAction(this::handleContatta);
             prenota.setOnAction(this::handlePrenota);

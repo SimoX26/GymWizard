@@ -11,17 +11,17 @@
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style=" -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CreaSchedaGUIController">
 
     <!-- Titolo -->
-    <Label text="CREA UNA NUOVA SCHEDA" textFill="WHITE" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0">
+    <Label text="CREA UNA NUOVA SCHEDA" textFill="WHITE" style="-fx-text-fill: white; -fx-font-weight: bold;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0">
         <font>
-            <Font name="System Bold" size="28.0" />
+            <Font size="28.0" />
         </font>
     </Label>
 
     <!-- Pulsanti in alto a destra -->
-    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
-        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
-        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenitore centrale -->
@@ -30,21 +30,21 @@
             <VBox alignment="TOP_RIGHT" prefWidth="300.0" spacing="42.0">
                 <Label style="-fx-text-fill: white;" text="Nome scheda">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="16.0" />
                     </font>
                 </Label>
             </VBox>
             <VBox prefWidth="300.0" spacing="33.0">
                 <TextField fx:id="nomeScheda" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il nome della nuova scheda">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="16.0" />
                     </font>
                 </TextField>
             </VBox>
         </HBox>
 
         <!-- Pulsante Salva -->
-        <Button onAction="#onCreaScheda" style="-fx-cursor: hand; -fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="CREA SCHEDA">
+        <Button onAction="#onCreaScheda" style="-fx-font-size=16; -fx-cursor: hand; -fx-font-family: 'Helvetica'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CREA SCHEDA">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font></Button>

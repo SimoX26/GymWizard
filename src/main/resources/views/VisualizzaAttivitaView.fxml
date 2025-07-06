@@ -5,102 +5,41 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.VisualizzaAttivitaGUIController">
+<AnchorPane stylesheets="@style.css" fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.VisualizzaAttivitaGUIController">
 
      <!-- Benvenuto -->
-     <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="RIEPILOGO ATTIVITÀ SELEZIONATA" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0">
-      <font>
-         <Font size="28.0" />
-      </font>
-   </Label>
+     <Label styleClass="welcome-label" text="RIEPILOGO ATTIVITÀ SELEZIONATA" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0"/>
 
     <!-- Intestazione inferiore -->
     <HBox alignment="CENTER" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
-        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
-        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenitore principale -->
     <VBox alignment="CENTER" spacing="60.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="140.0">
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
              <VBox alignment="CENTER_RIGHT" prefWidth="200.0" spacing="20.0">
-                 <Label text="Nome:" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
-                 <Label text="Descrizione:" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
-                 <Label text="Data:" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
-                 <Label text="Orario:" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
-                 <Label text="Posti dispinibili:" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
-                 <Label text="Nome trainer:" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
+                 <Label text="Nome:" styleClass="label-custom" textFill="WHITE"/>
+                 <Label text="Descrizione:" styleClass="label-custom" textFill="WHITE"/>
+                 <Label text="Data:" styleClass="label-custom" textFill="WHITE"/>
+                 <Label text="Orario:" styleClass="label-custom" textFill="WHITE"/>
+                 <Label text="Posti dispinibili:" styleClass="label-custom" textFill="WHITE"/>
+                 <Label text="Nome trainer:" styleClass="label-custom" textFill="WHITE"/>
              </VBox>
              <VBox alignment="CENTER_LEFT" prefWidth="200.0" spacing="20.0">
-                 <Label fx:id="name" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
-                 <Label fx:id="description" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
-                 <Label fx:id="dateTime" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
+                 <Label fx:id="name" styleClass="label-custom" textFill="WHITE"/>
+                 <Label fx:id="description" styleClass="label-custom" textFill="WHITE"/>
+                 <Label fx:id="dateTime" styleClass="label-custom" textFill="WHITE"/>
                  <HBox>
-                     <Label fx:id="startTime" textFill="WHITE">
-                         <font>
-                             <Font size="14.0" />
-                         </font>
-                     </Label>
-                     <Label text=" - " textFill="WHITE">
-                         <font>
-                             <Font size="14.0" />
-                         </font>
-                     </Label>
-                     <Label fx:id="finishTime" textFill="WHITE">
-                         <font>
-                             <Font size="14.0" />
-                         </font>
-                     </Label>
+                     <Label fx:id="startTime" styleClass="label-custom" textFill="WHITE"/>
+                     <Label text=" - " style="-fx-font-size: 14px" textFill="WHITE"/>
+                     <Label fx:id="finishTime" styleClass="label-custom" textFill="WHITE"/>
                  </HBox>
-                 <Label fx:id="placesAvailable" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
-                 <Label fx:id="nomeTrainer" textFill="WHITE">
-                     <font>
-                         <Font size="14.0" />
-                     </font>
-                 </Label>
+                 <Label fx:id="placesAvailable" styleClass="label-custom" textFill="WHITE"/>
+                 <Label fx:id="nomeTrainer" styleClass="label-custom" textFill="WHITE"/>
              </VBox>
          </HBox>
          <HBox fx:id="hBoxBtn" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0"/>

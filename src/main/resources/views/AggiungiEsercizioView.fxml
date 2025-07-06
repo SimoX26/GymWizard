@@ -12,17 +12,17 @@
 <AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style=" -fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.AggiungiEsercizioGUIController">
 
     <!-- Titolo -->
-    <Label text="AGGIUNGI UN ESERCIZIO ALLA SCHEDA" textFill="WHITE" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0">
+    <Label text="AGGIUNGI UN ESERCIZIO ALLA SCHEDA" style="-fx-text-fill: white; -fx-font-weight: bold;" textFill="WHITE" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0">
         <font>
-            <Font name="System Bold" size="28.0" />
+            <Font size="28.0" />
         </font>
     </Label>
 
     <!-- Pulsanti in alto a destra -->
-    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="10.0">
-        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
-        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
+    <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 
     <!-- Contenitore centrale -->
@@ -56,8 +56,16 @@
                         <Font size="14.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="numeroSerieField" promptText="Inserisci il numero di serie" />
-                <TextField fx:id="numeroRepField" promptText="Inserisci il numero di ripetizioni" />
+                <TextField fx:id="numeroSerieField" promptText="Inserisci il numero di serie" >
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </TextField>
+                <TextField fx:id="numeroRepField" promptText="Inserisci il numero di ripetizioni" >
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </TextField>
                 <TextArea fx:id="noteField" prefHeight="42.0" prefRowCount="4" prefWidth="257.0" promptText="Inserisci una descrizione">
                     <font>
                         <Font size="14.0" />
@@ -67,10 +75,6 @@
         </HBox>
 
         <!-- Pulsante Salva -->
-        <Button onAction="#onAggiungiEsercizio" style="-fx-cursor: hand; -fx-background-color: green; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 2; -fx-background-radius: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="AGGIUNGI ESERCIZIO">
-            <font>
-                <Font name="System Bold" size="16.0" />
-            </font></Button>
+        <Button onAction="#onAggiungiEsercizio" style="-fx-font-size: 14px; -fx-cursor: hand; -fx-font-family: 'Helvetica'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="AGGIUNGI ESERCIZIO"/>
     </VBox>
-
 </AnchorPane>
