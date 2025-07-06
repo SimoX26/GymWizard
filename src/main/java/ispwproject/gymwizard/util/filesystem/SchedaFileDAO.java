@@ -23,7 +23,7 @@ public class SchedaFileDAO {
         return instance;
     }
 
-    public void insertScheda(Scheda scheda){
+    public void insertScheda(Scheda scheda) {
         int idCliente = scheda.getIdCliente();
         List<Scheda> schede = FileSystemManager.loadListFromFile(idCliente, FILE_NAME, LIST_TYPE);
 
@@ -40,13 +40,12 @@ public class SchedaFileDAO {
     }
 
     public List<Scheda> getSchedeByUtente(int idCliente) {
-        // ✅ Cast sicuro a List<Scheda>
         List<?> rawList = FileSystemManager.loadListFromFile(idCliente, FILE_NAME, LIST_TYPE);
         List<Scheda> schede = new ArrayList<>();
 
         for (Object o : rawList) {
-            if (o instanceof Scheda) {
-                schede.add((Scheda) o);
+            if (o instanceof Scheda scheda) {
+                schede.add(scheda);
             }
         }
 

@@ -27,7 +27,7 @@ import java.util.List;
 public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
     private static final String HOMEPAGE = "homePage";
-
+    private static final String BUTTON_CUSTOM = "button-custom";
     @FXML
     private ComboBox<Scheda> comboBoxSchede;
 
@@ -60,7 +60,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
             Button add = new Button("AGGIUNGI ESERCIZIO");
             Button flush = new Button("SVUOTA SCHEDA");
 
-            nuova.getStyleClass().add("button-custom");
+            nuova.getStyleClass().add(BUTTON_CUSTOM);
             add.setStyle(nuova.getStyle());
             flush.setStyle(nuova.getStyle());
 
