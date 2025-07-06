@@ -24,7 +24,7 @@ public class EsercizioSchedaFileDAO {
         return instance;
     }
 
-    public void insertEsercizio(EsercizioScheda esercizio, int idCliente) {
+    public void insertEsercizio(EsercizioScheda esercizio) {
         // Ottieni l'utente corrente (cliente selezionato) dal SessionManager
         Utente cliente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         int idUtente = cliente.getId();
