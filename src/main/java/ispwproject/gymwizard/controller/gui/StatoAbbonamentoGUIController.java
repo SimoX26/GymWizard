@@ -19,8 +19,11 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController {
 
     @FXML
     private Label stato;
+    @FXML
     private Label dataEmissione;
+    @FXML
     private Label dataScadenza;
+    @FXML
     private Label tipologia;
     @FXML
     private AnchorPane anchorPane;

@@ -61,8 +61,8 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
             Button flush = new Button("SVUOTA SCHEDA");
 
             nuova.getStyleClass().add("button-custom");
-            add.setStyle(nuova.getStyle());
-            flush.setStyle(nuova.getStyle());
+            add.getStyleClass().add("button-custom");
+            flush.getStyleClass().add("button-custom");
 
             nuova.setOnAction(this::handleNewTrainingCard);
             add.setOnAction(this::handleAddExercise);
