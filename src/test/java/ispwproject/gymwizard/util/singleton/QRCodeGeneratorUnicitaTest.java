@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class QRCodeGeneratorUnicitaTest {
+class QRCodeGeneratorUnicitaTest {
 
     @Test
     void testCodiciUniciENelFormatoCorretto() {
@@ -16,10 +16,10 @@ public class QRCodeGeneratorUnicitaTest {
         Set<String> codici = new HashSet<>();
         Pattern formato = Pattern.compile("^[A-Z]{4}-\\d{4}$");
 
-        int NUMERO_TENTATIVI = 1000;
+        int numeroTentativi = 1000;
 
-        for (int i = 0; i < NUMERO_TENTATIVI; i++) {
-            String codice = generator.generaCodiceAccesso("utente" + i);
+        for (int i = 0; i < numeroTentativi; i++) {
+            String codice = generator.generaCodiceAccesso();
 
             // Verifica che il formato sia corretto
             assertTrue(formato.matcher(codice).matches(), "Formato non valido: " + codice);
@@ -31,6 +31,6 @@ public class QRCodeGeneratorUnicitaTest {
         }
 
         // Verifica finale: tutti i codici devono essere unici
-        assertEquals(NUMERO_TENTATIVI, codici.size(), "Non tutti i codici sono unici");
+        assertEquals(numeroTentativi, codici.size(), "Non tutti i codici sono unici");
     }
 }

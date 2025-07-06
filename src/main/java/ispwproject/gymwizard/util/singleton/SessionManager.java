@@ -5,20 +5,26 @@ import ispwproject.gymwizard.util.bean.SessionBean;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Singleton per la gestione della sessione utente.
+ */
 public class SessionManager {
-    private static SessionManager instance;
-    private SessionBean session;
-    private final Map<String, Object> attributi = new HashMap<>(); // ✅ Mappa per attributi personalizzati
 
+    // ✅ Istanza Singleton eagerly inizializzata (thread-safe)
+    private static final SessionManager instance = new SessionManager();
+
+    private SessionBean session;
+    private final Map<String, Object> attributi = new HashMap<>(); // Mappa per attributi personalizzati
+
+    // ✅ Costruttore privato per impedire l'istanziazione esterna
     private SessionManager() {}
 
+    // ✅ Metodo di accesso all’unica istanza
     public static SessionManager getInstance() {
-        if (instance == null) {
-            instance = new SessionManager();
-        }
         return instance;
     }
 
+    // ✅ Imposta l’oggetto sessione
     public void setSession(SessionBean session) {
         this.session = session;
     }
@@ -27,16 +33,17 @@ public class SessionManager {
         return session;
     }
 
+    // ✅ Pulisce sessione e attributi
     public void clearSession() {
         this.session = null;
-        attributi.clear(); // pulisci anche gli attributi
+        attributi.clear();
     }
 
     public boolean isLoggedIn() {
         return session != null;
     }
 
-    // Metodi per attributi personalizzati
+    // ✅ Attributi personalizzati
     public void setAttributo(String chiave, Object valore) {
         attributi.put(chiave, valore);
     }
@@ -52,5 +59,4 @@ public class SessionManager {
     public void clearAll() {
         clearSession(); // delega
     }
-
 }

@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.util.DAO;
+package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -11,23 +11,23 @@ import java.util.List;
 
 public class AttivitaDAO {
 
-    private static AttivitaDAO instance;
-
-    // Costruttore privato per impedire l'istanziazione esterna
+    // ✅ Singleton con Holder idiom (lazy, thread-safe e senza sincronizzazione costosa)
     private AttivitaDAO() {}
 
-    // Metodo per ottenere l'unica istanza
-    public static synchronized AttivitaDAO getInstance() {
-        if (instance == null) {
-            instance = new AttivitaDAO();
-        }
-        return instance;
+    private static class Holder {
+        private static final AttivitaDAO INSTANCE = new AttivitaDAO();
+    }
+
+    public static AttivitaDAO getInstance() {
+        return Holder.INSTANCE;
     }
 
     public List<Attivita> getAllDisponibili() throws DAOException {
         List<Attivita> attivitaList = new ArrayList<>();
 
-        String query = "SELECT * FROM Attivita WHERE data >= CURDATE() ORDER BY data, ora_inizio";
+        // ✅ Migliorato evitando SELECT *
+        String query = "SELECT id, nome, descrizione, data, ora_inizio, ora_fine, posti_disponibili, trainer_name " +
+                "FROM Attivita WHERE data >= CURDATE() ORDER BY data, ora_inizio";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
@@ -55,8 +55,10 @@ public class AttivitaDAO {
     }
 
     public void inserisciAttivita(Attivita attivita) throws DAOException {
-        String query = "INSERT INTO Attivita (nome, descrizione, data, ora_inizio, ora_fine, posti_disponibili, trainer_name) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = """
+            INSERT INTO Attivita (nome, descrizione, data, ora_inizio, ora_fine, posti_disponibili, trainer_name)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
@@ -77,7 +79,10 @@ public class AttivitaDAO {
     }
 
     public boolean existsAttivita(String nome, LocalDate data, LocalTime oraInizio) throws DAOException {
-        String query = "SELECT COUNT(*) FROM Attivita WHERE nome = ? AND data = ? AND ora_inizio = ?";
+        String query = """
+            SELECT COUNT(*) FROM Attivita
+            WHERE nome = ? AND data = ? AND ora_inizio = ?
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
@@ -87,16 +92,11 @@ public class AttivitaDAO {
             ps.setTime(3, Time.valueOf(oraInizio));
 
             try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt(1) > 0;
-                }
+                return rs.next() && rs.getInt(1) > 0;
             }
 
         } catch (SQLException e) {
             throw new DAOException("Errore durante il controllo attività duplicata: " + e.getMessage(), e);
         }
-
-        return false;
     }
-
 }

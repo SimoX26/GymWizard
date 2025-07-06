@@ -32,9 +32,5 @@ public class DemoFactory {
     public static SchedaController getSchedaController() {
         return Config.isDemoMode() ? new SchedaControllerDemo() : new SchedaController();
     }
-/*
-    public static ReportStatisticheController getReportStatisticheController() {
-        return Config.isDemoMode() ? new ReportStatisticheControllerDemo() : new ReportStatisticheController();
-    }
-*/
+
 }

@@ -2,8 +2,8 @@ package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.model.Utente;
-import ispwproject.gymwizard.util.DAO.AttivitaDAO;
-import ispwproject.gymwizard.util.DAO.PrenotazioneDAO;
+import ispwproject.gymwizard.util.dao.AttivitaDAO;
+import ispwproject.gymwizard.util.dao.PrenotazioneDAO;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;

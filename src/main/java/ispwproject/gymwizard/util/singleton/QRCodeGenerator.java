@@ -17,7 +17,7 @@ public class QRCodeGenerator {
         return instance;
     }
 
-    public String generaCodiceAccesso(String username) {
+    public String generaCodiceAccesso() {
         String lettere = generaLettere(4);
         String numeri = String.format("%04d", random.nextInt(10000)); // 0000–9999
         return lettere + "-" + numeri;

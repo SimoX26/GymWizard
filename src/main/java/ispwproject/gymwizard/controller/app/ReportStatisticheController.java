@@ -1,9 +1,9 @@
 package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Abbonamento;
-import ispwproject.gymwizard.util.DAO.AbbonamentoDAO;
-import ispwproject.gymwizard.util.DAO.PrenotazioneDAO;
-import ispwproject.gymwizard.util.DAO.UtenteDAO;
+import ispwproject.gymwizard.util.dao.AbbonamentoDAO;
+import ispwproject.gymwizard.util.dao.PrenotazioneDAO;
+import ispwproject.gymwizard.util.dao.UtenteDAO;
 import ispwproject.gymwizard.util.bean.PrenotazioneBean;
 import ispwproject.gymwizard.util.bean.UtenteAttivoBean;
 import ispwproject.gymwizard.util.exception.DAOException;

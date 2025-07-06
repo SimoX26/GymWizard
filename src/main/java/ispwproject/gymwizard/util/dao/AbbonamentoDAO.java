@@ -1,38 +1,45 @@
-package ispwproject.gymwizard.util.DAO;
+package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.Abbonamento;
-import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO per la gestione degli abbonamenti.
+ * Usa il Singleton perché l'accesso ai dati è centralizzato
+ * e non serve creare più istanze stateless.
+ */
 public class AbbonamentoDAO {
 
-    private static AbbonamentoDAO instance;
-
+    // Costruttore privato per impedire l'istanziazione esterna
     private AbbonamentoDAO() {
-        // Costruttore privato per impedire l'istanziazione esterna
+        // Singleton: uso limitato e centralizzato
     }
 
-    public static synchronized AbbonamentoDAO getInstance() {
-        if (instance == null) {
-            instance = new AbbonamentoDAO();
-        }
-        return instance;
+    // Initialization-on-demand holder idiom (lazy & thread-safe)
+    private static class Holder {
+        private static final AbbonamentoDAO INSTANCE = new AbbonamentoDAO();
+    }
+
+    /**
+     * Restituisce l'istanza singleton.
+     */
+    public static AbbonamentoDAO getInstance() {
+        return Holder.INSTANCE;
     }
 
     public Abbonamento trovaAbbonamentoAttivoPerUtente(int idUtente) {
         Abbonamento abbonamento = null;
 
-        String query = "SELECT * FROM Abbonamento " +
-                "WHERE id_utente = ? " +
-                "AND stato = 'attivo' " +
-                "LIMIT 1";
+        String query = """
+            SELECT id, tipo, data_inizio, data_fine, stato, riferimento_pagamento
+            FROM Abbonamento
+            WHERE id_utente = ? AND stato = 'attivo'
+            LIMIT 1
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -47,6 +54,7 @@ public class AbbonamentoDAO {
                 abbonamento.setDataInizio(rs.getDate("data_inizio").toLocalDate());
                 abbonamento.setDataFine(rs.getDate("data_fine").toLocalDate());
                 abbonamento.setStato(rs.getString("stato"));
+                abbonamento.setRiferimentoPagamento(rs.getString("riferimento_pagamento"));
             }
 
         } catch (SQLException e) {
@@ -58,9 +66,9 @@ public class AbbonamentoDAO {
 
     public void inserisciAbbonamento(Abbonamento abbonamento) {
         String query = """
-        INSERT INTO Abbonamento (id_utente, tipo, data_inizio, data_fine, stato, riferimento_pagamento)
-        VALUES (?, ?, ?, ?, ?, ?)
-    """;
+            INSERT INTO Abbonamento (id_utente, tipo, data_inizio, data_fine, stato, riferimento_pagamento)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -72,7 +80,7 @@ public class AbbonamentoDAO {
             stmt.setString(5, abbonamento.getStato());
             stmt.setString(6, abbonamento.getRiferimentoPagamento());
 
-            int rowsInserted = stmt.executeUpdate();
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -82,7 +90,12 @@ public class AbbonamentoDAO {
     public List<Abbonamento> getAllDisponibili() throws DAOException {
         List<Abbonamento> abbonamentoList = new ArrayList<>();
 
-        String query = "SELECT * FROM Abbonamento WHERE data_inizio >= CURDATE() ORDER BY data_inizio";
+        String query = """
+            SELECT id, data_inizio, data_fine, tipo, stato
+            FROM Abbonamento
+            WHERE data_inizio >= CURDATE()
+            ORDER BY data_inizio
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(query);

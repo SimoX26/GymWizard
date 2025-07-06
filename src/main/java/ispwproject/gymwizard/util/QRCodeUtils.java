@@ -11,14 +11,22 @@ import javafx.scene.image.Image;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
 public class QRCodeUtils {
 
+    private QRCodeUtils() {
+    }
+
     public static Image generaQRCodeImage(String text, int width, int height) throws WriterException, IOException {
-        Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
+        Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
+
+
         hints.put(EncodeHintType.MARGIN, 1);
 
         BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);

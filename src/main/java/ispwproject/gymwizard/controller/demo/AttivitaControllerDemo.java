@@ -19,11 +19,13 @@ public class AttivitaControllerDemo extends AttivitaController {
     private static final List<Attivita> attivitaDemo = new ArrayList<>();
     private int nextId = 1;
 
-    {
-        // Inizializza demo con alcune attività fittizie
-        attivitaDemo.add(new Attivita(nextId++, "Yoga", "Lezione di rilassamento", LocalDate.now().plusDays(1), LocalTime.of(10, 0), LocalTime.of(11, 0), 10, "Anna"));
-        attivitaDemo.add(new Attivita(nextId++, "Crossfit", "Allenamento ad alta intensità", LocalDate.now().plusDays(2), LocalTime.of(18, 0), LocalTime.of(19, 0), 5, "Marco"));
+    public AttivitaControllerDemo() {
+        if (attivitaDemo.isEmpty()) { // evita duplicati
+            attivitaDemo.add(new Attivita(nextId++, "Yoga", "Lezione di rilassamento", LocalDate.now().plusDays(1), LocalTime.of(10, 0), LocalTime.of(11, 0), 10, "Anna"));
+            attivitaDemo.add(new Attivita(nextId++, "Crossfit", "Allenamento ad alta intensità", LocalDate.now().plusDays(2), LocalTime.of(18, 0), LocalTime.of(19, 0), 5, "Marco"));
+        }
     }
+
 
     @Override
     public List<Attivita> getAttivitaDisponibili() {

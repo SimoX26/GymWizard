@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.util.FileSystem;
+package ispwproject.gymwizard.util.filesystem;
 
 import com.google.gson.reflect.TypeToken;
 import ispwproject.gymwizard.model.EsercizioScheda;
