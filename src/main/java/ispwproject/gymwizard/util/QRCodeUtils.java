@@ -11,7 +11,9 @@ import javafx.scene.image.Image;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -21,7 +23,8 @@ public class QRCodeUtils {
     }
 
     public static Image generaQRCodeImage(String text, int width, int height) throws WriterException, IOException {
-        Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
+        Map<EncodeHintType, Object> hints = new HashMap<>();
+
         hints.put(EncodeHintType.MARGIN, 1);
 
         BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, hints);

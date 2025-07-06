@@ -71,7 +71,7 @@ public class AbbonamentoDAO {
             stmt.setString(5, abbonamento.getStato());
             stmt.setString(6, abbonamento.getRiferimentoPagamento());
 
-            int rowsInserted = stmt.executeUpdate();
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,7 +81,8 @@ public class AbbonamentoDAO {
     public List<Abbonamento> getAllDisponibili() throws DAOException {
         List<Abbonamento> abbonamentoList = new ArrayList<>();
 
-        String query = "SELECT * FROM Abbonamento WHERE data_inizio >= CURDATE() ORDER BY data_inizio";
+        String query = "SELECT id, data_inizio, data_fine, tipo, stato FROM Abbonamento WHERE data_inizio >= CURDATE() ORDER BY data_inizio";
+
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
