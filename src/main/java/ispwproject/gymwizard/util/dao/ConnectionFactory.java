@@ -25,14 +25,10 @@ public class ConnectionFactory {
         try (InputStream input = new FileInputStream(PROPERTIES_FILE)) {
             properties.load(input);
         } catch (IOException e) {
-            AppLogger.getLogger().log(Level.SEVERE, () ->
-                    "Errore durante il caricamento di db.properties: " + e.getMessage());
-            throw new ExceptionInInitializerError(
-                    "Errore durante il caricamento di db.properties: " + e.getMessage());
+            throw new ExceptionInInitializerError();
         }
-
-
     }
+
 
     private static void initConnection() throws SQLException {
         String url = properties.getProperty("CONNECTION_URL");
