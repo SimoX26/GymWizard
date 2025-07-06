@@ -54,8 +54,10 @@ public class PagamentoController {
 
             return response.body().split("\"access_token\":\"")[1].split("\"")[0];
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             throw new PagamentoInitException("Errore durante il recupero dell'access token da PayPal.");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -98,8 +100,10 @@ public class PagamentoController {
             int end = response.body().indexOf("\"", index + 8);
             return response.body().substring(index + 8, end).replace("\\u0026", "&");
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             throw new PagamentoInitException("Errore nella creazione dell’ordine PayPal.");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }
