@@ -8,6 +8,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 import java.util.Properties;
+import ispwproject.gymwizard.util.logger.AppLogger;
+import java.util.logging.Level;
+
 
 public class PagamentoController {
 
@@ -20,9 +23,10 @@ public class PagamentoController {
         try (FileInputStream fis = new FileInputStream("src/main/resources/paypal.properties")) {
             props.load(fis);
         } catch (IOException e) {
-            System.err.println("❌ Errore nella lettura del file paypal.properties: " + e.getMessage());
+            AppLogger.getLogger().log(Level.SEVERE, "Errore nella lettura del file paypal.properties", e);
             throw new RuntimeException("Impossibile inizializzare PagamentoController. File mancante o corrotto.");
         }
+
 
         clientId = props.getProperty("paypal.clientId");
         clientSecret = props.getProperty("paypal.clientSecret");
