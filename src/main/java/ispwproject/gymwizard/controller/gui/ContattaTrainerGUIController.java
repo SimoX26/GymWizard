@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ContattaTrainerGUIController extends AbstractGUIController {
@@ -27,7 +28,10 @@ public class ContattaTrainerGUIController extends AbstractGUIController {
 
     public void setContext(String context) {
         this.context = context;
-        logger.info(String.format("Schermata chiamata da: %s", context));
+        if (logger.isLoggable(Level.INFO)) {
+            logger.info(String.format("Schermata chiamata da: %s", context));
+        }
+
     }
 
     public void onBackClick(ActionEvent event) {
