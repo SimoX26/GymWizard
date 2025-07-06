@@ -8,7 +8,8 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.awt.*;
 import java.io.IOException;
-import java.net.URI;
+import ispwproject.gymwizard.util.BrowserLauncher;
+
 import java.net.URISyntaxException;
 import java.time.LocalDate;
 
@@ -118,25 +119,8 @@ public class AbbonamentoController {
     }
 
     public static void apriNelBrowser(String url) throws BrowserAperturaException, IOException, URISyntaxException {
-        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            Desktop.getDesktop().browse(new URI(url));
-        } else {
-            String os = System.getProperty("os.name").toLowerCase();
-
-            ProcessBuilder processBuilder;
-
-            if (os.contains("linux")) {
-                processBuilder = new ProcessBuilder("xdg-open", url);
-            } else if (os.contains("mac")) {
-                processBuilder = new ProcessBuilder("open", url);
-            } else if (os.contains("win")) {
-                processBuilder = new ProcessBuilder("rundll32", "url.dll,FileProtocolHandler", url);
-            } else {
-                throw new BrowserAperturaException("Sistema operativo non supportato per aprire il browser.");
-            }
-
-            processBuilder.start();
-        }
+        BrowserLauncher.apriUrlNelBrowser(url);
     }
+
 
 }
