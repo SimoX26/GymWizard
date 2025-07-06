@@ -58,7 +58,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
             Button add = new Button("AGGIUNGI ESERCIZIO");
             Button flush = new Button("SVUOTA SCHEDA");
 
-            nuova.setStyle("-fx-font-size: 14px; -fx-cursor: hand; -fx-font-family: 'Helvetica'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
+            nuova.getStyleClass().add("button-custom");
             add.setStyle(nuova.getStyle());
             flush.setStyle(nuova.getStyle());
 
