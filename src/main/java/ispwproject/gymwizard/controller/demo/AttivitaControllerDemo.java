@@ -6,6 +6,8 @@ import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.util.logger.AppLogger;
+import java.util.logging.Level;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -60,7 +62,7 @@ public class AttivitaControllerDemo extends AttivitaController {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
 
         if (utente == null) {
-            System.out.println("Nessun utente loggato.");
+            AppLogger.getLogger().log(Level.WARNING, "Nessun utente loggato.");
             return;
         }
 
@@ -70,11 +72,16 @@ public class AttivitaControllerDemo extends AttivitaController {
                     throw new AttivitaPienaException(a.getNome());
                 }
                 a.setPostiDisponibili(a.getPostiDisponibili() - 1);
-                System.out.println("Prenotazione DEMO effettuata per " + utente.getUsername() + " su " + a.getNome());
+                AppLogger.getLogger().log(
+                        Level.INFO,
+                        "Prenotazione DEMO effettuata per {0} su {1}",
+                        new Object[]{utente.getUsername(), a.getNome()}
+                );
+
                 return;
             }
         }
 
-        System.out.println("Attività non trovata nella demo.");
+        AppLogger.getLogger().log(Level.WARNING, "Attività non trovata nella demo.");
     }
 }
