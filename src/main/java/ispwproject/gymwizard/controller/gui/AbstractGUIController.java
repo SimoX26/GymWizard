@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.util.exception.SceneLoadingException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -26,7 +27,7 @@ public abstract class AbstractGUIController {
         try {
             URL location = getClass().getResource(fxmlPath);
             if (location == null) {
-                throw new RuntimeException("FXML non trovato: " + fxmlPath);
+                throw new SceneLoadingException("FXML non trovato: " + fxmlPath);
             }
 
             FXMLLoader loader = new FXMLLoader(location);
@@ -37,7 +38,7 @@ public abstract class AbstractGUIController {
             stage.show();
 
         } catch (IOException e) {
-            throw new RuntimeException("Errore durante il cambio scena: " + fxmlPath, e);
+            throw new SceneLoadingException("Errore durante il cambio scena: " + fxmlPath, e);
         }
     }
 
@@ -72,9 +73,7 @@ public abstract class AbstractGUIController {
         return result.isPresent() && result.get() == ButtonType.OK;
     }
 
-
-
-    protected BackgroundImage background(){
+    protected BackgroundImage background() {
         Image backgroundImage = new Image(Objects.requireNonNull(getClass().getResource("/images/Sfondo_home.png")).toExternalForm());
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         return new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
