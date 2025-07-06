@@ -2,7 +2,7 @@ package ispwproject.gymwizard.util.singleton;
 
 import java.security.SecureRandom;
 
-public class QRCodeGenerator {
+public class QRCodeGenerator { // NOSONAR
 
     private static QRCodeGenerator instance;
     private static final String LETTERE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

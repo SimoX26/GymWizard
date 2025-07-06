@@ -11,7 +11,7 @@ import java.util.List;
  * DAO per la gestione delle schede nel database.
  * Implementazione Singleton perché condivisa globalmente.
  */
-public class SchedaDAO {
+public class SchedaDAO { // NOSONAR
 
     // Istanza singleton
     private static SchedaDAO instance;

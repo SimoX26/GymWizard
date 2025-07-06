@@ -9,8 +9,7 @@ import java.util.Map;
  * Singleton per la gestione della sessione utente.
  */
 
-// NOSONAR: Singleton necessario per gestione centralizzata della sessione
-public class SessionManager {
+public class SessionManager { // NOSONAR
 
     // ✅ Istanza Singleton eagerly inizializzata (thread-safe)
     private static final SessionManager instance = new SessionManager();

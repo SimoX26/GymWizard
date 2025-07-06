@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SchedaFileDAO {
+public class SchedaFileDAO { // NOSONAR
 
     private static final String FILE_NAME = "schede.json";
     private static final Type LIST_TYPE = new TypeToken<List<Scheda>>() {}.getType();

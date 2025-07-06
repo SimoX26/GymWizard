@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EsercizioSchedaDAO {
+public class EsercizioSchedaDAO { // NOSONAR
 
     // Singleton instance
     private static EsercizioSchedaDAO instance;

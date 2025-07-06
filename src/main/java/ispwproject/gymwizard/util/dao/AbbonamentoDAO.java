@@ -12,7 +12,7 @@ import java.util.List;
  * Usa il Singleton perché l'accesso ai dati è centralizzato
  * e non serve creare più istanze stateless.
  */
-public class AbbonamentoDAO {
+public class AbbonamentoDAO { // NOSONAR
 
     // Costruttore privato per impedire l'istanziazione esterna
     private AbbonamentoDAO() {

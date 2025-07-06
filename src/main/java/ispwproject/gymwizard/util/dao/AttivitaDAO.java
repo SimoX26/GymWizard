@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttivitaDAO {
+public class AttivitaDAO { // NOSONAR
 
     // ✅ Singleton con Holder idiom (lazy, thread-safe e senza sincronizzazione costosa)
     private AttivitaDAO() {}

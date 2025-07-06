@@ -8,7 +8,7 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class EsercizioSchedaFileDAO {
+public class EsercizioSchedaFileDAO { // NOSONAR
 
     private static final String FILE_NAME = "esercizi_scheda.json";
     private static final Type LIST_TYPE = new TypeToken<List<EsercizioScheda>>() {}.getType();
