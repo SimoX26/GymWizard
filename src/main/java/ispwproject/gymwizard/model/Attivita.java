@@ -2,7 +2,7 @@ package ispwproject.gymwizard.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
+@SuppressWarnings("java:S107")
 public class Attivita {
 
     private int id;

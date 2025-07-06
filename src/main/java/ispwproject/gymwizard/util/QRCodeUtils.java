@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -23,7 +24,8 @@ public class QRCodeUtils {
     }
 
     public static Image generaQRCodeImage(String text, int width, int height) throws WriterException, IOException {
-        Map<EncodeHintType, Object> hints = new HashMap<>();
+        Map<EncodeHintType, Object> hints = new EnumMap<>(EncodeHintType.class);
+
 
         hints.put(EncodeHintType.MARGIN, 1);
 
