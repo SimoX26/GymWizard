@@ -25,9 +25,12 @@ public class ConnectionFactory {
         try (InputStream input = new FileInputStream(PROPERTIES_FILE)) {
             properties.load(input);
         } catch (IOException e) {
-            AppLogger.getLogger().log(Level.SEVERE, () -> "Errore durante il caricamento di db.properties: " + e.getMessage());
-            throw new ExceptionInInitializerError("Errore durante il caricamento di db.properties: " + e.getMessage());
+            AppLogger.getLogger().log(Level.SEVERE, () ->
+                    "Errore durante il caricamento di db.properties: " + e.getMessage());
+            throw new ExceptionInInitializerError(
+                    "Errore durante il caricamento di db.properties: " + e.getMessage());
         }
+
 
     }
 
