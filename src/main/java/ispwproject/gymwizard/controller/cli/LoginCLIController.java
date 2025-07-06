@@ -3,7 +3,6 @@ package ispwproject.gymwizard.controller.cli;
 import ispwproject.gymwizard.controller.app.LoginController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.util.exception.CredenzialiException;
-import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.view.LoginView;
 
 import java.sql.SQLException;
@@ -40,9 +39,6 @@ public class LoginCLIController {
                 case SUCCESSO_ADMIN -> CLIState.DASHBOARD_ADMIN;
             };
 
-        } catch (DAOException e) {
-            view.mostraErroreDB(e.getMessage());
-            return CLIState.LOGIN;
         } catch (SQLException | CredenzialiException e) {
             System.out.println("❌ Login fallito: " + e.getMessage());
             return CLIState.LOGIN;

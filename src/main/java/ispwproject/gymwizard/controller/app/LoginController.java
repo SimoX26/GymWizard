@@ -6,7 +6,6 @@ import ispwproject.gymwizard.util.DAO.ConnectionFactory;
 import ispwproject.gymwizard.util.DAO.LoginProcedureDAO;
 import ispwproject.gymwizard.util.bean.SessionBean;
 import ispwproject.gymwizard.util.exception.CredenzialiException;
-import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ public class LoginController {
         SUCCESSO_ADMIN
     }
 
-    public LoginResult login(String email, String password) throws DAOException, CredenzialiException, SQLException {
+    public LoginResult login(String email, String password) throws CredenzialiException, SQLException {
         Credentials fullCred = LoginProcedureDAO.getInstance().execute(email, password);
 
         if (fullCred == null || fullCred.getRole() == null) {

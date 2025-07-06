@@ -4,12 +4,15 @@ import ispwproject.gymwizard.controller.app.LoginController;
 import ispwproject.gymwizard.model.Role;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.bean.SessionBean;
+import ispwproject.gymwizard.util.exception.CredenzialiException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
+
+import java.sql.SQLException;
 
 public class LoginControllerDemo extends LoginController {
 
     @Override
-    public LoginResult login(String email, String password) {
+    public LoginResult login(String email, String password) throws CredenzialiException, SQLException {
         Utente utente;
         SessionBean sessionBean;
 
