@@ -10,6 +10,8 @@ import ispwproject.gymwizard.util.FileSystem.EsercizioSchedaFileDAO;
 import ispwproject.gymwizard.util.FileSystem.SchedaFileDAO;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.util.logger.AppLogger;
+import java.util.logging.Level;
 
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class SchedaController {
         try {
             SchedaFileDAO.getInstance().insertScheda(nuovaScheda);
         } catch (Exception e) {
-            System.err.println("⚠️ Errore salvataggio su FileSystem: " + e.getMessage());
+            AppLogger.getLogger().log(Level.WARNING, "⚠️ Errore salvataggio su FileSystem", e);
         }
     }
 
@@ -71,7 +73,7 @@ public class SchedaController {
         try {
             EsercizioSchedaFileDAO.getInstance().insertEsercizio(nuovo, schedaCorrente.getIdCliente());
         } catch (Exception e) {
-            System.err.println("⚠️ Errore salvataggio esercizio su FileSystem: " + e.getMessage());
+            AppLogger.getLogger().log(Level.WARNING, "⚠️ Errore salvataggio esercizio su FileSystem", e);
         }
     }
 
