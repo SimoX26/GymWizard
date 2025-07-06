@@ -7,12 +7,12 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class EsercizioSchedaFileDAO {
 
     private static final String FILE_NAME = "esercizi_scheda.json";
     private static final Type LIST_TYPE = new TypeToken<List<EsercizioScheda>>() {}.getType();
+
     private static EsercizioSchedaFileDAO instance;
 
     private EsercizioSchedaFileDAO() {}
@@ -25,12 +25,9 @@ public class EsercizioSchedaFileDAO {
     }
 
     public void insertEsercizio(EsercizioScheda esercizio, int idCliente) {
-
-        // Per ricavare il cliente serve una mappatura scheda → cliente
-        // Supponiamo che tu abbia già messo l’idCliente nel SessionManager → lo recuperiamo così:
+        // Ottieni l'utente corrente (cliente selezionato) dal SessionManager
         Utente cliente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         int idUtente = cliente.getId();
-
 
         List<EsercizioScheda> lista = FileSystemManager.loadListFromFile(idUtente, FILE_NAME, LIST_TYPE);
         esercizio.setId(generaNuovoId(lista));
@@ -42,7 +39,7 @@ public class EsercizioSchedaFileDAO {
         List<EsercizioScheda> lista = FileSystemManager.loadListFromFile(idCliente, FILE_NAME, LIST_TYPE);
         return lista.stream()
                 .filter(e -> e.getIdScheda() == idScheda)
-                .collect(Collectors.toList());
+                .toList(); // ✅ Java 16+ replacement for Collectors.toList()
     }
 
     private int generaNuovoId(List<EsercizioScheda> esercizi) {
