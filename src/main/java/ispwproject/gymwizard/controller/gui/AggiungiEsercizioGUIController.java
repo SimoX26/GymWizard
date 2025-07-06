@@ -9,7 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-public class AggiungiEsercizioGUIController extends AbstractGUIController{
+import java.util.logging.Logger;
+
+public class AggiungiEsercizioGUIController extends AbstractGUIController {
+
+    private static final Logger logger = Logger.getLogger(AggiungiEsercizioGUIController.class.getName());
 
     @FXML
     private AnchorPane anchorPane;
@@ -25,7 +29,7 @@ public class AggiungiEsercizioGUIController extends AbstractGUIController{
     }
 
     public void onAggiungiEsercizio(ActionEvent event) throws SchedaController.EsercizioDuplicatoException {
-        System.out.println("AGGIUNGI ESERCIZIO button clicked.");
+        logger.info("AGGIUNGI ESERCIZIO button clicked.");
 
         String nome = nomeEsercizioField.getText();
         int serie = Integer.parseInt(numeroSerieField.getText());
@@ -37,25 +41,24 @@ public class AggiungiEsercizioGUIController extends AbstractGUIController{
         this.switchScene("/views/VisualizzaSchedaView.fxml", event);
     }
 
-
     @FXML
     public void onBackClick(ActionEvent backEvent) {
-        System.out.println("BACK button clicked.");
+        logger.info("BACK button clicked.");
         this.switchScene("/views/VisualizzaSchedaView.fxml", backEvent);
     }
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
-        this.showPopup("Guida Interfaccia","Scheda allenamento","Puoi visualizzare la tua scheda di allenamento.\n" +
-                "Puoi scollare per effettuare uno zoom");
+        logger.info("HELP button clicked.");
+        this.showPopup("Guida Interfaccia", "Scheda allenamento",
+                "Puoi visualizzare la tua scheda di allenamento.\n" +
+                        "Puoi scollare per effettuare uno zoom");
     }
 
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
-        System.out.println("HOME button clicked.");
+        logger.info("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
     }
-
-
 }
+
