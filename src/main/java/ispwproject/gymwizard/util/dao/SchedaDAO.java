@@ -2,10 +2,12 @@ package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.logger.AppLogger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * DAO per la gestione delle schede nel database.
@@ -75,9 +77,10 @@ public class SchedaDAO { // NOSONAR
                 schede.add(s);
             }
 
-        } catch (SQLException e) {
-            e.printStackTrace(); // eventualmente puoi sostituire con logger
+        }  catch (SQLException e) {
+        AppLogger.getLogger().log(Level.SEVERE, "Errore durante il recupero delle schede per l'utente " + idCliente, e);
         }
+
 
         return schede;
     }
