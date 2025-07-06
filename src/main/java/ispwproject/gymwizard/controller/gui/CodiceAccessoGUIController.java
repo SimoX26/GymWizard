@@ -14,8 +14,11 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class CodiceAccessoGUIController extends AbstractGUIController implements Initializable {
+
+    private static final Logger logger = Logger.getLogger(CodiceAccessoGUIController.class.getName());
 
     @FXML
     private ImageView qrCodeImage;
@@ -32,17 +35,17 @@ public class CodiceAccessoGUIController extends AbstractGUIController implements
             qrCodeImage.setImage(qrImage);
             codiceAlfanumericoLabel.setText(codice);
         } catch (WriterException | IOException e) {
-            e.printStackTrace();
+            logger.severe("Errore durante la generazione del QR code: " + e.getMessage());
         }
     }
 
     public void onBackClick(ActionEvent event) {
-        System.out.println("BACK button clicked.");
+        logger.info("BACK button clicked.");
         switchScene("/views/DashboardClienteView.fxml", event);
     }
 
     public void onHelpClick(ActionEvent event) {
-        System.out.println("HELP button clicked.");
+        logger.info("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
         alert.setHeaderText("QRCode");
@@ -51,8 +54,7 @@ public class CodiceAccessoGUIController extends AbstractGUIController implements
     }
 
     public void onHomeClick(ActionEvent event) {
-        System.out.println("HOME button clicked.");
+        logger.info("HOME button clicked.");
         switchScene("/views/DashboardClienteView.fxml", event);
     }
 }
-
