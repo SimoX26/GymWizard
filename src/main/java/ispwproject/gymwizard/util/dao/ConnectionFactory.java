@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.Role;
+import ispwproject.gymwizard.util.logger.AppLogger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,6 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Level;
+
 public class ConnectionFactory {
 
     private static Connection connection;
@@ -22,9 +25,10 @@ public class ConnectionFactory {
         try (InputStream input = new FileInputStream(PROPERTIES_FILE)) {
             properties.load(input);
         } catch (IOException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().log(Level.SEVERE, () -> "Errore durante il caricamento di db.properties: " + e.getMessage());
             throw new ExceptionInInitializerError("Errore durante il caricamento di db.properties: " + e.getMessage());
         }
+
     }
 
     private static void initConnection() throws SQLException {

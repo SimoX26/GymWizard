@@ -1,10 +1,12 @@
 package ispwproject.gymwizard.util.dao;
 
 import ispwproject.gymwizard.model.EsercizioScheda;
+import ispwproject.gymwizard.util.logger.AppLogger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class EsercizioSchedaDAO { // NOSONAR
 
@@ -45,7 +47,7 @@ public class EsercizioSchedaDAO { // NOSONAR
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().log(Level.SEVERE, "Errore durante l'inserimento dell'esercizio: " + esercizio.getNomeEsercizio(), e);
         }
     }
 
@@ -72,7 +74,7 @@ public class EsercizioSchedaDAO { // NOSONAR
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().log(Level.SEVERE, "Errore durante il recupero esercizi per la scheda con id " + idScheda, e);
         }
 
         return esercizi;
@@ -94,7 +96,7 @@ public class EsercizioSchedaDAO { // NOSONAR
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().log(Level.SEVERE, "Errore durante il controllo dell'esistenza dell'esercizio '" + nomeEsercizio + "' per la scheda " + idScheda, e);
         }
 
         return false;

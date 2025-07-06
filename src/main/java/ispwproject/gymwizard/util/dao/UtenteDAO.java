@@ -3,10 +3,12 @@ package ispwproject.gymwizard.util.dao;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.bean.UtenteAttivoBean;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.logger.AppLogger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class UtenteDAO {
 
@@ -34,7 +36,7 @@ public class UtenteDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().log(Level.SEVERE, "Errore durante il recupero dell’utente con email: " + email, e);
         }
 
         return utente;
@@ -61,7 +63,7 @@ public class UtenteDAO {
             return true;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            AppLogger.getLogger().log(Level.SEVERE, "Errore durante l’inserimento dell’utente: " + utente.getEmail(), e);
             return false;
         }
     }

@@ -4,9 +4,11 @@ import ispwproject.gymwizard.model.Credentials;
 import ispwproject.gymwizard.model.Role;
 import ispwproject.gymwizard.util.bean.SessionBean;
 import ispwproject.gymwizard.util.HashUtil;
+import ispwproject.gymwizard.util.logger.AppLogger;
 
 import java.sql.*;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class SessionDAO {
 
@@ -36,7 +38,7 @@ public class SessionDAO {
                     }
                 }
             } catch (SQLException | IllegalArgumentException e) {
-                e.printStackTrace(); // puoi gestire meglio l'eccezione in produzione
+                AppLogger.getLogger().log(Level.SEVERE, "Errore durante il login per l’utente: " + login.getEmail(), e);
             }
         }
 
