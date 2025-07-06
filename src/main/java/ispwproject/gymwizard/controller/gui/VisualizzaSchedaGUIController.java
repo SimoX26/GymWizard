@@ -26,6 +26,8 @@ import java.util.List;
 
 public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
+    private static final String HOMEPAGE = "homePage";
+
     @FXML
     private ComboBox<Scheda> comboBoxSchede;
 
@@ -53,7 +55,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
         Utente u;
 
-        if ("/views/DashboardTrainerView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))) {
+        if ("/views/DashboardTrainerView.fxml".equals(SessionManager.getInstance().getAttributo(HOMEPAGE))) {
             Button nuova = new Button("CREA NUOVA SCHEDA");
             Button add = new Button("AGGIUNGI ESERCIZIO");
             Button flush = new Button("SVUOTA SCHEDA");
@@ -148,7 +150,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
     @FXML
     public void onBackClick(ActionEvent backEvent) {
         AppLogger.getLogger().info("BACK button clicked.");
-        String s = (String) SessionManager.getInstance().getAttributo("homePage");
+        String s = (String) SessionManager.getInstance().getAttributo(HOMEPAGE);
         if (s.equals("/views/DashboardTrainerView.fxml")) {
             this.switchScene("/views/ListaClientiView.fxml", backEvent);
         } else {
@@ -166,6 +168,6 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
         AppLogger.getLogger().info("HOME button clicked.");
-        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
+        this.switchScene((String) SessionManager.getInstance().getAttributo(HOMEPAGE), homeEvent);
     }
 }
