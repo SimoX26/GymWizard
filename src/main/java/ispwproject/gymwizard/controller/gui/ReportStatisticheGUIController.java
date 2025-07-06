@@ -5,6 +5,7 @@ import ispwproject.gymwizard.controller.app.ReportStatisticheController;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.bean.PrenotazioneBean;
 import ispwproject.gymwizard.util.bean.UtenteAttivoBean;
+import ispwproject.gymwizard.util.logger.AppLogger;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
@@ -17,8 +18,11 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class ReportStatisticheGUIController extends AbstractGUIController implements Initializable {
+
+    private static final Logger logger = AppLogger.getLogger();
 
     // Tabelle storiche
     @FXML private TableView<Abbonamento> pagamentiTable;
@@ -45,7 +49,6 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
 
     @FXML
     private void setupColumns() {
-        // Pagamenti
         colTipoAbbonamento.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colImportoAbbonamento.setCellValueFactory(cellData -> {
             String tipo = cellData.getValue().getTipo();
@@ -56,12 +59,10 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
         colDataInizio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDataInizio().toString()));
         colStato.setCellValueFactory(new PropertyValueFactory<>("stato"));
 
-        // Prenotazioni
         colDataPrenotazione.setCellValueFactory(new PropertyValueFactory<>("data"));
         colAttivitaPrenotata.setCellValueFactory(new PropertyValueFactory<>("attivita"));
         colStatoPrenotazione.setCellValueFactory(new PropertyValueFactory<>("stato"));
 
-        // Utenti Attivi
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         colNomeCompleto.setCellValueFactory(new PropertyValueFactory<>("nomeCompleto"));
         colUltimoAccesso.setCellValueFactory(new PropertyValueFactory<>("ultimoAccesso"));
@@ -80,13 +81,13 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
 
     @FXML
     public void onBackClick(ActionEvent event) {
-        System.out.println("BACK button clicked.");
-        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"),event);
+        logger.info("BACK button clicked.");
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), event);
     }
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
+        logger.info("HELP button clicked.");
         this.showPopup("Guida Inerfaccia", "Report e statistiche", """
                 Questa sezione ti permette di monitorare l'andamento dell'attività della palestra in tempo reale.
                 Cosa puoi visualizzare:
@@ -98,10 +99,7 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
 
     @FXML
     public void onHomeClick(ActionEvent event) {
-        System.out.println("HOME button clicked.");
+        logger.info("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), event);
     }
-
 }
-
-
