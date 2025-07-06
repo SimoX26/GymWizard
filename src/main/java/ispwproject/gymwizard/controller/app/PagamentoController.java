@@ -23,9 +23,11 @@ public class PagamentoController {
         try (FileInputStream fis = new FileInputStream("src/main/resources/paypal.properties")) {
             props.load(fis);
         } catch (IOException e) {
-            AppLogger.getLogger().log(Level.SEVERE, "Errore nella lettura del file paypal.properties", e);
-            throw new PagamentoInitException("Impossibile inizializzare PagamentoController. File mancante o corrotto.", e);
+            String message = "Errore nella lettura del file paypal.properties. File mancante o corrotto.";
+            AppLogger.getLogger().log(Level.SEVERE, message, e);
+            throw new PagamentoInitException(message, e);
         }
+
 
 
         clientId = props.getProperty("paypal.clientId");
