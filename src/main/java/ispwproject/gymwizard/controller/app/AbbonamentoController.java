@@ -26,7 +26,7 @@ public class AbbonamentoController {
         return AbbonamentoDAO.getInstance().trovaAbbonamentoAttivoPerUtente(idUtente);
     }
 
-    public void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
+    public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
 
         AbbonamentoDAO dao = AbbonamentoDAO.getInstance();
