@@ -57,8 +57,10 @@ public class PagamentoController {
         } catch (IOException e) {
             throw new PagamentoInitException("Errore durante il recupero dell'access token da PayPal.");
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt(); // ✅ Re-interrompe il thread correttamente
+            throw new PagamentoInitException("Il thread è stato interrotto durante il recupero del token.", e);
         }
+
     }
 
     public String creaOrdine(int prezzoCentesimi) {
@@ -103,8 +105,10 @@ public class PagamentoController {
         } catch (IOException e) {
             throw new PagamentoInitException("Errore nella creazione dell’ordine PayPal.");
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt(); // ✅ Re-interrompe il thread correttamente
+            throw new PagamentoInitException("Il thread è stato interrotto durante il recupero del token.", e);
         }
+
     }
 }
 
