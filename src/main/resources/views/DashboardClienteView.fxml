@@ -8,7 +8,7 @@
 
 <AnchorPane stylesheets="@style.css" fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardClienteGUIController">
     <!-- Pannello principale -->
-    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="140.0">
+    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="150.0">
          <Button onAction="#onSchedaBtnClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="SCHEDA ALLENAMENTO"/>
          <Button onAction="#onAttivitaBtnClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="PRENOTA ATTIVITÀ"/>
          <Button onAction="#onStatoAbbonamentoBtnClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="STATO ABBONAMENTO"/>

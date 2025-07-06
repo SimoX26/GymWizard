@@ -20,7 +20,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController {
 
     @FXML private AnchorPane anchorPane;
     @FXML private TextField nomeField;
-    @FXML private TextArea descrizioneField;
+    @FXML private TextField descrizioneField;
     @FXML private DatePicker dataPicker;
     @FXML private TextField oraInizioField;
     @FXML private TextField oraFineField;

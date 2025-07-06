@@ -14,6 +14,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 import java.net.URL;
 import java.util.List;
@@ -23,6 +25,9 @@ import java.util.logging.Logger;
 public class ReportStatisticheGUIController extends AbstractGUIController implements Initializable {
 
     private static final Logger logger = AppLogger.getLogger();
+
+    @FXML
+    private AnchorPane anchorPane;
 
     // Tabelle storiche
     @FXML private TableView<Abbonamento> pagamentiTable;
@@ -43,6 +48,8 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
+        anchorPane.setBackground(new Background(this.background()));
+
         setupColumns();
         loadData();
     }

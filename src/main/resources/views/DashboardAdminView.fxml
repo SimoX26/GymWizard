@@ -5,32 +5,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane  stylesheets="@style.css" fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardAdminGUIController">
+    <Label fx:id="welcomeLabel" alignment="CENTER"  AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0"/>
+
     <!-- Pannello principale -->
-    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-        <Label fx:id="welcomeLabel" style="-fx-text-fill: white; -fx-font-weight: bold;">
-             <font>
-                <Font size="28.0"/>
-             </font></Label>
-        <Button onAction="#onListinoAttivitaClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="LISTINO ATTIVITÀ">
-             <font>
-                <Font size="14.0" />
-             </font></Button>
-        <Button onAction="#onReportClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="REPORT E STATISTICHE">
-             <font>
-                <Font size="14.0" />
-             </font></Button>
-        <Button onAction="#onComunicazioneClick" prefHeight="50" prefWidth="250" style="-fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-cursor: hand;" text="INVIA COMUNICAZIONI">
-             <font>
-                <Font size="14.0" />
-             </font></Button>
+    <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+        <Button onAction="#onListinoAttivitaClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="LISTINO ATTIVITÀ"/>
+        <Button onAction="#onReportClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="REPORT E STATISTICHE"/>
+        <Button onAction="#onComunicazioneClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="INVIA COMUNICAZIONI"/>
     </VBox>
 
     <!-- Intestazione inferiore -->
-    <HBox alignment="CENTER" spacing="40" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-        <Button onAction="#onLogoutClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
+    <HBox alignment="CENTER_RIGHT" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onLogoutClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 </AnchorPane>
