@@ -6,16 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Main extends Application {
 
-    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
-
     @Override
-    public void start(Stage primaryStage) {
-        try {
+    public void start(Stage primaryStage){
+        try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/HomeView.fxml"));
             Parent root = loader.load();
 
@@ -27,12 +22,10 @@ public class Main extends Application {
             primaryStage.centerOnScreen();        // Centra la finestra
             primaryStage.show();
         } catch (Exception e) {
-        if (LOGGER.isLoggable(Level.SEVERE)) {
-            LOGGER.log(Level.SEVERE, "Errore imprevisto: " + e.getMessage(), e);
+            System.err.println("Errore imprevisto: " + e.getMessage());
         }
-    }
 
-}
+    }
 
     public static void main(String[] args) {
         launch();
