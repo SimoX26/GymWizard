@@ -3,10 +3,13 @@ package ispwproject.gymwizard.controller.app;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.DAO.AbbonamentoDAO;
 import ispwproject.gymwizard.model.Abbonamento;
+import ispwproject.gymwizard.util.exception.BrowserAperturaException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 
 public class AbbonamentoController {
@@ -108,13 +111,13 @@ public class AbbonamentoController {
         return switch (tipo.toLowerCase()) {
             case MENSILE -> 5000;
             case TRIMESTRALE -> 11000;
-            case "annuale" -> 33000;
-            case "10ingressi" -> 2500;
+            case ANNUALE -> 33000;
+            case INGRESSI -> 2500;
             default -> 0;
         };
     }
 
-    public static void apriNelBrowser(String url) throws Exception {
+    public static void apriNelBrowser(String url) throws BrowserAperturaException, IOException, URISyntaxException {
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             Desktop.getDesktop().browse(new URI(url));
         } else {
@@ -127,7 +130,7 @@ public class AbbonamentoController {
             } else if (os.contains("win")) {
                 Runtime.getRuntime().exec(new String[]{"rundll32", "url.dll,FileProtocolHandler", url});
             } else {
-                throw new UnsupportedOperationException("Apertura browser non supportata su questo sistema operativo.");
+                throw new BrowserAperturaException("Sistema operativo non supportato per aprire il browser.");
             }
         }
     }
