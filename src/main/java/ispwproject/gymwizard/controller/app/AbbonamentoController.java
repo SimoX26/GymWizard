@@ -6,7 +6,6 @@ import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.exception.BrowserAperturaException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
-import java.awt.*;
 import java.io.IOException;
 import ispwproject.gymwizard.util.BrowserLauncher;
 
@@ -118,7 +117,7 @@ public class AbbonamentoController {
         };
     }
 
-    public static void apriNelBrowser(String url) throws BrowserAperturaException, IOException, URISyntaxException {
+    public static void apriNelBrowser(String url) throws BrowserAperturaException {
         BrowserLauncher.apriUrlNelBrowser(url);
     }
 
