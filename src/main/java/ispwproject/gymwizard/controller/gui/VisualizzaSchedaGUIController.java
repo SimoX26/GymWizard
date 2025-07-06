@@ -46,7 +46,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
     @FXML
     private TableColumn<EsercizioScheda, Integer> colRipetizioni;
 
-    // 🔁 Controller reale o demo (in base a configurazione)
+    // Controller reale o demo (in base a configurazione)
     private final SchedaController controller = DemoFactory.getSchedaController();
 
     @FXML
@@ -60,7 +60,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
             Button add = new Button("AGGIUNGI ESERCIZIO");
             Button flush = new Button("SVUOTA SCHEDA");
 
-            nuova.setStyle("-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;");
+            nuova.getStyleClass().add("button-custom");
             add.setStyle(nuova.getStyle());
             flush.setStyle(nuova.getStyle());
 

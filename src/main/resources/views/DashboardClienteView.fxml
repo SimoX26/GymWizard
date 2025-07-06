@@ -5,42 +5,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardClienteGUIController">
+<AnchorPane stylesheets="@style.css" fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.DashboardClienteGUIController">
     <!-- Pannello principale -->
     <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="140.0">
-         <Button onAction="#onSchedaBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="SCHEDA ALLENAMENTO">
-            <font>
-               <Font size="14.0" />
-            </font></Button>
-         <Button onAction="#onAttivitaBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="PRENOTA ATTIVITÀ">
-            <font>
-               <Font size="14.0" />
-            </font></Button>
-         <Button onAction="#onStatoAbbonamentoBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="STATO ABBONAMENTO">
-            <font>
-               <Font size="14.0" />
-            </font></Button>
-         <Button onAction="#onChatListBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CHAT">
-            <font>
-               <Font size="14.0" />
-            </font></Button>
-         <Button onAction="#onCodiceAccessoBtnClick" prefHeight="50" prefWidth="250" style="-fx-cursor: hand; -fx-font-family: 'Comic Sans MS'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CODICE D'ACCESSO">
-            <font>
-               <Font size="14.0" />
-            </font></Button>
+         <Button onAction="#onSchedaBtnClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="SCHEDA ALLENAMENTO"/>
+         <Button onAction="#onAttivitaBtnClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="PRENOTA ATTIVITÀ"/>
+         <Button onAction="#onStatoAbbonamentoBtnClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="STATO ABBONAMENTO"/>
+         <Button onAction="#onChatListBtnClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="CHAT"/>
+         <Button onAction="#onCodiceAccessoBtnClick" prefHeight="50" prefWidth="250" styleClass="button-custom" text="CODICE D'ACCESSO"/>
     </VBox>
-     <Label fx:id="welcomeLabel" alignment="CENTER" style="-fx-text-fill: white; -fx-font-weight: bold;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0">
-         <font>
-             <Font size="28.0" />
-         </font>
-     </Label>
 
-     <!-- Intestazione inferiore -->
-     <HBox alignment="CENTER_RIGHT" spacing="40" style="-fx-background-color: rgba(255, 255, 255, 0.3); -fx-background-radius: 10; -fx-padding: 0 10 0 10;" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
-         <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-         <Button onAction="#onLogoutClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
+    <!-- Messaggio di benvenuto -->
+     <Label fx:id="welcomeLabel" alignment="CENTER" style="-fx-font-size: 28; -fx-text-fill: white; -fx-font-weight: bold;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0"/>
+
+     <!-- Menu di navigazione -->
+     <HBox alignment="CENTER_RIGHT" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+         <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+         <Button onAction="#onLogoutClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
      </HBox>
 
 </AnchorPane>

@@ -1,0 +1,62 @@
+/* --- STILE ANCHORPANE PRINCIPALE --- */
+#anchorPane {
+    -fx-border-color: white;
+    -fx-border-width: 3;
+    -fx-text-fill: white;
+}
+
+/* --- STILE LABEL DI BENVENUTO --- */
+#welcomeLabel {
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.welcome-label{
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+/* --- STILE LABEL --- */
+.label-custom {
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14px;
+}
+
+/* --- STILE COMUNE DEI BOTTONI --- */
+.button-custom {
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: bold;
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0.5, 0, 1);
+}
+
+/* --- EFFETTO HOVER --- */
+.button-custom:hover {
+    -fx-background-color: #45a049; /* verde più chiaro */
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* --- INPUT BOX CUSTOM --- */
+.input-custom {
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-color: #333;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aaa;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+}

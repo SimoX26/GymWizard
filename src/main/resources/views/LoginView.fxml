@@ -5,58 +5,22 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-border-color: white; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.LoginGUIController">
+<AnchorPane stylesheets="@style.css" fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.LoginGUIController">
 
     <!-- Contenuto Login centrato -->
-    <VBox alignment="CENTER" spacing="20"
-          AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
-          AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-
+    <VBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
         <!-- Titolo -->
-        <Text style="-fx-fill: white;" text="AREA RISERVATA">
-            <font>
-                <Font name="Arial Black" size="28" />
-            </font>
-        </Text>
+        <Label styleClass="welcome-label" text="AREA RISERVATA" />
 
         <!-- Campo Email -->
-        <TextField fx:id="emailField" maxWidth="300" promptText="Email"
-                   style="-fx-background-radius: 12; -fx-border-radius: 10;
-                          -fx-background-color: #333; -fx-text-fill: white;
-                          -fx-prompt-text-fill: #aaa; -fx-border-color: white;
-                          -fx-border-width: 2;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextField>
+        <TextField fx:id="emailField" maxWidth="300" styleClass="input-custom" promptText="Email" />
 
         <!-- Campo Password -->
-        <PasswordField fx:id="passwordField" maxWidth="300" promptText="Password"
-                       style="-fx-background-radius: 12; -fx-border-radius: 10;
-                              -fx-background-color: #333; -fx-text-fill: white;
-                              -fx-prompt-text-fill: #aaa; -fx-border-color: white;
-                              -fx-border-width: 2;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </PasswordField>
+        <PasswordField fx:id="passwordField" maxWidth="300" styleClass="input-custom" promptText="Password" />
 
         <!-- Pulsante Login -->
-        <Button maxWidth="207.0" onAction="#onLoginBtnClick" prefHeight="49.0"
-                prefWidth="207.0"
-                style="-fx-background-color: green; -fx-text-fill: white;
-                       -fx-font-size: 16px; -fx-font-weight: bold;
-                       -fx-padding: 10 20; -fx-background-radius: 30;
-                       -fx-cursor: hand; -fx-border-color: white;
-                       -fx-border-width: 2; -fx-border-radius: 30;
-                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0.3, 0, 2);"
-                text="LOGIN">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
+        <Button onAction="#onLoginBtnClick" styleClass="button-custom" text="LOGIN"/>
     </VBox>
 </AnchorPane>
