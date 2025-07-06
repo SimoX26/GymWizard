@@ -77,9 +77,10 @@ public class SchedaDAO { // NOSONAR
                 schede.add(s);
             }
 
-        }  catch (SQLException e) {
-        AppLogger.getLogger().log(Level.SEVERE, "Errore durante il recupero delle schede per l'utente " + idCliente, e);
+        } catch (SQLException e) {
+            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il recupero delle schede per l'utente " + idCliente);
         }
+
 
 
         return schede;
