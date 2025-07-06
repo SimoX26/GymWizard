@@ -48,8 +48,6 @@ public class AttivitaController {
 
             int idUtente = utente.getId();
             PrenotazioneDAO.getInstance().add(attivita.getId(), idUtente);
-        } else {
-            System.out.println("Nessun utente loggato.");
         }
     }
 }
