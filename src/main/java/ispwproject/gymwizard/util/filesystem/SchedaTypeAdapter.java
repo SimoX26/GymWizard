@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 
 public class SchedaTypeAdapter implements JsonSerializer<Scheda>, JsonDeserializer<Scheda> {
 
-    private static final String dataCreazione = "dataCreazione";
+    private static final String DATA_CREAZIONE = "DATA_CREAZIONE";
 
     @Override
     public JsonElement serialize(Scheda src, Type typeOfSrc, JsonSerializationContext context) {
@@ -16,7 +16,7 @@ public class SchedaTypeAdapter implements JsonSerializer<Scheda>, JsonDeserializ
         obj.addProperty("id", src.getId());
         obj.addProperty("idCliente", src.getIdCliente());
         obj.addProperty("nomeScheda", src.getNomeScheda());
-        obj.addProperty(dataCreazione, src.getDataCreazione() != null ? src.getDataCreazione().getTime() : null);
+        obj.addProperty(DATA_CREAZIONE, src.getDataCreazione() != null ? src.getDataCreazione().getTime() : null);
         return obj;
     }
 
@@ -27,8 +27,8 @@ public class SchedaTypeAdapter implements JsonSerializer<Scheda>, JsonDeserializ
         scheda.setId(obj.get("id").getAsInt());
         scheda.setIdCliente(obj.get("idCliente").getAsInt());
         scheda.setNomeScheda(obj.get("nomeScheda").getAsString());
-        if (obj.has(dataCreazione) && !obj.get(dataCreazione).isJsonNull()) {
-            scheda.setDataCreazione(new Timestamp(obj.get(dataCreazione).getAsLong()));
+        if (obj.has(DATA_CREAZIONE) && !obj.get(DATA_CREAZIONE).isJsonNull()) {
+            scheda.setDataCreazione(new Timestamp(obj.get(DATA_CREAZIONE).getAsLong()));
         }
         return scheda;
     }

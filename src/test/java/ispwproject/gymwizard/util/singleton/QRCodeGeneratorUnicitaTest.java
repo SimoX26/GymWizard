@@ -19,7 +19,7 @@ class QRCodeGeneratorUnicitaTest {
         int numeroTentativi = 1000;
 
         for (int i = 0; i < numeroTentativi; i++) {
-            String codice = generator.generaCodiceAccesso("utente" + i);
+            String codice = generator.generaCodiceAccesso();
 
             // Verifica che il formato sia corretto
             assertTrue(formato.matcher(codice).matches(), "Formato non valido: " + codice);
