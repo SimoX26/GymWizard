@@ -42,8 +42,6 @@ public class HomeGUIController extends AbstractGUIController {
         // Imposta modalità demo dinamicamente
         Config.setDemoMode(isDemo);
 
-        // Stampa debug
-        System.out.println((isDemo ? "DEMO" : "REALE") + " + " + versionText);
 
         // Esegui in base alla combinazione
         switch (versionText) {

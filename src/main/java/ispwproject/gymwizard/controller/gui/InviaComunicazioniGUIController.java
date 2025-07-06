@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import ispwproject.gymwizard.util.logger.AppLogger;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +9,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
-public class InviaComunicazioniGUIController extends AbstractGUIController{
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class InviaComunicazioniGUIController extends AbstractGUIController {
 
     @FXML
     private TextArea areaMessaggi;
@@ -17,10 +21,12 @@ public class InviaComunicazioniGUIController extends AbstractGUIController{
     private TextField inputMessaggio;
 
     @FXML
-    AnchorPane anchorPane;
+    private AnchorPane anchorPane;
+
+    private static final Logger logger = AppLogger.getLogger();
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         anchorPane.setBackground(new Background(this.background()));
     }
 
@@ -40,6 +46,8 @@ public class InviaComunicazioniGUIController extends AbstractGUIController{
         areaMessaggi.appendText("Admin: " + messaggio + "\n");
         inputMessaggio.clear();
 
+        logger.log(Level.INFO, "Messaggio inviato: {0}", messaggio);
+
         Alert conferma = new Alert(AlertType.INFORMATION);
         conferma.setTitle("Messaggio inviato");
         conferma.setHeaderText(null);
@@ -49,13 +57,13 @@ public class InviaComunicazioniGUIController extends AbstractGUIController{
 
     @FXML
     public void onBackClick(ActionEvent event) {
-        System.out.println("BACK button clicked.");
-        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"),event);
+        logger.info("BACK button clicked.");
+        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), event);
     }
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
+        logger.info("HELP button clicked.");
         this.showPopup("Guida Inerfaccia", "Comunicazioni", """
                 - Scrivi il tuo messaggio nel campo in basso.
                 - Premi ↪ per inviare il messaggio a tutti gli utenti.
@@ -67,7 +75,7 @@ public class InviaComunicazioniGUIController extends AbstractGUIController{
 
     @FXML
     public void onHomeClick(ActionEvent event) {
-        System.out.println("HOME button clicked.");
+        logger.info("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), event);
     }
 }

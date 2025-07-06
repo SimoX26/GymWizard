@@ -4,6 +4,7 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import static ispwproject.gymwizard.util.logger.AppLogger.getLogger;
 
 public class AppLogger {
 
