@@ -17,7 +17,7 @@
     </VBox>
 
     <!-- Messaggio di benvenuto -->
-     <Label fx:id="welcomeLabel" alignment="CENTER" style="-fx-font-size: 28; -fx-text-fill: white; -fx-font-weight: bold;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0"/>
+     <Label fx:id="welcomeLabel" alignment="CENTER" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0"/>
 
      <!-- Menu di navigazione -->
      <HBox alignment="CENTER_RIGHT" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">

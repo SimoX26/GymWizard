@@ -14,9 +14,9 @@
 
     <!-- Intestazione -->
     <HBox alignment="CENTER" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
-        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
-        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
-        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
     <!-- Contenitore principale -->
     <VBox alignment="CENTER" spacing="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">

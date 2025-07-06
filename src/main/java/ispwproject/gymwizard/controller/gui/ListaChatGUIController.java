@@ -7,14 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.VBox;
 
 import java.util.logging.Logger;
 
 public class ListaChatGUIController extends AbstractGUIController {
-
-    @FXML
-    private VBox chatListVBox;
 
     @FXML
     private AnchorPane anchorPane;
