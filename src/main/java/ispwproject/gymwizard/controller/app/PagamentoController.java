@@ -1,7 +1,6 @@
 package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.util.exception.PagamentoInitException;
-import ispwproject.gymwizard.util.logger.AppLogger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,7 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 import java.util.Properties;
-import java.util.logging.Level;
+
 
 public class PagamentoController {
 
@@ -56,10 +55,7 @@ public class PagamentoController {
             return response.body().split("\"access_token\":\"")[1].split("\"")[0];
 
         } catch (IOException | InterruptedException e) {
-            Thread.currentThread().interrupt(); // Rispetta il contratto del thread
-            String message = "Errore durante il recupero dell'access token da PayPal.";
-            AppLogger.getLogger().log(Level.SEVERE, message, e);
-            throw new PagamentoInitException(message, e);
+            throw new PagamentoInitException("Errore durante il recupero dell'access token da PayPal.");
         }
     }
 
@@ -103,10 +99,7 @@ public class PagamentoController {
             return response.body().substring(index + 8, end).replace("\\u0026", "&");
 
         } catch (IOException | InterruptedException e) {
-            Thread.currentThread().interrupt();
-            String message = "Errore nella creazione dell’ordine PayPal.";
-            AppLogger.getLogger().log(Level.SEVERE, message, e);
-            throw new PagamentoInitException(message, e);
+            throw new PagamentoInitException("Errore nella creazione dell’ordine PayPal.");
         }
     }
 }
