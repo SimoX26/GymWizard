@@ -12,12 +12,13 @@ import javafx.scene.layout.Background;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.logging.Logger;
 
 public class CreaAttivitaGUIController extends AbstractGUIController {
 
-    @FXML
-    private AnchorPane anchorPane;
+    private static final Logger logger = Logger.getLogger(CreaAttivitaGUIController.class.getName());
 
+    @FXML private AnchorPane anchorPane;
     @FXML private TextField nomeField;
     @FXML private TextArea descrizioneField;
     @FXML private DatePicker dataPicker;
@@ -33,7 +34,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController {
 
     @FXML
     public void onCreaAttivita(ActionEvent event) {
-        System.out.println("SAVE button clicked.");
+        logger.info("SAVE button clicked.");
         try {
             String nome = nomeField.getText();
             String descrizione = descrizioneField.getText();
@@ -61,20 +62,21 @@ public class CreaAttivitaGUIController extends AbstractGUIController {
 
     @FXML
     public void onBackClick(ActionEvent event) {
-        System.out.println("BACK button clicked.");
+        logger.info("BACK button clicked.");
         this.switchScene("/views/ListinoAttivitaView.fxml", event);
     }
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
-        this.showPopup("Guida Interfaccia", "Crea Attività", "Compila tutti i campi per creare una nuova attività. " +
-                "Assicurati di inserire un nome, selezionare un giorno e un'ora, e fornire una descrizione.");
+        logger.info("HELP button clicked.");
+        this.showPopup("Guida Interfaccia", "Crea Attività",
+                "Compila tutti i campi per creare una nuova attività. " +
+                        "Assicurati di inserire un nome, selezionare un giorno e un'ora, e fornire una descrizione.");
     }
 
     @FXML
     public void onHomeClick(ActionEvent event) {
-        System.out.println("HOME button clicked.");
+        logger.info("HOME button clicked.");
         this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), event);
     }
 }
