@@ -27,7 +27,10 @@ public class PrenotazioneDAO {
     public List<Prenotazione> getAll() throws DAOException {
         List<Prenotazione> lista = new ArrayList<>();
 
-        String query = "SELECT * FROM Prenotazione";
+        String query = """
+        SELECT id, id_attivita, id_cliente, data_creazione
+        FROM Prenotazione
+    """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
@@ -38,6 +41,7 @@ public class PrenotazioneDAO {
                 p.setId(rs.getInt("id"));
                 p.setIdAttivita(rs.getInt("id_attivita"));
                 p.setIdCliente(rs.getInt("id_cliente"));
+
                 Timestamp timestamp = rs.getTimestamp("data_creazione");
                 if (timestamp != null) {
                     p.setDataCreazione(timestamp.toLocalDateTime());
@@ -52,6 +56,7 @@ public class PrenotazioneDAO {
 
         return lista;
     }
+
 
     public void add(int idAttivita, int idCliente) throws DAOException {
         String query = "INSERT INTO Prenotazione (id_attivita, id_cliente) VALUES (?, ?)";

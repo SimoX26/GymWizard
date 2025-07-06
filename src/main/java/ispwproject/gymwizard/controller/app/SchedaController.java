@@ -71,7 +71,7 @@ public class SchedaController {
 
         // ✅ Salva nel FileSystem (data/clienti/<idCliente>/esercizi_scheda.json)
         try {
-            EsercizioSchedaFileDAO.getInstance().insertEsercizio(nuovo, schedaCorrente.getIdCliente());
+            EsercizioSchedaFileDAO.getInstance().insertEsercizio(nuovo);
         } catch (Exception e) {
             AppLogger.getLogger().log(Level.WARNING, "⚠️ Errore salvataggio esercizio su FileSystem", e);
         }

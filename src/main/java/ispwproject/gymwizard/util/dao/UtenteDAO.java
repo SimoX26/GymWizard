@@ -10,9 +10,14 @@ import java.util.List;
 
 public class UtenteDAO {
 
+    private static final String COL_USERNAME = "username";
+    private static final String COL_EMAIL = "email";
+
+
     public static Utente getByEmail(String email) {
         Utente utente = null;
-        String query = "SELECT * FROM Utente WHERE email = ?";
+        String query = "SELECT id, username, email FROM Utente WHERE email = ?";
+
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -22,8 +27,8 @@ public class UtenteDAO {
 
             if (rs.next()) {
                 int id = rs.getInt("id");
-                String username = rs.getString("username");
-                String emailDb = rs.getString("email");
+                String username = rs.getString(COL_USERNAME);
+                String emailDb = rs.getString(COL_EMAIL);
 
                 utente = new Utente(id, username, emailDb);
             }
@@ -78,8 +83,8 @@ public class UtenteDAO {
             while (rs.next()) {
                 Utente u = new Utente(
                         rs.getInt("id"),
-                        rs.getString("username"),
-                        rs.getString("email")
+                        rs.getString(COL_USERNAME),
+                        rs.getString(COL_EMAIL)
                 );
                 clienti.add(u);
             }
@@ -107,8 +112,8 @@ public class UtenteDAO {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                String username = rs.getString("username");
-                String nomeCompleto = username + " (" + rs.getString("email") + ")";
+                String username = rs.getString(COL_USERNAME);
+                String nomeCompleto = username + " (" + rs.getString(COL_EMAIL) + ")";
                 String ultimoAccesso = rs.getString("ultimo_accesso");
 
                 lista.add(new UtenteAttivoBean(username, nomeCompleto, ultimoAccesso));
