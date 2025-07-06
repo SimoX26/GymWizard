@@ -4,6 +4,7 @@ import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.logger.AppLogger;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +14,12 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class ListinoAttivitaGUIController extends AbstractGUIController {
+
+    private static final Logger LOGGER = AppLogger.getLogger();
+    private static final String HOME_PAGE_ATTR = "homePage";
 
     @FXML
     private AnchorPane anchorPane;
@@ -25,14 +30,13 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
     @FXML
     private VBox attivitaContainer;
 
-    // Controller dinamico (DEMO o reale)
     private final AttivitaController controller = DemoFactory.getAttivitaController();
 
     @FXML
     public void initialize() {
         anchorPane.setBackground(new Background(this.background()));
 
-        if ("/views/DashboardAdminView.fxml".equals(SessionManager.getInstance().getAttributo("homePage"))) {
+        if ("/views/DashboardAdminView.fxml".equals(SessionManager.getInstance().getAttributo(HOME_PAGE_ATTR))) {
             Button btn = new Button("+");
             btn.setStyle("-fx-font-size: 24; -fx-background-color: green; -fx-cursor: hand; -fx-text-fill: white; -fx-background-radius: 100%; -fx-border-color: white; -fx-border-radius: 50; -fx-border-width: 2;");
             btn.setOnAction(this::handleAddActivity);
@@ -40,8 +44,8 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
         }
 
         try {
-            List<Attivita> attivitaList = controller.getAttivitaDisponibili(); // Uso del controller dinamico
-            attivitaContainer.getChildren().clear(); // SVUOTA PRIMA
+            List<Attivita> attivitaList = controller.getAttivitaDisponibili();
+            attivitaContainer.getChildren().clear();
             for (Attivita attivita : attivitaList) {
                 Button btn = new Button(attivita.getNome() + " | " + attivita.getData() + " | " + attivita.getOraInizio() + " - " + attivita.getOraFine() + " | posti rimanenti: " + attivita.getPostiDisponibili());
                 btn.setMaxWidth(Double.MAX_VALUE);
@@ -56,7 +60,6 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
                 btn.setOnAction(event -> onAttivitaClick(event, attivita));
                 attivitaContainer.getChildren().add(btn);
             }
-
         } catch (DAOException e) {
             showError("Errore caricamento attività", e.getMessage());
         }
@@ -64,26 +67,26 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
 
     @FXML
     public void handleAddActivity(ActionEvent event) {
-        System.out.println("ADD button clicked.");
+        LOGGER.info("ADD button clicked.");
         switchScene("/views/CreaAttivitaView.fxml", event);
     }
 
     @FXML
     public void onAttivitaClick(ActionEvent event, Attivita attivita) {
-        System.out.println("ATTIVITA button clicked.");
+        LOGGER.info("ATTIVITA button clicked.");
         SessionManager.getInstance().setAttributo("attivitaSelezionata", attivita);
         this.switchScene("/views/VisualizzaAttivitaView.fxml", event);
     }
 
     @FXML
     public void onBackClick(ActionEvent backEvent) {
-        System.out.println("BACK button clicked.");
-        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), backEvent);
+        LOGGER.info("BACK button clicked.");
+        this.switchScene((String) SessionManager.getInstance().getAttributo(HOME_PAGE_ATTR), backEvent);
     }
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
+        LOGGER.info("HELP button clicked.");
         this.showPopup("Guida Interfaccia", "Lista delle attività", """
                 Puoi visualizzare la lista delle attività disponibili.
                 Puoi scorrere per trovare l'attività a cui vuoi prenotarti.
@@ -92,7 +95,7 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
 
     @FXML
     public void onHomeClick(ActionEvent homeEvent) {
-        System.out.println("HOME button clicked.");
-        this.switchScene((String) SessionManager.getInstance().getAttributo("homePage"), homeEvent);
+        LOGGER.info("HOME button clicked.");
+        this.switchScene((String) SessionManager.getInstance().getAttributo(HOME_PAGE_ATTR), homeEvent);
     }
 }
