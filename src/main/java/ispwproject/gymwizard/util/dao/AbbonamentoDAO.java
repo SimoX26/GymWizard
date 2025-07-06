@@ -3,25 +3,30 @@ package ispwproject.gymwizard.util.dao;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.exception.DAOException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DAO per la gestione degli abbonamenti.
+ * Usa il Singleton perché l'accesso ai dati è centralizzato
+ * e non serve creare più istanze stateless.
+ */
 public class AbbonamentoDAO {
 
-    // Costruttore privato
+    // Costruttore privato per impedire l'istanziazione esterna
     private AbbonamentoDAO() {
-        // Impedisce l'istanziazione esterna
+        // Singleton: uso limitato e centralizzato
     }
 
-    // Holder idiom: singleton lazy e thread-safe
+    // Initialization-on-demand holder idiom (lazy & thread-safe)
     private static class Holder {
         private static final AbbonamentoDAO INSTANCE = new AbbonamentoDAO();
     }
 
+    /**
+     * Restituisce l'istanza singleton.
+     */
     public static AbbonamentoDAO getInstance() {
         return Holder.INSTANCE;
     }
