@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import java.util.logging.Logger;
 
 public class DashboardAdminGUIController extends AbstractGUIController{
+
+    private static final Logger logger = Logger.getLogger(DashboardAdminGUIController.class.getName());
 
     @FXML
     private AnchorPane anchorPane;
@@ -20,7 +23,7 @@ public class DashboardAdminGUIController extends AbstractGUIController{
     private void initialize() {
         anchorPane.setBackground(new Background(this.background()));
 
-        System.out.println("** INIT EXEC - Dashboard Admin **");
+        logger.info("** INIT EXEC - Dashboard Admin **");
         SessionManager.getInstance().setAttributo("homePage", "/views/DashboardAdminView.fxml");
 
         Utente u = (Utente) SessionManager.getInstance().getAttributo("utente");
@@ -44,7 +47,7 @@ public class DashboardAdminGUIController extends AbstractGUIController{
 
     @FXML
     public void onHelpClick() {
-        System.out.println("HELP button clicked.");
+        logger.info("HELP button clicked.");
         this.showPopup("Guida Interfaccia", "Dashboard Cliente", """
                 In questa schermata puoi:" +
                 - Gestire il listino delle attività disponibili" +
@@ -56,7 +59,7 @@ public class DashboardAdminGUIController extends AbstractGUIController{
 
     @FXML
     public void onLogoutClick(ActionEvent logoutEvent) {
-        System.out.println("LOGOUT button clicked.");
+        logger.info("LOGOUT button clicked.");
         if (this.logout()) {
             SessionManager.getInstance().clearAll();
             this.switchScene("/views/HomeView.fxml", logoutEvent);
