@@ -27,7 +27,7 @@ public class ContattaTrainerGUIController extends AbstractGUIController {
 
     public void setContext(String context) {
         this.context = context;
-        logger.info("Schermata chiamata da: " + context);
+        logger.info(String.format("Schermata chiamata da: %s", context));
     }
 
     public void onBackClick(ActionEvent event) {
