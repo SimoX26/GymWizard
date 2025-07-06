@@ -34,7 +34,7 @@ public class ChatGUIController extends AbstractGUIController{
         switchScene("/views/ListaChatView.fxml", event);
     }
 
-    public void onHelpClick(ActionEvent event) {
+    public void onHelpClick() {
         out.println("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
@@ -43,12 +43,8 @@ public class ChatGUIController extends AbstractGUIController{
         alert.showAndWait();
     }
 
-    public void onHomeClick(ActionEvent event) {
+    public void onHomeClick() {
         out.println("HOME button clicked.");
     }
-
-
-  //  public void initialize(URL location, ResourceBundle resources) {
-
 
 }
