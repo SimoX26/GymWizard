@@ -2,49 +2,41 @@ package ispwproject.gymwizard.controller.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
-public class ContattaTrainerGUIController extends AbstractGUIController{
+public class ContattaTrainerGUIController extends AbstractGUIController {
+
+    private static final Logger logger = Logger.getLogger(ContattaTrainerGUIController.class.getName());
 
     @FXML private TextField inputField;
     @FXML private Button sendBtn;
     @FXML private VBox messagesBox;
+    @FXML private AnchorPane anchorPane;
 
     private String context;
 
     @FXML
-    AnchorPane anchorPane;
-
-    @FXML
-    public void initialize(){
+    public void initialize() {
         anchorPane.setBackground(new Background(this.background()));
     }
 
-    // Metodo che imposta il contesto di esecuzione in base alla schermata da cui è stata chiamata questa
     public void setContext(String context) {
         this.context = context;
-        System.out.println("Schermata chiamata da: " + context);
+        logger.info("Schermata chiamata da: " + context);
     }
 
     public void onBackClick(ActionEvent event) {
-        System.out.println("BACK button clicked.");
+        logger.info("BACK button clicked.");
         switchScene("/views/VisualizzaAttivitaView.fxml", event);
     }
 
-    public void onHelpClick(ActionEvent event) {
-        System.out.println("HELP button clicked.");
+    public void onHelpClick() {
+        logger.info("HELP button clicked.");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Guida Interfaccia");
         alert.setHeaderText("Chat Trainer");
@@ -53,12 +45,7 @@ public class ContattaTrainerGUIController extends AbstractGUIController{
     }
 
     public void onHomeClick(ActionEvent event) {
-        System.out.println("HOME button clicked.");
+        logger.info("HOME button clicked.");
         switchScene("/views/DashboardClienteView.fxml", event);
     }
-
-
-    //  public void initialize(URL location, ResourceBundle resources) {
-
-
 }
