@@ -2,7 +2,6 @@ package ispwproject.gymwizard.util.filesystem;
 
 import com.google.gson.reflect.TypeToken;
 import ispwproject.gymwizard.model.Scheda;
-import ispwproject.gymwizard.util.exception.DAOException;
 
 import java.lang.reflect.Type;
 import java.sql.Timestamp;

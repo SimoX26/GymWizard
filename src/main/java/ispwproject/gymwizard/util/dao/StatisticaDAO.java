@@ -7,6 +7,7 @@ import java.util.Map;
 public class StatisticaDAO {
 
     private final Connection connection;
+    private static final String COLONNA_TOTALE = "totale";
 
     public StatisticaDAO() throws SQLException {
         this.connection = ConnectionFactory.getConnection();
@@ -156,7 +157,7 @@ public class StatisticaDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                map.put(rs.getString("giorno"), rs.getInt("totale"));
+                map.put(rs.getString("giorno"), rs.getInt(COLONNA_TOTALE));
             }
         }
         return map;
@@ -176,7 +177,7 @@ public class StatisticaDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                map.put(rs.getString("mese"), rs.getInt("totale"));
+                map.put(rs.getString("mese"), rs.getInt(COLONNA_TOTALE));
             }
         }
         return map;
@@ -197,7 +198,7 @@ public class StatisticaDAO {
         try (PreparedStatement ps = connection.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
-                map.put(rs.getString("mese"), rs.getDouble("totale"));
+                map.put(rs.getString("mese"), rs.getDouble(COLONNA_TOTALE));
             }
         }
         return map;
