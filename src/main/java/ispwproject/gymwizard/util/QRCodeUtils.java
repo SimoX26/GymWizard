@@ -17,6 +17,9 @@ import javax.imageio.ImageIO;
 
 public class QRCodeUtils {
 
+    private QRCodeUtils() {
+    }
+
     public static Image generaQRCodeImage(String text, int width, int height) throws WriterException, IOException {
         Hashtable<EncodeHintType, Object> hints = new Hashtable<>();
         hints.put(EncodeHintType.MARGIN, 1);
