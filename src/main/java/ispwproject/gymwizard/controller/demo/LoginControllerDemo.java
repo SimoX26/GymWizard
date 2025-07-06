@@ -11,6 +11,8 @@ import java.sql.SQLException;
 
 public class LoginControllerDemo extends LoginController {
 
+    private static final String SESSION_ATTR_UTENTE = "utente";
+
     @Override
     public LoginResult login(String email, String password) throws CredenzialiException, SQLException {
         Utente utente;
@@ -22,7 +24,7 @@ public class LoginControllerDemo extends LoginController {
                 sessionBean = new SessionBean(email, Role.CLIENTE);
                 sessionBean.setUsername("Cliente 1");
                 SessionManager.getInstance().setSession(sessionBean);
-                SessionManager.getInstance().setAttributo("utente", utente);
+                SessionManager.getInstance().setAttributo(SESSION_ATTR_UTENTE, utente);
                 return LoginResult.SUCCESSO_CLIENTE;
             }
             case "trainer1@demo" -> {
@@ -30,7 +32,7 @@ public class LoginControllerDemo extends LoginController {
                 sessionBean = new SessionBean(email, Role.TRAINER);
                 sessionBean.setUsername("Trainer 1");
                 SessionManager.getInstance().setSession(sessionBean);
-                SessionManager.getInstance().setAttributo("utente", utente);
+                SessionManager.getInstance().setAttributo(SESSION_ATTR_UTENTE, utente);
                 return LoginResult.SUCCESSO_TRAINER;
             }
             case "admin1@demo" -> {
@@ -38,7 +40,7 @@ public class LoginControllerDemo extends LoginController {
                 sessionBean = new SessionBean(email, Role.ADMIN);
                 sessionBean.setUsername("Admin 1");
                 SessionManager.getInstance().setSession(sessionBean);
-                SessionManager.getInstance().setAttributo("utente", utente);
+                SessionManager.getInstance().setAttributo(SESSION_ATTR_UTENTE, utente);
                 return LoginResult.SUCCESSO_ADMIN;
             }
             default -> {
