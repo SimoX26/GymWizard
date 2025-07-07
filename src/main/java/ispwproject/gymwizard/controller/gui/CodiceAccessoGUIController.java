@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +23,9 @@ public class CodiceAccessoGUIController extends AbstractGUIController implements
     private static final Logger logger = Logger.getLogger(CodiceAccessoGUIController.class.getName());
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
     private ImageView qrCodeImage;
 
     @FXML
@@ -28,6 +33,8 @@ public class CodiceAccessoGUIController extends AbstractGUIController implements
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        anchorPane.setBackground(new Background(this.background()));
+
         try {
             String codice = QRCodeGenerator.getInstance().generaCodiceAccesso();
             Image qrImage = QRCodeUtils.generaQRCodeImage(codice, 200, 200);

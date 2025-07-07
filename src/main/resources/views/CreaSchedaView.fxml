@@ -11,11 +11,7 @@
 <AnchorPane stylesheets="@style.css" fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CreaSchedaGUIController">
 
     <!-- Titolo -->
-    <Label text="CREA UNA NUOVA SCHEDA" textFill="WHITE" style="-fx-text-fill: white; -fx-font-weight: bold;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0">
-        <font>
-            <Font size="28.0" />
-        </font>
-    </Label>
+    <Label text="CREA UNA NUOVA SCHEDA" textFill="WHITE" styleClass="welcome-label" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="30.0"/>
 
     <!-- Pulsanti in alto a destra -->
     <HBox alignment="CENTER_RIGHT" spacing="20" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
@@ -28,26 +24,15 @@
     <VBox alignment="TOP_CENTER" spacing="60.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="120.0">
         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
             <VBox alignment="TOP_RIGHT" prefWidth="300.0" spacing="42.0">
-                <Label style="-fx-text-fill: white;" text="Nome scheda">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </Label>
+                <Label styleClass="label-custom" text="Nome scheda"/>
             </VBox>
             <VBox prefWidth="300.0" spacing="33.0">
-                <TextField fx:id="nomeScheda" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il nome della nuova scheda">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </TextField>
+                <TextField fx:id="nomeScheda"  styleClass="input-custom" prefHeight="27.0" prefWidth="204.0" promptText="Inserisci il nome della nuova scheda"/>
             </VBox>
         </HBox>
 
         <!-- Pulsante Salva -->
-        <Button onAction="#onCreaScheda" style="-fx-font-size=16; -fx-cursor: hand; -fx-font-family: 'Helvetica'; -fx-font-weight: bold; -fx-background-color: green; -fx-text-fill: white; -fx-border-color: white; -fx-border-width: 3; -fx-background-radius: 10; -fx-border-radius: 10;" text="CREA SCHEDA">
-            <font>
-                <Font name="System Bold" size="16.0" />
-            </font></Button>
+        <Button onAction="#onCreaScheda" styleClass="button-custom" text="CREA SCHEDA"/>
     </VBox>
 
 </AnchorPane>

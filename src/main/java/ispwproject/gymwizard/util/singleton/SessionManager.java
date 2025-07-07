@@ -11,21 +11,21 @@ import java.util.Map;
 
 public class SessionManager { // NOSONAR
 
-    // ✅ Istanza Singleton eagerly inizializzata (thread-safe)
+    // Istanza Singleton eagerly inizializzata (thread-safe)
     private static final SessionManager instance = new SessionManager();
 
     private SessionBean session;
     private final Map<String, Object> attributi = new HashMap<>(); // Mappa per attributi personalizzati
 
-    // ✅ Costruttore privato per impedire l'istanziazione esterna
+    // Costruttore privato per impedire l'istanziazione esterna
     private SessionManager() {}
 
-    // ✅ Metodo di accesso all’unica istanza
+    // Metodo di accesso all’unica istanza
     public static SessionManager getInstance() {
         return instance;
     }
 
-    // ✅ Imposta l’oggetto sessione
+    // Imposta l’oggetto sessione
     public void setSession(SessionBean session) {
         this.session = session;
     }
@@ -34,7 +34,7 @@ public class SessionManager { // NOSONAR
         return session;
     }
 
-    // ✅ Pulisce sessione e attributi
+    // Pulisce sessione e attributi
     public void clearSession() {
         this.session = null;
         attributi.clear();
@@ -44,7 +44,7 @@ public class SessionManager { // NOSONAR
         return session != null;
     }
 
-    // ✅ Attributi personalizzati
+    // Attributi personalizzati
     public void setAttributo(String chiave, Object valore) {
         attributi.put(chiave, valore);
     }

@@ -4,7 +4,6 @@ import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -21,7 +20,7 @@ public class AggiungiEsercizioGUIController extends AbstractGUIController {
     @FXML private TextField nomeEsercizioField;
     @FXML private TextField numeroSerieField;
     @FXML private TextField numeroRepField;
-    @FXML private TextArea noteField;
+    @FXML private TextField noteField;
 
     @FXML
     private void initialize() {

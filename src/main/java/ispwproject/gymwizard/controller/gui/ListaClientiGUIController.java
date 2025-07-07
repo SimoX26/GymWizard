@@ -42,7 +42,6 @@ public class ListaClientiGUIController extends AbstractGUIController {
                                 "-fx-text-fill: black;" +
                                 "-fx-font-size: 14px;" +
                                 "-fx-font-weight: bold;" +
-                                "-fx-padding: 10 20 10 20;" +
                                 "-fx-cursor: hand"
                 );
                 btn.setOnAction(event -> onClienteClick(event, cliente));

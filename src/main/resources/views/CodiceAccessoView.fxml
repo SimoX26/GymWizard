@@ -6,24 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane stylesheets="@style.css"  fx:id="anchorPane" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ispwproject.gymwizard.controller.gui.CodiceAccessoGUIController">
-    <!-- Contenuto principale -->
-    <VBox alignment="TOP_CENTER" spacing="40.0" AnchorPane.topAnchor="40.0" AnchorPane.leftAnchor="0.0"
-          AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="80.0">
+    <Label text="CODICE D'ACCESSO" styleClass="welcome-label" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="40.0"/>
 
-        <!-- Titolo -->
-        <Label text="CODICE D'ACCESSO" style="-fx-text-fill: white; -fx-font-weight: bold;">
-            <font>
-                <Font size="28.0" />
-            </font>
-        </Label>
+    <!-- Contenuto principale -->
+    <VBox alignment="TOP_CENTER" spacing="40.0" AnchorPane.topAnchor="150.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.bottomAnchor="80.0">
 
         <!-- Box QR Code -->
-        <VBox alignment="CENTER" spacing="15"
-              style="-fx-background-color: rgba(255,255,255,0.05); -fx-border-color: white; -fx-border-radius: 15; -fx-background-radius: 15;"
-              prefWidth="400" prefHeight="340">
+        <VBox alignment="CENTER" spacing="15" styleClass="pannello" prefHeight="500" prefWidth="1010" >
             <ImageView fx:id="qrCodeImage" fitWidth="200.0" fitHeight="200.0" preserveRatio="true"
                        style="-fx-effect: dropshadow(three-pass-box, white, 3, 0, 0, 0);" />
 
@@ -31,21 +22,14 @@
             <Label fx:id="codiceAlfanumericoLabel"
                    style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" />
 
-            <Label text="Scansiona questo QR per entrare o ricorda il tuo codice" style="-fx-text-fill: white; -fx-font-size: 14;" />
+            <Label text="Scansiona questo QR per entrare o ricorda il tuo codice" styleClass="label-custom" />
         </VBox>
     </VBox>
 
     <!-- Footer -->
-    <HBox alignment="CENTER" spacing="40"
-          AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <Button onAction="#onBackClick"
-                style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;"
-                text="↩" />
-        <Button onAction="#onHelpClick"
-                style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;"
-                text="?" />
-        <Button onAction="#onHomeClick"
-                style="-fx-text-fill: white; -fx-font-size: 40; -fx-cursor: hand; -fx-background-color: transparent;"
-                text="⌂" />
+    <HBox alignment="CENTER" spacing="40" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="15.0">
+        <Button onAction="#onBackClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="↩" />
+        <Button onAction="#onHelpClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="?" />
+        <Button onAction="#onHomeClick" style="-fx-text-fill: white; -fx-font-size: 38; -fx-cursor: hand; -fx-background-color: transparent;" text="⌂" />
     </HBox>
 </AnchorPane>

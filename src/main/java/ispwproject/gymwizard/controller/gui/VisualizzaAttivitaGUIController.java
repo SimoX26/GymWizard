@@ -76,7 +76,7 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController {
     @FXML
     public void handleContatta(ActionEvent event) {
         AppLogger.getLogger().info("CONTATTA button clicked.");
-        this.switchScene("/views/ContattaTrainerView.fxml", event);
+        this.switchScene("/views/ListaChatView.fxml", event);
     }
 
     @FXML

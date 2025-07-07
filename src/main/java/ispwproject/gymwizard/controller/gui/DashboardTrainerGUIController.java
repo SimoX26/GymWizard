@@ -39,16 +39,7 @@ public class DashboardTrainerGUIController extends AbstractGUIController{
 
     @FXML
     private void switchToListaClienti(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ListaClientiView.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            this.showError("Errore", "Errore nel login");
-        }
+        this.switchScene("/views/ListaClientiView.fxml", event);
     }
 
     @FXML
