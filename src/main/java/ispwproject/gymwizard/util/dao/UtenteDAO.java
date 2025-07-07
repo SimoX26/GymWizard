@@ -10,16 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-public class UtenteDAO {
+public class UtenteDAO { //NOSONAR
+
+    private static UtenteDAO instance;
 
     private static final String COL_USERNAME = "username";
     private static final String COL_EMAIL = "email";
 
+    private UtenteDAO() {
+        // Costruttore privato per Singleton
+    }
 
-    public static Utente getByEmail(String email) {
+    public static synchronized UtenteDAO getInstance() {
+        if (instance == null) {
+            instance = new UtenteDAO();
+        }
+        return instance;
+    }
+
+    public Utente getByEmail(String email) {
         Utente utente = null;
         String query = "SELECT id, username, email FROM Utente WHERE email = ?";
-
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -31,15 +42,12 @@ public class UtenteDAO {
                 int id = rs.getInt("id");
                 String username = rs.getString(COL_USERNAME);
                 String emailDb = rs.getString(COL_EMAIL);
-
                 utente = new Utente(id, username, emailDb);
             }
 
         } catch (SQLException e) {
-            Utente finalUtente = utente;
             AppLogger.getLogger().log(Level.SEVERE, e, () ->
-                                "Errore durante l’inserimento dell’utente: " + finalUtente.getEmail());
-
+                    "Errore durante il recupero dell’utente: " + email);
         }
 
         return utente;
@@ -67,8 +75,7 @@ public class UtenteDAO {
 
         } catch (SQLException e) {
             AppLogger.getLogger().log(Level.SEVERE, e, () ->
-                                "Errore durante l’inserimento dell’utente: " + utente.getEmail());
-
+                    "Errore durante l’inserimento dell’utente: " + utente.getEmail());
             return false;
         }
     }
@@ -77,10 +84,10 @@ public class UtenteDAO {
         List<Utente> clienti = new ArrayList<>();
 
         String query = """
-        SELECT u.id, u.username, u.email, u.ultimo_accesso
-        FROM Utente u
-        JOIN Credenziali c ON u.email = c.email
-        WHERE c.ruolo = 1
+            SELECT u.id, u.username, u.email, u.ultimo_accesso
+            FROM Utente u
+            JOIN Credenziali c ON u.email = c.email
+            WHERE c.ruolo = 1
         """;
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -100,10 +107,6 @@ public class UtenteDAO {
         return clienti;
     }
 
-
-    /**
-     * Metodo per il report admin: recupera gli utenti attivi negli ultimi 30 giorni.
-     */
     public List<UtenteAttivoBean> getUtentiAttivi() throws DAOException {
         List<UtenteAttivoBean> lista = new ArrayList<>();
 

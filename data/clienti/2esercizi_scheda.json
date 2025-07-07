@@ -6,5 +6,13 @@
     "serie": 3,
     "ripetizioni": 10,
     "note": "nessuna"
+  },
+  {
+    "id": 2,
+    "idScheda": 3,
+    "nomeEsercizio": "Spinte",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": ""
   }
 ]

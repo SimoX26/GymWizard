@@ -32,8 +32,7 @@ public class LoginController {
         SessionBean sessionBean = new SessionBean(fullCred.getEmail(), fullCred.getRole());
         SessionManager.getInstance().setSession(sessionBean);
 
-        new UtenteDAO();
-        SessionManager.getInstance().setAttributo("utente", UtenteDAO.getByEmail(email));
+        SessionManager.getInstance().setAttributo("utente", UtenteDAO.getInstance().getByEmail(email));
 
         return switch (fullCred.getRole()) {
             case CLIENTE -> LoginResult.SUCCESSO_CLIENTE;
