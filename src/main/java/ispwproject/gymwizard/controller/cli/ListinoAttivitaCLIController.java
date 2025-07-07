@@ -29,7 +29,12 @@ public class ListinoAttivitaCLIController {
         int scelta = view.mostraAttivita(attivitaList, ruolo.equalsIgnoreCase("Admin"));
 
         if (scelta == 0) {
-            return CLIState.DASHBOARD_CLIENTE;
+            String s = (String) SessionManager.getInstance().getAttributo("homePage");
+            if(s.equals("cliente")){
+                return CLIState.DASHBOARD_CLIENTE;
+            } else if(s.equals("admin")){
+                return CLIState.DASHBOARD_ADMIN;
+            }
         } else if (scelta == -1 && ruolo.equalsIgnoreCase("Admin")) {
             return CLIState.CREA_ATTIVITA;
         }

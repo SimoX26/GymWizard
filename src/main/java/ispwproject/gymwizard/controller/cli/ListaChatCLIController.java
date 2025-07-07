@@ -1,40 +1,23 @@
 package ispwproject.gymwizard.controller.cli;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.view.ListaClientiView;
 
-public class ListaChatCLIController {
 
-    private final Scanner scanner = new Scanner(System.in);
+public class ListaChatCLIController{
 
-    public void start() {
-        System.out.println("\n📨 LISTA CHAT ATTIVE\n");
+    private final ListaClientiView view = new ListaClientiView();
 
-        // Simulazione di contatti/chat disponibili
-        List<String> chatDisponibili = Arrays.asList(
-                "1. Coach Mario",
-                "2. Coach Lucia"
-        );
+    public CLIState start() {
+        view.mostraMessaggio("\nFunzionalità non implementata\n");
+        view.attesaInvio();
 
-        for (String chat : chatDisponibili) {
-            System.out.println(chat);
-        }
+        String s = (String) SessionManager.getInstance().getAttributo("homePage");
 
-        System.out.println("\n0. 🔙 Torna alla Dashboard");
-        System.out.print("👉 Seleziona una chat: ");
-        String scelta = scanner.nextLine();
-
-        switch (scelta) {
-            case "1", "2" -> {
-                String nomeCoach = scelta.equals("1") ? "Mario" : "Lucia";
-                new ChatCLIController(nomeCoach).start();
-            }
-            case "0" -> System.out.println("🔙 Ritorno alla dashboard cliente...");
-            default -> {
-                System.out.println("❌ Scelta non valida.");
-                start();  // ripeti menu
-            }
+        if(s.equals("cliente")){
+            return CLIState.DASHBOARD_CLIENTE;
+        } else {
+            return CLIState.DASHBOARD_TRAINER;
         }
     }
 }
