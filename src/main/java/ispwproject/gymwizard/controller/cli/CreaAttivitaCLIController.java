@@ -4,6 +4,7 @@ import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.CreaAttivitaView;
 
 import java.time.LocalDate;
@@ -12,9 +13,15 @@ import java.time.LocalTime;
 public class CreaAttivitaCLIController {
 
     private final CreaAttivitaView view = new CreaAttivitaView();
-    private final AttivitaController controller = DemoFactory.getAttivitaController(); // ✅ Controller dinamico
+    private final AttivitaController controller = DemoFactory.getAttivitaController();
 
     public CLIState start() {
+        // 🔍 Recupera il ruolo utente (admin o cliente)
+        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage");
+        CLIState statoDestinazione = ruolo.equalsIgnoreCase("Admin")
+                ? CLIState.DASHBOARD_ADMIN
+                : CLIState.LISTINO_ATTIVITA;
+
         view.mostraTitolo();
 
         String nome = view.chiediStringa("🏷️ Nome attività: ");
@@ -26,18 +33,15 @@ public class CreaAttivitaCLIController {
         String nomeTrainer = view.chiediStringa("👤 Nome del trainer: ");
 
         try {
-            controller.creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, nomeTrainer); // ✅ uso dinamico
+            controller.creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, nomeTrainer);
             view.mostraMessaggio("✅ Attività creata con successo!");
-            view.attesaInvio();
-            return CLIState.LISTINO_ATTIVITA;
         } catch (DAOException e) {
             view.mostraMessaggio("❌ Errore durante la creazione: " + e.getMessage());
-            view.attesaInvio();
-            return CLIState.LISTINO_ATTIVITA;
         } catch (AttivitaDuplicataException e) {
             view.mostraMessaggio("⚠️ Attività già esistente: " + e.getMessage());
-            view.attesaInvio();
-            return CLIState.LISTINO_ATTIVITA;
         }
+
+        view.attesaInvio();
+        return statoDestinazione; // restituisce CLIState in base al ruolo
     }
 }
