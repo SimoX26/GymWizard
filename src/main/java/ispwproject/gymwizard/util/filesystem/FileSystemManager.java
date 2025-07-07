@@ -28,7 +28,7 @@ public class FileSystemManager {
             .setPrettyPrinting()
             .create();
 
-    // ✅ Salva la lista in: data/clienti/<idCliente>/<fileName>
+    // Salva la lista in: data/clienti/<idCliente>/<fileName>
     public static <T> void saveListToFile(List<T> list, int idCliente, String fileName) {
         String filePath = BASE_PATH + idCliente + fileName;
         File file = new File(filePath);
@@ -45,7 +45,7 @@ public class FileSystemManager {
         }
     }
 
-    // ✅ Carica lista da: data/clienti/<idCliente>/<fileName>
+    // Carica lista da: data/clienti/<idCliente>/<fileName>
     public static <T> List<T> loadListFromFile(int idCliente, String fileName, Type type) {
         String filePath = BASE_PATH + idCliente + fileName;
         File file = new File(filePath);

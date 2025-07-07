@@ -6,9 +6,6 @@ import java.util.Scanner;
 public class VisualizzaEserciziSchedaView {
     private final Scanner scanner = new Scanner(System.in);
 
-    /**
-     * @return -1 = indietro, -2 = aggiungi, -3 = svuota (se trainer)
-     */
     public int mostraScheda(String nome, List<String> esercizi, boolean trainerMode) {
         System.out.println("\n📄 SCHEDA: " + nome);
         for (int i = 0; i < esercizi.size(); i++) {

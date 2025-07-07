@@ -5,13 +5,10 @@ import ispwproject.gymwizard.util.bean.SessionBean;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Singleton per la gestione della sessione utente.
- */
 
 public class SessionManager { // NOSONAR
 
-    // Istanza Singleton eagerly inizializzata (thread-safe)
+
     private static final SessionManager instance = new SessionManager();
 
     private SessionBean session;

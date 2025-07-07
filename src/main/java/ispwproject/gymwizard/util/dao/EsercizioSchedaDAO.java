@@ -13,7 +13,7 @@ public class EsercizioSchedaDAO { // NOSONAR
     // Singleton instance
     private static EsercizioSchedaDAO instance;
 
-    // 🔐 Costruttore privato per prevenire l'istanziazione esterna
+
     private EsercizioSchedaDAO() {
         // Singleton: costruttore privato per impedire istanziazione diretta
     }

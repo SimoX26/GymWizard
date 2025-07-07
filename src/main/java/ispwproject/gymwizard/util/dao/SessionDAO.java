@@ -33,7 +33,7 @@ public class SessionDAO {
 
                             Role ruolo = Role.valueOf(ruoloStr); // converte da String a enum Role
                             session = new SessionBean(sid, ruolo);
-                            session.setUsername(username); // assicurati che questo metodo esista
+                            session.setUsername(username);
                         }
                     }
                 }

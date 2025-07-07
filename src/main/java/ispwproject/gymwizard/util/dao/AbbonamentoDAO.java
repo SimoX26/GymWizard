@@ -9,11 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-/**
- * DAO per la gestione degli abbonamenti.
- * Usa il Singleton perché l'accesso ai dati è centralizzato
- * e non serve creare più istanze stateless.
- */
 public class AbbonamentoDAO { // NOSONAR
 
     // Costruttore privato per impedire l'istanziazione esterna
@@ -26,9 +21,6 @@ public class AbbonamentoDAO { // NOSONAR
         private static final AbbonamentoDAO INSTANCE = new AbbonamentoDAO();
     }
 
-    /**
-     * Restituisce l'istanza singleton.
-     */
     public static AbbonamentoDAO getInstance() {
         return Holder.INSTANCE;
     }

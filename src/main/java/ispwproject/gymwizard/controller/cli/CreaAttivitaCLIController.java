@@ -16,7 +16,7 @@ public class CreaAttivitaCLIController {
     private final AttivitaController controller = DemoFactory.getAttivitaController();
 
     public CLIState start() {
-        // 🔍 Recupera il ruolo utente (admin o cliente)
+        // Recupera il ruolo utente (admin o cliente)
         String ruolo = (String) SessionManager.getInstance().getAttributo("homePage");
         CLIState statoDestinazione = ruolo.equalsIgnoreCase("Admin")
                 ? CLIState.DASHBOARD_ADMIN

@@ -22,7 +22,7 @@ public class LoginCLIController {
         }
 
         try {
-            // ✅ Usa controller dinamico
+            // Usa controller dinamico
             LoginController loginController = DemoFactory.getLoginController();
             LoginController.LoginResult result = loginController.login(email, password);
 

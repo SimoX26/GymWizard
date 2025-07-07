@@ -22,5 +22,29 @@
     "serie": 1,
     "ripetizioni": 1,
     "note": ""
+  },
+  {
+    "id": 4,
+    "idScheda": 0,
+    "nomeEsercizio": "Panc",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": ""
+  },
+  {
+    "id": 5,
+    "idScheda": 0,
+    "nomeEsercizio": "panca",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": ""
+  },
+  {
+    "id": 6,
+    "idScheda": 0,
+    "nomeEsercizio": "Panca",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": ""
   }
 ]

@@ -11,7 +11,7 @@ import ispwproject.gymwizard.view.VisualizzaAttivitaView;
 public class VisualizzaAttivitaCLIController {
 
     private final VisualizzaAttivitaView view = new VisualizzaAttivitaView();
-    private final AttivitaController controller = DemoFactory.getAttivitaController(); // ✅ Controller dinamico
+    private final AttivitaController controller = DemoFactory.getAttivitaController(); // Controller dinamico
 
     public CLIState start() {
         Attivita attivita = (Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata");
@@ -42,7 +42,7 @@ public class VisualizzaAttivitaCLIController {
         }
 
         try {
-            controller.prenotaAttivita(attivita); // ✅ uso del controller dinamico
+            controller.prenotaAttivita(attivita); // uso del controller dinamico
             view.mostraMessaggio("✅ Prenotazione effettuata con successo!");
         } catch (AttivitaPienaException e) {
             view.mostraMessaggio("❌ Attività al completo. Impossibile prenotare.");

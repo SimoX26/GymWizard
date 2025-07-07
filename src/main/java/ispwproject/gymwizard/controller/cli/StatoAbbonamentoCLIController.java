@@ -23,10 +23,10 @@ public class StatoAbbonamentoCLIController {
             return CLIState.LOGIN;
         }
 
-        // ✅ Usa metodo dinamico non statico
+
         Abbonamento abbonamento = controller.getDatiAbbonamento();
 
-        // ✅ Mostra comunque la schermata, anche se abbonamento è null
+
         int scelta = view.mostraAbbonamento(abbonamento);
 
         return switch (scelta) {

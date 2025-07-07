@@ -143,7 +143,7 @@ public class StatisticaDAO {
         }
     }
 
-    // 9. 📊 Prenotazioni settimanali per giorno
+    // Prenotazioni settimanali per giorno
     public Map<String, Integer> getPrenotazioniSettimanali() throws SQLException {
         String sql = """
             SELECT DAYNAME(data_ora) AS giorno, COUNT(*) AS totale
@@ -163,7 +163,7 @@ public class StatisticaDAO {
         return map;
     }
 
-    // 10. 📆 Prenotazioni mensili (ultimi 6 mesi)
+    // Prenotazioni mensili (ultimi 6 mesi)
     public Map<String, Integer> getStoricoPrenotazioniMensili() throws SQLException {
         String sql = """
             SELECT DATE_FORMAT(data_ora, '%Y-%m') AS mese, COUNT(*) AS totale
@@ -183,7 +183,7 @@ public class StatisticaDAO {
         return map;
     }
 
-    // 11. 💳 Pagamenti mensili (ultimi 6 mesi)
+    // Pagamenti mensili (ultimi 6 mesi)
     public Map<String, Double> getStoricoPagamentiMensili() throws SQLException {
         String sql = """
             SELECT DATE_FORMAT(data_rinnovo, '%Y-%m') AS mese, SUM(prezzo) AS totale
@@ -204,7 +204,7 @@ public class StatisticaDAO {
         return map;
     }
 
-    // 12. 👤 Utenti attivi ultimi 30 giorni (con almeno una prenotazione)
+    // Utenti attivi ultimi 30 giorni (con almeno una prenotazione)
     public int getUtentiAttiviUltimi30Giorni() throws SQLException {
         String sql = """
             SELECT COUNT(DISTINCT id_cliente)

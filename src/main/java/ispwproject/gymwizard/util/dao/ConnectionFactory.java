@@ -13,7 +13,7 @@ import java.util.Properties;
 public class ConnectionFactory {
 
     private static Connection connection;
-    private static Role currentRole = null; // 🔑 tiene traccia del ruolo attivo
+    private static Role currentRole = null;
     private static final String PROPERTIES_FILE = "src/main/resources/db.properties";
     private static final Properties properties = new Properties();
 
@@ -60,7 +60,7 @@ public class ConnectionFactory {
             connection.close();
         }
 
-        currentRole = role; // ✅ aggiorna il ruolo attivo
+        currentRole = role; // aggiorna il ruolo attivo
         initConnection();
     }
 

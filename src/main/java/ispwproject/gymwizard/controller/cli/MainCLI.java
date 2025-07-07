@@ -41,12 +41,7 @@ public class MainCLI {
 
                 case DASHBOARD_ADMIN ->
                         statoCorrente = new DashboardAdminCLIController().start();
-                /*
-                case ATTIVITA -> statoCorrente = new AttivitaCLIController().start();
-                case REPORT -> statoCorrente = new ReportCLIController().start();
-                case COMUNICAZIONI -> statoCorrente = new ComunicazioniCLIController().start();
-                */
-                // Puoi continuare ad aggiungere altri stati qui
+
                 default -> {
                     System.out.println("❌ Stato non gestito: " + statoCorrente);
                     statoCorrente = CLIState.USCITA;

@@ -11,10 +11,10 @@ class SchedaControllerTest {
 
     @BeforeEach
     void setup() {
-        // ✅ Reset della "sessione" prima di ogni test
+        // Reset della "sessione" prima di ogni test
         SessionManager.getInstance().clearAll();
 
-        // ✅ Simulazione di utente loggato
+        // Simulazione di utente loggato
         Utente utenteLoggato = new Utente();
         utenteLoggato.setId(1);
         SessionManager.getInstance().setAttributo("utente", utenteLoggato);

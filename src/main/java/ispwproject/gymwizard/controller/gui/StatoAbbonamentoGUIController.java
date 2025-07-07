@@ -28,7 +28,6 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController {
     @FXML
     private AnchorPane anchorPane;
 
-    // ✅ Aggiunta: controller dinamico via DemoFactory
     private final AbbonamentoController controller = DemoFactory.getAbbonamentoController();
 
     @FXML

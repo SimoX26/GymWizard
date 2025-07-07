@@ -32,14 +32,14 @@ public class RiepilogoAbbonamentoCLIController {
         }
 
         String tipo = abbonamento.getTipo();
-        int prezzo = controller.getPrezzoAbbonamento(tipo);  // ✅ non statico
+        int prezzo = controller.getPrezzoAbbonamento(tipo);
 
         try {
             PagamentoController paypal = new PagamentoController();
             String url = paypal.creaOrdine(prezzo);
 
-            controller.apriNelBrowser(url);  // ✅ non statico
-            controller.aggiungiAbbonamento(tipo, "Pagamento mock");  // ✅ non statico
+            controller.apriNelBrowser(url);
+            controller.aggiungiAbbonamento(tipo, "Pagamento mock");
 
             view.mostraMessaggio("🌐 Verrai reindirizzato al pagamento PayPal...");
             view.mostraMessaggio("\n✅ Dimostrazione: abbonamento attivato correttamente.\n");

@@ -84,7 +84,7 @@ public class VisualizzaAttivitaGUIController extends AbstractGUIController {
         AppLogger.getLogger().info("PRENOTA button clicked.");
         try {
             Attivita attivita = (Attivita) SessionManager.getInstance().getAttributo("attivitaSelezionata");
-            controller.prenotaAttivita(attivita); // ✅ Metodo non statico
+            controller.prenotaAttivita(attivita);
             this.showPopup("Attività prenotata", "Attività prenotata", "L'attività è stata prenotata con successo!");
             this.switchScene("/views/ListinoAttivitaView.fxml", event);
         } catch (DAOException | AttivitaPienaException e) {

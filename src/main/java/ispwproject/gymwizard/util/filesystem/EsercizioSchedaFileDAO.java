@@ -39,7 +39,7 @@ public class EsercizioSchedaFileDAO { // NOSONAR
         List<EsercizioScheda> lista = FileSystemManager.loadListFromFile(idCliente, FILE_NAME, LIST_TYPE);
         return lista.stream()
                 .filter(e -> e.getIdScheda() == idScheda)
-                .toList(); // ✅ Java 16+ replacement for Collectors.toList()
+                .toList();
     }
 
     private int generaNuovoId(List<EsercizioScheda> esercizi) {

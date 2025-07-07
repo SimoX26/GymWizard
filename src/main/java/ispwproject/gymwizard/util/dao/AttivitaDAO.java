@@ -11,7 +11,6 @@ import java.util.List;
 
 public class AttivitaDAO { // NOSONAR
 
-    // ✅ Singleton con Holder idiom (lazy, thread-safe e senza sincronizzazione costosa)
     private AttivitaDAO() {}
 
     private static class Holder {
@@ -25,7 +24,6 @@ public class AttivitaDAO { // NOSONAR
     public List<Attivita> getAllDisponibili() throws DAOException {
         List<Attivita> attivitaList = new ArrayList<>();
 
-        // ✅ Migliorato evitando SELECT *
         String query = "SELECT id, nome, descrizione, data, ora_inizio, ora_fine, posti_disponibili, trainer_name " +
                 "FROM Attivita WHERE data >= CURDATE() ORDER BY data, ora_inizio";
 
