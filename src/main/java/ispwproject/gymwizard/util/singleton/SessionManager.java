@@ -40,10 +40,6 @@ public class SessionManager { // NOSONAR
         attributi.clear();
     }
 
-    public boolean isLoggedIn() {
-        return session != null;
-    }
-
     // Attributi personalizzati
     public void setAttributo(String chiave, Object valore) {
         attributi.put(chiave, valore);

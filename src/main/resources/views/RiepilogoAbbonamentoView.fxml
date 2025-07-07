@@ -31,11 +31,11 @@
              </VBox>
              <VBox alignment="CENTER_LEFT" prefWidth="350.0" spacing="45.0">
                 <Label fx:id="name" styleClass="label-custom" textFill="WHITE"/>
-                <TextArea fx:id="description" styleClass="label-custom" editable="false" focusTraversable="false" prefHeight="150.0" style="-fx-font-size: 14px;" wrapText="true">
+                <Label fx:id="description" styleClass="label-custom" prefHeight="150.0" prefWidth="500" wrapText="true">
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
-                  </TextArea>
+                  </Label>
                <Label fx:id="price" styleClass="label-custom" textFill="WHITE"/>
                 <Label fx:id="dataEmissione" styleClass="label-custom" textFill="WHITE"/>
                 <Label fx:id="dataScadenza" styleClass="label-custom" textFill="WHITE"/>

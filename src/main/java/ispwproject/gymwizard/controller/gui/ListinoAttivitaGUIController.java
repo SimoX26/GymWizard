@@ -39,11 +39,15 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
         if ("/views/DashboardAdminView.fxml".equals(SessionManager.getInstance().getAttributo(HOME_PAGE_ATTR))) {
             Button btn = new Button("+");
             btn.setStyle(
-                    "-fx-background-color: white;" +
-                            "-fx-text-fill: black;" +
-                            "-fx-font-size: 14px;" +
-                            "-fx-font-weight: bold;" +
-                            "-fx-cursor: hand"
+                    "-fx-font-size: 20px;" +
+                    "-fx-font-weight: bold;" +
+                    "-fx-background-color: green;" +
+                    "-fx-text-fill: white;" +
+                    "-fx-border-color: white;" +
+                    "-fx-border-width: 2;" +
+                    "-fx-background-radius: 50;" +
+                    "-fx-border-radius: 50;" +
+                    "-fx-cursor: hand"
             );
             btn.setOnAction(this::handleAddActivity);
             addBtn.getChildren().add(btn);

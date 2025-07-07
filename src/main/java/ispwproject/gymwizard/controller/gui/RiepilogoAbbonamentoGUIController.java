@@ -25,7 +25,7 @@ public class RiepilogoAbbonamentoGUIController extends AbstractGUIController {
     @FXML private Label price;
     @FXML private Label dataEmissione;
     @FXML private Label dataScadenza;
-    @FXML private TextArea description;
+    @FXML private Label description;
     @FXML private AnchorPane anchorPane;
 
     @FXML
