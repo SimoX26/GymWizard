@@ -10,6 +10,7 @@ public class ClientiController {
 
 
     public ClientiController() {
+        //Costruttore vuoto
     }
 
     public List<Utente> getClienti() throws SQLException {
