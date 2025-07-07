@@ -26,16 +26,19 @@ public class AggiungiEsercizioCLIController {
 
         if (nomeEsercizio == null || nomeEsercizio.isBlank()) {
             view.mostraMessaggio("❌ Nome esercizio non valido.");
+            view.attesaInvio();
+            return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
         } else {
             try {
                 controller.aggiungiEsercizio(nomeEsercizio, serie, ripetizioni, note);
                 view.mostraMessaggio("✅ Esercizio \"" + nomeEsercizio + "\" aggiunto alla scheda \"" + scheda.getNomeScheda() + "\".");
+                view.attesaInvio();
+                return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
             } catch (SchedaController.EsercizioDuplicatoException e) {
                 view.mostraMessaggio("⚠️ " + e.getMessage());
+                view.attesaInvio();
+                return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
             }
         }
-
-        view.attesaInvio();
-        return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
     }
 }

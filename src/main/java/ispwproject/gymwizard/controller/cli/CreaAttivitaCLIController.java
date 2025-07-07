@@ -28,13 +28,16 @@ public class CreaAttivitaCLIController {
         try {
             controller.creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, nomeTrainer); // ✅ uso dinamico
             view.mostraMessaggio("✅ Attività creata con successo!");
+            view.attesaInvio();
+            return CLIState.LISTINO_ATTIVITA;
         } catch (DAOException e) {
             view.mostraMessaggio("❌ Errore durante la creazione: " + e.getMessage());
+            view.attesaInvio();
+            return CLIState.LISTINO_ATTIVITA;
         } catch (AttivitaDuplicataException e) {
             view.mostraMessaggio("⚠️ Attività già esistente: " + e.getMessage());
+            view.attesaInvio();
+            return CLIState.LISTINO_ATTIVITA;
         }
-
-        view.attesaInvio();
-        return CLIState.LISTINO_ATTIVITA;
     }
 }
