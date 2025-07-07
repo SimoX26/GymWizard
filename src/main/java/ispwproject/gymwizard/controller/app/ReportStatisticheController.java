@@ -23,6 +23,7 @@ public class ReportStatisticheController {
 
     private static final AbbonamentoDAO abbonamentoDAO = AbbonamentoDAO.getInstance();
     private static final PrenotazioneDAO prenotazioneDAO = PrenotazioneDAO.getInstance();
+    private static final UtenteDAO utenteDAO = UtenteDAO.getInstance();
 
     public static List<Abbonamento> getStoricoAbbonamenti() {
         try {
@@ -45,7 +46,7 @@ public class ReportStatisticheController {
 
     public static List<UtenteAttivoBean> getUtentiAttivi() {
         try {
-            return UtenteDAO.getInstance().getUtentiAttivi();
+            return utenteDAO.getUtentiAttivi();
         } catch (DAOException e) {
             AppLogger.getLogger().log(Level.SEVERE, ERROR_MESSAGE, e);
             return Collections.emptyList();
