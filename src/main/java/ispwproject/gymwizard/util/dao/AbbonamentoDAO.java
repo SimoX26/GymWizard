@@ -16,7 +16,7 @@ public class AbbonamentoDAO { // NOSONAR
         // Singleton: uso limitato e centralizzato
     }
 
-    // Initialization-on-demand holder idiom (lazy & thread-safe)
+
     private static class Holder {
         private static final AbbonamentoDAO INSTANCE = new AbbonamentoDAO();
     }

@@ -336,16 +336,13 @@ INSERT INTO Utente (username, email) VALUES
 GRANT SELECT ON PalestraDB.Scheda TO 'login'@'localhost';
 FLUSH PRIVILEGES;
 
--- TESTING 2: NON È POSSIBILE INSERIRE ESERCIZI DUPLICATI
-
-INSERT INTO scheda (id_cliente, nome_scheda, data_creazione)
-VALUES (1, 'Scheda Test', CURRENT_DATE());
-INSERT INTO esercizioscheda (id_scheda, nome_esercizio, serie, ripetizioni, note)
-VALUES (1, 'Panca Piana', 3, 12, 'test duplicato');
-GRANT SELECT, INSERT ON PalestraDB.EsercizioScheda TO 'login'@'localhost';
+-- TESTING 2: NON E' POSSIBILE INSERIRE ATTIVITA DUPLICATE
+GRANT SELECT, INSERT, UPDATE, DELETE ON PalestraDB.Attivita TO 'login'@'localhost';
 FLUSH PRIVILEGES;
 
--- TESTING 3: NON E' POSSIBILE INSERIRE ATTIVITA DUPLICATE
-GRANT SELECT, INSERT, UPDATE, DELETE ON PalestraDB.Attivita TO 'login'@'localhost';
+-- TESTING 3: NON POSSO RINNOVARE UN ABBONAMENTO SE NE HO GIA' UNO ATTIVO
+INSERT INTO Abbonamento (id_utente, tipo, data_inizio, data_fine, stato, riferimento_pagamento)
+VALUES (1, 'mensile', CURDATE(), CURDATE() + INTERVAL 30 DAY, 'attivo', 'TEST123');
+GRANT SELECT, INSERT ON PalestraDB.Abbonamento TO 'login'@'localhost';
 FLUSH PRIVILEGES;
 
