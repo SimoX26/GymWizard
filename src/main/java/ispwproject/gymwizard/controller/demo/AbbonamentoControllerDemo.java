@@ -12,7 +12,6 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
     @Override
     public Abbonamento getDatiAbbonamento() {
         if (abbonamentoMock == null) {
-            // Nessun abbonamento presente: simuliamo il caso
             return null;
         }
         return abbonamentoMock;

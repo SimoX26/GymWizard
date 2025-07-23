@@ -18,7 +18,6 @@ public class SchedaControllerDemo extends SchedaController {
     @Override
     public List<Scheda> getSchedeByIdCliente(int idCliente) {
         if (!schedePerUtente.containsKey(idCliente)) {
-            // Mock scheda demo
             Scheda s1 = new Scheda(schedaCounter++, "Scheda Demo 1");
             Scheda s2 = new Scheda(schedaCounter++, "Scheda Demo 2");
 
@@ -48,13 +47,11 @@ public class SchedaControllerDemo extends SchedaController {
         int idScheda = scheda.getId();
 
         List<EsercizioScheda> esercizi = eserciziPerScheda.computeIfAbsent(idScheda, k -> new ArrayList<>());
-
         for (EsercizioScheda e : esercizi) {
             if (e.getNomeEsercizio().equalsIgnoreCase(nomeEsercizio)) {
                 throw new EsercizioDuplicatoException(nomeEsercizio);
             }
         }
-
         esercizi.add(new EsercizioScheda(idScheda, nomeEsercizio, serie, ripetizioni, note));
     }
 
@@ -62,7 +59,6 @@ public class SchedaControllerDemo extends SchedaController {
     public void creaScheda(String nome) throws DAOException {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         int idUtente = utente.getId();
-
         Scheda nuova = new Scheda(schedaCounter++, nome);
         schedePerUtente.computeIfAbsent(idUtente, k -> new ArrayList<>()).add(nuova);
         eserciziPerScheda.put(nuova.getId(), new ArrayList<>());

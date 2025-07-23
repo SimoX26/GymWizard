@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrenotazioneDAO { // NOSONAR
+public class PrenotazioneDAO {
 
     // Istanza singleton
     private static PrenotazioneDAO instance;
@@ -17,7 +17,7 @@ public class PrenotazioneDAO { // NOSONAR
     private PrenotazioneDAO() {}
 
     // Metodo statico per ottenere l'istanza singleton
-    public static synchronized PrenotazioneDAO getInstance() {
+    public static PrenotazioneDAO getInstance() {
         if (instance == null) {
             instance = new PrenotazioneDAO();
         }

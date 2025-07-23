@@ -18,6 +18,7 @@ public class PagamentoController {
     private final String clientSecret;
     private final String baseUrl;
 
+
     public PagamentoController() {
         Properties props = new Properties();
         try (FileInputStream fis = new FileInputStream("src/main/resources/paypal.properties")) {
@@ -25,8 +26,6 @@ public class PagamentoController {
         } catch (IOException e) {
             throw new PagamentoInitException("Errore nella lettura del file paypal.properties. File mancante o corrotto.", e);
         }
-
-
 
         clientId = props.getProperty("paypal.clientId");
         clientSecret = props.getProperty("paypal.clientSecret");
@@ -48,7 +47,6 @@ public class PagamentoController {
                     .header("Content-Type", "application/x-www-form-urlencoded")
                     .POST(HttpRequest.BodyPublishers.ofString("grant_type=client_credentials"))
                     .build();
-
             HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -70,7 +68,7 @@ public class PagamentoController {
 
             String body = """
             {
-              "intent": "CAPTURE",
+              "intent": "CAPTURE", 
               "purchase_units": [ {
                 "amount": {
                   "currency_code": "EUR",
@@ -90,7 +88,6 @@ public class PagamentoController {
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(body))
                     .build();
-
             HttpClient client = HttpClient.newHttpClient();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 

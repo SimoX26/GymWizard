@@ -25,7 +25,6 @@ public class EsercizioSchedaFileDAO { // NOSONAR
     }
 
     public void insertEsercizio(EsercizioScheda esercizio) {
-        // Ottieni l'utente corrente (cliente selezionato) dal SessionManager
         Utente cliente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         int idUtente = cliente.getId();
 

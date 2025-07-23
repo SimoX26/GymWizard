@@ -20,12 +20,11 @@ public class AttivitaControllerDemo extends AttivitaController {
     private int nextId = 1;
 
     public AttivitaControllerDemo() {
-        if (attivitaDemo.isEmpty()) { // evita duplicati
+        if (attivitaDemo.isEmpty()) {
             attivitaDemo.add(new Attivita(nextId++, "Yoga", "Lezione di rilassamento", LocalDate.now().plusDays(1), LocalTime.of(10, 0), LocalTime.of(11, 0), 10, "Anna"));
             attivitaDemo.add(new Attivita(nextId++, "Crossfit", "Allenamento ad alta intensità", LocalDate.now().plusDays(2), LocalTime.of(18, 0), LocalTime.of(19, 0), 5, "Marco"));
         }
     }
-
 
     @Override
     public List<Attivita> getAttivitaDisponibili() {

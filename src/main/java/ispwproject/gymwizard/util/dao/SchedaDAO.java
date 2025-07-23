@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 
-public class SchedaDAO { // NOSONAR
+public class SchedaDAO {
 
     // Istanza singleton
     private static SchedaDAO instance;
@@ -18,7 +18,7 @@ public class SchedaDAO { // NOSONAR
     // Costruttore privato per impedire l’istanziazione esterna
     private SchedaDAO() {}
 
-    public static synchronized SchedaDAO getInstance() {
+    public static SchedaDAO getInstance() {
         if (instance == null) {
             instance = new SchedaDAO();
         }

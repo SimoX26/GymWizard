@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-public class EsercizioSchedaDAO { // NOSONAR
+public class EsercizioSchedaDAO {
 
     // Singleton instance
     private static EsercizioSchedaDAO instance;
@@ -18,7 +18,7 @@ public class EsercizioSchedaDAO { // NOSONAR
         // Singleton: costruttore privato per impedire istanziazione diretta
     }
 
-    public static synchronized EsercizioSchedaDAO getInstance() {
+    public static EsercizioSchedaDAO getInstance() {
         if (instance == null) {
             instance = new EsercizioSchedaDAO();
         }

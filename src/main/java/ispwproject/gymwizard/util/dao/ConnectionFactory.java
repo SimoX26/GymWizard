@@ -27,7 +27,6 @@ public class ConnectionFactory {
         }
     }
 
-
     private static void initConnection() throws SQLException {
         String url = properties.getProperty("CONNECTION_URL");
         String user;
@@ -44,7 +43,6 @@ public class ConnectionFactory {
         if (user == null || pass == null) {
             throw new SQLException("Credenziali mancanti per il ruolo attuale");
         }
-
         connection = DriverManager.getConnection(url, user, pass);
     }
 
@@ -60,7 +58,7 @@ public class ConnectionFactory {
             connection.close();
         }
 
-        currentRole = role; // aggiorna il ruolo attivo
+        currentRole = role;
         initConnection();
     }
 

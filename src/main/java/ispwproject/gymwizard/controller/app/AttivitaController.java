@@ -23,18 +23,16 @@ public class AttivitaController {
         return AttivitaDAO.getInstance().getAllDisponibili();
     }
 
+
     public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
             throws DAOException, AttivitaDuplicataException {
 
-        // Controllo duplicato
         if (AttivitaDAO.getInstance().existsAttivita(nome, data, oraInizio)) {
             throw new AttivitaDuplicataException(nome);
         }
 
-        // Costruzione della nuova attività
         Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
-        // Inserimento dell'attività nel DB
         AttivitaDAO.getInstance().inserisciAttivita(nuova);
     }
 

@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-public class AbbonamentoDAO { // NOSONAR
+public class AbbonamentoDAO {
+
+    private static AbbonamentoDAO instance;
 
     // Costruttore privato per impedire l'istanziazione esterna
     private AbbonamentoDAO() {
         // Singleton: uso limitato e centralizzato
     }
 
-
-    private static class Holder {
-        private static final AbbonamentoDAO INSTANCE = new AbbonamentoDAO();
-    }
-
     public static AbbonamentoDAO getInstance() {
-        return Holder.INSTANCE;
+        if (instance == null) {
+            instance = new AbbonamentoDAO();
+        }
+        return instance;
     }
 
     public Abbonamento trovaAbbonamentoAttivoPerUtente(int idUtente) {

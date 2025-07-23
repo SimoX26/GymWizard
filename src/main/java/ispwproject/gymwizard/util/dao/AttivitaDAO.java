@@ -9,16 +9,20 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttivitaDAO { // NOSONAR
+public class AttivitaDAO {
 
-    private AttivitaDAO() {}
+    private static AttivitaDAO instance;
 
-    private static class Holder {
-        private static final AttivitaDAO INSTANCE = new AttivitaDAO();
+    // Costruttore privato per impedire l'istanziazione esterna
+    private AttivitaDAO() {
+        // Singleton: uso limitato e centralizzato
     }
 
     public static AttivitaDAO getInstance() {
-        return Holder.INSTANCE;
+        if (instance == null) {
+            instance = new AttivitaDAO();
+        }
+        return instance;
     }
 
     public List<Attivita> getAllDisponibili() throws DAOException {

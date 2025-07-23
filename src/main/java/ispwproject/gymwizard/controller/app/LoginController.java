@@ -20,15 +20,12 @@ public class LoginController {
 
     public LoginResult login(String email, String password) throws CredenzialiException, SQLException {
         Credentials fullCred = LoginProcedureDAO.getInstance().execute(email, password);
-
         if (fullCred == null || fullCred.getRole() == null) {
             throw new CredenzialiException();
         }
 
-        // Configura il contesto DB in base al ruolo
         ConnectionFactory.changeRole(fullCred.getRole());
 
-        // Salva la sessione
         SessionBean sessionBean = new SessionBean(fullCred.getEmail(), fullCred.getRole());
         SessionManager.getInstance().setSession(sessionBean);
 
@@ -40,6 +37,4 @@ public class LoginController {
             case ADMIN -> LoginResult.SUCCESSO_ADMIN;
         };
     }
-
-
 }

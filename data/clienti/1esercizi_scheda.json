@@ -46,5 +46,21 @@
     "serie": 1,
     "ripetizioni": 1,
     "note": ""
+  },
+  {
+    "id": 7,
+    "idScheda": 1,
+    "nomeEsercizio": "Squat",
+    "serie": 2,
+    "ripetizioni": 2,
+    "note": ""
+  },
+  {
+    "id": 8,
+    "idScheda": 2,
+    "nomeEsercizio": "Panca",
+    "serie": 2,
+    "ripetizioni": 6,
+    "note": ""
   }
 ]

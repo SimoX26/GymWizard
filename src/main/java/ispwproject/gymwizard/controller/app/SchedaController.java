@@ -28,9 +28,9 @@ public class SchedaController {
             throw new SecurityException("Utente non loggato.");
         }
 
-        // Accesso da parte del cliente stesso o del trainer
         return SchedaDAO.getInstance().getSchedeByUtente(idCliente);
     }
+
 
     public void creaScheda(String nome) throws DAOException {
         Utente cliente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
@@ -39,11 +39,8 @@ public class SchedaController {
         }
 
         Scheda nuovaScheda = new Scheda(cliente.getId(), nome);
-
-        // Salva nel DB
         SchedaDAO.getInstance().insertScheda(nuovaScheda);
 
-        // Salva nel FileSystem (data/clienti/<idCliente>/schede.json)
         try {
             SchedaFileDAO.getInstance().insertScheda(nuovaScheda);
         } catch (Exception e) {
@@ -59,34 +56,30 @@ public class SchedaController {
 
         int idScheda = schedaCorrente.getId();
 
-        // Verifica duplicati su DB
         try {
             if (EsercizioSchedaDAO.getInstance().existsEsercizio(idScheda, nomeEsercizio)) {
                 throw new EsercizioDuplicatoException(nomeEsercizio);
             }
         } catch (Exception e) {
             AppLogger.getLogger().log(Level.SEVERE, "Errore durante la verifica dell'esistenza dell'esercizio nel database");
-            return; // Interrompe se il DB non è raggiungibile
+            return;
         }
 
         EsercizioScheda nuovo = new EsercizioScheda(idScheda, nomeEsercizio, serie, ripetizioni, note);
 
-        // Inserimento nel DB
         try {
             EsercizioSchedaDAO.getInstance().insertEsercizio(nuovo);
         } catch (Exception e) {
             AppLogger.getLogger().log(Level.SEVERE, "Errore durante l'inserimento dell'esercizio nel database");
-            return; // Interrompe se il DB non è raggiungibile
+            return;
         }
 
-        // Inserimento nel FileSystem
         try {
             EsercizioSchedaFileDAO.getInstance().insertEsercizio(nuovo);
         } catch (Exception e) {
             AppLogger.getLogger().log(Level.WARNING, "Errore durante il salvataggio dell'esercizio nel FileSystem", e);
         }
     }
-
 
     public static class EsercizioDuplicatoException extends Exception {
         public EsercizioDuplicatoException(String nomeEsercizio) {

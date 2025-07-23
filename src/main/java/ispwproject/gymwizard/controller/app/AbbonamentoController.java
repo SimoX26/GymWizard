@@ -18,16 +18,13 @@ public class AbbonamentoController {
     public Abbonamento getDatiAbbonamento() {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
         int idUtente = utente.getId();
-
         return AbbonamentoDAO.getInstance().trovaAbbonamentoAttivoPerUtente(idUtente);
     }
 
     public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
-
         AbbonamentoDAO dao = AbbonamentoDAO.getInstance();
 
-        // BLOCCO se esiste già un abbonamento attivo
         Abbonamento abbonamentoEsistente = dao.trovaAbbonamentoAttivoPerUtente(utente.getId());
         if (abbonamentoEsistente != null) {
             throw new IllegalStateException("Esiste già un abbonamento attivo per questo utente.");
@@ -43,7 +40,6 @@ public class AbbonamentoController {
 
         dao.inserisciAbbonamento(nuovoAbbonamento);
     }
-
 
     public static String getNomeAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
@@ -102,6 +98,7 @@ public class AbbonamentoController {
             default -> null;
         };
     }
+
 
     public static int getPrezzoAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
