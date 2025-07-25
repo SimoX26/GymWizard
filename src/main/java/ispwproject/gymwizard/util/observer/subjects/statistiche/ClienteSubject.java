@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.util.observer.subjects.statistiche;
 
+import ispwproject.gymwizard.util.logger.AppLogger;
 import ispwproject.gymwizard.util.observer.subjects.Subject;
 
 public class ClienteSubject extends Subject {
@@ -27,14 +28,19 @@ public class ClienteSubject extends Subject {
 
     @Override
     protected void doSomething() {
-        // Qui potresti simulare un aggiornamento dello stato (es: ultimo accesso)
+        // Simula un aggiornamento dello stato (es: ultimo accesso)
         this.lastNotificationTimestamp = System.currentTimeMillis();
-        // Per debug:
-        System.out.println("Stato aggiornato: " + username + " | Abbonamento: " + (abbonamentoAttivo ? "Attivo" : "Non attivo"));
+
+        // Usa AppLogger invece di System.out
+        AppLogger.getLogger().info(() ->
+                "Stato aggiornato: " + username + " | Abbonamento: " + (abbonamentoAttivo ? "Attivo" : "Non attivo")
+        );
+
         try {
             Thread.sleep(1000); // Simula un’attività periodica
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt(); // Ripristina il flag di interruzione
+            AppLogger.logError("Thread interrotto durante l’aggiornamento: " + e.getMessage());
         }
     }
 
@@ -51,7 +57,7 @@ public class ClienteSubject extends Subject {
         return abbonamentoAttivo;
     }
 
-    // Setters (ora senza notify diretto)
+    // Setters
     public void setUltimoAccesso(String ultimoAccesso) {
         this.ultimoAccesso = ultimoAccesso;
     }

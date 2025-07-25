@@ -20,11 +20,13 @@ public abstract class Observer implements Runnable {
             try {
                 Thread.sleep(this.timeOut);
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // <--- Ripristina lo stato di interruzione
                 AppLogger.logError("Osservazione interrotta: " + e.getMessage());
                 this.isAlive = false; // Termina l’osservazione in modo pulito
             }
         }
     }
+
 
     public void stopObservation() {
         this.isAlive = false;
