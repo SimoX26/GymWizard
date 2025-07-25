@@ -33,6 +33,4 @@ public class DAOFactory {
     public static StatisticaDAO getStatisticaDAO() {
         return new StatisticaDAO();
     }
-    // Qui aggiungerai anche gli altri DAO
-    // es: public static AttivitaDAO getAttivitaDAO() { return new AttivitaDAO(); }
 }

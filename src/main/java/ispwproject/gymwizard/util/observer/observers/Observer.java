@@ -1,5 +1,7 @@
 package ispwproject.gymwizard.util.observer.observers;
 
+import ispwproject.gymwizard.util.logger.AppLogger;
+
 public abstract class Observer implements Runnable {
 
     protected long timeOut;
@@ -18,7 +20,8 @@ public abstract class Observer implements Runnable {
             try {
                 Thread.sleep(this.timeOut);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                AppLogger.logError("Osservazione interrotta: " + e.getMessage());
+                this.isAlive = false; // Termina l’osservazione in modo pulito
             }
         }
     }
@@ -28,7 +31,7 @@ public abstract class Observer implements Runnable {
     }
 
     protected void notifySubjectStatus(String message) {
-        System.out.println("---> " + message);
+        AppLogger.getLogger().info("---> " + message);
     }
 
     public abstract void update();

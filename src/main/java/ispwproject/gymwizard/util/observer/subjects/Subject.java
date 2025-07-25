@@ -10,7 +10,7 @@ import java.util.Vector;
 public abstract class Subject implements Runnable {
 
     private List<Observer> observers;
-    private final Object MUTEX = new Object();
+    private final Object mutex = new Object();
     protected boolean isAlive;
 
     public Subject() {
@@ -29,13 +29,13 @@ public abstract class Subject implements Runnable {
     }
 
     public void attach(Observer obs) {
-        synchronized (MUTEX) {
+        synchronized (mutex) {
             this.observers.add(obs);
         }
     }
 
     public void detach(Observer obs) {
-        synchronized (MUTEX) {
+        synchronized (mutex) {
             this.observers.remove(obs);
         }
     }
@@ -43,7 +43,7 @@ public abstract class Subject implements Runnable {
     protected void notifyObservers() {
         List<Observer> observersLocal = null;
 
-        synchronized (MUTEX) {
+        synchronized (mutex) {
             if (this.isThereAnythingToNotify())
                 observersLocal = new ArrayList<>(this.observers);
         }
