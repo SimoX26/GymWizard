@@ -13,17 +13,17 @@ public abstract class Subject implements Runnable {
     private final Object mutex = new Object();
     protected boolean isAlive;
 
-    public Subject() {
+    protected Subject() {
         this((Observer) null);
     }
 
-    public Subject(Observer obs) {
+    protected Subject(Observer obs) {
         this(new Vector<>());
         if (obs != null)
             this.observers.add(obs);
     }
 
-    public Subject(List<Observer> list) {
+    protected Subject(List<Observer> list) {
         this.observers = list;
         this.isAlive = false;
     }
