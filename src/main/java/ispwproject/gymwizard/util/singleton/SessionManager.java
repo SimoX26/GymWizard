@@ -5,7 +5,7 @@ import ispwproject.gymwizard.util.bean.SessionBean;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SessionManager {
+public class SessionManager { //NOSONAR
 
     private SessionBean session;
     private final Map<String, Object> attributi = new HashMap<>();
