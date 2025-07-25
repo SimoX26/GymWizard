@@ -8,8 +8,9 @@ public class StatisticaDAO {
 
     private static final String COLONNA_TOTALE = "totale";
 
-    // Costruttore pubblico (stateless)
-    public StatisticaDAO() {}
+    public StatisticaDAO() {
+        //costruttore pubblico
+    }
 
     // 1. Numero totale clienti iscritti
     public int getTotaleClienti() throws SQLException {

@@ -11,7 +11,9 @@ import java.util.List;
 public class PrenotazioneDAO {
 
     // Costruttore pubblico: DAO stateless
-    public PrenotazioneDAO() {}
+    public PrenotazioneDAO() {
+        //costruttore pubblico
+    }
 
     public List<Prenotazione> getAll() throws DAOException {
         List<Prenotazione> lista = new ArrayList<>();

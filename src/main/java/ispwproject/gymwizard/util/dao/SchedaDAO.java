@@ -12,7 +12,9 @@ import java.util.logging.Level;
 public class SchedaDAO {
 
     // Costruttore pubblico: stateless
-    public SchedaDAO() {}
+    public SchedaDAO() {
+        //costruttore pubblico
+    }
 
     public void insertScheda(Scheda scheda) throws DAOException {
         String query = "INSERT INTO Scheda (id_cliente, nome_scheda) VALUES (?, ?)";

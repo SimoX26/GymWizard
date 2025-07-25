@@ -5,7 +5,6 @@ import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.dao.DAOFactory;
-import ispwproject.gymwizard.util.dao.SchedaDAO;
 import ispwproject.gymwizard.util.exception.EsercizioDuplicatoException;
 import ispwproject.gymwizard.util.filesystem.EsercizioSchedaFileDAO;
 import ispwproject.gymwizard.util.filesystem.SchedaFileDAO;

@@ -15,8 +15,9 @@ public class UtenteDAO {
     private static final String COL_USERNAME = "username";
     private static final String COL_EMAIL = "email";
 
-    // Costruttore pubblico: DAO stateless
-    public UtenteDAO() {}
+    public UtenteDAO() {
+        //costruttore pubblico
+    }
 
     public Utente getByEmail(String email) {
         Utente utente = null;

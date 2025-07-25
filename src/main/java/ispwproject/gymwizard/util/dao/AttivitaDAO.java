@@ -11,8 +11,9 @@ import java.util.List;
 
 public class AttivitaDAO {
 
-    // Costruttore pubblico: stateless
-    public AttivitaDAO() {}
+    public AttivitaDAO() {
+        //costruttore pubblico
+    }
 
     public List<Attivita> getAllDisponibili() throws DAOException {
         List<Attivita> attivitaList = new ArrayList<>();

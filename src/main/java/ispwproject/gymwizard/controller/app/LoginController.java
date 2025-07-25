@@ -2,7 +2,6 @@ package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Credentials;
 import ispwproject.gymwizard.util.dao.DAOFactory;
-import ispwproject.gymwizard.util.dao.UtenteDAO;
 import ispwproject.gymwizard.util.dao.ConnectionFactory;
 import ispwproject.gymwizard.util.dao.LoginProcedureDAO;
 import ispwproject.gymwizard.util.bean.SessionBean;

@@ -11,7 +11,9 @@ import java.util.logging.Level;
 public class EsercizioSchedaDAO {
 
     // Costruttore pubblico: DAO stateless
-    public EsercizioSchedaDAO() {}
+    public EsercizioSchedaDAO() {
+        //costruttore pubblico
+    }
 
     public void insertEsercizio(EsercizioScheda esercizio) {
         String query = """

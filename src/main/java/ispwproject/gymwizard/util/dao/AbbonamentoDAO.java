@@ -11,8 +11,9 @@ import java.util.logging.Level;
 
 public class AbbonamentoDAO {
 
-    // Costruttore pubblico: stateless, Sonar-friendly
-    public AbbonamentoDAO() {}
+    public AbbonamentoDAO() {
+        //costruttore pubblico
+    }
 
     public Abbonamento trovaAbbonamentoAttivoPerUtente(int idUtente) {
         Abbonamento abbonamento = null;
