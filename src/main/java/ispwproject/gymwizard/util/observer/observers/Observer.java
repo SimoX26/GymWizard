@@ -31,7 +31,7 @@ public abstract class Observer implements Runnable {
     }
 
     protected void notifySubjectStatus(String message) {
-        AppLogger.getLogger().info("---> " + message);
+        AppLogger.getLogger().info(message);
     }
 
     public abstract void update();
