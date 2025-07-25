@@ -11,25 +11,18 @@ import java.util.List;
 
 public class AttivitaDAO {
 
-    private static AttivitaDAO instance;
-
-    // Costruttore privato per impedire l'istanziazione esterna
-    private AttivitaDAO() {
-        // Singleton: uso limitato e centralizzato
-    }
-
-    public static AttivitaDAO getInstance() {
-        if (instance == null) {
-            instance = new AttivitaDAO();
-        }
-        return instance;
-    }
+    // Costruttore pubblico: stateless
+    public AttivitaDAO() {}
 
     public List<Attivita> getAllDisponibili() throws DAOException {
         List<Attivita> attivitaList = new ArrayList<>();
 
-        String query = "SELECT id, nome, descrizione, data, ora_inizio, ora_fine, posti_disponibili, trainer_name " +
-                "FROM Attivita WHERE data >= CURDATE() ORDER BY data, ora_inizio";
+        String query = """
+            SELECT id, nome, descrizione, data, ora_inizio, ora_fine, posti_disponibili, trainer_name
+            FROM Attivita
+            WHERE data >= CURDATE()
+            ORDER BY data, ora_inizio
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(query);

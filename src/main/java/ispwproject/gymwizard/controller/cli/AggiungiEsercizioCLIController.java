@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.cli;
 import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.util.singleton.SessionManager;
+import ispwproject.gymwizard.util.exception.EsercizioDuplicatoException;
 import ispwproject.gymwizard.view.AggiungiEsercizioView;
 
 public class AggiungiEsercizioCLIController {
@@ -34,7 +35,7 @@ public class AggiungiEsercizioCLIController {
                 view.mostraMessaggio("✅ Esercizio \"" + nomeEsercizio + "\" aggiunto alla scheda \"" + scheda.getNomeScheda() + "\".");
                 view.attesaInvio();
                 return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;
-            } catch (SchedaController.EsercizioDuplicatoException e) {
+            } catch (EsercizioDuplicatoException e) {
                 view.mostraMessaggio("⚠️ " + e.getMessage());
                 view.attesaInvio();
                 return CLIState.VISUALIZZA_ESERCIZI_SCHEDA;

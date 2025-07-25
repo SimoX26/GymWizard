@@ -4,8 +4,9 @@ package ispwproject.gymwizard.controller.app;
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
-import ispwproject.gymwizard.util.dao.EsercizioSchedaDAO;
+import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.dao.SchedaDAO;
+import ispwproject.gymwizard.util.exception.EsercizioDuplicatoException;
 import ispwproject.gymwizard.util.filesystem.EsercizioSchedaFileDAO;
 import ispwproject.gymwizard.util.filesystem.SchedaFileDAO;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -18,7 +19,7 @@ import java.util.List;
 public class SchedaController {
 
     public  List<EsercizioScheda> getEserciziScheda(int idScheda) {
-        return EsercizioSchedaDAO.getEserciziByScheda(idScheda);
+        return DAOFactory.getEsercizioSchedaDAO().getEserciziByScheda(idScheda);
     }
 
     public  List<Scheda> getSchedeByIdCliente(int idCliente) {
@@ -28,7 +29,7 @@ public class SchedaController {
             throw new SecurityException("Utente non loggato.");
         }
 
-        return SchedaDAO.getInstance().getSchedeByUtente(idCliente);
+        return DAOFactory.getSchedaDAO().getSchedeByUtente(idCliente);
     }
 
 
@@ -39,7 +40,7 @@ public class SchedaController {
         }
 
         Scheda nuovaScheda = new Scheda(cliente.getId(), nome);
-        SchedaDAO.getInstance().insertScheda(nuovaScheda);
+        DAOFactory.getSchedaDAO().insertScheda(nuovaScheda);
 
         try {
             SchedaFileDAO.getInstance().insertScheda(nuovaScheda);
@@ -57,7 +58,7 @@ public class SchedaController {
         int idScheda = schedaCorrente.getId();
 
         try {
-            if (EsercizioSchedaDAO.getInstance().existsEsercizio(idScheda, nomeEsercizio)) {
+            if (DAOFactory.getEsercizioSchedaDAO().existsEsercizio(idScheda, nomeEsercizio)) {
                 throw new EsercizioDuplicatoException(nomeEsercizio);
             }
         } catch (Exception e) {
@@ -68,7 +69,7 @@ public class SchedaController {
         EsercizioScheda nuovo = new EsercizioScheda(idScheda, nomeEsercizio, serie, ripetizioni, note);
 
         try {
-            EsercizioSchedaDAO.getInstance().insertEsercizio(nuovo);
+            DAOFactory.getEsercizioSchedaDAO().insertEsercizio(nuovo);
         } catch (Exception e) {
             AppLogger.getLogger().log(Level.SEVERE, "Errore durante l'inserimento dell'esercizio nel database");
             return;
@@ -81,9 +82,4 @@ public class SchedaController {
         }
     }
 
-    public static class EsercizioDuplicatoException extends Exception {
-        public EsercizioDuplicatoException(String nomeEsercizio) {
-            super("L'esercizio \"" + nomeEsercizio + "\" è già presente nella scheda.");
-        }
-    }
 }

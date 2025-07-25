@@ -2,7 +2,7 @@ package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.model.Utente;
-import ispwproject.gymwizard.util.dao.AttivitaDAO;
+import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.dao.PrenotazioneDAO;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -20,20 +20,20 @@ public class AttivitaController {
     }
 
     public List<Attivita> getAttivitaDisponibili() throws DAOException {
-        return AttivitaDAO.getInstance().getAllDisponibili();
+        return DAOFactory.getAttivitaDAO().getAllDisponibili();
     }
 
 
     public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
             throws DAOException, AttivitaDuplicataException {
 
-        if (AttivitaDAO.getInstance().existsAttivita(nome, data, oraInizio)) {
+        if (DAOFactory.getAttivitaDAO().existsAttivita(nome, data, oraInizio)) {
             throw new AttivitaDuplicataException(nome);
         }
 
         Attivita nuova = new Attivita(0, nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
-        AttivitaDAO.getInstance().inserisciAttivita(nuova);
+        DAOFactory.getAttivitaDAO().inserisciAttivita(nuova);
     }
 
     public void prenotaAttivita(Attivita attivita) throws DAOException, AttivitaPienaException {
@@ -45,7 +45,7 @@ public class AttivitaController {
             }
 
             int idUtente = utente.getId();
-            PrenotazioneDAO.getInstance().add(attivita.getId(), idUtente);
+            DAOFactory.getPrenotazioneDAO().add(attivita.getId(), idUtente);
         }
     }
 }

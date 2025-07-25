@@ -11,19 +11,8 @@ import java.util.logging.Level;
 
 public class AbbonamentoDAO {
 
-    private static AbbonamentoDAO instance;
-
-    // Costruttore privato per impedire l'istanziazione esterna
-    private AbbonamentoDAO() {
-        // Singleton: uso limitato e centralizzato
-    }
-
-    public static AbbonamentoDAO getInstance() {
-        if (instance == null) {
-            instance = new AbbonamentoDAO();
-        }
-        return instance;
-    }
+    // Costruttore pubblico: stateless, Sonar-friendly
+    public AbbonamentoDAO() {}
 
     public Abbonamento trovaAbbonamentoAttivoPerUtente(int idUtente) {
         Abbonamento abbonamento = null;
@@ -39,22 +28,22 @@ public class AbbonamentoDAO {
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setInt(1, idUtente);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                abbonamento = new Abbonamento();
-                abbonamento.setId(rs.getInt("id"));
-                abbonamento.setTipo(rs.getString("tipo"));
-                abbonamento.setDataInizio(rs.getDate("data_inizio").toLocalDate());
-                abbonamento.setDataFine(rs.getDate("data_fine").toLocalDate());
-                abbonamento.setStato(rs.getString("stato"));
-                abbonamento.setRiferimentoPagamento(rs.getString("riferimento_pagamento"));
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    abbonamento = new Abbonamento();
+                    abbonamento.setId(rs.getInt("id"));
+                    abbonamento.setTipo(rs.getString("tipo"));
+                    abbonamento.setDataInizio(rs.getDate("data_inizio").toLocalDate());
+                    abbonamento.setDataFine(rs.getDate("data_fine").toLocalDate());
+                    abbonamento.setStato(rs.getString("stato"));
+                    abbonamento.setRiferimentoPagamento(rs.getString("riferimento_pagamento"));
+                }
             }
 
-        }catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il recupero dell'abbonamento attivo per l'utente " + idUtente);
+        } catch (SQLException e) {
+            AppLogger.getLogger().log(Level.SEVERE, e,
+                    () -> "Errore durante il recupero dell'abbonamento attivo per l'utente " + idUtente);
         }
-
 
         return abbonamento;
     }
@@ -70,17 +59,17 @@ public class AbbonamentoDAO {
 
             stmt.setInt(1, abbonamento.getIdUtente());
             stmt.setString(2, abbonamento.getTipo());
-            stmt.setDate(3, java.sql.Date.valueOf(abbonamento.getDataInizio()));
-            stmt.setDate(4, java.sql.Date.valueOf(abbonamento.getDataFine()));
+            stmt.setDate(3, Date.valueOf(abbonamento.getDataInizio()));
+            stmt.setDate(4, Date.valueOf(abbonamento.getDataFine()));
             stmt.setString(5, abbonamento.getStato());
             stmt.setString(6, abbonamento.getRiferimentoPagamento());
 
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il recupero dell'abbonamento attivo per l'utente ");
+            AppLogger.getLogger().log(Level.SEVERE, e,
+                    () -> "Errore durante l'inserimento dell'abbonamento per l'utente " + abbonamento.getIdUtente());
         }
-
     }
 
     public List<Abbonamento> getAllDisponibili() throws DAOException {

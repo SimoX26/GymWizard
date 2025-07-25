@@ -10,23 +10,14 @@ import java.util.logging.Level;
 
 public class EsercizioSchedaDAO {
 
-    // Singleton instance
-    private static EsercizioSchedaDAO instance;
-
-
-    private EsercizioSchedaDAO() {
-        // Singleton: costruttore privato per impedire istanziazione diretta
-    }
-
-    public static EsercizioSchedaDAO getInstance() {
-        if (instance == null) {
-            instance = new EsercizioSchedaDAO();
-        }
-        return instance;
-    }
+    // Costruttore pubblico: DAO stateless
+    public EsercizioSchedaDAO() {}
 
     public void insertEsercizio(EsercizioScheda esercizio) {
-        String query = "INSERT INTO EsercizioScheda (id_scheda, nome_esercizio, serie, ripetizioni, note) VALUES (?, ?, ?, ?, ?)";
+        String query = """
+            INSERT INTO EsercizioScheda (id_scheda, nome_esercizio, serie, ripetizioni, note)
+            VALUES (?, ?, ?, ?, ?)
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -47,43 +38,50 @@ public class EsercizioSchedaDAO {
             }
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante l'inserimento dell'esercizio: " + esercizio.getNomeEsercizio());
-
+            AppLogger.getLogger().log(Level.SEVERE, e,
+                    () -> "Errore durante l'inserimento dell'esercizio: " + esercizio.getNomeEsercizio());
         }
     }
 
-    public static List<EsercizioScheda> getEserciziByScheda(int idScheda) {
+    public List<EsercizioScheda> getEserciziByScheda(int idScheda) {
         List<EsercizioScheda> esercizi = new ArrayList<>();
-        String query = "SELECT id, id_scheda, nome_esercizio, serie, ripetizioni, note FROM EsercizioScheda WHERE id_scheda = ?";
-
+        String query = """
+            SELECT id, id_scheda, nome_esercizio, serie, ripetizioni, note
+            FROM EsercizioScheda
+            WHERE id_scheda = ?
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setInt(1, idScheda);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                EsercizioScheda es = new EsercizioScheda(
-                        rs.getInt("id_scheda"),
-                        rs.getString("nome_esercizio"),
-                        rs.getInt("serie"),
-                        rs.getInt("ripetizioni"),
-                        rs.getString("note")
-                );
-                esercizi.add(es);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    EsercizioScheda es = new EsercizioScheda(
+                            rs.getInt("id_scheda"),
+                            rs.getString("nome_esercizio"),
+                            rs.getInt("serie"),
+                            rs.getInt("ripetizioni"),
+                            rs.getString("note")
+                    );
+                    es.setId(rs.getInt("id"));
+                    esercizi.add(es);
+                }
             }
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il recupero esercizi per la scheda con id " + idScheda);
-
+            AppLogger.getLogger().log(Level.SEVERE, e,
+                    () -> "Errore durante il recupero esercizi per la scheda con id " + idScheda);
         }
 
         return esercizi;
     }
 
     public boolean existsEsercizio(int idScheda, String nomeEsercizio) {
-        String query = "SELECT COUNT(*) FROM EsercizioScheda WHERE id_scheda = ? AND nome_esercizio = ?";
+        String query = """
+            SELECT COUNT(*) FROM EsercizioScheda
+            WHERE id_scheda = ? AND nome_esercizio = ?
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -98,8 +96,9 @@ public class EsercizioSchedaDAO {
             }
 
         } catch (SQLException e) {
-            AppLogger.getLogger().log(Level.SEVERE, e, () -> "Errore durante il controllo dell'esistenza dell'esercizio '" + nomeEsercizio + "' per la scheda " + idScheda);
-
+            AppLogger.getLogger().log(Level.SEVERE, e,
+                    () -> "Errore durante il controllo dell'esistenza dell'esercizio '" +
+                            nomeEsercizio + "' per la scheda " + idScheda);
         }
 
         return false;

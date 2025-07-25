@@ -62,5 +62,13 @@
     "serie": 2,
     "ripetizioni": 6,
     "note": ""
+  },
+  {
+    "id": 9,
+    "idScheda": 3,
+    "nomeEsercizio": "Lat",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": ""
   }
 ]

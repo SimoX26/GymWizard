@@ -12,21 +12,11 @@ import java.util.logging.Level;
 
 public class UtenteDAO {
 
-    private static UtenteDAO instance;
-
     private static final String COL_USERNAME = "username";
     private static final String COL_EMAIL = "email";
 
-    private UtenteDAO() {
-        // Costruttore privato per Singleton
-    }
-
-    public static synchronized UtenteDAO getInstance() {
-        if (instance == null) {
-            instance = new UtenteDAO();
-        }
-        return instance;
-    }
+    // Costruttore pubblico: DAO stateless
+    public UtenteDAO() {}
 
     public Utente getByEmail(String email) {
         Utente utente = null;

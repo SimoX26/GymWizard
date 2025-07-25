@@ -5,21 +5,21 @@ import ispwproject.gymwizard.util.bean.SessionBean;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class SessionManager { // NOSONAR
-
-
-    private static final SessionManager instance = new SessionManager();
+public class SessionManager {
 
     private SessionBean session;
-    private final Map<String, Object> attributi = new HashMap<>(); // Mappa per attributi personalizzati
+    private final Map<String, Object> attributi = new HashMap<>();
 
-    // Costruttore privato per impedire l'istanziazione esterna
+    // Costruttore privato
     private SessionManager() {}
 
-    // Metodo di accesso all’unica istanza
+    // Lazy Holder: inizializzazione solo al primo getInstance
+    private static class Holder {
+        private static final SessionManager INSTANCE = new SessionManager();
+    }
+
     public static SessionManager getInstance() {
-        return instance;
+        return Holder.INSTANCE;
     }
 
     // Imposta l’oggetto sessione
@@ -51,6 +51,6 @@ public class SessionManager { // NOSONAR
     }
 
     public void clearAll() {
-        clearSession(); // delega
+        clearSession();
     }
 }

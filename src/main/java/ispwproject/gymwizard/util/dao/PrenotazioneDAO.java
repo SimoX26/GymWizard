@@ -10,27 +10,16 @@ import java.util.List;
 
 public class PrenotazioneDAO {
 
-    // Istanza singleton
-    private static PrenotazioneDAO instance;
-
-    // Costruttore privato
-    private PrenotazioneDAO() {}
-
-    // Metodo statico per ottenere l'istanza singleton
-    public static PrenotazioneDAO getInstance() {
-        if (instance == null) {
-            instance = new PrenotazioneDAO();
-        }
-        return instance;
-    }
+    // Costruttore pubblico: DAO stateless
+    public PrenotazioneDAO() {}
 
     public List<Prenotazione> getAll() throws DAOException {
         List<Prenotazione> lista = new ArrayList<>();
 
         String query = """
-        SELECT id, id_attivita, id_cliente, data_creazione
-        FROM Prenotazione
-    """;
+            SELECT id, id_attivita, id_cliente, data_creazione
+            FROM Prenotazione
+        """;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement ps = conn.prepareStatement(query);
@@ -56,7 +45,6 @@ public class PrenotazioneDAO {
 
         return lista;
     }
-
 
     public void add(int idAttivita, int idCliente) throws DAOException {
         String query = "INSERT INTO Prenotazione (id_attivita, id_cliente) VALUES (?, ?)";

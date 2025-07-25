@@ -27,7 +27,7 @@ public class AggiungiEsercizioGUIController extends AbstractGUIController {
         anchorPane.setBackground(new Background(this.background()));
     }
 
-    public void onAggiungiEsercizio(ActionEvent event) throws SchedaController.EsercizioDuplicatoException {
+    public void onAggiungiEsercizio(ActionEvent event){
         logger.info("AGGIUNGI ESERCIZIO button clicked.");
 
         String nome = nomeEsercizioField.getText();

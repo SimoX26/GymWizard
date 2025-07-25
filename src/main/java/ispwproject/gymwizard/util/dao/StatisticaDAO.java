@@ -6,12 +6,10 @@ import java.util.Map;
 
 public class StatisticaDAO {
 
-    private final Connection connection;
     private static final String COLONNA_TOTALE = "totale";
 
-    public StatisticaDAO() throws SQLException {
-        this.connection = ConnectionFactory.getConnection();
-    }
+    // Costruttore pubblico (stateless)
+    public StatisticaDAO() {}
 
     // 1. Numero totale clienti iscritti
     public int getTotaleClienti() throws SQLException {
@@ -21,7 +19,8 @@ public class StatisticaDAO {
             JOIN Credenziali C ON U.email = C.email
             WHERE C.ruolo = 1
         """;
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
             return rs.getInt(1);
@@ -41,7 +40,8 @@ public class StatisticaDAO {
                   WHERE data_inizio >= CURDATE() - INTERVAL 1 MONTH
               )
         """;
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
             return rs.getInt(1);
@@ -59,7 +59,8 @@ public class StatisticaDAO {
                     2
                 ) AS percentuale_rinnovo
         """;
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
             return rs.getDouble(1);
@@ -76,13 +77,10 @@ public class StatisticaDAO {
             ORDER BY totale DESC
             LIMIT 1
         """;
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getString("nome");
-            } else {
-                return "Nessuna attività";
-            }
+            return rs.next() ? rs.getString("nome") : "Nessuna attività";
         }
     }
 
@@ -98,13 +96,10 @@ public class StatisticaDAO {
             ORDER BY totale DESC
             LIMIT 1
         """;
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
-            if (rs.next()) {
-                return rs.getString("fascia_oraria");
-            } else {
-                return "Nessuna fascia registrata";
-            }
+            return rs.next() ? rs.getString("fascia_oraria") : "Nessuna fascia registrata";
         }
     }
 
@@ -116,7 +111,8 @@ public class StatisticaDAO {
             WHERE MONTH(data_rinnovo) = MONTH(CURDATE())
               AND YEAR(data_rinnovo) = YEAR(CURDATE())
         """;
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
             return rs.getDouble("totale_entrate");
@@ -126,7 +122,8 @@ public class StatisticaDAO {
     // 7. Numero complessivo di prenotazioni
     public int getTotalePrenotazioni() throws SQLException {
         String sql = "SELECT COUNT(*) FROM Prenotazione";
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
             return rs.getInt(1);
@@ -136,7 +133,8 @@ public class StatisticaDAO {
     // 8. Numero attività disponibili
     public int getTotaleAttivita() throws SQLException {
         String sql = "SELECT COUNT(*) FROM Attivita";
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
             return rs.getInt(1);
@@ -154,7 +152,8 @@ public class StatisticaDAO {
         """;
 
         Map<String, Integer> map = new LinkedHashMap<>();
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 map.put(rs.getString("giorno"), rs.getInt(COLONNA_TOTALE));
@@ -174,7 +173,8 @@ public class StatisticaDAO {
         """;
 
         Map<String, Integer> map = new LinkedHashMap<>();
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 map.put(rs.getString("mese"), rs.getInt(COLONNA_TOTALE));
@@ -195,7 +195,8 @@ public class StatisticaDAO {
         """;
 
         Map<String, Double> map = new LinkedHashMap<>();
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 map.put(rs.getString("mese"), rs.getDouble(COLONNA_TOTALE));
@@ -211,7 +212,8 @@ public class StatisticaDAO {
             FROM Prenotazione
             WHERE data_ora >= CURDATE() - INTERVAL 30 DAY
         """;
-        try (PreparedStatement ps = connection.prepareStatement(sql);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery()) {
             rs.next();
             return rs.getInt(1);

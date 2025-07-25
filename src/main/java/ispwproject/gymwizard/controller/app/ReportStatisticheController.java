@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.dao.AbbonamentoDAO;
+import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.dao.PrenotazioneDAO;
 import ispwproject.gymwizard.util.dao.UtenteDAO;
 import ispwproject.gymwizard.util.bean.PrenotazioneBean;
@@ -21,9 +22,9 @@ public class ReportStatisticheController {
 
     public static final String ERROR_MESSAGE = "Errore durante il recupero dei dati dal database: ";
 
-    private static final AbbonamentoDAO abbonamentoDAO = AbbonamentoDAO.getInstance();
-    private static final PrenotazioneDAO prenotazioneDAO = PrenotazioneDAO.getInstance();
-    private static final UtenteDAO utenteDAO = UtenteDAO.getInstance();
+    private static final AbbonamentoDAO abbonamentoDAO = new AbbonamentoDAO();
+    private static final PrenotazioneDAO prenotazioneDAO = DAOFactory.getPrenotazioneDAO();
+    private static final UtenteDAO utenteDAO = DAOFactory.getUtenteDAO();
 
     public static List<Abbonamento> getStoricoAbbonamenti() {
         try {

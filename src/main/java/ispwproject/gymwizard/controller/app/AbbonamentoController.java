@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.app;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.dao.AbbonamentoDAO;
 import ispwproject.gymwizard.model.Abbonamento;
+import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.exception.BrowserAperturaException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.util.BrowserLauncher;
@@ -18,12 +19,12 @@ public class AbbonamentoController {
     public Abbonamento getDatiAbbonamento() {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
         int idUtente = utente.getId();
-        return AbbonamentoDAO.getInstance().trovaAbbonamentoAttivoPerUtente(idUtente);
+        return DAOFactory.getAbbonamentoDAO().trovaAbbonamentoAttivoPerUtente(idUtente);
     }
 
     public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
-        AbbonamentoDAO dao = AbbonamentoDAO.getInstance();
+        AbbonamentoDAO dao = DAOFactory.getAbbonamentoDAO();
 
         Abbonamento abbonamentoEsistente = dao.trovaAbbonamentoAttivoPerUtente(utente.getId());
         if (abbonamentoEsistente != null) {

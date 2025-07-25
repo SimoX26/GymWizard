@@ -28,5 +28,11 @@
     "idCliente": 1,
     "nomeScheda": "Petto",
     "DATA_CREAZIONE": 1752044278777
+  },
+  {
+    "id": 6,
+    "idCliente": 1,
+    "nomeScheda": "Back",
+    "DATA_CREAZIONE": 1753430923001
   }
 ]

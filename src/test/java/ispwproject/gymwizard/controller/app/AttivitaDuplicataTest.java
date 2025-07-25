@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.dao.AttivitaDAO;
+import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import org.junit.Before;
@@ -22,7 +23,7 @@ public class AttivitaDuplicataTest {
     @Before
     public void inserisciAttivitaDiTest() throws DAOException {
         // Se non esiste già, inseriamo un'attività per testare il duplicato
-        if (!AttivitaDAO.getInstance().existsAttivita(nome, data, oraInizio)) {
+        if (!DAOFactory.getAttivitaDAO().existsAttivita(nome, data, oraInizio)) {
             Attivita attivita = new Attivita(
                     0,
                     nome,
@@ -33,7 +34,7 @@ public class AttivitaDuplicataTest {
                     10,
                     "Trainer Test"
             );
-            AttivitaDAO.getInstance().inserisciAttivita(attivita);
+            DAOFactory.getAttivitaDAO().inserisciAttivita(attivita);
         }
     }
 
