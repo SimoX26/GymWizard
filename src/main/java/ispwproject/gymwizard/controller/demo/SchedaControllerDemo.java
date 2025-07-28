@@ -19,8 +19,8 @@ public class SchedaControllerDemo extends SchedaController {
     @Override
     public List<Scheda> getSchedeByIdCliente(int idCliente) {
         if (!schedePerUtente.containsKey(idCliente)) {
-            Scheda s1 = new Scheda(schedaCounter++, "Scheda Demo 1");
-            Scheda s2 = new Scheda(schedaCounter++, "Scheda Demo 2");
+            Scheda s1 = new Scheda(schedaCounter++, idCliente, "Scheda Demo 1", "bulk");
+            Scheda s2 = new Scheda(schedaCounter++, idCliente, "Scheda Demo 2", "cut");
 
             schedePerUtente.put(idCliente, new ArrayList<>(List.of(s1, s2)));
 
@@ -57,10 +57,10 @@ public class SchedaControllerDemo extends SchedaController {
     }
 
     @Override
-    public void creaScheda(String nome, String tipo) throws DAOException {
+    public void creaScheda(String nome, String tipo) {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         int idUtente = utente.getId();
-        Scheda nuova = new Scheda(schedaCounter++, nome);
+        Scheda nuova = new Scheda(schedaCounter++, idUtente, nome, tipo);
         schedePerUtente.computeIfAbsent(idUtente, k -> new ArrayList<>()).add(nuova);
         eserciziPerScheda.put(nuova.getId(), new ArrayList<>());
     }

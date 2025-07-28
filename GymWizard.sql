@@ -66,8 +66,8 @@ CREATE TABLE Scheda (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
     nome_scheda VARCHAR(100),
-    data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     tipo VARCHAR(10),
+    data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_cliente) REFERENCES Utente(id)
 );
 

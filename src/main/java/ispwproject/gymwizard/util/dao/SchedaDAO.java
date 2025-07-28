@@ -51,8 +51,7 @@ public class SchedaDAO {
                             rs.getInt("id"),
                             rs.getInt("id_cliente"),
                             rs.getString("nome_scheda"),
-                            rs.getString("tipo"),
-                            rs.getTimestamp("data_creazione")
+                            rs.getString("tipo")
                     );
                     schede.add(s);
                 }

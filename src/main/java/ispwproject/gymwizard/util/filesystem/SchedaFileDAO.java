@@ -30,10 +30,6 @@ public class SchedaFileDAO { // NOSONAR
         // Genera un nuovo ID
         scheda.setId(generaNuovoId(schede));
 
-        // Se non presente, imposta la data di creazione
-        if (scheda.getDataCreazione() == null) {
-            scheda.setDataCreazione(new Timestamp(System.currentTimeMillis()));
-        }
 
         schede.add(scheda);
         FileSystemManager.saveListToFile(schede, idCliente, FILE_NAME);

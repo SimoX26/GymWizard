@@ -1,26 +1,16 @@
 package ispwproject.gymwizard.model;
 
-import java.sql.Timestamp;
-
 public class Scheda {
     private int id;
     private int idCliente;
     private String nomeScheda;
     private String tipo;
-    private Timestamp dataCreazione;
 
     // Costruttore vuoto richiesto da Gson
     public Scheda() {}
 
-    public Scheda(int id, int idCliente, String nome, String tipo, Timestamp dataCreazione) {
+    public Scheda(int id, int idCliente, String nome, String tipo) {
         this.id = id;
-        this.idCliente = idCliente;
-        this.nomeScheda = nome;
-        this.tipo = tipo;
-        this.dataCreazione = dataCreazione;
-    }
-
-    public Scheda(int idCliente, String nome, String tipo) {
         this.idCliente = idCliente;
         this.nomeScheda = nome;
         this.tipo = tipo;
@@ -59,13 +49,5 @@ public class Scheda {
 
     public void setNomeScheda(String nomeScheda) {
         this.nomeScheda = nomeScheda;
-    }
-
-    public Timestamp getDataCreazione() {
-        return dataCreazione;
-    }
-
-    public void setDataCreazione(Timestamp dataCreazione) {
-        this.dataCreazione = dataCreazione;
     }
 }

@@ -70,5 +70,13 @@
     "serie": 1,
     "ripetizioni": 1,
     "note": ""
+  },
+  {
+    "id": 10,
+    "idScheda": 1,
+    "nomeEsercizio": "Prova",
+    "serie": 0,
+    "ripetizioni": 0,
+    "note": "Nessuna nota"
   }
 ]
