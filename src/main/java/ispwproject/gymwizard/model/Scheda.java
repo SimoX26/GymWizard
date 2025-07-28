@@ -16,9 +16,6 @@ public class Scheda {
         this.tipo = tipo;
     }
 
-    public Scheda(int i, String s) {
-    }
-
     // Getter e Setter
 
     public int getId() {
