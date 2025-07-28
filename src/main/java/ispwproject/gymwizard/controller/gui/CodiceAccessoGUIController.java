@@ -1,7 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import com.google.zxing.WriterException;
-import ispwproject.gymwizard.util.singleton.QRCodeGenerator;
+import ispwproject.gymwizard.util.QRCodeGenerator;
 import ispwproject.gymwizard.util.QRCodeUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +36,10 @@ public class CodiceAccessoGUIController extends AbstractGUIController implements
         anchorPane.setBackground(new Background(this.background()));
 
         try {
-            String codice = QRCodeGenerator.getInstance().generaCodiceAccesso();
+            // Ora usiamo un'istanza di QRCodeGenerator
+            QRCodeGenerator generator = new QRCodeGenerator();
+            String codice = generator.generaCodiceAccesso();
+
             Image qrImage = QRCodeUtils.generaQRCodeImage(codice, 200, 200);
             qrCodeImage.setImage(qrImage);
             codiceAlfanumericoLabel.setText(codice);

@@ -57,7 +57,7 @@ public class SchedaControllerDemo extends SchedaController {
     }
 
     @Override
-    public void creaScheda(String nome) throws DAOException {
+    public void creaScheda(String nome, String tipo) throws DAOException {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         int idUtente = utente.getId();
         Scheda nuova = new Scheda(schedaCounter++, nome);

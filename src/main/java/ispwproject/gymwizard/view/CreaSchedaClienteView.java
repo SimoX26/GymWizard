@@ -10,6 +10,10 @@ public class CreaSchedaClienteView {
         System.out.print("Inserisci nome scheda: ");
         return scanner.nextLine();
     }
+    public String chiediTipoScheda(String cliente) {
+        System.out.print("Inserisci tipo scheda: ");
+        return scanner.nextLine();
+    }
 
     public void mostraMessaggio(String msg) {
         System.out.println(msg);

@@ -22,6 +22,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.util.StringConverter;
 import ispwproject.gymwizard.util.logger.AppLogger;
+
 import java.util.List;
 
 public class VisualizzaSchedaGUIController extends AbstractGUIController {
@@ -45,6 +46,8 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
     private TableColumn<EsercizioScheda, Integer> colSerie;
     @FXML
     private TableColumn<EsercizioScheda, Integer> colRipetizioni;
+    @FXML
+    private TableColumn<EsercizioScheda, String> colTipo; // nuova colonna
 
     private static final String STYLE_BUTTON = "button-custom";
 
@@ -57,6 +60,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
         Utente u;
 
+        // Determino l'utente corretto in base alla view
         if ("/views/DashboardTrainerView.fxml".equals(SessionManager.getInstance().getAttributo(HOMEPAGE))) {
             Button nuova = new Button("CREA NUOVA SCHEDA");
             Button add = new Button("AGGIUNGI ESERCIZIO");
@@ -76,6 +80,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
             u = (Utente) SessionManager.getInstance().getAttributo("utente");
         }
 
+        // Popolo il ComboBox con le schede dell'utente
         List<Scheda> schede = controller.getSchedeByIdCliente(u.getId());
         ObservableList<Scheda> lista = FXCollections.observableArrayList(schede);
         comboBoxSchede.setItems(lista);
@@ -83,13 +88,13 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
         comboBoxSchede.setConverter(new StringConverter<>() {
             @Override
             public String toString(Scheda scheda) {
-                return (scheda != null) ? scheda.getNomeScheda() : "";
+                return (scheda != null) ? scheda.getNomeScheda() + " (" + scheda.getTipo() + ")" : "";
             }
 
             @Override
             public Scheda fromString(String nome) {
                 return comboBoxSchede.getItems().stream()
-                        .filter(s -> s.getNomeScheda().equals(nome))
+                        .filter(s -> (s.getNomeScheda() + " (" + s.getTipo() + ")").equals(nome))
                         .findFirst()
                         .orElse(null);
             }
@@ -106,6 +111,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
             }
         });
 
+        // Se ci sono schede, seleziono la prima
         if (!lista.isEmpty()) {
             comboBoxSchede.getSelectionModel().selectFirst();
             Scheda selezionata = comboBoxSchede.getSelectionModel().getSelectedItem();
@@ -113,10 +119,17 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
             onSchedaSelezionata(selezionata);
         }
 
+        // Imposto le colonne
         colNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNomeEsercizio()));
         colSerie.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getSerie()).asObject());
         colRipetizioni.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getRipetizioni()).asObject());
+
+        // Colonna Tipo: cast esplicito per evitare l'errore
+        colTipo.setCellValueFactory(cellData -> new SimpleStringProperty(
+                ((Scheda) SessionManager.getInstance().getAttributo("scheda")).getTipo()
+        ));
     }
+
 
     @FXML
     public void onSchedaSelezionata(Scheda schedaSelezionata) throws DAOException {

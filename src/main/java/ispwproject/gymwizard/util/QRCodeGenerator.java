@@ -1,24 +1,14 @@
-package ispwproject.gymwizard.util.singleton;
+package ispwproject.gymwizard.util;
 
 import java.security.SecureRandom;
 
-public class QRCodeGenerator { //NOSONAR
+public class QRCodeGenerator { // NOSONAR
 
     private static final String LETTERE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final SecureRandom random = new SecureRandom();
 
-    // Costruttore privato: impedisce l'istanziazione esterna
-    private QRCodeGenerator() {}
-
-    // Lazy Holder: inizializzazione solo al primo accesso
-    private static class Holder {
-        private static final QRCodeGenerator INSTANCE = new QRCodeGenerator();
-    }
-
-    // Accesso all'unica istanza
-    public static QRCodeGenerator getInstance() {
-        return Holder.INSTANCE;
-    }
+    // Costruttore pubblico: ora la classe è liberamente istanziabile
+    public QRCodeGenerator() {}
 
     // Genera il codice di accesso
     public String generaCodiceAccesso() {

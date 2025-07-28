@@ -4,17 +4,11 @@ import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.stage.Stage;
-import java.util.logging.Logger;
 
-import java.io.IOException;
+import java.util.logging.Logger;
 
 public class DashboardTrainerGUIController extends AbstractGUIController{
 

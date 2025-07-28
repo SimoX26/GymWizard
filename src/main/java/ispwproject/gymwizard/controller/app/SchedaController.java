@@ -6,6 +6,8 @@ import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.exception.EsercizioDuplicatoException;
+import ispwproject.gymwizard.util.factorymethod.*;
+import ispwproject.gymwizard.util.factorymethod.concreteproduct.SchedaBase;
 import ispwproject.gymwizard.util.filesystem.EsercizioSchedaFileDAO;
 import ispwproject.gymwizard.util.filesystem.SchedaFileDAO;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -16,6 +18,22 @@ import java.util.logging.Level;
 import java.util.List;
 
 public class SchedaController {
+
+    private SchedaBase tipoScheda;
+
+    public SchedaController(){
+        //Costruttore vuoto
+    }
+
+    public SchedaController(String tipo){
+        Factory factory = new Factory();
+        try{
+            this.tipoScheda = factory.createSchedaBase(tipo);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public  List<EsercizioScheda> getEserciziScheda(int idScheda) {
         return DAOFactory.getEsercizioSchedaDAO().getEserciziByScheda(idScheda);
@@ -32,17 +50,22 @@ public class SchedaController {
     }
 
 
-    public void creaScheda(String nome) throws DAOException {
+    public void creaScheda(String nome, String tipo) throws DAOException {
         Utente cliente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         if (cliente == null) {
             throw new DAOException("Cliente non selezionato.");
         }
 
-        Scheda nuovaScheda = new Scheda(cliente.getId(), nome);
-        DAOFactory.getSchedaDAO().insertScheda(nuovaScheda);
+        SchedaController s = new SchedaController(tipo);
+        Scheda scheda = new Scheda();
+        scheda.setIdCliente(cliente.getId());
+        scheda.setNomeScheda(nome);
+        scheda.setTipo(s.tipoScheda.getObiettivo());
+
+        DAOFactory.getSchedaDAO().insertScheda(scheda);
 
         try {
-            SchedaFileDAO.getInstance().insertScheda(nuovaScheda);
+            SchedaFileDAO.getInstance().insertScheda(scheda);
         } catch (Exception e) {
             AppLogger.getLogger().log(Level.WARNING, "⚠️ Errore salvataggio su FileSystem", e);
         }

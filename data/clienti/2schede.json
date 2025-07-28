@@ -10,5 +10,11 @@
     "idCliente": 2,
     "nomeScheda": "Spalle",
     "DATA_CREAZIONE": 1751913227639
+  },
+  {
+    "id": 3,
+    "idCliente": 2,
+    "nomeScheda": "Gambe",
+    "DATA_CREAZIONE": 1753713188506
   }
 ]

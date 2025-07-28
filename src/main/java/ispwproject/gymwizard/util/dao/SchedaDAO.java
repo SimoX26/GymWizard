@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.util.dao;
 
+import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.logger.AppLogger;
@@ -17,13 +18,14 @@ public class SchedaDAO {
     }
 
     public void insertScheda(Scheda scheda) throws DAOException {
-        String query = "INSERT INTO Scheda (id_cliente, nome_scheda) VALUES (?, ?)";
+        String query = "INSERT INTO Scheda (id_cliente, nome_scheda, tipo) VALUES (?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             stmt.setInt(1, scheda.getIdCliente());
             stmt.setString(2, scheda.getNomeScheda());
+            stmt.setString(3, scheda.getTipo());
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -34,7 +36,7 @@ public class SchedaDAO {
     public List<Scheda> getSchedeByUtente(int idCliente) {
         List<Scheda> schede = new ArrayList<>();
         String query = """
-            SELECT id, id_cliente, nome_scheda, data_creazione
+            SELECT id, id_cliente, nome_scheda, tipo, data_creazione
             FROM Scheda
             WHERE id_cliente = ?
         """;
@@ -49,6 +51,7 @@ public class SchedaDAO {
                             rs.getInt("id"),
                             rs.getInt("id_cliente"),
                             rs.getString("nome_scheda"),
+                            rs.getString("tipo"),
                             rs.getTimestamp("data_creazione")
                     );
                     schede.add(s);

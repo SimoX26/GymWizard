@@ -15,6 +15,7 @@ public class CreaSchedaClienteCLIController {
         String clienteNome = clienteSelezionato.getUsername();
 
         String nomeScheda = view.chiediNomeScheda(clienteNome);
+        String tipo = view.chiediTipoScheda(clienteNome);
         if (nomeScheda == null || nomeScheda.isBlank()) {
             view.mostraMessaggio("❌ Nome scheda non valido.");
             view.attesaInvio();
@@ -22,7 +23,7 @@ public class CreaSchedaClienteCLIController {
         }
 
         try {
-            controller.creaScheda(nomeScheda);  // Salva la scheda nel DB
+            controller.creaScheda(nomeScheda, tipo);  // Salva la scheda nel DB
             view.mostraMessaggio("✅ Scheda \"" + nomeScheda + "\" creata per " + clienteNome + ".");
             view.attesaInvio();
             return CLIState.SELEZIONA_SCHEDA;

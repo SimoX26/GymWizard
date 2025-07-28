@@ -1,4 +1,4 @@
-package ispwproject.gymwizard.util.singleton;
+package ispwproject.gymwizard.util;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ class QRCodeGeneratorUnicitaTest {
 
     @Test
     void testCodiciUniciENelFormatoCorretto() {
-        QRCodeGenerator generator = QRCodeGenerator.getInstance();
+        QRCodeGenerator generator = new QRCodeGenerator();
         Set<String> codici = new HashSet<>();
         Pattern formato = Pattern.compile("^[A-Z]{4}-\\d{4}$");
 

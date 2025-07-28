@@ -34,5 +34,11 @@
     "idCliente": 1,
     "nomeScheda": "Back",
     "DATA_CREAZIONE": 1753430923001
+  },
+  {
+    "id": 7,
+    "idCliente": 1,
+    "nomeScheda": "",
+    "DATA_CREAZIONE": 1753461763888
   }
 ]
