@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.gui;
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Abbonamento;
+import ispwproject.gymwizard.util.bean.AbbonamentoBean;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import ispwproject.gymwizard.util.logger.AppLogger;
 import java.util.logging.Logger;
-
 
 public class StatoAbbonamentoGUIController extends AbstractGUIController {
 
@@ -28,21 +28,22 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController {
     @FXML
     private AnchorPane anchorPane;
 
-    private final AbbonamentoController controller = DemoFactory.getAbbonamentoController();
+    private final AbbonamentoController controller = DemoFactory.getAbbonamentoController(); // Viene selezionato il controller a runtime
+    private final AbbonamentoBean bean = new AbbonamentoBean();
 
     @FXML
     public void initialize() {
-        anchorPane.setBackground(new Background(this.background()));
+        anchorPane.setBackground(new Background(this.background())); // Impostazione dell'immagine di sfondo
 
-        Abbonamento abbonamento = controller.getDatiAbbonamento();  // usa il controller dinamico
+        controller.getDatiAbbonamento(bean); // Impostazione della bean
 
-        if (abbonamento != null) {
-            tipologia.setText(abbonamento.getTipo());
-            dataEmissione.setText(abbonamento.getDataInizio().toString());
-            dataScadenza.setText(abbonamento.getDataFine().toString());
-            stato.setText(abbonamento.getStato());
-        } else {
-            // Gestione del caso in cui non ci siano dati
+        Abbonamento a = bean.getAbbonamento();
+        if (a != null) {
+            tipologia.setText(a.getTipo());
+            dataEmissione.setText(a.getDataInizio().toString());
+            dataScadenza.setText(a.getDataFine().toString());
+            stato.setText(a.getStato());
+        } else { // Gestione del caso in cui non ci siano nessun dato dell'abbonamento
             tipologia.setText("N/A");
             dataEmissione.setText("N/A");
             dataScadenza.setText("N/A");

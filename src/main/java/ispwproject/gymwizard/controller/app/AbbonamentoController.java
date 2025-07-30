@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.AbbonamentoBean;
 import ispwproject.gymwizard.util.dao.AbbonamentoDAO;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.util.dao.DAOFactory;
@@ -11,15 +12,16 @@ import java.time.LocalDate;
 
 public class AbbonamentoController {
 
-    public static final String MENSILE = "mensile";
-    public static final String TRIMESTRALE = "trimestrale";
-    public static final String ANNUALE = "annuale";
-    public static final String INGRESSI = "10ingressi";
+    private static final String MENSILE = "mensile";
+    private static final String TRIMESTRALE = "trimestrale";
+    private static final String ANNUALE = "annuale";
+    private static final String INGRESSI = "10ingressi";
 
-    public Abbonamento getDatiAbbonamento() {
-        Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
-        int idUtente = utente.getId();
-        return DAOFactory.getAbbonamentoDAO().trovaAbbonamentoAttivoPerUtente(idUtente);
+    public void getDatiAbbonamento(AbbonamentoBean bean) {
+        Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente"); // recupero dell'utente di sessione
+        int idUtente = utente.getId(); // recupero dell'id dell'utente
+        Abbonamento abbonamento = DAOFactory.getAbbonamentoDAO().trovaAbbonamentoAttivoPerUtente(idUtente); // recupero dell'abbonamento dal DB
+        bean.setAbbonamento(abbonamento); // impostazione della bean abbonamento
     }
 
     public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {

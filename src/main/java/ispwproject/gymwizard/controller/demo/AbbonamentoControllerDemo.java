@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.demo;
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.model.Abbonamento;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.AbbonamentoBean;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
 public class AbbonamentoControllerDemo extends AbbonamentoController {
@@ -10,11 +11,11 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
     private static Abbonamento abbonamentoMock = null;
 
     @Override
-    public Abbonamento getDatiAbbonamento() {
+    public void getDatiAbbonamento(AbbonamentoBean bean) {
         if (abbonamentoMock == null) {
-            return null;
+            bean.setAbbonamento(null);
         }
-        return abbonamentoMock;
+        bean.setAbbonamento(abbonamentoMock);
     }
 
     public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
