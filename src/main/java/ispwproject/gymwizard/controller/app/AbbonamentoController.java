@@ -24,7 +24,7 @@ public class AbbonamentoController {
         bean.setAbbonamento(abbonamento); // impostazione della bean abbonamento
     }
 
-    public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
+    public void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
         AbbonamentoDAO dao = DAOFactory.getAbbonamentoDAO();
 
@@ -44,7 +44,7 @@ public class AbbonamentoController {
         dao.inserisciAbbonamento(nuovoAbbonamento);
     }
 
-    public static String getNomeAbbonamento(String tipo) {
+    public String getNomeAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
             case MENSILE -> "Abbonamento Mensile";
             case TRIMESTRALE -> "Abbonamento Trimestrale";
@@ -54,7 +54,7 @@ public class AbbonamentoController {
         };
     }
 
-    public static String getDescrizioneAbbonamento(String tipo) {
+    public String getDescrizioneAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
             case MENSILE -> """
                 Abbonamento Mensile:
@@ -88,11 +88,11 @@ public class AbbonamentoController {
         };
     }
 
-    public static LocalDate getDataEmissione() {
+    public LocalDate getDataEmissione() {
         return LocalDate.now();
     }
 
-    public static LocalDate getDataScadenza(String tipo) {
+    public LocalDate getDataScadenza(String tipo) {
         return switch (tipo.toLowerCase()) {
             case MENSILE -> LocalDate.now().plusDays(30);
             case TRIMESTRALE -> LocalDate.now().plusDays(90);
@@ -103,7 +103,7 @@ public class AbbonamentoController {
     }
 
 
-    public static int getPrezzoAbbonamento(String tipo) {
+    public int getPrezzoAbbonamento(String tipo) {
         return switch (tipo.toLowerCase()) {
             case MENSILE -> 5000;
             case TRIMESTRALE -> 11000;
@@ -113,7 +113,7 @@ public class AbbonamentoController {
         };
     }
 
-    public static void apriNelBrowser(String url) throws BrowserAperturaException {
+    public void apriNelBrowser(String url) throws BrowserAperturaException {
         BrowserLauncher.apriUrlNelBrowser(url);
     }
 

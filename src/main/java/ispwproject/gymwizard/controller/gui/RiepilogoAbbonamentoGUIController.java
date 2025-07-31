@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.controller.app.PagamentoController;
+import ispwproject.gymwizard.util.bean.AbbonamentoBean;
 import ispwproject.gymwizard.util.logger.AppLogger;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
@@ -17,16 +18,16 @@ public class RiepilogoAbbonamentoGUIController extends AbstractGUIController {
 
     private static final Logger logger = AppLogger.getLogger();
 
-    private String tipo;
-
-    private final PagamentoController pagamentoController = new PagamentoController();
-
     @FXML private Label name;
     @FXML private Label price;
     @FXML private Label dataEmissione;
     @FXML private Label dataScadenza;
     @FXML private Label description;
     @FXML private AnchorPane anchorPane;
+
+    private final PagamentoController pagamentoController = new PagamentoController();
+    private final AbbonamentoController controller = new AbbonamentoController();
+    private String tipo;
 
     @FXML
     public void initialize() {
@@ -35,11 +36,11 @@ public class RiepilogoAbbonamentoGUIController extends AbstractGUIController {
         tipo = (String) SessionManager.getInstance().getAttributo("tipoAbbonamento");
 
         if (tipo != null) {
-            name.setText(AbbonamentoController.getNomeAbbonamento(tipo));
-            description.setText(AbbonamentoController.getDescrizioneAbbonamento(tipo));
-            price.setText(String.valueOf(AbbonamentoController.getPrezzoAbbonamento(tipo)));
-            dataEmissione.setText(String.valueOf(AbbonamentoController.getDataEmissione()));
-            dataScadenza.setText(String.valueOf(AbbonamentoController.getDataScadenza(tipo)));
+            name.setText(controller.getNomeAbbonamento(tipo));
+            description.setText(controller.getDescrizioneAbbonamento(tipo));
+            price.setText(String.valueOf(controller.getPrezzoAbbonamento(tipo)));
+            dataEmissione.setText(String.valueOf(controller.getDataEmissione()));
+            dataScadenza.setText(String.valueOf(controller.getDataScadenza(tipo)));
         } else {
             name.setText("Tipo non selezionato");
             description.setText("-");
@@ -53,12 +54,12 @@ public class RiepilogoAbbonamentoGUIController extends AbstractGUIController {
     private void onPagamentoClick(ActionEvent event) {
         logger.info("PAGAMENTO button clicked.");
 
-        int prezzo = AbbonamentoController.getPrezzoAbbonamento(tipo);
+        int prezzo = controller.getPrezzoAbbonamento(tipo);
         try {
             String url = pagamentoController.creaOrdine(prezzo);
 
-            AbbonamentoController.apriNelBrowser(url);
-            AbbonamentoController.aggiungiAbbonamento(tipo, "Pagamento mock");
+            controller.apriNelBrowser(url);
+            controller.aggiungiAbbonamento(tipo, "Pagamento mock");
 
             this.showPopup("Pagamento in attesa", null, "Verifica lo stato del pagamento nel browser.");
             this.showPopup("IGNORARE PAGAMENTO", null, "Dimostrazione: abbonamento attivato senza pagamento reale.");

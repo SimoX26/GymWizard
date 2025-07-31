@@ -9,6 +9,7 @@ import ispwproject.gymwizard.view.RinnovaAbbonamentoView;
 public class RinnovaAbbonamentoCLIController {
 
     private final RinnovaAbbonamentoView view = new RinnovaAbbonamentoView();
+    private final AbbonamentoController controller = new AbbonamentoController();
 
     public CLIState start() {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
@@ -42,8 +43,8 @@ public class RinnovaAbbonamentoCLIController {
         Abbonamento abbonamento = new Abbonamento();
         abbonamento.setIdUtente(utente.getId());
         abbonamento.setTipo(tipo);
-        abbonamento.setDataInizio(AbbonamentoController.getDataEmissione());
-        abbonamento.setDataFine(AbbonamentoController.getDataScadenza(tipo));
+        abbonamento.setDataInizio(controller.getDataEmissione());
+        abbonamento.setDataFine(controller.getDataScadenza(tipo));
         abbonamento.setStato("in_attesa_pagamento");
 
         // Salvo l'abbonamento temporaneo in sessione

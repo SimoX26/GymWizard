@@ -8,6 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertThrows;
 
 public class AbbonamentoAttivoTest {
+    AbbonamentoController abbonamentoController = new AbbonamentoController();
 
     @Before
     public void setupSessioneUtente() {
@@ -21,7 +22,7 @@ public class AbbonamentoAttivoTest {
     public void testAggiuntaAbbonamentoQuandoGiaAttivo() {
         // Verifica che venga sollevata IllegalStateException
         assertThrows(IllegalStateException.class, () ->
-                AbbonamentoController.aggiungiAbbonamento("mensile", "RIF123456")
+                abbonamentoController.aggiungiAbbonamento("mensile", "RIF123456")
         );
     }
 }

@@ -1,5 +1,6 @@
 package ispwproject.gymwizard.controller.gui;
 
+import com.beust.ah.A;
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.controller.app.ReportStatisticheController;
 import ispwproject.gymwizard.model.Abbonamento;
@@ -46,6 +47,8 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
     @FXML private TableColumn<UtenteAttivoBean, String> colNomeCompleto;
     @FXML private TableColumn<UtenteAttivoBean, String> colUltimoAccesso;
 
+    AbbonamentoController abbonamentoController = new AbbonamentoController();
+
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         anchorPane.setBackground(new Background(this.background()));
@@ -59,7 +62,7 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
         colTipoAbbonamento.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colImportoAbbonamento.setCellValueFactory(cellData -> {
             String tipo = cellData.getValue().getTipo();
-            int prezzoCent = AbbonamentoController.getPrezzoAbbonamento(tipo);
+            int prezzoCent = abbonamentoController.getPrezzoAbbonamento(tipo);
             String prezzoFormattato = String.format("%.2f €", prezzoCent / 100.0);
             return new SimpleStringProperty(prezzoFormattato);
         });

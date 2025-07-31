@@ -18,7 +18,7 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
         bean.setAbbonamento(abbonamentoMock);
     }
 
-    public static void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
+    public void aggiungiAbbonamento(String tipo, String riferimentoPagamento) {
         if (abbonamentoMock != null) {
             throw new IllegalStateException("Esiste già un abbonamento attivo per questo utente (DEMO).");
         }

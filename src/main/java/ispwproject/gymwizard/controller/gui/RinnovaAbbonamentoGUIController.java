@@ -14,12 +14,14 @@ public class RinnovaAbbonamentoGUIController extends AbstractGUIController{
     private static final Logger logger = AppLogger.getLogger();
     private static final String TIPO_ABBONAMENTO = "tipoAbbonamento";
     private static final String SCENE = "/views/RiepilogoAbbonamentoView.fxml";
+
     @FXML
     AnchorPane anchorPane;
 
     @FXML
     public void initialize(){
         anchorPane.setBackground(new Background(this.background()));
+
     }
 
     @FXML

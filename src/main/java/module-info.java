@@ -7,6 +7,7 @@ module ispwproject.gymwizard {
     requires com.google.zxing;
     requires com.google.gson;
     requires java.sql;
+    requires jcommander;
 
     exports ispwproject.gymwizard.controller;
     exports ispwproject.gymwizard.controller.app;

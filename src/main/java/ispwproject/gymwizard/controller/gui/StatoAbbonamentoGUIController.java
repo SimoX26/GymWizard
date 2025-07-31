@@ -52,15 +52,15 @@ public class StatoAbbonamentoGUIController extends AbstractGUIController {
     }
 
     @FXML
-    private void onRinnovaClick(ActionEvent rinnovaEvent) {
+    private void onRinnovaClick(ActionEvent event) {
         logger.info("RINNOVA button clicked.");
-        switchScene("/views/RinnovaAbbonamentoView.fxml", rinnovaEvent);
+        switchScene("/views/RinnovaAbbonamentoView.fxml", event);
     }
 
     @FXML
-    public void onBackClick(ActionEvent backEvent) {
+    public void onBackClick(ActionEvent event) {
         logger.info("BACK button clicked.");
-        switchScene("/views/DashboardClienteView.fxml", backEvent);
+        switchScene("/views/DashboardClienteView.fxml", event);
     }
 
     @FXML
