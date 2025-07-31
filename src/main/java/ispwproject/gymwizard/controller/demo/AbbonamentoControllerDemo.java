@@ -35,8 +35,4 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
 
         abbonamentoMock = nuovoAbbonamento;
     }
-
-    public static void resetMock() {
-        abbonamentoMock = null;
-    }
 }

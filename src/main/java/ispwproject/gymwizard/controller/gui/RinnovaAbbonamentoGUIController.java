@@ -59,7 +59,7 @@ public class RinnovaAbbonamentoGUIController extends AbstractGUIController{
     }
 
     @FXML
-    public void onHelpClick(ActionEvent event) {
+    public void onHelpClick() {
         logger.info("HELP button clicked.");
         this.showPopup("Guida Interfaccia", "Rinnova Abbonamento", """
             Scegli una delle tipologie disponibili:

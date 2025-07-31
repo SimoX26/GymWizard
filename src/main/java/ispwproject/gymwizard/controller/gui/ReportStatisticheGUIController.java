@@ -1,6 +1,5 @@
 package ispwproject.gymwizard.controller.gui;
 
-import com.beust.ah.A;
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.controller.app.ReportStatisticheController;
 import ispwproject.gymwizard.model.Abbonamento;
