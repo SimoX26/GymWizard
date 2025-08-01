@@ -28,7 +28,7 @@ public class AbbonamentoController {
         Utente utente = (Utente) SessionManager.getInstance().getAttributo("utente");
         AbbonamentoDAO dao = DAOFactory.getAbbonamentoDAO();
 
-        Abbonamento abbonamentoEsistente = dao.trovaAbbonamentoAttivoPerUtente(utente.getId());
+        Abbonamento abbonamentoEsistente = dao.trovaAbbonamentoAttivoPerUtente(utente.getId()); // Trova se esiste gia' un abbonamento per questo utente
         if (abbonamentoEsistente != null) {
             throw new IllegalStateException("Esiste già un abbonamento attivo per questo utente.");
         }
@@ -116,6 +116,4 @@ public class AbbonamentoController {
     public void apriNelBrowser(String url) throws BrowserAperturaException {
         BrowserLauncher.apriUrlNelBrowser(url);
     }
-
-
 }

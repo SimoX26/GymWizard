@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.demo;
 import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.AttivitaBean;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.AttivitaPienaException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
@@ -27,10 +28,10 @@ public class AttivitaControllerDemo extends AttivitaController {
     }
 
     @Override
-    public List<Attivita> getAttivitaDisponibili() {
-        List<Attivita> copiaProfonda = new ArrayList<>();
+    public void getAttivitaDisponibili(AttivitaBean bean) {
+        List<Attivita> attivitaList = new ArrayList<>();
         for (Attivita a : attivitaDemo) {
-            copiaProfonda.add(new Attivita(
+            attivitaList.add(new Attivita(
                     a.getId(),
                     a.getNome(),
                     a.getDescrizione(),
@@ -41,7 +42,7 @@ public class AttivitaControllerDemo extends AttivitaController {
                     a.getTrainerName()
             ));
         }
-        return copiaProfonda;
+        bean.setAttivita(attivitaList);
     }
 
     @Override

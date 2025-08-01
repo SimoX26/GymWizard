@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.gui;
 import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.bean.AttivitaBean;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.logger.AppLogger;
 import ispwproject.gymwizard.util.singleton.SessionManager;
@@ -23,14 +24,13 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
 
     @FXML
     private AnchorPane anchorPane;
-
     @FXML
     private VBox addBtn;
-
     @FXML
     private VBox attivitaContainer;
 
     private final AttivitaController controller = DemoFactory.getAttivitaController();
+    private final AttivitaBean bean = new AttivitaBean();
 
     @FXML
     public void initialize() {
@@ -54,8 +54,9 @@ public class ListinoAttivitaGUIController extends AbstractGUIController {
         }
 
         try {
-            List<Attivita> attivitaList = controller.getAttivitaDisponibili();
+            controller.getAttivitaDisponibili(bean); // Impostazione della bean da parte del controller
             attivitaContainer.getChildren().clear();
+            List<Attivita> attivitaList = bean.getAttivita(); // Richiesta della attivita' alla bean
             for (Attivita attivita : attivitaList) {
                 Button btn = new Button(attivita.getNome() + " | " + attivita.getData() + " | " + attivita.getOraInizio() + " - " + attivita.getOraFine() + " | posti rimanenti: " + attivita.getPostiDisponibili());
                 btn.setMaxWidth(Double.MAX_VALUE);

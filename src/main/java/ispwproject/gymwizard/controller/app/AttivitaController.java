@@ -2,6 +2,7 @@ package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.AttivitaBean;
 import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
@@ -10,7 +11,6 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 
 public class AttivitaController {
 
@@ -18,10 +18,9 @@ public class AttivitaController {
         // costruttore vuoto
     }
 
-    public List<Attivita> getAttivitaDisponibili() throws DAOException {
-        return DAOFactory.getAttivitaDAO().getAllDisponibili();
+    public void getAttivitaDisponibili(AttivitaBean bean) throws DAOException {
+        bean.setAttivita(DAOFactory.getAttivitaDAO().getAllDisponibili());
     }
-
 
     public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
             throws DAOException, AttivitaDuplicataException {

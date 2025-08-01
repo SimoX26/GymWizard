@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.cli;
 import ispwproject.gymwizard.controller.app.AttivitaController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Attivita;
+import ispwproject.gymwizard.util.bean.AttivitaBean;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.ListinoAttivitaView;
@@ -12,14 +13,16 @@ import java.util.List;
 public class ListinoAttivitaCLIController {
 
     private final ListinoAttivitaView view = new ListinoAttivitaView();
-    private final AttivitaController controller = DemoFactory.getAttivitaController();
+    private final AttivitaController controller = DemoFactory.getAttivitaController(); // Controller dinamico
+    private final AttivitaBean bean = new AttivitaBean();
 
     public CLIState start() {
-        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage");
+        String ruolo = (String) SessionManager.getInstance().getAttributo("homePage"); //
 
         List<Attivita> attivitaList;
         try {
-            attivitaList = controller.getAttivitaDisponibili(); // uso del controller dinamico
+            controller.getAttivitaDisponibili(bean); // Impostazione della bean tramite il controller
+            attivitaList = bean.getAttivita(); // Recupero della lista delle attivita' tramite la bean
         } catch (DAOException e) {
             view.mostraMessaggio("❌ Errore nel caricamento delle attività: " + e.getMessage());
             view.attesaInvio();
