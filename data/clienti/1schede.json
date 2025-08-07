@@ -48,5 +48,10 @@
     "id": 10,
     "idCliente": 1,
     "nomeScheda": "Prova"
+  },
+  {
+    "id": 11,
+    "idCliente": 1,
+    "nomeScheda": "Scheda  petto"
   }
 ]

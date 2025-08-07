@@ -14,10 +14,6 @@ import java.time.LocalTime;
 
 public class AttivitaController {
 
-    public AttivitaController() {
-        // costruttore vuoto
-    }
-
     public void getAttivitaDisponibili(AttivitaBean bean) throws DAOException {
         bean.setAttivita(DAOFactory.getAttivitaDAO().getAllDisponibili());
     }

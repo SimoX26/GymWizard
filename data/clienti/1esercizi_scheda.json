@@ -78,5 +78,13 @@
     "serie": 0,
     "ripetizioni": 0,
     "note": "Nessuna nota"
+  },
+  {
+    "id": 11,
+    "idScheda": 1,
+    "nomeEsercizio": "Panca piana",
+    "serie": 5,
+    "ripetizioni": 5,
+    "note": "Nessuna nota"
   }
 ]
