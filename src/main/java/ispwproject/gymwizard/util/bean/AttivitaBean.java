@@ -12,7 +12,7 @@ public class AttivitaBean {
         return this.attivitaList;
     }
 
-    public void setAttivita(Attivita attivita){
-        this.attivita = attivita;
+    public void setAttivita(List<Attivita> attivitaList){
+        this.attivitaList = attivitaList;
     }
 }
