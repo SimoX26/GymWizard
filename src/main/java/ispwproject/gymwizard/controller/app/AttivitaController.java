@@ -11,11 +11,13 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class AttivitaController {
 
     public void getAttivitaDisponibili(AttivitaBean bean) throws DAOException {
-        bean.setAttivita(DAOFactory.getAttivitaDAO().getAllDisponibili());
+        List<Attivita> attivitaList = DAOFactory.getAttivitaDAO().getAllDisponibili(); // Recupero della lista delle attività dal DB
+        bean.setAttivita(attivitaList); // Impostazione della bean
     }
 
     public void creaAttivita(String nome, String descrizione, LocalDate data, LocalTime oraInizio, LocalTime oraFine, int posti, String trainerName)
