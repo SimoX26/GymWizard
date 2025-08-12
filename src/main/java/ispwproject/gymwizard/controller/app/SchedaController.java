@@ -16,8 +16,6 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.util.logger.AppLogger;
 import java.util.logging.Level;
 
-import java.util.List;
-
 public class SchedaController {
 
     private SchedaBase tipoScheda;

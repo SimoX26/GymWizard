@@ -5,7 +5,6 @@ import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.bean.SchedaBean;
-import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.exception.EsercizioDuplicatoException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 
