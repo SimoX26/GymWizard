@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.gui;
 import ispwproject.gymwizard.controller.app.ClientiController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.ClienteBean;
 import ispwproject.gymwizard.util.logger.AppLogger;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ public class ListaClientiGUIController extends AbstractGUIController {
     private AnchorPane anchorPane;
 
     private final ClientiController clientiController = DemoFactory.getClientiController();
+    private final ClienteBean bean = new ClienteBean();
     private static final Logger logger = AppLogger.getLogger();
 
     @FXML
@@ -32,7 +34,9 @@ public class ListaClientiGUIController extends AbstractGUIController {
         anchorPane.setBackground(new Background(this.background()));
 
         try {
-            List<Utente> clientiList = clientiController.getClienti();
+            clientiController.getClienti(bean);
+
+            List<Utente> clientiList = bean.getListaClienti();
 
             for (Utente cliente : clientiList) {
                 Button btn = new Button(cliente.getUsername());

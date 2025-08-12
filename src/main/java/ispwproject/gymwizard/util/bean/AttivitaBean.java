@@ -6,7 +6,6 @@ import java.util.List;
 
 public class AttivitaBean {
     private List<Attivita> attivitaList;
-    private Attivita attivita;
 
     public List<Attivita> getAttivita(){
         return this.attivitaList;

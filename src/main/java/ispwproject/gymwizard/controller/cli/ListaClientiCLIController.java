@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.cli;
 import ispwproject.gymwizard.controller.app.ClientiController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.ClienteBean;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.ListaClientiView;
 
@@ -14,25 +15,27 @@ public class ListaClientiCLIController {
 
     private final ListaClientiView view = new ListaClientiView();
     private final ClientiController clientiController = DemoFactory.getClientiController(); // ✅ dynamic controller
+    private final ClienteBean bean = new ClienteBean();
 
     public CLIState start() {
-        List<Utente> clienti;
+        List<Utente> ListaClienti;
 
         try {
-            clienti = clientiController.getClienti();
+            clientiController.getClienti(bean);
+            ListaClienti = bean.getListaClienti();
         } catch (SQLException e) {
             view.mostraMessaggio("❌ Errore durante il caricamento dei clienti: " + e.getMessage());
             view.attesaInvio();
             return CLIState.DASHBOARD_TRAINER;
         }
 
-        if (clienti.isEmpty()) {
+        if (ListaClienti.isEmpty()) {
             view.mostraMessaggio("⚠️ Nessun cliente trovato nel sistema.");
             view.attesaInvio();
             return CLIState.DASHBOARD_TRAINER;
         }
 
-        List<String> nomiClienti = clienti.stream()
+        List<String> nomiClienti = ListaClienti.stream()
                 .map(Utente::getUsername)
                 .collect(Collectors.toList());
 
@@ -42,13 +45,13 @@ public class ListaClientiCLIController {
             return CLIState.DASHBOARD_TRAINER;
         }
 
-        if (scelta < 1 || scelta > clienti.size()) {
+        if (scelta < 1 || scelta > ListaClienti.size()) {
             view.mostraMessaggio("❌ Scelta non valida.");
             view.attesaInvio();
             return CLIState.LISTA_CLIENTI;
         }
 
-        Utente clienteSelezionato = clienti.get(scelta - 1);
+        Utente clienteSelezionato = ListaClienti.get(scelta - 1);
         SessionManager.getInstance().setAttributo("clienteSelezionato", clienteSelezionato);
 
         view.mostraMessaggio("✅ Hai selezionato: " + clienteSelezionato.getUsername() + "\n");
