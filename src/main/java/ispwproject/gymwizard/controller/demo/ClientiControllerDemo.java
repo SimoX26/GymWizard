@@ -11,7 +11,7 @@ import java.util.List;
 public class ClientiControllerDemo extends ClientiController {
 
     @Override
-    public void getClienti(ClienteBean bean) throws SQLException {
+    public void getClienti(ClienteBean bean){
         List<Utente> clientiDemo = new ArrayList<>();
 
         clientiDemo.add(new Utente(1, "mario.rossi", "mario.rossi@email.com"));
