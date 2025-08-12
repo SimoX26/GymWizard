@@ -4,7 +4,6 @@ import ispwproject.gymwizard.controller.app.ClientiController;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.bean.ClienteBean;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
