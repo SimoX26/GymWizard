@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.gui;
 import ispwproject.gymwizard.controller.app.AbbonamentoController;
 import ispwproject.gymwizard.controller.app.ReportStatisticheController;
 import ispwproject.gymwizard.model.Abbonamento;
+import ispwproject.gymwizard.util.bean.AbbonamentoBean;
 import ispwproject.gymwizard.util.bean.PrenotazioneBean;
 import ispwproject.gymwizard.util.bean.UtenteAttivoBean;
 import ispwproject.gymwizard.util.logger.AppLogger;
@@ -47,6 +48,7 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
     @FXML private TableColumn<UtenteAttivoBean, String> colUltimoAccesso;
 
     AbbonamentoController abbonamentoController = new AbbonamentoController();
+    AbbonamentoBean bean = new AbbonamentoBean();
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,7 +81,9 @@ public class ReportStatisticheGUIController extends AbstractGUIController implem
 
     @FXML
     private void loadData() {
-        List<Abbonamento> abbonamenti = ReportStatisticheController.getStoricoAbbonamenti();
+        ReportStatisticheController.getStoricoAbbonamenti(bean);
+        List<Abbonamento> abbonamenti = bean.getListaAbbonamenti();
+
         List<PrenotazioneBean> prenotazioni = ReportStatisticheController.getStoricoPrenotazioni();
         List<UtenteAttivoBean> utenti = ReportStatisticheController.getUtentiAttivi();
 

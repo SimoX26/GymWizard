@@ -1,6 +1,6 @@
 package ispwproject.gymwizard.controller.app;
 
-import ispwproject.gymwizard.model.Abbonamento;
+import ispwproject.gymwizard.util.bean.AbbonamentoBean;
 import ispwproject.gymwizard.util.dao.AbbonamentoDAO;
 import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.dao.PrenotazioneDAO;
@@ -26,12 +26,12 @@ public class ReportStatisticheController {
     private static final PrenotazioneDAO prenotazioneDAO = DAOFactory.getPrenotazioneDAO();
     private static final UtenteDAO utenteDAO = DAOFactory.getUtenteDAO();
 
-    public static List<Abbonamento> getStoricoAbbonamenti() {
+    public static void getStoricoAbbonamenti(AbbonamentoBean bean) {
         try {
-            return abbonamentoDAO.getAllDisponibili();
+            bean.setListaAbbonamenti(abbonamentoDAO.getAllDisponibili());
         } catch (DAOException e) {
             AppLogger.getLogger().log(Level.SEVERE, ERROR_MESSAGE, e);
-            return Collections.emptyList();
+            bean.setListaAbbonamenti(Collections.emptyList());
         }
 
     }
