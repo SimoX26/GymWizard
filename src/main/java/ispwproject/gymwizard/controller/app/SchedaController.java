@@ -4,6 +4,7 @@ package ispwproject.gymwizard.controller.app;
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.SchedaBean;
 import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.exception.EsercizioDuplicatoException;
 import ispwproject.gymwizard.util.factorymethod.*;
@@ -35,18 +36,18 @@ public class SchedaController {
         }
     }
 
-    public  List<EsercizioScheda> getEserciziScheda(int idScheda) {
-        return DAOFactory.getEsercizioSchedaDAO().getEserciziByScheda(idScheda);
+    public void getEserciziScheda(SchedaBean bean, int idScheda) {
+        bean.setEserciziScheda(DAOFactory.getEsercizioSchedaDAO().getEserciziByScheda(idScheda));
     }
 
-    public  List<Scheda> getSchedeByIdCliente(int idCliente) {
+    public void getSchedeByIdCliente(SchedaBean bean, int idCliente) {
         Utente loggato = (Utente) SessionManager.getInstance().getAttributo("utente");
 
         if (loggato == null) {
             throw new SecurityException("Utente non loggato.");
         }
 
-        return DAOFactory.getSchedaDAO().getSchedeByUtente(idCliente);
+        bean.setListaSchede(DAOFactory.getSchedaDAO().getSchedeByUtente(idCliente));
     }
 
 

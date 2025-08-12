@@ -4,6 +4,7 @@ import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.SchedaBean;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.exception.EsercizioDuplicatoException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
@@ -17,7 +18,7 @@ public class SchedaControllerDemo extends SchedaController {
     private int schedaCounter = 1;
 
     @Override
-    public List<Scheda> getSchedeByIdCliente(int idCliente) {
+    public void getSchedeByIdCliente(SchedaBean bean, int idCliente) {
         if (!schedePerUtente.containsKey(idCliente)) {
             Scheda s1 = new Scheda(schedaCounter++, idCliente, "Scheda Demo 1", "bulk");
             Scheda s2 = new Scheda(schedaCounter++, idCliente, "Scheda Demo 2", "cut");
@@ -34,12 +35,12 @@ public class SchedaControllerDemo extends SchedaController {
             )));
         }
 
-        return schedePerUtente.get(idCliente);
+        bean.setListaSchede(schedePerUtente.get(idCliente));
     }
 
     @Override
-    public List<EsercizioScheda> getEserciziScheda(int idScheda) {
-        return eserciziPerScheda.getOrDefault(idScheda, new ArrayList<>());
+    public void getEserciziScheda(SchedaBean bean, int idScheda) {
+        bean.setEserciziScheda(eserciziPerScheda.getOrDefault(idScheda, new ArrayList<>()));
     }
 
     @Override

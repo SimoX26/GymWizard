@@ -5,6 +5,7 @@ import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.SchedaBean;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -53,6 +54,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
     // Controller reale o demo (in base a configurazione)
     private final SchedaController controller = DemoFactory.getSchedaController();
+    private final SchedaBean bean = new SchedaBean();
 
     @FXML
     public void initialize() throws DAOException {
@@ -81,7 +83,8 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
         }
 
         // Popolo il ComboBox con le schede dell'utente
-        List<Scheda> schede = controller.getSchedeByIdCliente(u.getId());
+        controller.getSchedeByIdCliente(bean, u.getId());
+        List<Scheda> schede = bean.getListaSchede();
         ObservableList<Scheda> lista = FXCollections.observableArrayList(schede);
         comboBoxSchede.setItems(lista);
 
@@ -139,7 +142,8 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
                 + " [ID: " + schedaSelezionata.getId() + "]");
 
         SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
-        List<EsercizioScheda> esercizi = controller.getEserciziScheda(schedaSelezionata.getId());
+        controller.getEserciziScheda(bean, schedaSelezionata.getId());
+        List<EsercizioScheda> esercizi = bean.getEserciziScheda();
         ObservableList<EsercizioScheda> eserciziObs = FXCollections.observableArrayList(esercizi);
         tableViewEsercizi.setItems(eserciziObs);
     }

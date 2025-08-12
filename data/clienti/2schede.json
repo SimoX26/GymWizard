@@ -2,19 +2,21 @@
   {
     "id": 1,
     "idCliente": 2,
-    "nomeScheda": "Scheda 1 ",
-    "DATA_CREAZIONE": 1751884317329
+    "nomeScheda": "Scheda 1 "
   },
   {
     "id": 2,
     "idCliente": 2,
-    "nomeScheda": "Spalle",
-    "DATA_CREAZIONE": 1751913227639
+    "nomeScheda": "Spalle"
   },
   {
     "id": 3,
     "idCliente": 2,
-    "nomeScheda": "Gambe",
-    "DATA_CREAZIONE": 1753713188506
+    "nomeScheda": "Gambe"
+  },
+  {
+    "id": 4,
+    "idCliente": 2,
+    "nomeScheda": "prova"
   }
 ]

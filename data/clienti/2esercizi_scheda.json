@@ -14,5 +14,13 @@
     "serie": 1,
     "ripetizioni": 1,
     "note": ""
+  },
+  {
+    "id": 3,
+    "idScheda": 1,
+    "nomeEsercizio": "Es 1",
+    "serie": 4,
+    "ripetizioni": 4,
+    "note": "nessuna"
   }
 ]

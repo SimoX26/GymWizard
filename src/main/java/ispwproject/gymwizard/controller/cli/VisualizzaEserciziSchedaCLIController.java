@@ -4,6 +4,7 @@ import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.EsercizioScheda;
 import ispwproject.gymwizard.model.Scheda;
+import ispwproject.gymwizard.util.bean.SchedaBean;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.VisualizzaEserciziSchedaView;
 
@@ -16,6 +17,7 @@ public class VisualizzaEserciziSchedaCLIController {
 
     // Usa controller dinamico (reale o demo)
     private final SchedaController controller = DemoFactory.getSchedaController();
+    private final SchedaBean bean = new SchedaBean();
 
     public CLIState start() {
         Scheda schedaSelezionata = (Scheda) SessionManager.getInstance().getAttributo("scheda");
@@ -27,11 +29,12 @@ public class VisualizzaEserciziSchedaCLIController {
             return ruolo.equalsIgnoreCase("Trainer") ? CLIState.DASHBOARD_TRAINER : CLIState.DASHBOARD_CLIENTE;
         }
 
-        List<EsercizioScheda> eserciziScheda = controller.getEserciziScheda(schedaSelezionata.getId());
+        controller.getEserciziScheda(bean, schedaSelezionata.getId());
+        List<EsercizioScheda> eserciziScheda = bean.getEserciziScheda();
 
         List<String> esercizi = eserciziScheda.stream()
-                .map(e -> e.getNomeEsercizio() + " " + e.getSerie() + "x" + e.getRipetizioni())
-                .collect(Collectors.toList());
+        .map(e -> e.getNomeEsercizio() + " " + e.getSerie() + "x" + e.getRipetizioni())
+        .collect(Collectors.toList());
 
         if (esercizi.isEmpty()) {
             esercizi.add("⚠️ Nessun esercizio presente in questa scheda.");

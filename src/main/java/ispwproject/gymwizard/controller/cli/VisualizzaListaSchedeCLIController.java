@@ -4,6 +4,7 @@ import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.SchedaBean;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.VisualizzaListaSchedeView;
 
@@ -13,6 +14,8 @@ public class VisualizzaListaSchedeCLIController {
 
     // Controller dinamico (può essere demo o reale)
     private final SchedaController controller;
+
+    private final SchedaBean bean = new SchedaBean();
 
     public VisualizzaListaSchedeCLIController() {
         // Sostituisci questo con: new SchedaController() se vuoi forzare l'uso del controller reale
@@ -37,7 +40,8 @@ public class VisualizzaListaSchedeCLIController {
             idUtente = utente.getId();
         }
 
-        List<Scheda> schede = controller.getSchedeByIdCliente(idUtente);
+        controller.getSchedeByIdCliente(bean, idUtente);
+        List<Scheda> schede = bean.getListaSchede();
         List<String> nomiSchede = schede.stream().map(Scheda::getNomeScheda).toList();
 
         boolean mostraCrea = ruolo.equalsIgnoreCase("Trainer");
