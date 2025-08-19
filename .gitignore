@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### PAYPAL ###
+!**/src/main/resources/paypal.properties
