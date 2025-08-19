@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.AttivitaController;
+import ispwproject.gymwizard.controller.demo.DemoFactory;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
@@ -27,6 +28,8 @@ public class CreaAttivitaGUIController extends AbstractGUIController {
     @FXML private TextField postiDisponibiliField;
     @FXML private TextField trainerNameField;
 
+    private final AttivitaController controller =  DemoFactory.getAttivitaController();
+
     @FXML
     private void initialize() {
         anchorPane.setBackground(new Background(this.background()));
@@ -44,7 +47,7 @@ public class CreaAttivitaGUIController extends AbstractGUIController {
             int posti = Integer.parseInt(postiDisponibiliField.getText());
             String trainerName = trainerNameField.getText();
 
-            new AttivitaController().creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
+            controller.creaAttivita(nome, descrizione, data, oraInizio, oraFine, posti, trainerName);
 
             showPopup("Successo", "Attività creata", "Attività creata con successo!");
             switchScene("/views/ListinoAttivitaView.fxml", event);

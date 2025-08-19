@@ -86,5 +86,29 @@
     "serie": 5,
     "ripetizioni": 5,
     "note": "Nessuna nota"
+  },
+  {
+    "id": 12,
+    "idScheda": 7,
+    "nomeEsercizio": "Panca",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": ""
+  },
+  {
+    "id": 13,
+    "idScheda": 1,
+    "nomeEsercizio": "Stacchi",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": ""
+  },
+  {
+    "id": 14,
+    "idScheda": 7,
+    "nomeEsercizio": "Croci cavi",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": "no"
   }
 ]
