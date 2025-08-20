@@ -6,14 +6,14 @@ import java.util.List;
 
 public class AbbonamentoBean {
     private Abbonamento abbonamento;
-    private List<Abbonamento> ListaAbbonamenti;
+    private List<Abbonamento> listaAbbonamenti;
 
     public void setListaAbbonamenti(List<Abbonamento> ListaAbbonamenti){
-        this.ListaAbbonamenti = ListaAbbonamenti;
+        this.listaAbbonamenti = ListaAbbonamenti;
     }
 
     public List<Abbonamento> getListaAbbonamenti() {
-        return this.ListaAbbonamenti;
+        return this.listaAbbonamenti;
     }
 
     public Abbonamento getAbbonamento() {
