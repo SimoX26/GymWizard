@@ -7,6 +7,7 @@ import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.bean.SchedaBean;
 import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.exception.EsercizioDuplicatoException;
+import ispwproject.gymwizard.util.exception.SchedaCreationException;
 import ispwproject.gymwizard.util.factorymethod.*;
 import ispwproject.gymwizard.util.factorymethod.concreteproduct.SchedaBase;
 import ispwproject.gymwizard.util.filesystem.EsercizioSchedaFileDAO;
@@ -24,13 +25,13 @@ public class SchedaController {
         //Costruttore vuoto
     }
 
-    public SchedaController(String tipo){
+    public SchedaController(String tipo) throws SchedaCreationException {
         Factory factory = new Factory();
         try{
             this.tipoScheda = factory.createSchedaBase(tipo);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new SchedaCreationException("Errore durante la creazione della scheda di tipo: " + tipo, e);
         }
     }
 
@@ -49,7 +50,7 @@ public class SchedaController {
     }
 
 
-    public void creaScheda(String nome, String tipo) throws DAOException {
+    public void creaScheda(String nome, String tipo) throws DAOException, SchedaCreationException {
         Utente cliente = (Utente) SessionManager.getInstance().getAttributo("clienteSelezionato");
         if (cliente == null) {
             throw new DAOException("Cliente non selezionato.");

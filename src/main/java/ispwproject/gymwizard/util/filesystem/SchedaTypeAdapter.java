@@ -4,11 +4,9 @@ import com.google.gson.*;
 import ispwproject.gymwizard.model.Scheda;
 
 import java.lang.reflect.Type;
-import java.sql.Timestamp;
+
 
 public class SchedaTypeAdapter implements JsonSerializer<Scheda>, JsonDeserializer<Scheda> {
-
-    private static final String DATA_CREAZIONE = "DATA_CREAZIONE";
 
     @Override
     public JsonElement serialize(Scheda src, Type typeOfSrc, JsonSerializationContext context) {

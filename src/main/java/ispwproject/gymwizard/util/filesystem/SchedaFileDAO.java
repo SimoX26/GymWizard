@@ -4,8 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import ispwproject.gymwizard.model.Scheda;
 
 import java.lang.reflect.Type;
-import java.sql.Timestamp;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class SchedaFileDAO { // NOSONAR
@@ -35,18 +34,6 @@ public class SchedaFileDAO { // NOSONAR
         FileSystemManager.saveListToFile(schede, idCliente, FILE_NAME);
     }
 
-    public List<Scheda> getSchedeByUtente(int idCliente) {
-        List<?> rawList = FileSystemManager.loadListFromFile(idCliente, FILE_NAME, LIST_TYPE);
-        List<Scheda> schede = new ArrayList<>();
-
-        for (Object o : rawList) {
-            if (o instanceof Scheda scheda) {
-                schede.add(scheda);
-            }
-        }
-
-        return schede;
-    }
 
     private int generaNuovoId(List<Scheda> schede) {
         return schede.stream()

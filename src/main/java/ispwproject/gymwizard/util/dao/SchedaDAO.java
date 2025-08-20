@@ -1,6 +1,6 @@
 package ispwproject.gymwizard.util.dao;
 
-import ispwproject.gymwizard.controller.app.SchedaController;
+
 import ispwproject.gymwizard.model.Scheda;
 import ispwproject.gymwizard.util.exception.DAOException;
 import ispwproject.gymwizard.util.logger.AppLogger;
