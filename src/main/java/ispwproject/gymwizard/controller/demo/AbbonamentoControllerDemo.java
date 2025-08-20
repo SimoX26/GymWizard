@@ -10,6 +10,11 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
 
     private static Abbonamento abbonamentoMock = null;
 
+
+    protected static void setAbbonamentoMock(Abbonamento abbonamento) {
+        abbonamentoMock = abbonamento;
+    }
+
     @Override
     public void getDatiAbbonamento(AbbonamentoBean bean) {
         if (abbonamentoMock == null) {
@@ -34,6 +39,7 @@ public class AbbonamentoControllerDemo extends AbbonamentoController {
         nuovoAbbonamento.setStato("attivo");
         nuovoAbbonamento.setRiferimentoPagamento(riferimentoPagamento);
 
-        abbonamentoMock = nuovoAbbonamento;
+        setAbbonamentoMock(nuovoAbbonamento);
+
     }
 }
