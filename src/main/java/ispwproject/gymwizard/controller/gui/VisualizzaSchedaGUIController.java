@@ -29,7 +29,7 @@ import java.util.List;
 public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
     private static final String HOMEPAGE = "homePage";
-
+    private static final String SCHEDA = "scheda";
     @FXML
     private ComboBox<Scheda> comboBoxSchede;
 
@@ -118,7 +118,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
         if (!lista.isEmpty()) {
             comboBoxSchede.getSelectionModel().selectFirst();
             Scheda selezionata = comboBoxSchede.getSelectionModel().getSelectedItem();
-            SessionManager.getInstance().setAttributo("scheda", selezionata);
+            SessionManager.getInstance().setAttributo(SCHEDA, selezionata);
             onSchedaSelezionata(selezionata);
         }
 
@@ -129,7 +129,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
 
         // Colonna Tipo: cast esplicito per evitare l'errore
         colTipo.setCellValueFactory(cellData -> new SimpleStringProperty(
-                ((Scheda) SessionManager.getInstance().getAttributo("scheda")).getTipo()
+                ((Scheda) SessionManager.getInstance().getAttributo(SCHEDA)).getTipo()
         ));
     }
 
@@ -141,7 +141,7 @@ public class VisualizzaSchedaGUIController extends AbstractGUIController {
         AppLogger.getLogger().info("Scheda selezionata: " + schedaSelezionata.getNomeScheda()
                 + " [ID: " + schedaSelezionata.getId() + "]");
 
-        SessionManager.getInstance().setAttributo("scheda", schedaSelezionata);
+        SessionManager.getInstance().setAttributo(SCHEDA, schedaSelezionata);
         controller.getEserciziScheda(bean, schedaSelezionata.getId());
         List<EsercizioScheda> esercizi = bean.getEserciziScheda();
         ObservableList<EsercizioScheda> eserciziObs = FXCollections.observableArrayList(esercizi);
