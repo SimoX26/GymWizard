@@ -1,6 +1,7 @@
 package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Utente;
+import ispwproject.gymwizard.util.bean.SchedaBean;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,13 +24,15 @@ class SchedaControllerTest {
     @Test
     void testAccessoSchedeProprie() {
         SchedaController controller = new SchedaController();
-        assertDoesNotThrow(() -> controller.getSchedeByIdCliente(1));
+        SchedaBean bean = new SchedaBean();
+        assertDoesNotThrow(() -> controller.getSchedeByIdCliente(bean, 1));
     }
 
     @Test
     void testAccessoSchedeAltrui() {
         SchedaController controller = new SchedaController();
-        assertDoesNotThrow(() -> controller.getSchedeByIdCliente(99));
+        SchedaBean bean = new SchedaBean();
+        assertDoesNotThrow(() -> controller.getSchedeByIdCliente(bean, 99));
     }
 
 }

@@ -3,6 +3,7 @@ package ispwproject.gymwizard.controller.cli;
 import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.exception.SchedaCreationException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import ispwproject.gymwizard.view.CreaSchedaClienteView;
 
@@ -32,6 +33,8 @@ public class CreaSchedaClienteCLIController {
             view.mostraMessaggio("❌ Errore durante la creazione della scheda: " + e.getMessage());
             view.attesaInvio();
             return CLIState.SELEZIONA_SCHEDA;
+        } catch (SchedaCreationException e) {
+            throw new RuntimeException(e);
         }
     }
 }

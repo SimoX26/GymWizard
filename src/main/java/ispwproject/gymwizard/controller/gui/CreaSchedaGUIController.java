@@ -2,12 +2,12 @@ package ispwproject.gymwizard.controller.gui;
 
 import ispwproject.gymwizard.controller.app.SchedaController;
 import ispwproject.gymwizard.util.exception.DAOException;
+import ispwproject.gymwizard.util.exception.SchedaCreationException;
 import ispwproject.gymwizard.util.singleton.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 
@@ -24,8 +24,6 @@ public class CreaSchedaGUIController extends AbstractGUIController {
     private TextField nomeScheda;
 
     @FXML
-    private ToggleGroup tipoSchedaGroup;
-    @FXML
     private RadioButton bulkRadio;
     @FXML
     private RadioButton cutRadio;
@@ -37,7 +35,7 @@ public class CreaSchedaGUIController extends AbstractGUIController {
     }
 
     @FXML
-    public void onCreaScheda(ActionEvent event) throws DAOException {
+    public void onCreaScheda(ActionEvent event) throws DAOException, SchedaCreationException {
         logger.info("CREA SCHEDA button clicked.");
         String nome = nomeScheda.getText();
 
