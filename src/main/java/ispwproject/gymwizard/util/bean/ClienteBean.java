@@ -5,13 +5,13 @@ import ispwproject.gymwizard.model.Utente;
 import java.util.List;
 
 public class ClienteBean {
-    private List<Utente> ListaClienti;
+    private List<Utente> listaClienti;
 
     public List<Utente> getListaClienti(){
-        return this.ListaClienti;
+        return this.listaClienti;
     }
 
-    public void setListaClienti(List<Utente> ListaClienti){
-        this.ListaClienti = ListaClienti;
+    public void setListaClienti(List<Utente> listaClienti){
+        this.listaClienti = listaClienti;
     }
 }

@@ -8,8 +8,8 @@ public class AbbonamentoBean {
     private Abbonamento abbonamento;
     private List<Abbonamento> listaAbbonamenti;
 
-    public void setListaAbbonamenti(List<Abbonamento> ListaAbbonamenti){
-        this.listaAbbonamenti = ListaAbbonamenti;
+    public void setListaAbbonamenti(List<Abbonamento> listaAbbonamenti){
+        this.listaAbbonamenti = listaAbbonamenti;
     }
 
     public List<Abbonamento> getListaAbbonamenti() {

@@ -6,22 +6,22 @@ import ispwproject.gymwizard.model.Scheda;
 import java.util.List;
 
 public class SchedaBean {
-    List<EsercizioScheda> ListaEsercizi;
-    List<Scheda> ListaSchede;
+    List<EsercizioScheda> listaEsercizi;
+    List<Scheda> listaSchede;
 
-    public void setEserciziScheda(List<EsercizioScheda> ListaEsercizi){
-        this.ListaEsercizi = ListaEsercizi;
+    public void setEserciziScheda(List<EsercizioScheda> listaEsercizi){
+        this.listaEsercizi = listaEsercizi;
     }
 
     public List<EsercizioScheda> getEserciziScheda(){
-        return this.ListaEsercizi;
+        return this.listaEsercizi;
     }
 
-    public void setListaSchede(List<Scheda> ListaSchede){
-        this.ListaSchede = ListaSchede;
+    public void setListaSchede(List<Scheda> listaSchede){
+        this.listaSchede = listaSchede;
     }
 
     public List<Scheda> getListaSchede(){
-        return this.ListaSchede;
+        return this.listaSchede;
     }
 }
