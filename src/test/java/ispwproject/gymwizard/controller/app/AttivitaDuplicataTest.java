@@ -4,12 +4,14 @@ import ispwproject.gymwizard.model.Attivita;
 import ispwproject.gymwizard.util.dao.DAOFactory;
 import ispwproject.gymwizard.util.exception.AttivitaDuplicataException;
 import ispwproject.gymwizard.util.exception.DAOException;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AttivitaDuplicataTest {
 
@@ -19,8 +21,8 @@ public class AttivitaDuplicataTest {
     private final LocalTime oraInizio = LocalTime.of(9, 0);
     private final LocalTime oraFine = LocalTime.of(10, 0);
 
-    @Before
-    public void inserisciAttivitaDiTest() throws DAOException {
+    @BeforeEach
+    void inserisciAttivitaDiTest() throws DAOException {
         // Se non esiste già, inseriamo un'attività per testare il duplicato
         if (!DAOFactory.getAttivitaDAO().existsAttivita(nome, data, oraInizio)) {
             Attivita attivita = new Attivita(
@@ -37,17 +39,19 @@ public class AttivitaDuplicataTest {
         }
     }
 
-    @Test(expected = AttivitaDuplicataException.class)
-    public void testCreazioneAttivitaDuplicata() throws DAOException, AttivitaDuplicataException {
-        // Tenta di creare la stessa attività => dovrebbe lanciare AttivitaDuplicataException
-        controller.creaAttivita(
-                nome,
-                "Sessione di prova duplicata",
-                data,
-                oraInizio,
-                oraFine,
-                10,
-                "Trainer Test"
+    @Test
+    void testCreazioneAttivitaDuplicata() {
+        // Tenta di creare la stessa attività => deve lanciare AttivitaDuplicataException
+        assertThrows(AttivitaDuplicataException.class, () ->
+                controller.creaAttivita(
+                        nome,
+                        "Sessione di prova duplicata",
+                        data,
+                        oraInizio,
+                        oraFine,
+                        10,
+                        "Trainer Test"
+                )
         );
     }
 }

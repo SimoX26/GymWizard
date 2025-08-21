@@ -1,9 +1,8 @@
 package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.util.singleton.SessionManager;
-import org.junit.Test;
-
-import static org.junit.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AbbonamentoSenzaLoginTest {
 
@@ -16,8 +15,7 @@ public class AbbonamentoSenzaLoginTest {
         AbbonamentoController controller = new AbbonamentoController();
 
         // Verifica che lancia eccezione con metodo non statico
-        assertThrows(NullPointerException.class, () -> {
-            controller.aggiungiAbbonamento("mensile", "TEST123");
-        });
+        assertThrows(NullPointerException.class,
+                () -> controller.aggiungiAbbonamento("mensile", "TEST123"));
     }
 }

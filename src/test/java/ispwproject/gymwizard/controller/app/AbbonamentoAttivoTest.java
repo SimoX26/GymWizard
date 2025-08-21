@@ -2,16 +2,18 @@ package ispwproject.gymwizard.controller.app;
 
 import ispwproject.gymwizard.model.Utente;
 import ispwproject.gymwizard.util.singleton.SessionManager;
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class AbbonamentoAttivoTest {
-    AbbonamentoController abbonamentoController = new AbbonamentoController();
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-    @Before
-    public void setupSessioneUtente() {
+class AbbonamentoAttivoTest {
+
+    private final AbbonamentoController abbonamentoController = new AbbonamentoController();
+
+    @BeforeEach
+    void setupSessioneUtente() {
         // Simula un utente già loggato con ID 1
         Utente utenteLoggato = new Utente();
         utenteLoggato.setId(1);
@@ -19,7 +21,7 @@ public class AbbonamentoAttivoTest {
     }
 
     @Test
-    public void testAggiuntaAbbonamentoQuandoGiaAttivo() {
+    void testAggiuntaAbbonamentoQuandoGiaAttivo() {
         // Verifica che venga sollevata IllegalStateException
         assertThrows(IllegalStateException.class, () ->
                 abbonamentoController.aggiungiAbbonamento("mensile", "RIF123456")
