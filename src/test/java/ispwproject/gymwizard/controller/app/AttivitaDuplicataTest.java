@@ -13,7 +13,7 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class AttivitaDuplicataTest {
+class AttivitaDuplicataTest {
 
     private final AttivitaController controller = new AttivitaController();
     private final String nome = "Pilates Test";

@@ -4,10 +4,10 @@ import ispwproject.gymwizard.util.singleton.SessionManager;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AbbonamentoSenzaLoginTest {
+class AbbonamentoSenzaLoginTest {
 
     @Test
-    public void testCreazioneAbbonamentoSenzaLogin() {
+    void testCreazioneAbbonamentoSenzaLogin() {
         // Simula assenza utente loggato
         SessionManager.getInstance().setAttributo("utente", null);
 
