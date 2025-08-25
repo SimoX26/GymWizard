@@ -9,12 +9,18 @@ public class TimestampTypeAdapter implements JsonSerializer<Timestamp>, JsonDese
 
     @Override
     public JsonElement serialize(Timestamp src, Type typeOfSrc, JsonSerializationContext context) {
+        if (src == null) {
+            return JsonNull.INSTANCE;
+        }
         return new JsonPrimitive(src.getTime());
     }
 
     @Override
     public Timestamp deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
+        if (json == null || json.isJsonNull()) {
+            return null;
+        }
         return new Timestamp(json.getAsLong());
     }
 }

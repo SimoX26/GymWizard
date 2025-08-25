@@ -65,9 +65,9 @@ public class SchedaController {
         DAOFactory.getSchedaDAO().insertScheda(scheda);
 
         try {
-            SchedaFileDAO.getInstance().insertScheda(scheda);
+            new SchedaFileDAO().insertScheda(scheda);
         } catch (Exception e) {
-            AppLogger.getLogger().log(Level.WARNING, "⚠️ Errore salvataggio su FileSystem", e);
+            AppLogger.getLogger().log(Level.WARNING, "Errore salvataggio su FileSystem", e);
         }
     }
 
@@ -98,10 +98,12 @@ public class SchedaController {
         }
 
         try {
-            EsercizioSchedaFileDAO.getInstance().insertEsercizio(nuovo);
+            int idCliente = schedaCorrente.getIdCliente();
+            new EsercizioSchedaFileDAO().insertEsercizio(idCliente, nuovo);
         } catch (Exception e) {
             AppLogger.getLogger().log(Level.WARNING, "Errore durante il salvataggio dell'esercizio nel FileSystem", e);
         }
+
     }
 
 }

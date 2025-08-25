@@ -23,12 +23,27 @@ public class EsercizioSchedaTypeAdapter implements JsonSerializer<EsercizioSched
     public EsercizioScheda deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject obj = json.getAsJsonObject();
         EsercizioScheda esercizio = new EsercizioScheda();
-        esercizio.setId(obj.get("id").getAsInt());
-        esercizio.setIdScheda(obj.get("idScheda").getAsInt());
-        esercizio.setNomeEsercizio(obj.get("nomeEsercizio").getAsString());
-        esercizio.setSerie(obj.get("serie").getAsInt());
-        esercizio.setRipetizioni(obj.get("ripetizioni").getAsInt());
-        esercizio.setNote(obj.get("note").getAsString());
+
+        // 🔹 Controlli per evitare NPE su vecchi JSON
+        if (obj.has("id") && !obj.get("id").isJsonNull()) {
+            esercizio.setId(obj.get("id").getAsInt());
+        }
+        if (obj.has("idScheda") && !obj.get("idScheda").isJsonNull()) {
+            esercizio.setIdScheda(obj.get("idScheda").getAsInt());
+        }
+        if (obj.has("nomeEsercizio") && !obj.get("nomeEsercizio").isJsonNull()) {
+            esercizio.setNomeEsercizio(obj.get("nomeEsercizio").getAsString());
+        }
+        if (obj.has("serie") && !obj.get("serie").isJsonNull()) {
+            esercizio.setSerie(obj.get("serie").getAsInt());
+        }
+        if (obj.has("ripetizioni") && !obj.get("ripetizioni").isJsonNull()) {
+            esercizio.setRipetizioni(obj.get("ripetizioni").getAsInt());
+        }
+        if (obj.has("note") && !obj.get("note").isJsonNull()) {
+            esercizio.setNote(obj.get("note").getAsString());
+        }
+
         return esercizio;
     }
 }

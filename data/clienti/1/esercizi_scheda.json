@@ -6,5 +6,13 @@
     "serie": 3,
     "ripetizioni": 6,
     "note": "parallelo"
+  },
+  {
+    "id": 1,
+    "idScheda": 6,
+    "nomeEsercizio": "calf",
+    "serie": 1,
+    "ripetizioni": 1,
+    "note": ""
   }
 ]

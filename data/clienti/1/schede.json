@@ -2,13 +2,17 @@
   {
     "id": 1,
     "idCliente": 1,
-    "nomeScheda": "Scheda Test",
-    "dataCreazione": 1751580000000
+    "nomeScheda": "Scheda Test"
   },
   {
     "id": 2,
     "idCliente": 1,
-    "nomeScheda": "Gambe",
-    "dataCreazione": 1751593893000
+    "nomeScheda": "Gambe"
+  },
+  {
+    "id": 3,
+    "idCliente": 1,
+    "nomeScheda": "Polpacci",
+    "tipo": "bulk"
   }
 ]
