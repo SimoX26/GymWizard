@@ -7,14 +7,20 @@ import java.lang.reflect.Type;
 
 public class EsercizioSchedaTypeAdapter implements JsonSerializer<EsercizioScheda>, JsonDeserializer<EsercizioScheda> {
 
+    private static final String FIELD_ID_SCHEDA = "idScheda";
+    private static final String FIELD_NOME_ESERCIZIO = "nomeEsercizio";
+    private static final String FIELD_SERIE = "serie";
+    private static final String FIELD_RIPETIZIONI = "ripetizioni";
+
+
     @Override
     public JsonElement serialize(EsercizioScheda src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject obj = new JsonObject();
         obj.addProperty("id", src.getId());
-        obj.addProperty("idScheda", src.getIdScheda());
-        obj.addProperty("nomeEsercizio", src.getNomeEsercizio());
-        obj.addProperty("serie", src.getSerie());
-        obj.addProperty("ripetizioni", src.getRipetizioni());
+        obj.addProperty(FIELD_ID_SCHEDA, src.getIdScheda());
+        obj.addProperty(FIELD_NOME_ESERCIZIO, src.getNomeEsercizio());
+        obj.addProperty(FIELD_SERIE, src.getSerie());
+        obj.addProperty(FIELD_RIPETIZIONI, src.getRipetizioni());
         obj.addProperty("note", src.getNote());
         return obj;
     }
@@ -28,17 +34,17 @@ public class EsercizioSchedaTypeAdapter implements JsonSerializer<EsercizioSched
         if (obj.has("id") && !obj.get("id").isJsonNull()) {
             esercizio.setId(obj.get("id").getAsInt());
         }
-        if (obj.has("idScheda") && !obj.get("idScheda").isJsonNull()) {
-            esercizio.setIdScheda(obj.get("idScheda").getAsInt());
+        if (obj.has(FIELD_ID_SCHEDA) && !obj.get(FIELD_ID_SCHEDA).isJsonNull()) {
+            esercizio.setIdScheda(obj.get(FIELD_ID_SCHEDA).getAsInt());
         }
-        if (obj.has("nomeEsercizio") && !obj.get("nomeEsercizio").isJsonNull()) {
-            esercizio.setNomeEsercizio(obj.get("nomeEsercizio").getAsString());
+        if (obj.has(FIELD_NOME_ESERCIZIO) && !obj.get(FIELD_NOME_ESERCIZIO).isJsonNull()) {
+            esercizio.setNomeEsercizio(obj.get(FIELD_NOME_ESERCIZIO).getAsString());
         }
-        if (obj.has("serie") && !obj.get("serie").isJsonNull()) {
-            esercizio.setSerie(obj.get("serie").getAsInt());
+        if (obj.has(FIELD_SERIE) && !obj.get(FIELD_SERIE).isJsonNull()) {
+            esercizio.setSerie(obj.get(FIELD_SERIE).getAsInt());
         }
-        if (obj.has("ripetizioni") && !obj.get("ripetizioni").isJsonNull()) {
-            esercizio.setRipetizioni(obj.get("ripetizioni").getAsInt());
+        if (obj.has(FIELD_RIPETIZIONI) && !obj.get(FIELD_RIPETIZIONI).isJsonNull()) {
+            esercizio.setRipetizioni(obj.get(FIELD_RIPETIZIONI).getAsInt());
         }
         if (obj.has("note") && !obj.get("note").isJsonNull()) {
             esercizio.setNote(obj.get("note").getAsString());

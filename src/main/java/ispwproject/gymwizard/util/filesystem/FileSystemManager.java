@@ -15,7 +15,7 @@ import java.util.List;
 
 public class FileSystemManager {
 
-    private static final String BASE_PATH = "data/clienti/";
+    private static final String BASE_PATH = "data" + File.separator + "clienti" + File.separator;
 
     private FileSystemManager() {
         // Costruttore privato
@@ -30,16 +30,13 @@ public class FileSystemManager {
 
     // Salva la lista in: data/clienti/<idCliente>/<fileName>
     public static <T> void saveListToFile(List<T> list, int idCliente, String fileName) {
-        String filePath = BASE_PATH + idCliente + "/" + fileName;
+        String filePath = BASE_PATH + idCliente + File.separator + fileName;
         File file = new File(filePath);
         File dir = file.getParentFile();
 
-        if (dir != null && !dir.exists()) {
-            if (!dir.mkdirs()) {
-                AppLogger.logError("Impossibile creare la directory: " + dir.getAbsolutePath());
-            }
+        if (dir != null && !dir.exists() && !dir.mkdirs()) {
+            AppLogger.logError("Impossibile creare la directory: " + dir.getAbsolutePath());
         }
-
 
         try (Writer writer = new FileWriter(file)) {
             gson.toJson(list, writer);
@@ -50,7 +47,7 @@ public class FileSystemManager {
 
     // Carica lista da: data/clienti/<idCliente>/<fileName>
     public static <T> List<T> loadListFromFile(int idCliente, String fileName, Type type) {
-        String filePath = BASE_PATH + idCliente + "/" + fileName;
+        String filePath = BASE_PATH + idCliente + File.separator + fileName;
         File file = new File(filePath);
 
         if (!file.exists()) {
