@@ -2,13 +2,23 @@
   {
     "id": 1,
     "idCliente": 3,
-    "nomeScheda": "petto",
-    "dataCreazione": 1751721987760
+    "nomeScheda": "petto"
   },
   {
     "id": 2,
     "idCliente": 3,
-    "nomeScheda": "legs",
-    "dataCreazione": 1751723722567
+    "nomeScheda": "legs"
+  },
+  {
+    "id": 3,
+    "idCliente": 3,
+    "nomeScheda": "Gambe",
+    "tipo": "cut"
+  },
+  {
+    "id": 4,
+    "idCliente": 3,
+    "nomeScheda": "Petto",
+    "tipo": "bulk"
   }
 ]
